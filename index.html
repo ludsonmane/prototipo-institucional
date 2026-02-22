@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mané — Complexo Gastronômico · DF & SP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --coral:    #e8573a;
+  --coral-dk: #c4421f;
+  --coral-lt: #f07459;
+  --green:    #1c3829;
+  --green-md: #254d38;
+  --green-lt: #2e6347;
+  --teal:     #2d7060;
+  --cream:    #faf7f2;
+  --warm:     #f5efe6;
+  --white:    #ffffff;
+  --ink:      #18180e;
+  --ink-md:   #3d3d2e;
+  --ink-lt:   #7a7a64;
+  --rule:     #e4ddd3;
+  --r:        6px;
+  --rl:       14px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Nunito',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ──────────────────────────── */
+.cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--coral);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transition:transform .15s ease, width .2s ease, height .2s ease, background .2s;
+  transform:translate(-50%,-50%);
+}
+.cursor.big{width:40px;height:40px;background:rgba(232,87,58,.2);border:1.5px solid var(--coral);}
+a:hover~.cursor,.btn:hover~.cursor{transform:scale(2);}
+
+/* ── FLOATING CTA ─────────────────────── */
+.float-cta{
+  position:fixed;bottom:28px;right:28px;z-index:500;
+  background:var(--coral);color:white;
+  padding:16px 28px;border-radius:100px;
+  font-size:14px;font-weight:800;
+  text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(232,87,58,.45);
+  transform:translateY(80px);opacity:0;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1), opacity .3s, background .2s;
+}
+.float-cta.visible{transform:translateY(0);opacity:1;}
+.float-cta:hover{background:var(--coral-dk);box-shadow:0 12px 40px rgba(232,87,58,.55);}
+.float-cta-icon{font-size:18px;animation:wiggle 3s ease infinite;}
+@keyframes wiggle{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-12deg)}96%{transform:rotate(10deg)}}
+
+/* ── NAV ──────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:400;
+  background:var(--green);
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;
+  transition:height .3s, box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.3);}
+.logo{
+  text-decoration:none;display:flex;align-items:center;gap:10px;
+}
+.logo-text{
+  font-family:'Fraunces',serif;
+  font-size:26px;font-weight:900;font-style:italic;
+  color:var(--coral);letter-spacing:-0.5px;line-height:1;
+}
+.logo-tagline{
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);border-left:1px solid rgba(255,255,255,.15);
+  padding-left:12px;line-height:1.4;
+}
+.nav-r{display:flex;align-items:center;gap:28px;}
+.nav-link{
+  color:rgba(255,255,255,.65);text-decoration:none;
+  font-size:13px;font-weight:700;
+  transition:color .2s;
+  display:none;
+}
+.nav-link:hover{color:white;}
+@media(min-width:900px){.nav-link{display:block;}}
+.nav-btn{
+  background:var(--coral);color:white;
+  padding:10px 22px;border-radius:100px;
+  font-size:13px;font-weight:800;
+  text-decoration:none;
+  display:flex;align-items:center;gap:7px;
+  transition:all .2s;
+  box-shadow:0 4px 16px rgba(232,87,58,.35);
+}
+.nav-btn:hover{background:var(--coral-dk);transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,87,58,.45);}
+.nav-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;}
+
+/* ── HERO ─────────────────────────────── */
+.hero{
+  margin-top:60px;
+  min-height:calc(100svh - 60px);
+  display:grid;grid-template-columns:55% 45%;
+  position:relative;overflow:hidden;
+}
+.hero-l{
+  background:var(--green);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:72px 56px 80px;
+  position:relative;z-index:2;
+}
+/* Noise texture overlay on green */
+.hero-l::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.5;pointer-events:none;
+}
+.hero-kicker{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:24px;
+}
+.hero-kicker-line{width:36px;height:2px;background:var(--coral);border-radius:2px;}
+.hero-kicker-text{
+  font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+.hero-h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(52px,5.5vw,88px);
+  font-weight:900;line-height:.97;
+  color:white;
+  margin-bottom:28px;
+}
+.hero-h1 em{font-style:italic;color:var(--coral);}
+.hero-h1 .hero-h1-sm{
+  display:block;
+  font-family:'Nunito',sans-serif;
+  font-size:clamp(18px,2vw,26px);font-weight:400;
+  color:rgba(255,255,255,.5);
+  font-style:normal;
+  margin-bottom:4px;
+}
+.hero-desc{
+  font-size:15px;line-height:1.8;
+  color:rgba(255,255,255,.6);
+  max-width:440px;margin-bottom:44px;
+}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-coral{
+  background:var(--coral);color:white;
+  padding:16px 34px;border-radius:100px;
+  font-size:14px;font-weight:800;
+  text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 6px 24px rgba(232,87,58,.4);
+}
+.btn-coral:hover{background:var(--coral-dk);transform:translateY(-3px);box-shadow:0 12px 32px rgba(232,87,58,.5);}
+.btn-ghost-w{
+  background:transparent;color:rgba(255,255,255,.8);
+  padding:16px 28px;border-radius:100px;
+  font-size:14px;font-weight:700;
+  text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+  border:1.5px solid rgba(255,255,255,.2);
+  transition:all .2s;
+}
+.btn-ghost-w:hover{border-color:rgba(255,255,255,.7);color:white;}
+
+.hero-stats{
+  display:flex;gap:0;
+  margin-top:56px;padding-top:44px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.hstat{
+  flex:1;padding-right:24px;border-right:1px solid rgba(255,255,255,.1);
+  margin-right:24px;
+}
+.hstat:last-child{border-right:none;}
+.hstat-num{
+  font-family:'Fraunces',serif;
+  font-size:42px;font-weight:900;font-style:italic;
+  color:var(--coral);line-height:1;
+}
+.hstat-lbl{
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  color:rgba(255,255,255,.4);margin-top:5px;
+}
+
+/* Hero right mosaic */
+.hero-r{
+  position:relative;overflow:hidden;
+}
+.hero-mosaic{height:100%;min-height:calc(100svh - 60px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:55% 45%;
+  height:100%;gap:3px;
+}
+.hm{overflow:hidden;position:relative;}
+.hm-inner{width:100%;height:100%;min-height:200px;transition:transform .7s ease;background-size:cover;background-position:center;will-change:transform;}
+.hm:hover .hm-inner{transform:scale(1.06);}
+.hm-a{background:url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=85&fit=crop") center center/cover no-repeat;}
+.hm-b{background:url("https://images.unsplash.com/photo-1551218808-94e220e084d2?w=900&q=85&fit=crop") center bottom/cover no-repeat;}
+.hm-c{background:url("https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=85&fit=crop") center 30%/cover no-repeat;}
+.hm-d{background:url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=85&fit=crop") center 40%/cover no-repeat;}
+.hm-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 60%);}
+.hm span.hm-lbl{
+  position:absolute;bottom:14px;left:14px;
+  font-size:12px;font-weight:700;color:rgba(255,255,255,.7);
+  font-family:'Nunito',sans-serif;letter-spacing:.5px;
+}
+.hm:first-child{grid-row:1/3;min-height:0;}
+
+/* Card that peeks over the seam */
+.hero-reserve-card{
+  position:absolute;bottom:44px;left:-20px;
+  background:white;border-radius:var(--rl);
+  padding:22px 26px;
+  box-shadow:0 24px 64px rgba(0,0,0,.2);
+  z-index:10;width:240px;
+  animation:cardPop .6s cubic-bezier(.34,1.56,.64,1) .5s both;
+}
+@keyframes cardPop{from{opacity:0;transform:translateX(20px) scale(.9)}to{opacity:1;transform:translateX(0) scale(1)}}
+.hrc-dot{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;color:#22c55e;
+  margin-bottom:10px;
+}
+.hrc-dot::before{content:'';display:block;width:7px;height:7px;border-radius:50%;background:#22c55e;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{opacity:.7;box-shadow:0 0 0 5px rgba(34,197,94,0)}}
+.hrc-t{font-family:'Fraunces',serif;font-size:18px;font-weight:700;font-style:italic;color:var(--ink);margin-bottom:3px;}
+.hrc-s{font-size:12px;color:var(--ink-lt);margin-bottom:16px;}
+.hrc-btn{
+  display:block;background:var(--coral);color:white;
+  text-align:center;padding:11px;border-radius:8px;
+  font-size:13px;font-weight:800;text-decoration:none;
+  transition:background .2s;
+}
+.hrc-btn:hover{background:var(--coral-dk);}
+
+/* Hero gradient bleed */
+.hero-seam{
+  position:absolute;top:0;bottom:0;left:55%;width:60px;
+  background:linear-gradient(to right,var(--green),transparent);
+  z-index:3;pointer-events:none;
+}
+
+/* ── TICKER ───────────────────────────── */
+.ticker{
+  background:var(--teal);
+  overflow:hidden;white-space:nowrap;
+  padding:13px 0;
+  border-top:2px solid rgba(255,255,255,.08);
+}
+.ticker-inner{
+  display:inline-block;
+  animation:tick 30s linear infinite;
+  font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tick-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--coral);margin:0 20px;vertical-align:middle;}
+
+/* ── SECTION BASICS ───────────────────── */
+.s{padding:100px 52px;}
+.s-sm{padding:72px 52px;}
+.bg-cream{background:var(--cream);}
+.bg-warm{background:var(--warm);}
+.bg-green{background:var(--green);}
+.bg-white{background:var(--white);}
+
+.eyebrow{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:14px;
+}
+.eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--coral);border-radius:2px;}
+.eyebrow-w{color:rgba(255,255,255,.5);}
+
+h2.h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(34px,3.8vw,58px);
+  font-weight:900;line-height:1.0;
+  color:var(--ink);
+}
+h2.h2 em{font-style:italic;color:var(--coral);}
+h2.h2-w{color:white;}
+.body-txt{font-size:15px;line-height:1.85;color:var(--ink-md);margin-top:18px;}
+.body-txt-w{color:rgba(255,255,255,.6);}
+
+/* ── DIFERENCIAIS ─────────────────────── */
+.dif-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:3px;margin-top:56px;
+  border-radius:var(--rl);overflow:hidden;
+}
+.dif-card{
+  aspect-ratio:2/3;position:relative;overflow:hidden;cursor:pointer;
+  transition:flex .3s ease;
+}
+.dif-bg{
+  position:absolute;inset:0;
+  transition:transform .6s ease;
+}
+.dif-card:hover .dif-bg{transform:scale(1.07);}
+.db1{background:url("https://mane.com.vc/wp-content/uploads/2023/03/Frame-31.png") center top/cover center/cover no-repeat, linear-gradient(160deg,#3a2510,#1e1008);}
+.db2{background:url("https://mane.com.vc/wp-content/uploads/2023/03/Frame-30.png") center top/cover center/cover no-repeat, linear-gradient(160deg,#0c2818,#081508);}
+.db3{background:url("https://mane.com.vc/wp-content/uploads/2023/10/Frame-28.png") center top/cover center/cover no-repeat, linear-gradient(160deg,#2d1420,#160a10);}
+.db4{background:url("https://mane.com.vc/wp-content/uploads/2023/03/Frame-29.png") center top/cover center/cover no-repeat, linear-gradient(160deg,#1a2c10,#0c1808);}
+.db5{background:url("https://mane.com.vc/wp-content/uploads/2023/03/Frame-26.png") center top/cover center/cover no-repeat, linear-gradient(160deg,#2e1a08,#160e04);}
+.db6{background:url("https://mane.com.vc/wp-content/uploads/2024/09/Group-2066805.png") center center/cover center/cover no-repeat, linear-gradient(160deg,#0a1e30,#050e18);}
+.dif-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(28,56,41,.95) 0%,rgba(28,56,41,.4) 50%,rgba(0,0,0,.1) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:18px 16px;
+  transition:all .3s;
+}
+.dif-card:hover .dif-overlay{background:linear-gradient(to top,rgba(232,87,58,.95) 0%,rgba(232,87,58,.5) 55%,rgba(0,0,0,.1) 100%);}
+.dif-icon{font-size:24px;margin-bottom:8px;transition:transform .3s;}
+.dif-card:hover .dif-icon{transform:scale(1.2);}
+.dif-name{font-size:13px;font-weight:800;color:white;text-align:center;line-height:1.3;}
+
+/* ── SPLIT MANIFESTO ──────────────────── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.split-img{
+  position:relative;overflow:hidden;min-height:520px;
+  background:linear-gradient(135deg,#2a1208,#4e2410,#1a0c06);
+}
+.split-img-grid{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;
+}
+.simg{overflow:hidden;}
+.simg-i{width:100%;height:100%;transition:transform .6s;}
+.simg:hover .simg-i{transform:scale(1.05);}
+.si1{background:url("https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=900&q=85&fit=crop") center 40%/cover no-repeat;}
+.si2{background:url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=85&fit=crop") center 55%/cover no-repeat;}
+.si3{background:url("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=85&fit=crop") center 40%/cover no-repeat;}
+.si4{background:url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85&fit=crop") center 30%/cover no-repeat;}
+
+.split-content{
+  background:var(--cream);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 72px;
+}
+.manifesto-quote{
+  font-family:'Fraunces',serif;
+  font-size:clamp(20px,2.2vw,28px);
+  font-weight:400;font-style:italic;
+  line-height:1.55;color:var(--ink);
+  border-left:4px solid var(--coral);
+  padding-left:24px;margin-top:28px;
+}
+.manifesto-quote strong{color:var(--coral);font-style:normal;font-weight:900;}
+.manifesto-play{
+  display:inline-flex;align-items:center;gap:14px;
+  margin-top:36px;text-decoration:none;
+  transition:gap .2s;
+}
+.manifesto-play:hover{gap:20px;}
+.play-btn{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--teal);display:flex;align-items:center;justify-content:center;
+  color:white;font-size:18px;transition:background .2s;flex-shrink:0;
+}
+.manifesto-play:hover .play-btn{background:var(--green);}
+.play-txt{font-size:13px;font-weight:800;color:var(--teal);letter-spacing:.5px;}
+
+/* ── PHOTO STRIP ──────────────────────── */
+.pstrip{image-rendering:crisp-edges;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr 2fr;
+  height:320px;gap:3px;overflow:hidden;
+}
+.psi{overflow:hidden;position:relative;cursor:pointer;}
+.psi-inner{width:100%;height:100%;transition:transform .6s ease;}
+.psi:hover .psi-inner{transform:scale(1.06);}
+.pi1{background:url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&q=85&fit=crop") center 60%/cover no-repeat;}
+.pi2{background:url("https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=85&fit=crop") center 30%/cover no-repeat;}
+.pi3{background:url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=85&fit=crop") center 55%/cover no-repeat;}
+.pi4{background:url("https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=900&q=85&fit=crop") center 40%/cover no-repeat;}
+.pi5{background:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=85&fit=crop") center 35%/cover no-repeat;}
+.psi-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.3) 60%,transparent 100%);
+  padding:28px 16px 14px;
+  font-size:12px;font-weight:800;color:white;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+/* ── RESTAURANTES ─────────────────────── */
+.rest-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:52px;gap:20px;flex-wrap:wrap;
+}
+.btn-outline-coral{
+  background:transparent;color:var(--coral);
+  padding:13px 28px;border-radius:100px;
+  font-size:13px;font-weight:800;
+  text-decoration:none;border:2px solid var(--coral);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all .2s;
+}
+.btn-outline-coral:hover{background:var(--coral);color:white;}
+
+.rest-scroll-wrap{overflow:hidden;}
+.rest-pills{
+  display:flex;gap:10px;margin-bottom:40px;
+  overflow-x:auto;padding-bottom:4px;
+  scrollbar-width:none;
+}
+.rest-pills::-webkit-scrollbar{display:none;}
+.rpill{
+  flex-shrink:0;
+  background:var(--cream);border:1.5px solid var(--rule);
+  border-radius:100px;padding:9px 20px;
+  font-size:13px;font-weight:700;color:var(--ink-md);
+  cursor:pointer;transition:all .18s;white-space:nowrap;
+}
+.rpill:hover,.rpill.active{background:var(--coral);color:white;border-color:var(--coral);}
+
+.rest-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+.rcard{
+  border-radius:var(--rl);overflow:hidden;
+  border:1.5px solid var(--rule);
+  background:white;cursor:pointer;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  text-decoration:none;display:block;
+}
+.rcard:hover{transform:translateY(-6px);border-color:var(--coral);box-shadow:0 16px 40px rgba(232,87,58,.14);}
+.rcard-img{
+  height:140px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-style:italic;font-size:14px;
+  color:rgba(255,255,255,.3);
+  position:relative;overflow:hidden;
+}
+.rcard-img::after{
+  content:attr(data-label);
+  position:absolute;bottom:10px;right:10px;
+  background:rgba(0,0,0,.4);
+  font-family:'Nunito',sans-serif;font-style:normal;font-size:10px;font-weight:700;
+  color:white;padding:3px 8px;border-radius:4px;letter-spacing:.5px;
+}
+.ri1{background:linear-gradient(135deg,#2a1005,#4a2010);}
+.ri2{background:linear-gradient(135deg,#0a1f15,#143020);}
+.ri3{background:linear-gradient(135deg,#1a1508,#2e2410);}
+.ri4{background:linear-gradient(135deg,#180a08,#2e1210);}
+.ri5{background:linear-gradient(135deg,#061828,#0c2840);}
+.ri6{background:linear-gradient(135deg,#1c1028,#301a40);}
+.ri7{background:linear-gradient(135deg,#0c1a0a,#182c14);}
+.ri8{background:linear-gradient(135deg,#220e0a,#3a160e);}
+.rcard-info{padding:16px 18px;}
+.rcard-name{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:4px;}
+.rcard-type{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.5px;text-transform:uppercase;}
+
+/* ── ANIVERSÁRIO ──────────────────────── */
+.aniv{
+  background:var(--green);
+  padding:100px 52px;
+  position:relative;overflow:hidden;
+}
+.aniv-photo-overlay{position:absolute;inset:0;background:rgba(28,56,41,.8);z-index:0;}
+.aniv::before{
+  content:'';position:absolute;right:-80px;top:-80px;
+  width:500px;height:500px;border-radius:50%;
+  background:rgba(232,87,58,.08);
+  pointer-events:none;
+}
+.aniv::after{
+  content:'';position:absolute;left:-60px;bottom:-60px;
+  width:380px;height:380px;border-radius:50%;
+  background:rgba(255,255,255,.03);
+  pointer-events:none;
+}
+.aniv-inner{
+  display:grid;grid-template-columns:1fr auto;
+  gap:64px;align-items:center;position:relative;z-index:1;
+}
+.aniv-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(38px,4.5vw,66px);
+  font-weight:900;line-height:.97;
+  color:white;margin-bottom:18px;
+}
+.aniv-title em{font-style:italic;color:var(--coral);}
+.aniv-sub{font-size:15px;color:rgba(255,255,255,.6);line-height:1.8;max-width:520px;margin-bottom:36px;}
+.aniv-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-white{
+  background:white;color:var(--coral);
+  padding:15px 32px;border-radius:100px;
+  font-size:14px;font-weight:800;
+  text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+  transition:all .2s;
+}
+.btn-white:hover{background:var(--cream);}
+.btn-outline-w{
+  background:transparent;color:rgba(255,255,255,.75);
+  padding:15px 28px;border-radius:100px;
+  font-size:14px;font-weight:700;
+  text-decoration:none;border:1.5px solid rgba(255,255,255,.2);
+  transition:all .2s;
+}
+.btn-outline-w:hover{border-color:rgba(255,255,255,.6);color:white;}
+.aniv-visual{
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(232,87,58,.1);border:1.5px solid rgba(232,87,58,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:80px;
+  position:relative;
+}
+.aniv-visual::before{
+  content:'';position:absolute;inset:-20px;border-radius:50%;
+  border:1px solid rgba(232,87,58,.12);animation:rotate 8s linear infinite;
+}
+@keyframes rotate{to{transform:rotate(360deg);}}
+.aniv-visual::after{
+  content:'';position:absolute;inset:-40px;border-radius:50%;
+  border:1px dashed rgba(232,87,58,.07);animation:rotate 14s linear infinite reverse;
+}
+
+/* ── HH ───────────────────────────────── */
+.hh{background:var(--teal);}
+.hh-inner{
+  display:grid;grid-template-columns:1fr auto;
+  gap:64px;align-items:center;flex-wrap:wrap;
+}
+.hh-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(42px,5vw,76px);
+  font-weight:900;font-style:italic;
+  color:white;line-height:.95;
+  margin-bottom:14px;
+}
+.hh-title span{color:var(--coral);}
+.hh-sub{font-size:15px;color:rgba(255,255,255,.65);line-height:1.75;max-width:480px;}
+.hh-badge{
+  background:rgba(0,0,0,.18);border-radius:var(--rl);
+  padding:28px 36px;text-align:center;flex-shrink:0;
+}
+.hh-badge-time{
+  font-family:'Fraunces',serif;
+  font-size:52px;font-weight:900;font-style:italic;
+  color:white;line-height:1;
+}
+.hh-badge-days{
+  font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:20px;margin-top:6px;
+}
+.btn-coral-sm{
+  background:var(--coral);color:white;
+  padding:12px 24px;border-radius:100px;
+  font-size:13px;font-weight:800;
+  text-decoration:none;display:inline-flex;align-items:center;gap:7px;
+  transition:all .2s;
+}
+.btn-coral-sm:hover{background:var(--coral-dk);}
+
+/* ── RESERVA CTA ──────────────────────── */
+.reserva-hero{
+  background:var(--cream);
+  position:relative;overflow:hidden;
+}
+.reserva-hero::before{
+  content:'';position:absolute;
+  top:-100px;right:-100px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,87,58,.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.rh-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  position:relative;z-index:1;
+}
+.rh-left{}
+.rh-reasons{
+  display:flex;flex-direction:column;gap:0;
+  margin-top:44px;
+}
+.rhr{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:22px 0;
+  border-bottom:1px solid var(--rule);
+}
+.rhr:first-child{border-top:1px solid var(--rule);}
+.rhr-ico{
+  width:42px;height:42px;border-radius:10px;flex-shrink:0;
+  background:rgba(232,87,58,.1);
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.rhr-t{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:3px;}
+.rhr-d{font-size:13px;color:var(--ink-lt);line-height:1.65;}
+
+/* Big CTA card */
+.rh-card{
+  background:var(--green);border-radius:24px;
+  padding:52px 48px;
+  display:flex;flex-direction:column;align-items:flex-start;
+  gap:0;
+  position:relative;overflow:hidden;
+}
+.rh-card::before{
+  content:'';position:absolute;right:-60px;bottom:-60px;
+  width:260px;height:260px;border-radius:50%;
+  background:rgba(255,255,255,.03);pointer-events:none;
+}
+.rh-card-eyebrow{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-bottom:18px;
+}
+.rh-card-eyebrow::before{content:'';display:block;width:22px;height:2px;background:var(--coral);}
+.rh-card-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(32px,3vw,48px);
+  font-weight:900;font-style:italic;
+  color:white;line-height:1;margin-bottom:16px;
+}
+.rh-card-title em{color:var(--coral);font-style:normal;}
+.rh-card-sub{
+  font-size:14px;color:rgba(255,255,255,.55);
+  line-height:1.75;margin-bottom:36px;
+}
+.rh-main-btn{
+  display:flex;align-items:center;gap:12px;
+  background:var(--coral);color:white;
+  padding:18px 36px;border-radius:100px;
+  font-size:15px;font-weight:800;
+  text-decoration:none;width:100%;justify-content:center;
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 8px 28px rgba(232,87,58,.4);
+  margin-bottom:14px;
+}
+.rh-main-btn:hover{background:var(--coral-dk);transform:scale(1.03);box-shadow:0 14px 40px rgba(232,87,58,.55);}
+.rh-main-btn .btn-arrow{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:transform .2s;
+}
+.rh-main-btn:hover .btn-arrow{transform:translateX(4px);}
+.rh-wa{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 18px;border-radius:var(--r);
+  background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);
+  text-decoration:none;width:100%;justify-content:center;
+  transition:all .2s;
+}
+.rh-wa:hover{background:rgba(255,255,255,.09);}
+.rh-wa-t{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);}
+.rh-wa span{font-size:16px;}
+.rh-occasions{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;width:100%;
+}
+.rh-oc{
+  background:rgba(255,255,255,.08);
+  padding:6px 14px;border-radius:100px;
+  font-size:12px;font-weight:700;color:rgba(255,255,255,.5);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+/* ── AGENDA ───────────────────────────── */
+.agenda-section{background:var(--white);}
+.ag-grid{
+  display:grid;grid-template-columns:3fr 2fr;
+  gap:24px;margin-top:52px;
+}
+.ag-featured{
+  border-radius:var(--rl);overflow:hidden;
+  border:1.5px solid var(--rule);cursor:pointer;
+  transition:all .25s;
+}
+.ag-featured:hover{border-color:var(--coral);box-shadow:0 12px 40px rgba(232,87,58,.1);}
+.ag-feat-img{
+  height:300px;position:relative;overflow:hidden;
+  background:url("https://images.unsplash.com/photo-1540039155733-5bb30b4f8a5b?w=1200&q=85&fit=crop") center 35%/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+}
+.ag-feat-badge{
+  position:absolute;top:16px;left:16px;
+  background:var(--coral);color:white;
+  padding:5px 14px;border-radius:100px;
+  font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+}
+.ag-feat-icon{font-size:64px;}
+.ag-feat-lbl{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.4);}
+.ag-feat-body{padding:28px 32px;}
+.agf-date{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.agf-title{font-family:'Fraunces',serif;font-size:24px;font-weight:700;font-style:italic;color:var(--ink);margin-bottom:10px;}
+.agf-desc{font-size:14px;color:var(--ink-md);line-height:1.75;margin-bottom:20px;}
+
+.ag-list{display:flex;flex-direction:column;gap:10px;}
+.ag-item{
+  display:flex;gap:16px;align-items:center;
+  border:1.5px solid var(--rule);border-radius:var(--r);
+  padding:16px 18px;cursor:pointer;
+  transition:all .2s;background:white;text-decoration:none;
+}
+.ag-item:hover{border-color:var(--coral);background:var(--cream);}
+.ag-date{
+  flex-shrink:0;text-align:center;
+  background:var(--coral);border-radius:8px;
+  padding:8px 10px;min-width:50px;
+}
+.ag-d-num{font-family:'Fraunces',serif;font-size:28px;font-weight:900;font-style:italic;color:white;line-height:1;}
+.ag-d-mon{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.75);}
+.ag-item-t{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:3px;}
+.ag-item-s{font-size:12px;color:var(--ink-lt);}
+
+/* ── LOCALIZAÇÃO ──────────────────────── */
+.loc-section{background:var(--green);position:relative;overflow:hidden;}
+.loc-section::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.loc-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;position:relative;z-index:1;
+}
+.loc-map{
+  border-radius:var(--rl);overflow:hidden;
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,#0c2018,#163028);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.loc-map-pin{font-size:48px;}
+.loc-map-lbl{text-align:center;}
+.loc-map-lbl strong{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.5);display:block;}
+.loc-map-lbl span{font-size:13px;color:var(--coral);font-weight:700;}
+.loc-details{margin-top:44px;display:flex;flex-direction:column;gap:24px;}
+.ldi{display:flex;gap:16px;}
+.ldi-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.ldi-t{font-size:14px;font-weight:800;color:white;margin-bottom:5px;}
+.ldi-d{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;}
+.hours-g{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:8px;}
+.hr-r .hr-d{font-weight:800;color:var(--coral);font-size:13px;}
+.hr-r .hr-t{color:rgba(255,255,255,.5);font-size:13px;}
+.btn-coral-outline{
+  background:transparent;color:var(--coral);
+  padding:14px 30px;border-radius:100px;
+  font-size:14px;font-weight:800;
+  text-decoration:none;border:2px solid var(--coral);
+  display:inline-flex;align-items:center;gap:9px;
+  transition:all .2s;
+}
+.btn-coral-outline:hover{background:var(--coral);color:white;}
+
+/* ── FAQ ──────────────────────────────── */
+.faq-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.faq-img-col{
+  border-radius:var(--rl);overflow:hidden;
+  aspect-ratio:3/4;
+  background:url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85&fit=crop") center/cover no-repeat, linear-gradient(135deg,rgba(42,18,5,.5),rgba(72,32,16,.6));
+  display:flex;align-items:flex-end;
+  padding:32px;
+  position:sticky;top:80px;
+}
+.faq-img-badge{
+  background:white;border-radius:var(--r);
+  padding:16px 20px;
+}
+.fib-t{font-family:'Fraunces',serif;font-style:italic;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.fib-s{font-size:12px;color:var(--ink-lt);}
+.faq-list{margin-top:44px;display:flex;flex-direction:column;}
+.faq-item{border-bottom:1.5px solid var(--rule);}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;cursor:pointer;user-select:none;
+  font-size:15px;font-weight:800;color:var(--ink);gap:14px;
+}
+.faq-ico{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:var(--coral);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1;font-weight:400;
+  transition:transform .25s;
+}
+.faq-item.open .faq-ico{transform:rotate(45deg);}
+.faq-a{
+  font-size:14px;color:var(--ink-md);line-height:1.75;
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease,padding .3s;
+}
+.faq-item.open .faq-a{max-height:160px;padding-bottom:22px;}
+
+/* ── FOOTER ───────────────────────────── */
+footer{
+  background:var(--ink);
+  padding:72px 52px 44px;
+}
+.ft-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px;
+  padding-bottom:56px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.ft-logo-t{
+  font-family:'Fraunces',serif;font-style:italic;
+  font-size:38px;font-weight:900;
+  color:var(--coral);text-decoration:none;display:block;margin-bottom:16px;
+}
+.ft-about{font-size:14px;color:rgba(255,255,255,.4);line-height:1.8;max-width:280px;}
+.ft-social{display:flex;gap:10px;margin-top:24px;}
+.ft-soc{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:rgba(255,255,255,.4);
+  text-decoration:none;transition:all .2s;
+  font-family:'Nunito',sans-serif;
+}
+.ft-soc:hover{border-color:var(--coral);color:var(--coral);}
+.ft-col-h{
+  font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--coral);margin-bottom:20px;
+}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.ft-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:14px;transition:color .2s;}
+.ft-links a:hover{color:rgba(255,255,255,.85);}
+.ft-hours-grid{font-size:13px;display:flex;flex-direction:column;gap:8px;}
+.ft-hr{display:flex;flex-direction:column;}
+.ft-hr-d{color:var(--coral);font-weight:800;}
+.ft-hr-t{color:rgba(255,255,255,.4);}
+.ft-bot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:32px;font-size:12px;color:rgba(255,255,255,.25);
+  flex-wrap:wrap;gap:12px;
+}
+.ft-bot a{color:rgba(255,255,255,.25);text-decoration:none;}
+.ft-bot a:hover{color:var(--coral);}
+
+/* ── REVEAL ──────────────────────────── */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv-d1{transition-delay:.1s;} .rv-d2{transition-delay:.18s;} .rv-d3{transition-delay:.26s;}
+.rv-d4{transition-delay:.34s;} .rv-d5{transition-delay:.42s;} .rv-d6{transition-delay:.5s;}
+
+/* Hero stagger */
+.hero-l>*{animation:hfade .7s ease both;}
+.hero-l>:nth-child(1){animation-delay:.08s}
+.hero-l>:nth-child(2){animation-delay:.18s}
+.hero-l>:nth-child(3){animation-delay:.3s}
+.hero-l>:nth-child(4){animation-delay:.42s}
+.hero-l>:nth-child(5){animation-delay:.58s}
+@keyframes hfade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── UNIDADES ─────────────────────────── */
+.units-section{background:var(--green);position:relative;overflow:hidden;}
+.units-section::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.units-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:56px;position:relative;z-index:1;flex-wrap:wrap;gap:20px;
+}
+.units-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:3px;position:relative;z-index:1;
+}
+.ucard{
+  position:relative;overflow:hidden;
+  border-radius:0;cursor:pointer;
+  transition:flex .3s;
+  text-decoration:none;display:block;
+}
+.ucard:first-child{border-radius:var(--rl) 0 0 var(--rl);}
+.ucard:last-child{border-radius:0 var(--rl) var(--rl) 0;}
+.ucard-bg{
+  height:520px;
+  transition:transform .7s cubic-bezier(.25,.46,.45,.94);
+  position:relative;
+}
+.ucard:hover .ucard-bg{transform:scale(1.04);}
+.ubg-bsb{background:url("https://images.unsplash.com/photo-1590736704728-f4730bb30770?w=1400&q=85&fit=crop") center 40%/cover no-repeat;}
+.ubg-ac{background:url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1400&q=85&fit=crop") center 50%/cover no-repeat;}
+.ubg-sp{background:url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=85&fit=crop") center 35%/cover no-repeat;}
+
+/* City texture details */
+.ubg-bsb::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    90deg,
+    transparent 0px,transparent 48px,
+    rgba(255,255,255,.02) 48px,rgba(255,255,255,.02) 49px
+  ),repeating-linear-gradient(
+    0deg,
+    transparent 0px,transparent 48px,
+    rgba(255,255,255,.02) 48px,rgba(255,255,255,.02) 49px
+  );
+}
+.ubg-sp::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    45deg,
+    transparent 0px,transparent 20px,
+    rgba(255,255,255,.015) 20px,rgba(255,255,255,.015) 21px
+  );
+}
+
+.ucard-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,
+    rgba(10,20,14,.98) 0%,
+    rgba(10,20,14,.75) 40%,
+    rgba(0,0,0,.3) 70%,
+    rgba(0,0,0,.1) 100%
+  );
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:40px 36px;
+  transition:background .4s;
+}
+.ucard:hover .ucard-overlay{
+  background:linear-gradient(to top,
+    rgba(10,20,14,.98) 0%,
+    rgba(10,20,14,.75) 55%,
+    rgba(0,0,0,.15) 100%
+  );
+}
+.ucard-state-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(4px);
+  padding:5px 12px;border-radius:100px;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.75);margin-bottom:18px;width:fit-content;
+}
+.ucard-state-badge .ubadge-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+}
+.dot-df{background:#4ade80;}
+.dot-sp{background:var(--coral);}
+
+.ucard-city{
+  font-family:'Fraunces',serif;
+  font-size:clamp(30px,2.8vw,42px);
+  font-weight:900;font-style:italic;
+  color:white;line-height:1;margin-bottom:6px;
+}
+.ucard-neighborhood{
+  font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:16px;
+}
+.ucard-desc{
+  font-size:13px;color:rgba(255,255,255,.55);
+  line-height:1.7;margin-bottom:24px;
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease, opacity .3s;
+  opacity:0;
+}
+.ucard:hover .ucard-desc{max-height:80px;opacity:1;}
+.ucard-meta{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;
+}
+.umeta-tag{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
+  padding:5px 12px;border-radius:100px;
+  font-size:11px;font-weight:700;color:rgba(255,255,255,.55);
+  transition:all .25s;
+}
+.ucard:hover .umeta-tag{background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);}
+.ucard-cta{
+  display:flex;gap:10px;
+  transform:translateY(8px);opacity:0;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);
+}
+.ucard:hover .ucard-cta{transform:translateY(0);opacity:1;}
+.ucta-primary{
+  background:var(--coral);color:white;
+  padding:11px 22px;border-radius:100px;
+  font-size:13px;font-weight:800;
+  text-decoration:none;transition:background .2s;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.ucta-primary:hover{background:var(--coral-dk);}
+.ucta-ghost{
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);
+  padding:11px 18px;border-radius:100px;
+  font-size:13px;font-weight:700;
+  text-decoration:none;transition:all .2s;
+  border:1px solid rgba(255,255,255,.15);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.ucta-ghost:hover{background:rgba(255,255,255,.14);color:white;}
+
+/* Unit hours strip at bottom of card */
+.ucard-hours{
+  display:flex;gap:16px;
+  padding-top:18px;border-top:1px solid rgba(255,255,255,.1);
+  margin-top:0;
+}
+.uh-item{font-size:11px;}
+.uh-d{color:var(--coral);font-weight:800;letter-spacing:.3px;}
+.uh-t{color:rgba(255,255,255,.4);}
+
+/* State pills above section */
+.state-pills{
+  display:flex;gap:10px;margin-bottom:24px;
+}
+.spill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:100px;
+  font-size:12px;font-weight:800;letter-spacing:.5px;
+  border:1.5px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.5);
+}
+.spill-df{border-color:rgba(74,222,128,.3);color:#4ade80;}
+.spill-sp{border-color:rgba(232,87,58,.35);color:var(--coral-lt);}
+.spill-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+
+/* ── NAV UNIT SELECTOR ────────────────── */
+.nav-unit-sel{
+  display:flex;align-items:center;gap:0;
+  background:rgba(255,255,255,.07);
+  border-radius:100px;padding:3px;
+  border:1px solid rgba(255,255,255,.1);
+  margin-right:4px;
+}
+.nus-btn{
+  padding:6px 14px;border-radius:100px;
+  font-size:12px;font-weight:800;letter-spacing:.5px;
+  color:rgba(255,255,255,.5);cursor:pointer;
+  transition:all .2s;text-decoration:none;
+  display:none;
+}
+.nus-btn.active{background:var(--coral);color:white;}
+.nus-btn:hover:not(.active){color:white;}
+@media(min-width:900px){.nus-btn{display:block;}}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:1280px){
+  .dif-grid{grid-template-columns:repeat(3,1fr);}
+  .rest-grid{grid-template-columns:repeat(2,1fr);}
+  .units-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:1024px){
+  nav{padding:0 24px;}
+  .s{padding:72px 28px;} .s-sm{padding:52px 28px;}
+  .hero{grid-template-columns:1fr;}
+  .hero-r,.hero-seam{display:none;}
+  .hero-l{min-height:90svh;padding:80px 28px 64px;}
+  .split{grid-template-columns:1fr;}
+  .split-img{min-height:360px;}
+  .split-content{padding:56px 36px;}
+  .rh-inner,.loc-inner,.faq-inner,.aniv-inner{grid-template-columns:1fr;gap:48px;}
+  .aniv-visual{width:200px;height:200px;font-size:56px;}
+  .ag-grid{grid-template-columns:1fr;}
+  .ft-top{grid-template-columns:1fr 1fr;gap:32px;}
+  .pstrip{grid-template-columns:repeat(3,1fr);}
+  .pstrip .psi:nth-child(4),.pstrip .psi:nth-child(5){display:none;}
+  .units-grid{grid-template-columns:1fr;gap:3px;}
+  .ucard:first-child,.ucard:last-child{border-radius:0;}
+  .ucard-desc{max-height:80px;opacity:1;}
+  .ucard-cta{transform:translateY(0);opacity:1;}
+  .ucard-bg{height:380px;}
+}
+@media(max-width:768px){
+  nav{padding:0 18px;}
+  .nav-link{display:none;}
+  .s{padding:56px 20px;} .s-sm{padding:44px 20px;}
+  .hero-l{padding:80px 20px 56px;}
+  .hh-inner,.aniv-inner{grid-template-columns:1fr;}
+  .hh-badge{text-align:left;}
+  .aniv-visual{display:none;}
+  .rest-grid{grid-template-columns:1fr 1fr;}
+  .dif-grid{grid-template-columns:repeat(2,1fr);}
+  .aniv{padding:64px 20px;}
+  .ft-top{grid-template-columns:1fr;gap:28px;}
+  .ft-bot{flex-direction:column;text-align:center;}
+  .float-cta{bottom:16px;right:16px;padding:13px 22px;font-size:13px;}
+  .ag-grid{grid-template-columns:1fr;}
+  .cursor{display:none;}
+  body{cursor:auto;}
+  .rh-card{padding:36px 28px;}
+  .units-grid{grid-template-columns:1fr;}
+  .ucard-bg{height:340px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- FLOATING CTA -->
+<a href="https://reservas.mane.com.vc" target="_blank" class="float-cta" id="floatCta">
+  <span class="float-cta-icon">🍽️</span>
+  Fazer Reserva
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <img src="https://mane.com.vc/wp-content/uploads/2023/03/Camada-1.svg" alt="mané" style="height:32px;width:auto;filter:brightness(0) saturate(100%) invert(55%) sepia(90%) saturate(500%) hue-rotate(340deg) brightness(95%);" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="logo-text" style="display:none;">mané</span>
+    <span class="logo-tagline">Complexo<br>Gastronômico</span>
+  </a>
+  <div class="nav-r">
+    <div class="nav-unit-sel">
+      <a href="#unidades" class="nus-btn active">DF</a>
+      <a href="#unidades" class="nus-btn">SP</a>
+    </div>
+    <a href="#restaurantes" class="nav-link">Restaurantes</a>
+    <a href="#unidades" class="nav-link">Unidades</a>
+    <a href="#agenda" class="nav-link">Agenda</a>
+    <a href="https://reservas.mane.com.vc" class="nav-btn" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Faça sua Reserva
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="inicio">
+  <div class="hero-l">
+    <div class="hero-kicker">
+      <div class="hero-kicker-line"></div>
+      <span class="hero-kicker-text">Brasília · Águas Claras · São Paulo</span>
+    </div>
+    <h1 class="hero-h1">
+      <span class="hero-h1-sm">Presente no DF e em SP —</span>
+      <em>Faça sua</em><br>Reserva
+    </h1>
+    <p class="hero-desc">Com 15 restaurantes e 3 bares por unidade, tem opção pra agradar todos os gostos — do brunch ao brinde. Espaço pra família, amigos, pets e todo mundo.</p>
+    <div class="hero-cta-row">
+      <a href="https://reservas.mane.com.vc" class="btn-coral" target="_blank">Reservar agora →</a>
+      <a href="#restaurantes" class="btn-ghost-w">Ver Restaurantes</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">3</div>
+        <div class="hstat-lbl">Unidades</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">2</div>
+        <div class="hstat-lbl">Estados</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">15+</div>
+        <div class="hstat-lbl">Restaurantes</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">🐾</div>
+        <div class="hstat-lbl">Pet friendly</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-mosaic">
+      <div class="hm" style="grid-row:1/3;"><div class="hm-inner hm-a"></div><div class="hm-overlay"></div><span class="hm-lbl">Gastronomia</span></div>
+      <div class="hm"><div class="hm-inner hm-b"></div><div class="hm-overlay"></div><span class="hm-lbl">Happy Hour</span></div>
+      <div class="hm"><div class="hm-inner hm-c"></div><div class="hm-overlay"></div><span class="hm-lbl">Fome de Música</span></div>
+    </div>
+    <div class="hero-reserve-card">
+      <div class="hrc-dot">Aberto agora</div>
+      <img src="https://mane.com.vc/wp-content/uploads/2023/03/Camada-1.svg" alt="mané" style="height:22px;margin-bottom:4px;filter:brightness(0) saturate(100%) invert(37%) sepia(75%) saturate(600%) hue-rotate(340deg) brightness(90%);" onerror="this.style.display='none'">
+      <div class="hrc-t">Reserve sua mesa</div>
+      <div class="hrc-s">Seg–Dom · 12h às 23h</div>
+      <a href="https://reservas.mane.com.vc" class="hrc-btn" target="_blank">Fazer Reserva →</a>
+    </div>
+  </div>
+  <div class="hero-seam"></div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    HAPPY HOUR <span class="tick-dot"></span> SEG–SEX 15H–20H <span class="tick-dot"></span> 15+ RESTAURANTES <span class="tick-dot"></span> PET FRIENDLY <span class="tick-dot"></span> BRINQUEDOTECA <span class="tick-dot"></span> WINE BAR <span class="tick-dot"></span> FOME DE MÚSICA <span class="tick-dot"></span> CARDÁPIO INCLUSIVO <span class="tick-dot"></span> ANIVERSÁRIOS <span class="tick-dot"></span> RESERVAS EM RESERVAS.MANE.COM.VC <span class="tick-dot"></span>
+    HAPPY HOUR <span class="tick-dot"></span> SEG–SEX 15H–20H <span class="tick-dot"></span> 15+ RESTAURANTES <span class="tick-dot"></span> PET FRIENDLY <span class="tick-dot"></span> BRINQUEDOTECA <span class="tick-dot"></span> WINE BAR <span class="tick-dot"></span> FOME DE MÚSICA <span class="tick-dot"></span> CARDÁPIO INCLUSIVO <span class="tick-dot"></span> ANIVERSÁRIOS <span class="tick-dot"></span> RESERVAS EM RESERVAS.MANE.COM.VC <span class="tick-dot"></span>
+  </div>
+</div>
+
+<!-- UNIDADES -->
+<section class="s units-section" id="unidades">
+  <div class="units-header rv">
+    <div>
+      <div class="state-pills">
+        <span class="spill spill-df"><span class="spill-dot dot-df"></span>Distrito Federal</span>
+        <span class="spill spill-sp"><span class="spill-dot dot-sp"></span>São Paulo</span>
+      </div>
+      <div class="eyebrow eyebrow-w">Nossas unidades</div>
+      <h2 class="h2 h2-w">O Mané chegou em<br><em>2 estados</em></h2>
+    </div>
+    <p style="font-size:15px;color:rgba(255,255,255,.5);line-height:1.8;max-width:340px;">
+      De Brasília para o mundo. Encontre a unidade mais perto de você e venha viver a experiência Mané.
+    </p>
+  </div>
+
+  <div class="units-grid">
+
+    <!-- BRASÍLIA -->
+    <div class="ucard rv rv-d1">
+      <div class="ucard-bg ubg-bsb">
+        <!-- Em produção: foto real do Mercado Vírgula -->
+      </div>
+      <div class="ucard-overlay">
+        <div class="ucard-state-badge">
+          <span class="ubadge-dot dot-df"></span>Distrito Federal
+        </div>
+        <div class="ucard-city">Brasília</div>
+        <div class="ucard-neighborhood">📍 Eixo Monumental · Mercado Vírgula</div>
+        <div class="ucard-desc">A unidade original. No coração do Plano Piloto, entre as Arenas BRB Mané Garrincha e Nilson Nelson. Central, perene e plural.</div>
+        <div class="ucard-meta">
+          <span class="umeta-tag">15+ restaurantes</span>
+          <span class="umeta-tag">4 bares</span>
+          <span class="umeta-tag">Adega</span>
+          <span class="umeta-tag">Pet friendly</span>
+        </div>
+        <div class="ucard-hours">
+          <div class="uh-item"><div class="uh-d">Seg–Qui</div><div class="uh-t">12h–23h</div></div>
+          <div class="uh-item"><div class="uh-d">Sex–Sáb</div><div class="uh-t">11h–01h</div></div>
+          <div class="uh-item"><div class="uh-d">Dom</div><div class="uh-t">11h–23h</div></div>
+        </div>
+        <div class="ucard-cta" style="margin-top:20px;">
+          <a href="https://reservas.mane.com.vc" class="ucta-primary" target="_blank">Reservar →</a>
+          <a href="https://goo.gl/maps/QgLN4zNBwY4EtSE89" class="ucta-ghost" target="_blank">📍 Como chegar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁGUAS CLARAS -->
+    <div class="ucard rv rv-d2">
+      <div class="ucard-bg ubg-ac">
+        <!-- Em produção: foto real da unidade Águas Claras -->
+      </div>
+      <div class="ucard-overlay">
+        <div class="ucard-state-badge">
+          <span class="ubadge-dot dot-df"></span>Distrito Federal
+        </div>
+        <div class="ucard-city">Águas Claras</div>
+        <div class="ucard-neighborhood">📍 Águas Claras · DF</div>
+        <div class="ucard-desc">O Mané chegou na maior cidade planejada do DF. A mesma experiência gastronômica plural que você ama, mais perto de casa.</div>
+        <div class="ucard-meta">
+          <span class="umeta-tag">Restaurantes</span>
+          <span class="umeta-tag">Bares</span>
+          <span class="umeta-tag">Happy Hour</span>
+          <span class="umeta-tag">Pet friendly</span>
+        </div>
+        <div class="ucard-hours">
+          <div class="uh-item"><div class="uh-d">Seg–Qui</div><div class="uh-t">12h–23h</div></div>
+          <div class="uh-item"><div class="uh-d">Sex–Sáb</div><div class="uh-t">11h–01h</div></div>
+          <div class="uh-item"><div class="uh-d">Dom</div><div class="uh-t">11h–23h</div></div>
+        </div>
+        <div class="ucard-cta" style="margin-top:20px;">
+          <a href="https://reservas.mane.com.vc" class="ucta-primary" target="_blank">Reservar →</a>
+          <a href="#" class="ucta-ghost">📍 Como chegar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SÃO PAULO -->
+    <div class="ucard rv rv-d3">
+      <div class="ucard-bg ubg-sp">
+        <!-- Em produção: foto real da unidade Perdizes -->
+      </div>
+      <div class="ucard-overlay">
+        <div class="ucard-state-badge" style="background:rgba(232,87,58,.15);border-color:rgba(232,87,58,.3);">
+          <span class="ubadge-dot dot-sp"></span>São Paulo
+        </div>
+        <div class="ucard-city">São Paulo</div>
+        <div class="ucard-neighborhood">📍 Perdizes · SP</div>
+        <div class="ucard-desc">O Mané invade a maior cidade do Brasil. Em Perdizes, um dos bairros mais vibrantes de SP — a gastronomia brasiliense chega com tudo.</div>
+        <div class="ucard-meta">
+          <span class="umeta-tag">Restaurantes</span>
+          <span class="umeta-tag">Bares</span>
+          <span class="umeta-tag">Happy Hour</span>
+          <span class="umeta-tag">Pet friendly</span>
+        </div>
+        <div class="ucard-hours">
+          <div class="uh-item"><div class="uh-d">Seg–Qui</div><div class="uh-t">12h–23h</div></div>
+          <div class="uh-item"><div class="uh-d">Sex–Sáb</div><div class="uh-t">11h–01h</div></div>
+          <div class="uh-item"><div class="uh-d">Dom</div><div class="uh-t">11h–23h</div></div>
+        </div>
+        <div class="ucard-cta" style="margin-top:20px;">
+          <a href="https://reservas.mane.com.vc" class="ucta-primary" target="_blank">Reservar →</a>
+          <a href="#" class="ucta-ghost">📍 Como chegar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="s bg-white" id="diferenciais">
+  <div class="rv">
+    <div class="eyebrow">Diferenciais do Mané</div>
+    <h2 class="h2">Central, <em>perene</em> e plural.</h2>
+  </div>
+  <div class="dif-grid" style="margin-top:52px;">
+    <div class="dif-card rv rv-d1"><div class="dif-bg db1"></div><div class="dif-overlay"><div class="dif-icon">🐾</div><div class="dif-name">Pet Friendly</div></div></div>
+    <div class="dif-card rv rv-d2"><div class="dif-bg db2"></div><div class="dif-overlay"><div class="dif-icon">🍽️</div><div class="dif-name">Várias formas de Atendimento</div></div></div>
+    <div class="dif-card rv rv-d3"><div class="dif-bg db3"></div><div class="dif-overlay"><div class="dif-icon">📅</div><div class="dif-name">Perene</div></div></div>
+    <div class="dif-card rv rv-d4"><div class="dif-bg db4"></div><div class="dif-overlay"><div class="dif-icon">🌎</div><div class="dif-name">Variedade Gastronômica</div></div></div>
+    <div class="dif-card rv rv-d5"><div class="dif-bg db5"></div><div class="dif-overlay"><div class="dif-icon">🌱</div><div class="dif-name">Sustentável</div></div></div>
+    <div class="dif-card rv rv-d6"><div class="dif-bg db6"></div><div class="dif-overlay"><div class="dif-icon">🧸</div><div class="dif-name">Brinquedoteca</div></div></div>
+  </div>
+</section>
+
+<!-- SPLIT MANIFESTO -->
+<div class="split" id="sobre">
+  <div class="split-img rv">
+    <div class="split-img-grid">
+      <div class="simg"><div class="simg-i si1"></div></div>
+      <div class="simg"><div class="simg-i si2"></div></div>
+      <div class="simg"><div class="simg-i si3"></div></div>
+      <div class="simg"><div class="simg-i si4"></div></div>
+    </div>
+  </div>
+  <div class="split-content rv rv-d2">
+    <div class="eyebrow">Sobre o Mané</div>
+    <h2 class="h2">Aqui, não tem<br><em>ponto final!</em></h2>
+    <p class="manifesto-quote">
+      O Mané nasceu de um sonho sonhado em viagens pelo mundo. É um lugar plural, pra família, pros amigos e até pro cachorro. É restaurante, é bar, é feira. É cultura, <strong>diversão e diversidade.</strong>
+    </p>
+    <a href="#" class="manifesto-play">
+      <div class="play-btn">▶</div>
+      <span class="play-txt">Nosso Manifesto</span>
+    </a>
+  </div>
+</div>
+
+<!-- PHOTO STRIP -->
+<div class="pstrip">
+  <div class="psi"><div class="psi-inner pi1"></div><div class="psi-label">Pratos autorais</div></div>
+  <div class="psi"><div class="psi-inner pi2"></div><div class="psi-label">Fome de Música</div></div>
+  <div class="psi"><div class="psi-inner pi3"></div><div class="psi-label">Churrasco</div></div>
+  <div class="psi"><div class="psi-inner pi4"></div><div class="psi-label">Cozinha aberta</div></div>
+  <div class="psi"><div class="psi-inner pi5"></div><div class="psi-label">Ambiente Mané</div></div>
+</div>
+
+<!-- RESTAURANTES -->
+<section class="s bg-cream" id="restaurantes">
+  <div class="rest-header rv">
+    <div>
+      <div class="eyebrow">Culinária plural</div>
+      <h2 class="h2">+15 <em>Restaurantes</em></h2>
+      <p class="body-txt" style="max-width:440px;">De gelato a cuscuz, de hambúrguer a frutos do mar. Chefs renomados de Brasília em um só lugar.</p>
+    </div>
+    <a href="https://mane.com.vc/restaurantes/" class="btn-outline-coral" target="_blank">Ver todos →</a>
+  </div>
+
+  <div class="rest-pills rv">
+    <span class="rpill active">Todos</span>
+    <span class="rpill">Carnes</span>
+    <span class="rpill">Bar & Drinks</span>
+    <span class="rpill">Vegano/Veg</span>
+    <span class="rpill">Internacional</span>
+    <span class="rpill">Café</span>
+    <span class="rpill">Wine Bar</span>
+  </div>
+
+  <div class="rest-grid">
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d1" target="_blank"><div class="ri1" style="height:140px;background:#2a1005;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/tudo_do_porco112.png" alt="Tudo do Porco" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Tudo do Porco</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Tudo do Porco</div><div class="rcard-type">Churrasco · Porco</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d2" target="_blank"><div class="ri2" style="height:140px;background:#0a1f15;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/logo_bar_mane112.png" alt="Bar Mané" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Bar Mané</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Bar Mané</div><div class="rcard-type">Bar · Drinks · Petiscos</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d3" target="_blank"><div class="ri3" style="height:140px;background:#1a1508;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/superquadra_bar112.png" alt="Superquadra Bar" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Superquadra Bar</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Superquadra Bar</div><div class="rcard-type">Bar · Cultura Brasília</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d4" target="_blank"><div class="ri4" style="height:140px;background:#180a08;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/ricco_burger112.png" alt="Ricco Burger" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Ricco Burger</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Ricco Burger</div><div class="rcard-type">Hambúrguer Artesanal</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d1" target="_blank"><div class="ri5" style="height:140px;background:#061828;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/casa_baco112.png" alt="Casa Baco" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Casa Baco</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Casa Baco</div><div class="rcard-type">Wine Bar · Tapas</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d2" target="_blank"><div class="ri6" style="height:140px;background:#1c1028;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/bodegon_de_paulina112.png" alt="Bodegón de Paulina" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Bodegón de Paulina</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Bodegón de Paulina</div><div class="rcard-type">Culinária Peruana</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d3" target="_blank"><div class="ri7" style="height:140px;background:#0c1a0a;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/cafeeumchero2.png" alt="Café e um Cheiro" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Café e um Cheiro</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Café e um Cheiro</div><div class="rcard-type">Café · Nordestino</div></div></a>
+    <a href="https://mane.com.vc/restaurantes/" class="rcard rv rv-d4" target="_blank"><div class="ri8" style="height:140px;background:#220e0a;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;">
+        <img src="https://mane.com.vc/wp-content/uploads/2023/03/pastel_mix112.png" alt="Pastel Mix" loading="lazy" style="max-width:85%;max-height:90px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));" onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=&quot;font-family:Fraunces,serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3)&quot;>Pastel Mix</span>'">
+      </div><div class="rcard-info"><div class="rcard-name">Pastel Mix</div><div class="rcard-type">Pastelaria Artesanal</div></div></a>
+  </div>
+</section>
+
+<!-- ANIVERSÁRIO -->
+<div class="aniv" id="aniversario" style="background-image:url('https://images.unsplash.com/photo-1464347744102-11db6282f854?w=1600&q=85&fit=crop');background-size:cover;background-position:center;background-blend-mode:multiply;">
+  <div class="aniv-photo-overlay"></div>
+  <div class="aniv-inner">
+    <div class="rv">
+      <div class="eyebrow eyebrow-w">Celebração especial</div>
+      <h2 class="aniv-title">Vem comemorar<br>seu <em>aniversário!</em></h2>
+      <p class="aniv-sub">Todo aniversário merece ser celebrado! Com 15 restaurantes e 3 bares, espaço e cardápio pra agradar todo mundo — do vovô ao pet.</p>
+      <div class="aniv-btns">
+        <a href="https://reservas.mane.com.vc" class="btn-white" target="_blank">🎂 Fazer Reserva</a>
+        <a href="https://mane.com.vc/aniversariomane/" class="btn-outline-w" target="_blank">Saiba mais</a>
+      </div>
+    </div>
+    <div class="aniv-visual rv rv-d3">🎉</div>
+  </div>
+</div>
+
+<!-- HAPPY HOUR -->
+<section class="s hh" id="happyhour">
+  <div class="hh-inner">
+    <div class="rv">
+      <div class="eyebrow eyebrow-w">Todo dia útil, sem falta</div>
+      <div class="hh-title">Happy<br><span>Hour</span></div>
+      <p class="hh-sub">Segunda a Sexta · Chopp, long neck, drinks e taças de vinho com preços especiais. Porque a pausa do fim de tarde merece ser boa.</p>
+    </div>
+    <div class="hh-badge rv rv-d2">
+      <div class="hh-badge-days">Seg — Sex</div>
+      <div class="hh-badge-time">15h–20h</div>
+      <br>
+      <a href="https://cardapio.mane.com.vc/" class="btn-coral-sm" target="_blank">Ver Cardápio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA CTA SECTION -->
+<section class="s reserva-hero" id="reserva">
+  <div class="rh-inner">
+    <div class="rv">
+      <div class="eyebrow">Reserve com antecedência</div>
+      <h2 class="h2">Garanta seu<br><em>espaço no Mané</em></h2>
+      <p class="body-txt">Aniversários, jantares em grupo, happy hours corporativos — ou só porque você merece. Tem espaço e cardápio pra qualquer ocasião.</p>
+      <div class="rh-reasons">
+        <div class="rhr">
+          <div class="rhr-ico">🎂</div>
+          <div><div class="rhr-t">Aniversários especiais</div><div class="rhr-d">Benefícios exclusivos, espaço decorado e cardápio personalizado pra quem celebra no Mané.</div></div>
+        </div>
+        <div class="rhr">
+          <div class="rhr-ico">👥</div>
+          <div><div class="rhr-t">Grupos & Eventos corporativos</div><div class="rhr-d">Espaço pra grandes grupos. Ideal pra confraternizações, lançamentos e reuniões.</div></div>
+        </div>
+        <div class="rhr">
+          <div class="rhr-ico">🌿</div>
+          <div><div class="rhr-t">Cardápio Inclusivo</div><div class="rhr-d">39 opções veganas, vegetarianas, low carb, sem glúten e sem lactose. Tem Mané pra todo mundo!</div></div>
+        </div>
+        <div class="rhr">
+          <div class="rhr-ico">🐾</div>
+          <div><div class="rhr-t">Pet friendly</div><div class="rhr-d">Seu pet é mais do que bem-vindo. Se é seu amigo, é nosso também.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rv rv-d2">
+      <div class="rh-card">
+        <div class="rh-card-eyebrow">Sistema de Reservas</div>
+        <div class="rh-card-title">Reserve<br>pelo site <em>oficial</em></div>
+        <p class="rh-card-sub">Acesse nosso sistema de reservas, escolha a data, o número de pessoas e o tipo de ocasião. Rápido, fácil e confirmado na hora.</p>
+
+        <a href="https://reservas.mane.com.vc" class="rh-main-btn" target="_blank">
+          Acessar reservas.mane.com.vc
+          <span class="btn-arrow">→</span>
+        </a>
+
+        <a href="https://wa.me/5561999999999" class="rh-wa" target="_blank">
+          <span>💬</span>
+          <span class="rh-wa-t">Prefere pelo WhatsApp? Fale com a gente</span>
+        </a>
+
+        <div class="rh-occasions">
+          <span class="rh-oc">🍽️ Almoço</span>
+          <span class="rh-oc">🌙 Jantar</span>
+          <span class="rh-oc">🎂 Aniversário</span>
+          <span class="rh-oc">🍻 Happy Hour</span>
+          <span class="rh-oc">🏢 Corporativo</span>
+          <span class="rh-oc">🐾 Com pet</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="s agenda-section" id="agenda">
+  <div class="rv">
+    <div class="eyebrow">Programação</div>
+    <h2 class="h2">Agenda <em>do Mané</em></h2>
+  </div>
+  <div class="ag-grid">
+    <div class="ag-featured rv rv-d1">
+      <div class="ag-feat-img">
+        <div class="ag-feat-badge">Em destaque</div>
+        <div class="ag-feat-icon">🎵</div>
+        <div class="ag-feat-lbl">Fome de Música</div>
+      </div>
+      <div class="ag-feat-body">
+        <div class="agf-date">Toda Sexta & Sábado · Shows ao vivo</div>
+        <div class="agf-title">Fome de Música</div>
+        <div class="agf-desc">Shows ao vivo, boa comida e muita energia. A programação cultural do Mané que todo mundo ama. Confira e apareça já.</div>
+        <a href="https://mane.com.vc/fomedemusica/" class="btn-coral" target="_blank">Ver programação completa →</a>
+      </div>
+    </div>
+
+    <div class="ag-list">
+      <a href="https://reservas.mane.com.vc" class="ag-item rv rv-d1" target="_blank">
+        <div class="ag-date"><div class="ag-d-num">14</div><div class="ag-d-mon">Mar</div></div>
+        <div><div class="ag-item-t">Happy Hour Especial</div><div class="ag-item-s">Seg–Sex · 15h às 20h · Entrada livre</div></div>
+      </a>
+      <a href="https://reservas.mane.com.vc" class="ag-item rv rv-d2" target="_blank">
+        <div class="ag-date"><div class="ag-d-num">15</div><div class="ag-d-mon">Mar</div></div>
+        <div><div class="ag-item-t">Fome de Música</div><div class="ag-item-s">Sexta · 19h · Show ao vivo</div></div>
+      </a>
+      <a href="https://reservas.mane.com.vc" class="ag-item rv rv-d3" target="_blank">
+        <div class="ag-date"><div class="ag-d-num">16</div><div class="ag-d-mon">Mar</div></div>
+        <div><div class="ag-item-t">Fome de Música</div><div class="ag-item-s">Sábado · 19h · Show ao vivo</div></div>
+      </a>
+      <a href="https://reservas.mane.com.vc" class="ag-item rv rv-d4" target="_blank">
+        <div class="ag-date"><div class="ag-d-num">22</div><div class="ag-d-mon">Mar</div></div>
+        <div><div class="ag-item-t">Aniversário Mané</div><div class="ag-item-s">Reserve já · Espaço limitado</div></div>
+      </a>
+      <div style="padding-top:4px;" class="rv rv-d5">
+        <a href="https://reservas.mane.com.vc" class="btn-coral" target="_blank" style="display:inline-flex;font-size:13px;">Garantir minha reserva →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO -->
+<section class="s loc-section" id="localizacao">
+  <div class="rv">
+    <div class="eyebrow eyebrow-w">Onde nos encontrar</div>
+    <h2 class="h2 h2-w">3 unidades,<br><em>2 estados</em></h2>
+    <p class="body-txt body-txt-w" style="max-width:560px;">De Brasília para São Paulo — o Mané está cada vez mais perto de você. Encontre a unidade mais conveniente e venha nos visitar.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;position:relative;z-index:1;">
+
+    <!-- Brasília card -->
+    <div class="rv rv-d1" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rl);padding:32px;transition:border-color .2s;" onmouseenter="this.style.borderColor='rgba(232,87,58,.5)'" onmouseleave="this.style.borderColor='rgba(255,255,255,.1)'">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="font-size:22px;">🏛️</span>
+        <div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:20px;font-weight:700;color:white;">Brasília</div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#4ade80;">Distrito Federal</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,.55);margin-bottom:6px;font-weight:700;">📍 Eixo Monumental</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:20px;">Ao lado da Arena BRB Mané Garrincha e Arena BRB Nilson Nelson.</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;padding:16px;background:rgba(0,0,0,.2);border-radius:var(--r);">
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Seg–Qui</span><span style="color:rgba(255,255,255,.4);">12h às 23h</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Sex–Sáb</span><span style="color:rgba(255,255,255,.4);">11h às 01h</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Domingo</span><span style="color:rgba(255,255,255,.4);">11h às 23h</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://reservas.mane.com.vc" class="ucta-primary" target="_blank" style="font-size:12px;padding:10px 18px;">Reservar →</a>
+        <a href="https://goo.gl/maps/QgLN4zNBwY4EtSE89" class="ucta-ghost" target="_blank" style="font-size:12px;padding:10px 14px;">📍 Maps</a>
+      </div>
+    </div>
+
+    <!-- Águas Claras card -->
+    <div class="rv rv-d2" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rl);padding:32px;transition:border-color .2s;" onmouseenter="this.style.borderColor='rgba(232,87,58,.5)'" onmouseleave="this.style.borderColor='rgba(255,255,255,.1)'">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="font-size:22px;">🌿</span>
+        <div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:20px;font-weight:700;color:white;">Águas Claras</div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#4ade80;">Distrito Federal</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,.55);margin-bottom:6px;font-weight:700;">📍 Águas Claras · DF</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:20px;">A mesma experiência gastronômica plural que você ama, mais perto de casa.</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;padding:16px;background:rgba(0,0,0,.2);border-radius:var(--r);">
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Seg–Qui</span><span style="color:rgba(255,255,255,.4);">12h às 23h</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Sex–Sáb</span><span style="color:rgba(255,255,255,.4);">11h às 01h</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Domingo</span><span style="color:rgba(255,255,255,.4);">11h às 23h</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://reservas.mane.com.vc" class="ucta-primary" target="_blank" style="font-size:12px;padding:10px 18px;">Reservar →</a>
+        <a href="#" class="ucta-ghost" style="font-size:12px;padding:10px 14px;">📍 Maps</a>
+      </div>
+    </div>
+
+    <!-- São Paulo card -->
+    <div class="rv rv-d3" style="background:rgba(232,87,58,.06);border:1px solid rgba(232,87,58,.2);border-radius:var(--rl);padding:32px;transition:border-color .2s;position:relative;overflow:hidden;" onmouseenter="this.style.borderColor='rgba(232,87,58,.55)'" onmouseleave="this.style.borderColor='rgba(232,87,58,.2)'">
+      <div style="position:absolute;top:16px;right:16px;background:var(--coral);color:white;padding:4px 10px;border-radius:100px;font-size:10px;font-weight:800;letter-spacing:1px;">NOVO</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="font-size:22px;">🏙️</span>
+        <div>
+          <div style="font-family:'Fraunces',serif;font-style:italic;font-size:20px;font-weight:700;color:white;">São Paulo</div>
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--coral-lt);">São Paulo · SP</div>
+        </div>
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,.55);margin-bottom:6px;font-weight:700;">📍 Perdizes · São Paulo</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.65;margin-bottom:20px;">A gastronomia brasiliense chega com tudo no bairro mais vibrante de SP.</div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;padding:16px;background:rgba(0,0,0,.2);border-radius:var(--r);">
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Seg–Qui</span><span style="color:rgba(255,255,255,.4);">12h às 23h</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Sex–Sáb</span><span style="color:rgba(255,255,255,.4);">11h às 01h</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--coral);font-weight:800;">Domingo</span><span style="color:rgba(255,255,255,.4);">11h às 23h</span></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <a href="https://reservas.mane.com.vc" class="ucta-primary" target="_blank" style="font-size:12px;padding:10px 18px;">Reservar →</a>
+        <a href="#" class="ucta-ghost" style="font-size:12px;padding:10px 14px;">📍 Maps</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s bg-cream" id="faq">
+  <div class="faq-inner">
+    <div>
+      <div class="eyebrow rv">Dúvidas frequentes</div>
+      <h2 class="h2 rv">Como podemos<br><em>te ajudar?</em></h2>
+      <div class="faq-list rv" style="margin-top:44px;">
+        <div class="faq-item">
+          <div class="faq-q">O que o Mané tem?<span class="faq-ico">+</span></div>
+          <div class="faq-a">Nosso Mercado de Experiências possui 15 restaurantes, 4 bares, uma adega e uma loja da Dane-se.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Estacionamento é pago?<span class="faq-ico">+</span></div>
+          <div class="faq-a">Para clientes Mané, o estacionamento Estapar é R$10 pelas primeiras 3 horas. Cobrança adicional conforme tabela da Estapar.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">É pet friendly?<span class="faq-ico">+</span></div>
+          <div class="faq-a">Seu pet é mais do que bem-vindo! Cachorro, gato, periquito, papagaio e até galinha. Se é seu amigo, é nosso também!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Como funciona o atendimento?<span class="faq-ico">+</span></div>
+          <div class="faq-a">Balcão: você faz o pedido, paga e busca na hora. Mesa: faça o pedido de qualquer restaurante diretamente com os garçons e receba na mesa.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Formas de pagamento<span class="faq-ico">+</span></div>
+          <div class="faq-a">Aceitamos crédito, débito, PIX e dinheiro.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Possui cardápio inclusivo?<span class="faq-ico">+</span></div>
+          <div class="faq-a">Tem Mané pra todo mundo! 39 opções sem glúten, sem lactose, vegetarianas e veganas.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Como fazer uma reserva?<span class="faq-ico">+</span></div>
+          <div class="faq-a">Acesse <strong><a href="https://reservas.mane.com.vc" style="color:var(--coral);" target="_blank">reservas.mane.com.vc</a></strong>, escolha a unidade (Brasília, Águas Claras ou São Paulo), a data, o número de pessoas e a ocasião. Rápido e confirmado na hora!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Quais são as unidades do Mané?<span class="faq-ico">+</span></div>
+          <div class="faq-a">O Mané está presente em 3 unidades: <strong>Brasília</strong> (Eixo Monumental · Mercado Vírgula), <strong>Águas Claras</strong> (DF) e <strong>São Paulo</strong> (Perdizes). Todas com a mesma experiência gastronômica plural que você ama.</div>
+        </div>
+      </div>
+    </div>
+    <div class="faq-img-col rv rv-d3">
+      <div class="faq-img-badge">
+        <div class="fib-t">Venha nos conhecer</div>
+        <div class="fib-s">Um mercado central, perene e plural</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <a href="#" class="ft-logo-t">
+  <img src="https://mane.com.vc/wp-content/uploads/2023/03/Camada-1.svg" alt="mané" style="height:40px;width:auto;filter:brightness(0) saturate(100%) invert(55%) sepia(90%) saturate(500%) hue-rotate(340deg) brightness(95%);" onerror="this.style.display='none'">
+  <span style="display:none;">mané</span>
+</a>
+      <p class="ft-about">Um mercado central, perene e plural. No coração de Brasília, onde a gastronomia encontra a experiência.</p>
+      <div class="ft-social">
+        <a href="https://www.instagram.com/manebrasilia/" class="ft-soc" target="_blank">IG</a>
+        <a href="https://www.youtube.com/playlist?list=PLolX1XyBShgvnZhA6klLFC0HUgFyj63Yt" class="ft-soc" target="_blank">YT</a>
+        <a href="https://twitter.com/R2_comvc" class="ft-soc" target="_blank">X</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-h">Navegação</div>
+      <ul class="ft-links">
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#unidades">Unidades</a></li>
+        <li><a href="#restaurantes">Restaurantes</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#happyhour">Happy Hour</a></li>
+        <li><a href="#localizacao">Como chegar</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Unidades</div>
+      <ul class="ft-links">
+        <li><a href="#localizacao">🏛️ Brasília — Eixo Monumental</a></li>
+        <li><a href="#localizacao">🌿 Águas Claras — DF</a></li>
+        <li><a href="#localizacao">🏙️ São Paulo — Perdizes</a></li>
+        <li style="margin-top:8px;"><a href="https://reservas.mane.com.vc" target="_blank" style="color:var(--coral) !important;font-weight:800;">Fazer Reserva →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-col-h">Horários</div>
+      <div class="ft-hours-grid">
+        <div class="ft-hr"><span class="ft-hr-d">Seg–Qui</span><span class="ft-hr-t">12h às 23h</span></div>
+        <div class="ft-hr"><span class="ft-hr-d">Sexta</span><span class="ft-hr-t">11h às 01h</span></div>
+        <div class="ft-hr"><span class="ft-hr-d">Sábado</span><span class="ft-hr-t">11h às 01h</span></div>
+        <div class="ft-hr"><span class="ft-hr-d">Domingo</span><span class="ft-hr-t">11h às 23h</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2025 Mané Mercado Gastronômico · Brasília · Águas Claras · São Paulo · CNPJ 14.123.555/0002-05</span>
+    <span>Realização: <a href="#">R2</a></span>
+  </div>
+</footer>
+
+<script>
+// Nav unit selector (scroll to units section)
+document.querySelectorAll('.nus-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    document.querySelectorAll('.nus-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Custom cursor
+const cur = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.dif-card,.rcard').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('floatCta').classList.toggle('visible', window.scrollY > 300);
+});
+
+// Scroll reveal
+const rvEls = document.querySelectorAll('.rv');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+rvEls.forEach(el => obs.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// Rest pills (visual only)
+document.querySelectorAll('.rpill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.rpill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
