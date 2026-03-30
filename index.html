@@ -149,8 +149,9 @@
       color: rgba(244,234,216,.72); max-width: 52ch;
       margin-bottom: 36px; margin-top: 18px;
       opacity: 0; animation: fadeUp .8s .38s both;
+      text-shadow: 0 2px 12px rgba(0,0,0,.28);
     }
-    .hero-sub strong { color: var(--cream); font-weight: 500; }
+    .hero-sub strong { color: #fff; font-weight: 700; text-shadow: 0 2px 14px rgba(0,0,0,.32); }
 
     .occasion-strip {
       display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;
@@ -220,6 +221,10 @@
     }
     .ticker-track:hover { animation-play-state: paused; }
     @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes restScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
@@ -508,6 +513,20 @@
     .kids-features { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
     .kf-chip { background: rgba(3,75,70,.05); border: 1px solid rgba(3,75,70,.12); border-radius: 999px; padding: 7px 15px; font-size: 12px; font-weight: 600; color: rgba(13,13,13,.7); }
 
+    .family-section { background: var(--warm); padding: 96px 48px; }
+    .family-inner { max-width: 1200px; margin: 0 auto; }
+    .family-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .family-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+    .family-title { font-family:'Merriweather',serif; font-size: clamp(26px,3.5vw,40px); font-weight:700; letter-spacing:-.04em; color:var(--ink); line-height:1.1; margin-bottom:20px; }
+    .family-title em { color: var(--coral); font-style: italic; }
+    .family-body { font-size:16px; color:rgba(13,13,13,.6); font-weight:300; line-height:1.7; margin-bottom:28px; max-width: 35ch; }
+    .family-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+    .family-chip { display:inline-flex; align-items:center; gap:8px; background:var(--green); color:var(--cream); font-size:13px; font-weight:500; padding:8px 16px; border-radius:20px; }
+    .family-card { background:var(--green); border-radius:20px; padding:48px; text-align:center; min-height:360px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .family-card-emoji { font-size:72px; margin-bottom:20px; line-height:1; }
+    .family-card-title { font-family:'Merriweather',serif; font-size:22px; font-weight:700; color:var(--cream); margin-bottom:10px; line-height:1.25; max-width: 12ch; }
+    .family-card-body { font-size:14px; color:rgba(255,255,255,.6); line-height:1.6; max-width: 22ch; }
+
     /* ══ HOW IT WORKS ══ */
     .how-section { background: var(--green); padding: 96px 48px; }
     .how-inner { max-width: 1240px; margin: 0 auto; }
@@ -660,14 +679,86 @@
       .celebrate-block { grid-template-columns: 1fr; }
       .cel-visual { min-height: 220px; }
       .kids-block { grid-template-columns: 1fr; }
+      .family-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
       .claim-section, .problem-section, .occasions-section, .celebrate-section, .how-section, .experience-section, .units-section, .reviews-section, .restaurants-section { padding-left: 24px; padding-right: 24px; }
-      .food-strip, .proof-section, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .food-strip, .proof-section, .cta-section, .family-section { padding-left: 24px; padding-right: 24px; }
       footer { padding: 40px 24px 24px; }
     }
     @media (max-width: 600px) {
-      .hero-headline { font-size: 46px; }
+      .hero-bg::after {
+        background:
+          linear-gradient(180deg, rgba(3,75,70,.76) 0%, rgba(3,75,70,.72) 24%, rgba(3,75,70,.58) 45%, rgba(3,75,70,.9) 100%),
+          linear-gradient(90deg, rgba(2,36,32,.38) 0%, rgba(2,36,32,.1) 52%, rgba(2,36,32,.34) 100%);
+      }
+      nav { padding: 16px 18px; }
+      nav.scrolled { padding: 12px 18px; }
+      .hero {
+        min-height: auto;
+        padding: 96px 18px 36px;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-eyebrow {
+        margin-bottom: 16px;
+        gap: 8px;
+      }
+      .eyebrow-text {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .08em;
+        color: #ff8f85;
+        text-shadow: 0 2px 10px rgba(0,0,0,.4);
+      }
+      .hero-headline {
+        font-size: clamp(34px, 12vw, 46px);
+        line-height: .92;
+        margin-bottom: 10px;
+        text-shadow: 0 6px 24px rgba(0,0,0,.34);
+      }
+      .hero-sub {
+        font-size: 15px;
+        line-height: 1.55;
+        margin-top: 14px;
+        margin-bottom: 24px;
+        max-width: 32ch;
+        color: rgba(255,255,255,.84);
+        text-shadow: 0 3px 16px rgba(0,0,0,.4);
+      }
+      .occasion-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .oc-pill {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+        padding: 11px 12px;
+        font-size: 12px;
+        gap: 6px;
+        white-space: normal;
+        text-align: center;
+      }
+      .oc-pill-emoji { font-size: 14px; }
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .btn-main,
+      .btn-ghost-link {
+        width: 100%;
+        justify-content: center;
+      }
+      .btn-main {
+        padding: 15px 22px;
+        font-size: 15px;
+      }
+      .btn-ghost-link {
+        font-size: 13px;
+      }
       .hero-trust { display: none; }
       .hero-proof { display: none; }
       .hero-deco { display: none; }
@@ -677,6 +768,107 @@
       .food-cards { grid-template-columns: 1fr 1fr; }
       .units-grid { grid-template-columns: 1fr; }
       .proof-inner { grid-template-columns: 1fr 1fr; }
+      .family-section { padding: 72px 18px; }
+      .family-grid { gap: 24px; }
+      .family-eyebrow { font-size: 11px; letter-spacing: .12em; }
+      .family-title { font-size: clamp(34px, 11vw, 42px); line-height: .94; margin-bottom: 14px; max-width: 8ch; }
+      .family-body { font-size: 15px; line-height: 1.7; max-width: none; margin-bottom: 18px; }
+      .family-chips { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 18px; }
+      .family-chip { width: 100%; padding: 11px 14px; border-radius: 16px; font-size: 12px; }
+      .family-card { min-height: auto; padding: 28px 24px; border-radius: 24px; }
+      .family-card-emoji { font-size: 52px; margin-bottom: 14px; }
+      .family-card-title { font-size: 18px; max-width: none; }
+      .family-card-body { font-size: 13px; max-width: 24ch; }
+      .family-grid > div:first-child > div:first-child {
+        font-size: 11px !important;
+        letter-spacing: .12em !important;
+        margin-bottom: 10px !important;
+      }
+      .family-grid > div:first-child > h2 {
+        font-size: clamp(34px, 11vw, 42px) !important;
+        line-height: .94 !important;
+        margin-bottom: 14px !important;
+        max-width: 8ch;
+      }
+      .family-grid > div:first-child > p {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+        margin-bottom: 18px !important;
+        max-width: none !important;
+      }
+      .family-grid > div:first-child > div:nth-child(4) {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-bottom: 18px !important;
+      }
+      .family-grid > div:first-child > div:nth-child(4) > span {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 11px 14px !important;
+        border-radius: 16px !important;
+        font-size: 12px !important;
+        line-height: 1.35 !important;
+      }
+      .family-grid > div:first-child > a {
+        width: 100%;
+        justify-content: center;
+      }
+      .family-grid > div:last-child {
+        min-height: auto !important;
+        padding: 28px 24px !important;
+        border-radius: 24px !important;
+      }
+      .family-grid > div:last-child > div:first-child {
+        font-size: 52px !important;
+        margin-bottom: 14px !important;
+        line-height: 1 !important;
+      }
+      .family-grid > div:last-child > h3 {
+        font-size: 18px !important;
+        line-height: 1.28 !important;
+        margin-bottom: 10px !important;
+      }
+      .family-grid > div:last-child > p {
+        font-size: 13px !important;
+        line-height: 1.65 !important;
+        max-width: 24ch;
+      }
+      #restaurantes > div > div:last-child {
+        overflow: hidden !important;
+        margin-left: -18px;
+        margin-right: -18px;
+        padding-left: 18px;
+        padding-right: 18px;
+        mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+      }
+      #restSlider {
+        gap: 12px !important;
+        animation: restScroll 26s linear infinite !important;
+        width: max-content !important;
+        will-change: transform;
+      }
+      #restSlider > div {
+        min-width: 156px !important;
+      }
+      #restSlider > div > div:first-child {
+        height: 104px !important;
+        padding: 16px !important;
+      }
+      #restSlider > div > div:first-child img {
+        max-height: 68px !important;
+      }
+      #restSlider > div > div:last-child {
+        padding: 10px 10px 11px !important;
+      }
+      #restSlider > div > div:last-child > div:first-child {
+        font-size: 13px !important;
+      }
+      #restSlider > div > div:last-child > div:last-child {
+        font-size: 10px !important;
+      }
       .footer-inner { grid-template-columns: 1fr; gap: 24px; }
       .cta-title { font-size: 38px; }
       .btn-cta-primary, .btn-cta-ghost { width: 100%; justify-content: center; }
@@ -806,18 +998,18 @@
   <div class="claim-inner">
     <div class="claim-grid">
       <div class="reveal">
-        <div class="claim-eyebrow">O maior mercado gastronômico do Brasil</div>
+        <div class="claim-eyebrow">Gastronomia de verdade, no mesmo lugar</div>
         <h2 class="claim-title">
-          +20 restaurantes.<br>
-          +200 pratos.<br>
+          Escolha livre.<br>
+          Experiencia completa.<br>
           <em>Reserve agora.</em>
         </h2>
         <p class="claim-body">
-          Cozinhas independentes com chefs dedicados. Gastronomia japonesa, brasileira, italiana, espanhola e muito mais — tudo num único endereço.
+          Diferentes cozinhas, ambientes e momentos em um so destino. Cada pessoa escolhe o que quer comer, sem abrir mao da experiencia em grupo.
         </p>
         <div class="claim-badges">
-          <span class="cb gold">🏆 Maior mercado gastronômico do Brasil</span>
-          <span class="cb green">🌱 Único sustentável do Brasil</span>
+          <span class="cb gold">Ideal para grupos com gostos diferentes</span>
+          <span class="cb green">Reserva simples, experiencia sem atrito</span>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px;border-radius:16px;overflow:hidden;">
           <img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png" alt="Mane Mercado ambiente" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;">
@@ -1113,7 +1305,7 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:56px;">
       <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Nossos Chefs</div>
-      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--cream);line-height:1.1;">+20 chefs.<br><em style="color:var(--coral);">Cada um dono da sua cozinha.</em></h2>
+        <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--cream);line-height:1.1;">+20 chefs.<br><em style="color:var(--coral);">Talento autoral em cada cozinha.</em></h2>
       <p style="font-size:16px;color:rgba(255,255,255,.65);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">No Mané, cada restaurante é independente. Cada chef traz sua história, sua técnica e sua cultura gastronômica. Isso não é praça de alimentação — é gastronomia autoral.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
@@ -1201,9 +1393,9 @@
 </section>
 
 <!-- ══ FAMÍLIA + CRIANÇAS ══ -->
-<section style="background:var(--warm);padding:96px 48px;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;" class="reveal">
+<section class="family-section">
+  <div class="family-inner">
+    <div class="family-grid reveal">
       <div>
         <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Família + Crianças</div>
         <h2 style="font-family:'Merriweather',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;margin-bottom:20px;">Espaço preparado<br>para receber <em style="color:var(--coral);">famílias.</em></h2>
@@ -1527,3 +1719,5 @@
 </script>
 </body>
 </html>
+
+
