@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aniversario no Mane Mercado — Reserve seu espaco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Saira+Semi+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #0E7A7F;
+      --teal-dark: #0B2B2C;
+      --teal-light: rgba(14,122,127,.06);
+      --teal-mid: rgba(14,122,127,.1);
+      --gold: #F7C85A;
+      --gold-dark: #F0C14F;
+      --coral: #E34B4B;
+      --coral-light: rgba(227,75,75,.2);
+      --green-soft: #4F8E72;
+      --cyan: #6DC7D1;
+      --cream: #F3E9D9;
+      --white: #FFFFFF;
+      --ink: #0B2B2C;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Saira Semi Condensed', sans-serif;
+      background: var(--white); color: var(--ink);
+      overflow-x: hidden; position: relative;
+    }
+
+    /* ── GEOMETRIC SHAPES ── */
+    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .geo { position: absolute; }
+    .geo-1 { width: 260px; height: 260px; background: var(--coral); top: -80px; left: -80px; border-radius: 50%; }
+    .geo-2 { width: 180px; height: 300px; background: var(--teal); top: 0; right: -40px; border-radius: 0 0 0 40px; }
+    .geo-3 { width: 200px; height: 200px; background: var(--gold); top: 60px; right: 140px; border-radius: 50%; opacity: .7; }
+    .geo-4 { width: 160px; height: 160px; background: var(--cyan); top: 200px; right: -20px; border-radius: 50%; }
+    .geo-5 { width: 140px; height: 140px; background: var(--green-soft); top: 45%; left: -60px; border-radius: 50%; opacity: .5; }
+    .geo-6 { width: 100px; height: 100px; background: var(--gold); bottom: 30%; right: -30px; border-radius: 50%; opacity: .4; }
+    .geo-7 { width: 220px; height: 120px; background: var(--coral); bottom: 10%; left: -40px; border-radius: 0 24px 24px 0; opacity: .6; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 48px;
+      background: rgba(247,200,90,.95); backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'Merriweather', serif; font-size: 32px; font-weight: 900;
+      letter-spacing: -.06em; color: var(--ink); line-height: 1;
+      text-decoration: none; display: flex; align-items: baseline; gap: 8px;
+    }
+    .nav-logo sup { font-size: 24px; color: var(--coral); vertical-align: super; letter-spacing: 0; }
+    .nav-logo-sub {
+      font-family: 'Saira Semi Condensed', sans-serif;
+      font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); opacity: .6; line-height: 1.1;
+    }
+    .nav-cta {
+      background: rgba(255,255,255,.45); color: var(--ink);
+      border: 1px solid rgba(0,0,0,.18);
+      border-radius: 999px; padding: 10px 20px;
+      font-size: 13px; font-weight: 750; cursor: pointer;
+      transition: background .15s; text-decoration: none;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,.7); }
+
+    /* ── CONTENT WRAPPER ── */
+    .content { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 85vh; display: flex; align-items: center;
+      padding: 100px 48px 60px;
+      max-width: 1200px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-layout {
+      display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: center; width: 100%;
+    }
+    .hero-right {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .hero-photo {
+      border-radius: 24px; overflow: hidden;
+      height: 240px; position: relative;
+      box-shadow: 0 12px 40px rgba(14,122,127,.15);
+    }
+    .hero-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero-photo-badge {
+      position: absolute; bottom: 14px; left: 14px;
+      background: rgba(14,122,127,.9); backdrop-filter: blur(8px);
+      color: var(--cream); border-radius: 999px;
+      padding: 8px 16px; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hero-headline {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(32px, 4.2vw, 48px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -.03em;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+    .hero-headline .highlight {
+      position: relative; display: inline;
+    }
+    .hero-headline .highlight::after {
+      content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
+      height: 8px; background: var(--gold); z-index: -1; border-radius: 2px;
+    }
+    .hero-sub {
+      font-size: 16px; font-weight: 500; line-height: 1.65;
+      color: rgba(11,43,44,.75); max-width: 46ch; margin-bottom: 28px;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--ink); border: none;
+      border-radius: 999px; padding: 14px 28px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      transition: transform .15s, box-shadow .15s; text-decoration: none;
+    }
+    .btn-gold:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(247,200,90,.4); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--ink);
+      border: 1.5px solid rgba(0,0,0,.18); border-radius: 999px;
+      padding: 13px 24px; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: border-color .2s; text-decoration: none;
+    }
+    .btn-outline:hover { border-color: rgba(0,0,0,.4); }
+    .hero-status {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; color: var(--green-soft);
+    }
+    .hero-status::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green-soft); display: inline-block;
+    }
+
+    /* ── HERO VALUE CARD ── */
+    .hero-card {
+      background: var(--white); border: 1px solid rgba(14,122,127,.12);
+      border-radius: 24px; padding: 32px 28px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+    }
+    .hero-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .hero-card-badge {
+      background: var(--teal-mid); color: var(--teal); border-radius: 999px;
+      padding: 5px 14px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .hero-card-emoji { font-size: 36px; }
+    .hero-card-title {
+      font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700;
+      color: var(--ink); margin-bottom: 4px;
+    }
+    .hero-card-sub { font-size: 13px; color: rgba(11,43,44,.45); margin-bottom: 20px; }
+    .hero-card-value {
+      font-family: 'Merriweather', serif; font-size: 56px; font-weight: 900;
+      color: var(--teal); line-height: 1; text-align: center; margin-bottom: 4px;
+    }
+    .hero-card-value-label {
+      font-size: 13px; color: rgba(11,43,44,.45); text-align: center; margin-bottom: 20px;
+    }
+    .steps-list { display: grid; gap: 10px; }
+    .step-item {
+      background: var(--teal-light); border: 1px solid var(--teal-mid);
+      border-radius: 14px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--gold); color: var(--ink);
+      font-size: 13px; font-weight: 800;
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .step-text { font-size: 14px; font-weight: 600; color: var(--ink); }
+    .hero-card-tip {
+      font-size: 12px; color: rgba(11,43,44,.4); margin-top: 14px; line-height: 1.5;
+    }
+
+    /* ── SOCIAL PROOF STRIP ── */
+    .proof-strip {
+      background: var(--gold); padding: 18px 48px;
+      display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+    }
+    .proof-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: var(--ink);
+    }
+    .proof-icon { font-size: 16px; }
+
+    /* ── SECTION ── */
+    .section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .about-card {
+      background: var(--teal); border-radius: 24px; padding: 36px 32px; color: var(--cream);
+    }
+    .about-card h3 {
+      font-family: 'Merriweather', serif; font-size: 24px; font-weight: 700;
+      margin-bottom: 16px; line-height: 1.15;
+    }
+    .about-card p {
+      font-size: 15px; font-weight: 400; line-height: 1.65; color: rgba(243,233,217,.75);
+      margin-bottom: 20px;
+    }
+    .about-card .highlight-bar {
+      background: rgba(243,233,217,.1); border: 1px solid rgba(243,233,217,.15);
+      border-radius: 14px; padding: 14px 18px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-bottom: 16px;
+    }
+    .about-card .highlight-bar span { font-size: 14px; font-weight: 600; color: var(--cream); }
+    .about-card .highlight-bar a {
+      background: var(--cream); color: var(--teal); border-radius: 999px;
+      padding: 8px 18px; font-size: 12px; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+    }
+    .about-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .about-pill {
+      background: rgba(243,233,217,.12); border: 1px solid rgba(243,233,217,.15);
+      border-radius: 999px; padding: 8px 16px;
+      font-size: 12px; font-weight: 600; color: var(--cream);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+
+    .benefits-card {
+      background: var(--white); border: 1px solid rgba(14,122,127,.12);
+      border-radius: 24px; padding: 32px 28px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+    }
+    .benefits-card-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;
+    }
+    .benefits-card-badge {
+      background: var(--teal-mid); color: var(--teal); border-radius: 999px;
+      padding: 5px 14px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .benefits-card-title {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700;
+      color: var(--ink); margin-bottom: 4px;
+    }
+    .benefits-card-sub { font-size: 13px; color: rgba(11,43,44,.45); margin-bottom: 20px; }
+    .benefit-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid rgba(14,122,127,.06);
+    }
+    .benefit-row:last-child { border-bottom: none; }
+    .benefit-icon-wrap {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: var(--teal-light); display: grid; place-items: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .benefit-label { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+
+    /* ── FAIXAS SECTION ── */
+    .faixas-section { padding: 80px 48px; background: rgba(14,122,127,.03); }
+    .faixas-inner { max-width: 1200px; margin: 0 auto; }
+    .faixas-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(28px, 3.5vw, 42px); font-weight: 700;
+      line-height: 1.1; letter-spacing: -.03em; color: var(--ink); margin-bottom: 14px;
+    }
+    .section-title em { font-style: italic; color: var(--teal); }
+    .section-sub {
+      font-size: 15px; color: rgba(11,43,44,.5); font-weight: 400; line-height: 1.6; max-width: 52ch; margin: 0 auto;
+    }
+    .faixa-base {
+      background: var(--white); border: 1px solid rgba(14,122,127,.10); border-radius: 20px;
+      padding: 24px 28px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .faixa-base-text { font-size: 15px; color: rgba(11,43,44,.6); line-height: 1.5; }
+    .faixa-base-text strong { color: var(--ink); font-weight: 700; display: block; font-size: 16px; margin-bottom: 4px; }
+    .faixa-base-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .faixa-base-pill {
+      background: var(--teal-light); border-radius: 999px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; color: var(--teal);
+    }
+    .faixa-base-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal); color: var(--cream); border-radius: 999px;
+      padding: 10px 22px; font-size: 13px; font-weight: 700;
+      text-decoration: none; transition: transform .15s; white-space: nowrap;
+    }
+    .faixa-base-cta:hover { transform: translateY(-1px); }
+
+    .faixas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .faixa-card {
+      background: var(--white); border: 1px solid rgba(14,122,127,.10);
+      border-radius: 24px; padding: 32px 28px;
+      transition: transform .25s, box-shadow .25s;
+      position: relative; overflow: hidden;
+    }
+    .faixa-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(14,122,127,.1); }
+    .faixa-card.destaque { background: var(--teal); border-color: transparent; color: var(--cream); }
+    .faixa-card.destaque .faixa-pessoas { color: rgba(243,233,217,.5); }
+    .faixa-card.destaque .faixa-title { color: var(--cream); }
+    .faixa-card.destaque .faixa-bonus-value { color: var(--gold); }
+    .faixa-card.destaque .faixa-bonus-label { color: rgba(243,233,217,.5); }
+    .faixa-card.destaque .benefit-text { color: rgba(243,233,217,.75); }
+    .faixa-card.destaque .benefit-icon-card { background: rgba(243,233,217,.08); }
+    .faixa-card.destaque .faixa-divider { border-color: rgba(243,233,217,.1); }
+    .faixa-card.destaque .faixa-cta { background: var(--gold); color: var(--ink); }
+    .faixa-card.medio { background: rgba(14,122,127,.04); border-color: rgba(14,122,127,.15); }
+
+    .faixa-pessoas {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(11,43,44,.4); margin-bottom: 8px;
+    }
+    .faixa-title {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700;
+      letter-spacing: -.03em; color: var(--ink); margin-bottom: 16px; line-height: 1.15;
+    }
+    .faixa-bonus-value {
+      font-family: 'Merriweather', serif; font-size: 42px; font-weight: 900;
+      letter-spacing: -.04em; color: var(--teal); line-height: 1;
+    }
+    .faixa-bonus-label {
+      font-size: 13px; color: rgba(11,43,44,.45); font-weight: 500; margin-top: 2px; margin-bottom: 20px;
+    }
+    .faixa-divider { border: none; border-top: 1px solid rgba(14,122,127,.08); margin: 0 0 20px; }
+    .benefits-list-card { list-style: none; display: grid; gap: 12px; }
+    .benefit-item-card { display: flex; align-items: center; gap: 12px; }
+    .benefit-icon-card {
+      width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+      background: var(--teal-light); display: grid; place-items: center; font-size: 16px;
+    }
+    .benefit-text { font-size: 14px; color: rgba(11,43,44,.7); line-height: 1.4; }
+    .faixa-tag-popular {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--gold); color: var(--ink); border-radius: 999px;
+      padding: 5px 14px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .faixa-img {
+      height: 160px; margin: -32px -28px 20px; border-radius: 24px 24px 0 0;
+      overflow: hidden; position: relative;
+    }
+    .faixa-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .faixa-img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+      background: linear-gradient(to top, #fff, transparent); pointer-events: none;
+    }
+    .faixa-card.medio .faixa-img::after { background: linear-gradient(to top, rgba(14,122,127,.04), transparent); }
+    .faixa-card.destaque .faixa-img::after { background: linear-gradient(to top, var(--teal), transparent); }
+    .faixa-cta {
+      display: block; text-align: center; margin-top: 24px;
+      background: var(--teal); color: var(--cream); border-radius: 999px;
+      padding: 14px 24px; font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: transform .18s, box-shadow .18s;
+    }
+    .faixa-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(14,122,127,.25); }
+
+    /* ── DIFERENCIAIS ── */
+    .diff-section { background: var(--teal); padding: 80px 48px; }
+    .diff-inner { max-width: 1200px; margin: 0 auto; }
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .diff-text .section-eyebrow { justify-content: flex-start; color: var(--gold); }
+    .diff-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(26px, 3vw, 38px); font-weight: 700;
+      line-height: 1.1; letter-spacing: -.03em; color: var(--cream); margin-bottom: 18px;
+    }
+    .diff-title em { font-style: italic; color: var(--gold); }
+    .diff-body { font-size: 16px; color: rgba(243,233,217,.65); font-weight: 300; line-height: 1.7; max-width: 42ch; }
+    .diff-cards { display: grid; gap: 14px; }
+    .diff-card {
+      background: rgba(243,233,217,.05); border: 1px solid rgba(243,233,217,.1);
+      border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: flex-start;
+      transition: background .2s, border-color .2s;
+    }
+    .diff-card:hover { background: rgba(243,233,217,.08); border-color: rgba(243,233,217,.18); }
+    .diff-card-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(247,200,90,.15); display: grid; place-items: center; font-size: 18px; flex-shrink: 0;
+    }
+    .diff-card strong { display: block; font-size: 14px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+    .diff-card span { font-size: 13px; color: rgba(243,233,217,.55); line-height: 1.5; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--coral); padding: 80px 48px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,.08);
+    }
+    .cta-section::after {
+      content: ''; position: absolute; bottom: -40px; left: -40px;
+      width: 160px; height: 160px; border-radius: 50%; background: rgba(255,255,255,.06);
+    }
+    .cta-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 2; }
+    .cta-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(32px, 4vw, 48px); font-weight: 900;
+      line-height: 1; letter-spacing: -.03em; color: var(--white); margin-bottom: 16px;
+    }
+    .cta-sub { font-size: 16px; color: rgba(255,255,255,.75); font-weight: 400; line-height: 1.6; max-width: 46ch; margin: 0 auto 32px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white); color: var(--coral); border-radius: 999px;
+      padding: 16px 32px; font-size: 15px; font-weight: 700;
+      text-decoration: none; transition: transform .18s, box-shadow .18s;
+    }
+    .btn-cta-white:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(0,0,0,.15); }
+    .btn-cta-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,.8);
+      border: 1.5px solid rgba(255,255,255,.3); border-radius: 999px;
+      padding: 15px 28px; font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: border-color .2s, color .2s;
+    }
+    .btn-cta-ghost:hover { border-color: rgba(255,255,255,.6); color: #fff; }
+
+    /* ── CHAT WIDGET ── */
+    .chat-fab {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 62px; height: 62px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--ink);
+      display: grid; place-items: center; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(240,193,79,.45), 0 2px 8px rgba(0,0,0,.1);
+      border: 3px solid rgba(255,255,255,.6);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .chat-fab:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(240,193,79,.55), 0 4px 12px rgba(0,0,0,.12); }
+    .chat-fab svg { width: 28px; height: 28px; }
+    .chat-fab.open svg.icon-chat { display: none; }
+    .chat-fab:not(.open) svg.icon-close { display: none; }
+    .chat-fab-pulse {
+      position: absolute; inset: -6px; border-radius: 50%;
+      border: 2.5px solid var(--gold); opacity: 0;
+      animation: fabPulse 2s ease-out infinite;
+    }
+    @keyframes fabPulse {
+      0% { transform: scale(1); opacity: .5; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .chat-fab.open .chat-fab-pulse { display: none; }
+
+    .chat-badge {
+      position: absolute; top: -2px; right: -2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--coral); color: #fff;
+      font-size: 10px; font-weight: 800;
+      display: grid; place-items: center;
+      border: 2px solid var(--white);
+    }
+    .chat-fab.open .chat-badge { display: none; }
+
+    .chat-window {
+      position: fixed; bottom: 100px; right: 28px; z-index: 199;
+      width: 370px; max-height: 520px;
+      background: var(--white); border-radius: 24px;
+      box-shadow: 0 16px 56px rgba(0,0,0,.15);
+      display: none; flex-direction: column; overflow: hidden;
+      border: 1px solid rgba(14,122,127,.1);
+    }
+    .chat-window.open { display: flex; }
+
+    .chat-header {
+      background: var(--teal); padding: 18px 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .chat-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .chat-avatar img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .chat-header-info h4 {
+      font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700;
+      color: var(--cream); margin-bottom: 2px;
+    }
+    .chat-header-info span {
+      font-size: 11px; color: rgba(243,233,217,.6); font-weight: 500;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .chat-header-info span::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: #4ADE80; display: inline-block;
+    }
+
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 20px 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      max-height: 320px;
+    }
+    .chat-msg {
+      max-width: 85%; padding: 12px 16px;
+      font-size: 14px; line-height: 1.5; border-radius: 18px;
+      animation: msgIn .3s ease-out;
+    }
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-msg.bot {
+      background: var(--teal-light); color: var(--ink);
+      border-bottom-left-radius: 6px; align-self: flex-start;
+    }
+    .chat-msg.user {
+      background: var(--teal); color: var(--cream);
+      border-bottom-right-radius: 6px; align-self: flex-end;
+    }
+    .chat-msg strong { font-weight: 700; }
+
+    .chat-typing {
+      align-self: flex-start; padding: 12px 18px;
+      background: var(--teal-light); border-radius: 18px 18px 18px 6px;
+      display: none; gap: 5px; align-items: center;
+    }
+    .chat-typing.show { display: flex; }
+    .chat-typing-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--teal); opacity: .4;
+      animation: typingBounce .6s ease-in-out infinite alternate;
+    }
+    .chat-typing-dot:nth-child(2) { animation-delay: .15s; }
+    .chat-typing-dot:nth-child(3) { animation-delay: .3s; }
+    @keyframes typingBounce {
+      from { opacity: .3; transform: translateY(0); }
+      to { opacity: .8; transform: translateY(-4px); }
+    }
+
+    .chat-input-bar {
+      display: flex; gap: 8px; padding: 12px 16px;
+      border-top: 1px solid rgba(14,122,127,.08);
+      background: var(--white);
+    }
+    .chat-input {
+      flex: 1; border: 1.5px solid rgba(14,122,127,.15);
+      border-radius: 999px; padding: 10px 18px;
+      font-size: 14px; font-family: 'Saira Semi Condensed', sans-serif;
+      color: var(--ink); outline: none;
+      transition: border-color .2s;
+    }
+    .chat-input:focus { border-color: var(--teal); }
+    .chat-input::placeholder { color: rgba(11,43,44,.35); }
+    .chat-send {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--teal); color: var(--cream);
+      border: none; cursor: pointer; display: grid; place-items: center;
+      transition: background .15s;
+      flex-shrink: 0;
+    }
+    .chat-send:hover { background: var(--teal-dark); }
+    .chat-send:disabled { opacity: .4; cursor: default; }
+    .chat-send svg { width: 18px; height: 18px; }
+
+    @media (max-width: 768px) {
+      .chat-window { width: calc(100vw - 32px); right: 16px; bottom: 96px; max-height: 70vh; }
+      .chat-fab { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+      .chat-fab svg { width: 24px; height: 24px; }
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--ink); padding: 28px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 900;
+      color: var(--cream); letter-spacing: -.06em; text-decoration: none;
+    }
+    .footer-logo sup { font-size: 16px; color: var(--coral); }
+    .footer-text { font-size: 12px; color: rgba(243,233,217,.35); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .faixas-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 12px 20px; }
+      .hero { padding: 90px 20px 48px; min-height: auto; }
+      .hero-layout { grid-template-columns: 1fr; gap: 32px; }
+      .hero-photo { height: 200px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .faixas-section { padding: 56px 20px; }
+      .faixas-grid { grid-template-columns: 1fr; gap: 16px; }
+      .faixa-base { flex-direction: column; align-items: flex-start; }
+      .diff-section { padding: 56px 20px; }
+      .diff-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cta-section { padding: 56px 20px; }
+      .proof-strip { padding: 14px 20px; gap: 16px; }
+      .section { padding: 56px 20px; }
+      .footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+      .hero-card { padding: 20px 18px; border-radius: 18px; }
+      .hero-card-value { font-size: 40px; }
+      .hero-card-value-label { font-size: 12px; margin-bottom: 14px; }
+      .hero-card-title { font-size: 18px; }
+      .hero-card-emoji { font-size: 28px; }
+      .step-item { padding: 10px 12px; border-radius: 10px; }
+      .step-num { width: 24px; height: 24px; font-size: 11px; }
+      .step-text { font-size: 13px; }
+      .hero-card-tip { font-size: 11px; }
+      .geo-shapes { opacity: .25; }
+      .geo-1 { width: 160px; height: 160px; top: -60px; left: -60px; }
+      .geo-5 { display: none; }
+      .geo-7 { display: none; }
+      .geo-2, .geo-3, .geo-4, .geo-6 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- GEOMETRIC SHAPES -->
+<div class="geo-shapes">
+  <div class="geo geo-1"></div>
+  <div class="geo geo-2"></div>
+  <div class="geo geo-3"></div>
+  <div class="geo geo-4"></div>
+  <div class="geo geo-5"></div>
+  <div class="geo geo-6"></div>
+  <div class="geo geo-7"></div>
+</div>
+
+<div class="content">
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    mane<sup>,</sup>
+    <span class="nav-logo-sub">MERCADO<br>GASTRONOMICO</span>
+  </a>
+  <a href="#" class="nav-cta" onclick="openChat(); return false;">Reservar aniversario</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-layout">
+    <div>
+      <h1 class="hero-headline">
+        Celebre seu aniversario<br>
+        e ganhe ate <span class="highlight">R$200!</span>
+      </h1>
+      <p class="hero-sub">
+        Quanto maior o grupo, mais o Mane entrega pra voce. Estacionamento, kit exclusivo, brinquedoteca e muito mais — tudo incluso na reserva.
+      </p>
+      <div class="hero-btns">
+        <a href="#faixas" class="btn-gold">
+          Ver beneficios por faixa
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#diferenciais" class="btn-outline">Por que o Mane?</a>
+      </div>
+      <div class="hero-status">Reservas abertas</div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-photo">
+        <img src="/hero-aniversario.jpg" alt="Celebracao no Mane Mercado">
+        <div class="hero-photo-badge">🎉 +500 festas realizadas</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="hero-card-badge">Aniversario</span>
+          <span class="hero-card-emoji">🎂</span>
+        </div>
+        <div class="hero-card-title">Bonus Aniversariante</div>
+        <div class="hero-card-sub">Valido para todas as unidades</div>
+        <div class="hero-card-value">R$200</div>
+        <div class="hero-card-value-label">em vantagens para o aniversariante</div>
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text">Escolha sua faixa de convidados</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text">Reserve pelo WhatsApp</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text">Garanta seus beneficios na hora</div>
+          </div>
+        </div>
+        <div class="hero-card-tip">Dica: quanto maior o grupo, maiores os beneficios. Confira as faixas abaixo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="proof-strip">
+  <div class="proof-item"><span class="proof-icon">🍽️</span> +20 restaurantes</div>
+  <div class="proof-item"><span class="proof-icon">👨‍🍳</span> +20 chefs</div>
+  <div class="proof-item"><span class="proof-icon">🍕</span> +500 opcoes no cardapio</div>
+  <div class="proof-item"><span class="proof-icon">📍</span> Brasilia, Aguas Claras e Sao Paulo</div>
+  <div class="proof-item"><span class="proof-icon">🧸</span> Brinquedoteca inclusa</div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section class="section">
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Celebre no Mane</h3>
+      <p>Gastronomia com +20 restaurantes, chopp trincando, bons drinks e aquele clima brasileiro que junta todo mundo. O Mane e um lugar para <strong>viver e brindar.</strong></p>
+      <div class="highlight-bar">
+        <span>Beneficios exclusivos para aniversariantes</span>
+        <a href="#faixas">Ver faixas</a>
+      </div>
+      <div class="about-pills">
+        <span class="about-pill">🍺 Happy hour</span>
+        <span class="about-pill">🅿️ Estacionamento</span>
+        <span class="about-pill">🧸 Brinquedoteca</span>
+        <span class="about-pill">📋 Cardapio personalizado</span>
+      </div>
+    </div>
+
+    <div class="benefits-card">
+      <div class="benefits-card-header">
+        <span class="benefits-card-badge">Inclusos na reserva</span>
+        <span style="font-size:28px;">🎉</span>
+      </div>
+      <div class="benefits-card-title">O que voce ganha</div>
+      <div class="benefits-card-sub">Beneficios progressivos por numero de convidados</div>
+      <div class="benefit-row">
+        <div class="benefit-icon-wrap">🍺</div>
+        <div class="benefit-label">Happy hour estendido a noite toda — incluindo vinho</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon-wrap">🅿️</div>
+        <div class="benefit-label">Estacionamento gratuito para o aniversariante</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon-wrap">🧸</div>
+        <div class="benefit-label">Brinquedoteca monitorada para criancas</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon-wrap">📋</div>
+        <div class="benefit-label">Cardapio personalizado do evento</div>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-icon-wrap">💰</div>
+        <div class="benefit-label">Bonus de ate R$200 em consumacao</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAIXAS -->
+<section class="faixas-section" id="faixas">
+  <div class="faixas-inner">
+    <div class="faixas-header">
+      <div class="section-eyebrow">Beneficios por faixa</div>
+      <h2 class="section-title">Quanto maior o grupo,<br><em>maiores as vantagens.</em></h2>
+      <p class="section-sub">Confira os beneficios exclusivos para cada faixa de convidados e escolha a que melhor se encaixa na sua celebracao.</p>
+    </div>
+
+    <div class="faixa-base">
+      <div class="faixa-base-text">
+        <strong>Ate 8 pessoas — reserva padrao</strong>
+        Casais e grupos pequenos tem acesso a todas as cozinhas do mercado com reserva confirmada pelo WhatsApp.
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <div class="faixa-base-pills">
+          <span class="faixa-base-pill">🍽️ Todas as cozinhas</span>
+          <span class="faixa-base-pill">📱 Reserva por WhatsApp</span>
+        </div>
+        <a href="#" class="faixa-base-cta" onclick="openChat(); return false;">Reservar agora</a>
+      </div>
+    </div>
+
+    <div class="faixas-grid">
+      <div class="faixa-card">
+        <div class="faixa-img">
+          <img src="/festa-amigos.jpg" alt="Amigos celebrando aniversario no Mane" loading="lazy">
+        </div>
+        <div class="faixa-pessoas">8 a 15 pessoas</div>
+        <div class="faixa-title">Festa com os amigos</div>
+        <div class="faixa-bonus-value">R$100</div>
+        <div class="faixa-bonus-label">em bonus para o aniversariante</div>
+        <hr class="faixa-divider">
+        <ul class="benefits-list-card">
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🍺</div>
+            <div class="benefit-text">Happy hour estendido a noite toda — incluindo vinho</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🅿️</div>
+            <div class="benefit-text">Estacionamento gratuito para o aniversariante</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🧸</div>
+            <div class="benefit-text">Brinquedoteca — 1 crianca por 1 hora</div>
+          </li>
+        </ul>
+        <a href="#" class="faixa-cta" onclick="openChat(); return false;">Reservar agora</a>
+      </div>
+
+      <div class="faixa-card medio">
+        <div class="faixa-img">
+          <img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png" alt="Grupo celebrando no Mane" loading="lazy">
+        </div>
+        <div class="faixa-pessoas">16 a 30 pessoas</div>
+        <div class="faixa-title">Comemoracao em grande</div>
+        <div class="faixa-bonus-value">R$150</div>
+        <div class="faixa-bonus-label">em bonus para o aniversariante</div>
+        <hr class="faixa-divider">
+        <ul class="benefits-list-card">
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🍺</div>
+            <div class="benefit-text">Happy hour estendido a noite toda — incluindo vinho</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🅿️</div>
+            <div class="benefit-text">Estacionamento gratuito para o aniversariante</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🧸</div>
+            <div class="benefit-text">Brinquedoteca — 2 criancas por 2 horas</div>
+          </li>
+        </ul>
+        <a href="#" class="faixa-cta" onclick="openChat(); return false;">Reservar agora</a>
+      </div>
+
+      <div class="faixa-card destaque" id="faixa-200">
+        <div class="faixa-img">
+          <img src="https://mane.com.vc/wp-content/uploads/2025/04/Reserva-scaled.jpg" alt="Evento exclusivo no Mane" loading="lazy">
+        </div>
+        <div class="faixa-tag-popular">Mais vantagens</div>
+        <div class="faixa-pessoas">Acima de 30 pessoas</div>
+        <div class="faixa-title">Evento exclusivo</div>
+        <div class="faixa-bonus-value">R$200</div>
+        <div class="faixa-bonus-label">em bonus para o aniversariante</div>
+        <hr class="faixa-divider">
+        <ul class="benefits-list-card">
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🍺</div>
+            <div class="benefit-text">Happy hour estendido a noite toda — incluindo vinho</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">📋</div>
+            <div class="benefit-text">Cardapio personalizado</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🅿️</div>
+            <div class="benefit-text">Estacionamento gratuito para o aniversariante</div>
+          </li>
+          <li class="benefit-item-card">
+            <div class="benefit-icon-card">🧸</div>
+            <div class="benefit-text">Brinquedoteca — 5 criancas por 2 horas</div>
+          </li>
+        </ul>
+        <a href="#" class="faixa-cta" onclick="openChat(); return false;">Reservar agora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diff-section" id="diferenciais">
+  <div class="diff-inner">
+    <div class="diff-grid">
+      <div class="diff-text">
+        <div class="section-eyebrow">Por que celebrar no Mane</div>
+        <h2 class="diff-title">O espaco que reune<br><em>todos os gostos.</em></h2>
+        <p class="diff-body">Cada convidado escolhe sua propria cozinha. Cozinhas autorais com chefs dedicados, ambiente preparado para celebracoes e reserva confirmada em minutos.</p>
+      </div>
+      <div class="diff-cards">
+        <div class="diff-card">
+          <div class="diff-card-icon">🍽️</div>
+          <div>
+            <strong>Diversidade gastronomica</strong>
+            <span>Japonesa, churrascaria, italiana, vegana e mais — cada convidado escolhe onde comer.</span>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-icon">👨‍🍳</div>
+          <div>
+            <strong>Cozinhas autorais independentes</strong>
+            <span>Cada restaurante opera com chef proprio, cardapio exclusivo e identidade gastronomica unica.</span>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-icon">🧸</div>
+          <div>
+            <strong>Estrutura para familias</strong>
+            <span>Brinquedoteca monitorada, cardapio infantil e ambiente seguro para criancas.</span>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-icon">🌱</div>
+          <div>
+            <strong>Unico mercado sustentavel do Brasil</strong>
+            <span>Descarte consciente, abastecimento local e praticas ambientais integradas a operacao.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="reservar">
+  <div class="cta-inner">
+    <h2 class="cta-title">Reserve seu<br>aniversario.</h2>
+    <p class="cta-sub">Selecione o numero de convidados e receba sua confirmacao em minutos. Brasilia, Aguas Claras e Sao Paulo.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-cta-white" onclick="openChat(); return false;">
+        Reservar agora com a Julia
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/" class="btn-cta-ghost">Voltar ao site</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="/" class="footer-logo">mane<sup>,</sup></a>
+  <span class="footer-text">2025 Mané Mercado. Todos os direitos reservados.</span>
+</footer>
+
+</div>
+
+<!-- CHAT WIDGET -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()">
+  <div class="chat-fab-pulse"></div>
+  <div class="chat-badge">1</div>
+  <svg class="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face" alt="Julia"></div>
+    <div class="chat-header-info">
+      <h4>Julia — Mané Mercado</h4>
+      <span>Online agora</span>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-typing" id="chatTyping">
+      <div class="chat-typing-dot"></div>
+      <div class="chat-typing-dot"></div>
+      <div class="chat-typing-dot"></div>
+    </div>
+  </div>
+  <div class="chat-input-bar">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Digite sua mensagem..." autocomplete="off">
+    <button class="chat-send" id="chatSend" onclick="sendMessage()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const CHAT_API = 'http://localhost:4009';
+let chatOpen = false;
+let chatStarted = false;
+let responding = false;
+let chatHistory = [];
+
+const input = document.getElementById('chatInput');
+input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatFab').classList.toggle('open', chatOpen);
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  if (!chatStarted) {
+    chatStarted = true;
+    botReply(['Oi! Eu sou a Julia, do time de reservas do Mané 😊', 'Ta pensando em celebrar seu aniversario aqui com a gente? Me conta o que voce precisa!']);
+    chatHistory.push({ role: 'assistant', content: 'Oi! Eu sou a Julia, do time de reservas do Mané. Ta pensando em celebrar seu aniversario aqui com a gente? Me conta o que voce precisa!' });
+  } else {
+    setTimeout(() => input.focus(), 100);
+  }
+}
+
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text || responding) return;
+  responding = true;
+  addMsg(text, 'user');
+  input.value = '';
+  scrollChat();
+
+  chatHistory.push({ role: 'user', content: text });
+
+  // Show typing
+  const typing = document.getElementById('chatTyping');
+  typing.classList.add('show');
+  scrollChat();
+
+  try {
+    const res = await fetch(CHAT_API + '/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: text,
+        history: chatHistory.slice(-20), // last 20 messages for context
+        origem: 'lp-aniversario-v2'
+      })
+    });
+
+    typing.classList.remove('show');
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      if (err.error === 'auth_required') {
+        addMsg('Ops, estou com um probleminha tecnico. Tenta de novo em alguns minutos! 😅', 'bot');
+      } else {
+        addMsg('Desculpa, tive um probleminha aqui. Pode repetir?', 'bot');
+      }
+      responding = false;
+      return;
+    }
+
+    const data = await res.json();
+    const reply = data.reply;
+    chatHistory.push({ role: 'assistant', content: reply });
+
+    // Split reply into natural chunks (by double newline or sentences)
+    const chunks = splitIntoChunks(reply);
+    botReply(chunks, () => {
+      if (data.reserva) {
+        console.log('[RESERVA CAPTURADA]', data.reserva);
+        if (data.reserva.success && data.reserva.code) {
+          const link = `https://reservas.mane.com.vc/consultar?code=${data.reserva.code}`;
+          const linkMsg = `🎉 Aqui está o link pra você acompanhar sua reserva:\n<a href="${link}" target="_blank" rel="noopener" style="color:#0b6e4f;word-break:break-all;">${link}</a>`;
+          setTimeout(() => {
+            addMsg(linkMsg, 'bot');
+            scrollChat();
+          }, 800);
+        }
+      }
+    });
+  } catch (e) {
+    typing.classList.remove('show');
+    addMsg('Hmm, nao consegui conectar agora. Tenta de novo? 😊', 'bot');
+    responding = false;
+  }
+}
+
+function splitIntoChunks(text) {
+  // Split by double newline first
+  let chunks = text.split(/\n\n+/).filter(c => c.trim());
+  if (chunks.length <= 1) {
+    // If single block, split by sentences (but keep short ones together)
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    chunks = [];
+    let current = '';
+    for (const s of sentences) {
+      if (current && (current + ' ' + s).length > 120) {
+        chunks.push(current);
+        current = s;
+      } else {
+        current = current ? current + ' ' + s : s;
+      }
+    }
+    if (current) chunks.push(current);
+  }
+  return chunks.length ? chunks : [text];
+}
+
+function botReply(msgs, onDone) {
+  const typing = document.getElementById('chatTyping');
+  let delay = 400;
+
+  msgs.forEach((msg, i) => {
+    setTimeout(() => { typing.classList.add('show'); scrollChat(); }, delay);
+
+    const typingDuration = Math.max(1200, Math.min(msg.replace(/<[^>]*>/g,'').length * 40, 3000));
+    delay += typingDuration;
+
+    setTimeout(() => {
+      typing.classList.remove('show');
+      addMsg(msg, 'bot');
+      scrollChat();
+      if (i === msgs.length - 1) {
+        responding = false;
+        input.focus();
+        if (onDone) onDone();
+      }
+    }, delay);
+
+    delay += 600 + Math.random() * 400;
+  });
+}
+
+function addMsg(text, type) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg ' + type;
+  el.innerHTML = text.replace(/\n/g, '<br>');
+  const container = document.getElementById('chatMessages');
+  container.insertBefore(el, document.getElementById('chatTyping'));
+}
+
+function scrollChat() {
+  const el = document.getElementById('chatMessages');
+  setTimeout(() => el.scrollTop = el.scrollHeight, 50);
+}
+
+function openChat() {
+  if (!chatOpen) toggleChat();
+}
+</script>
+
+</body>
+</html>

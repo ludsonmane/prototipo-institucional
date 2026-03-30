@@ -29,6 +29,10 @@ app.get('/aniversario', (req, res) => {
   res.sendFile(path.join(__dirname, 'aniversario.html'));
 });
 
+app.get('/aniversario-v2', (req, res) => {
+  res.sendFile(path.join(__dirname, 'aniversario-v2.html'));
+});
+
 // Fallback para qualquer rota
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
