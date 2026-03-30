@@ -24,6 +24,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Landing pages
+app.get('/aniversario', (req, res) => {
+  res.sendFile(path.join(__dirname, 'aniversario.html'));
+});
+
 // Fallback para qualquer rota
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aniversário no Mané Mercado — Reserve seu espaço</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Saira+Semi+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:    #0D0D0D;
+      --green:  #034B46;
+      --green-2:#0A524D;
+      --cream:  #F5F0E6;
+      --cream-2:#EDE8DE;
+      --gold:   #F5C842;
+      --coral:  #D7675E;
+      --coral-dk: #C05249;
+      --warm:   #EDE8DE;
+      --accent: #D7675E;
+      --accent-rgb: 215,103,94;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Saira Semi Condensed', sans-serif;
+      background: var(--cream); color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      background: rgba(3,75,70,.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-logo {
+      font-family: 'Merriweather', serif; font-size: 28px; font-weight: 900;
+      letter-spacing: -.06em; color: var(--cream); line-height: 1;
+      text-decoration: none;
+    }
+    .nav-logo sup { font-size: 22px; color: var(--coral); vertical-align: super; letter-spacing: 0; }
+    .nav-cta {
+      background: var(--coral); color: #fff;
+      border-radius: 999px; padding: 11px 24px;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      transition: transform .15s, background .15s; border: none; text-decoration: none;
+    }
+    .nav-cta:hover { transform: translateY(-1px); background: var(--coral-dk); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 80vh; display: flex; align-items: center;
+      padding: 120px 48px 64px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: url('/hero-aniversario.jpg') center 30%/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(3,75,70,.88) 0%, rgba(3,75,70,.75) 100%);
+    }
+    .hero-layout {
+      position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .hero-eyebrow span { font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--coral); }
+    .hero-headline {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 900; line-height: .95; letter-spacing: -.04em; color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .hero-headline em { font-style: italic; color: var(--coral); }
+    .hero-sub {
+      font-size: clamp(15px, 1.6vw, 18px); font-weight: 300; line-height: 1.6;
+      color: rgba(244,234,216,.7); max-width: 44ch; margin-bottom: 28px;
+    }
+    .btn-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: #fff; border-radius: 999px;
+      padding: 16px 32px; font-size: 15px; font-weight: 700;
+      cursor: pointer; border: none; transition: transform .18s, box-shadow .18s; text-decoration: none;
+    }
+    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(var(--accent-rgb),.4); }
+
+    /* Hero value card */
+    .hero-value-card {
+      background: rgba(244,234,216,.08); border: 1px solid rgba(244,234,216,.15);
+      backdrop-filter: blur(16px); border-radius: 28px;
+      padding: 40px 36px; text-align: center; min-width: 280px;
+    }
+    .hvc-label {
+      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 8px;
+    }
+    .hvc-value {
+      font-family: 'Merriweather', serif; font-size: 72px; font-weight: 900;
+      letter-spacing: -.04em; color: #fff; line-height: 1;
+    }
+    .hvc-sub {
+      font-size: 14px; color: rgba(244,234,216,.55); margin-top: 6px; margin-bottom: 20px;
+    }
+    .hvc-benefits { display: grid; gap: 8px; text-align: left; }
+    .hvc-benefit {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: rgba(244,234,216,.75); font-weight: 500;
+    }
+    .hvc-benefit-icon { font-size: 15px; }
+
+    /* ── PROMISE STRIP ── */
+    .promise-strip {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px;
+    }
+    .promise-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(244,234,216,.1); border: 1px solid rgba(244,234,216,.18);
+      backdrop-filter: blur(8px);
+      border-radius: 999px; padding: 10px 18px;
+      font-size: 13px; font-weight: 600; color: rgba(244,234,216,.85);
+      white-space: nowrap;
+    }
+    .promise-pill-icon { font-size: 16px; }
+
+    /* ── HERO VALUE BAR ── */
+    .hero-value-bar {
+      background: rgba(3,75,70,.95); backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(244,234,216,.08);
+      padding: 20px 48px;
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+      position: relative; z-index: 10;
+    }
+    .value-item { display: flex; align-items: center; gap: 10px; }
+    .value-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(215,103,94,.15); display: grid; place-items: center; font-size: 16px;
+    }
+    .value-text { font-size: 13px; color: rgba(244,234,216,.7); font-weight: 500; }
+    .value-text strong { color: var(--cream); font-weight: 700; display: block; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      .hero-value-bar { padding: 16px 20px; gap: 16px; justify-content: flex-start; }
+      .promise-strip { gap: 8px; }
+      .promise-pill { font-size: 12px; padding: 8px 14px; }
+    }
+
+    /* ── FAIXAS ── */
+    .faixas-section {
+      background: var(--cream); padding: 80px 48px;
+    }
+    .faixas-inner { max-width: 1140px; margin: 0 auto; }
+    .faixas-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--coral); opacity: .4; }
+    .section-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 900;
+      line-height: 1; letter-spacing: -.04em; color: var(--ink); margin-bottom: 14px;
+    }
+    .section-title em { font-style: italic; color: var(--green); }
+    .section-sub {
+      font-size: 16px; color: rgba(13,13,13,.6); font-weight: 300; line-height: 1.6; max-width: 52ch; margin: 0 auto;
+    }
+
+    /* Base banner */
+    .faixa-base {
+      background: #fff; border: 1px solid rgba(3,75,70,.10); border-radius: 20px;
+      padding: 28px 32px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .faixa-base-text { font-size: 15px; color: rgba(13,13,13,.6); line-height: 1.5; }
+    .faixa-base-text strong { color: var(--ink); font-weight: 700; display: block; font-size: 17px; margin-bottom: 4px; }
+    .faixa-base-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .faixa-base-pill {
+      background: rgba(3,75,70,.06); border-radius: 999px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; color: var(--green);
+    }
+
+    /* Cards grid — 3 colunas */
+    .faixas-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    }
+    .faixa-card {
+      background: #fff; border: 1px solid rgba(3,75,70,.10);
+      border-radius: 24px; padding: 32px 28px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      position: relative; overflow: hidden;
+    }
+    .faixa-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(3,75,70,.12); }
+
+    /* Destaque */
+    .faixa-card.destaque {
+      background: var(--green); border-color: transparent; color: var(--cream);
+    }
+    .faixa-card.destaque .faixa-pessoas { color: rgba(244,234,216,.5); }
+    .faixa-card.destaque .faixa-title { color: var(--cream); }
+    .faixa-card.destaque .faixa-bonus-value { color: var(--coral); }
+    .faixa-card.destaque .faixa-bonus-label { color: rgba(244,234,216,.5); }
+    .faixa-card.destaque .benefit-text { color: rgba(244,234,216,.75); }
+    .faixa-card.destaque .benefit-icon { background: rgba(244,234,216,.08); }
+    .faixa-card.destaque .faixa-divider { border-color: rgba(244,234,216,.1); }
+
+    .faixa-pessoas {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(13,13,13,.4); margin-bottom: 8px;
+    }
+    .faixa-title {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 700;
+      letter-spacing: -.03em; color: var(--ink); margin-bottom: 16px; line-height: 1.15;
+    }
+    .faixa-bonus-value {
+      font-family: 'Merriweather', serif; font-size: 42px; font-weight: 900;
+      letter-spacing: -.04em; color: var(--green); line-height: 1;
+    }
+    .faixa-bonus-label {
+      font-size: 13px; color: rgba(13,13,13,.45); font-weight: 500; margin-top: 2px; margin-bottom: 20px;
+    }
+    .faixa-divider {
+      border: none; border-top: 1px solid rgba(3,75,70,.08); margin: 0 0 20px;
+    }
+
+    .benefits-list { list-style: none; display: grid; gap: 12px; }
+    .benefit-item { display: flex; align-items: center; gap: 12px; }
+    .benefit-icon {
+      width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(3,75,70,.06); display: grid; place-items: center; font-size: 16px;
+    }
+    .benefit-text { font-size: 14px; color: rgba(13,13,13,.7); line-height: 1.4; }
+
+    .faixa-tag-popular {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--coral); color: #fff; border-radius: 999px;
+      padding: 5px 14px; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      z-index: 2;
+    }
+
+    /* Card image header */
+    .faixa-img {
+      height: 160px; margin: -32px -28px 20px; border-radius: 24px 24px 0 0;
+      overflow: hidden; position: relative;
+    }
+    .faixa-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .faixa-img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+      background: linear-gradient(to top, #fff, transparent);
+      pointer-events: none;
+    }
+    .faixa-card.medio .faixa-img::after {
+      background: linear-gradient(to top, rgba(3,75,70,.04), transparent);
+    }
+    .faixa-card.destaque .faixa-img::after {
+      background: linear-gradient(to top, var(--green), transparent);
+    }
+
+    /* Card CTA */
+    .faixa-cta {
+      display: block; text-align: center; margin-top: 24px;
+      background: var(--coral); color: #fff; border-radius: 999px;
+      padding: 14px 24px; font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: transform .18s, box-shadow .18s;
+    }
+    .faixa-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(var(--accent-rgb),.35); }
+    .faixa-card.destaque .faixa-cta { background: var(--cream); color: var(--green); }
+    .faixa-card.destaque .faixa-cta:hover { box-shadow: 0 10px 28px rgba(244,234,216,.25); }
+
+    /* Progressão visual: card médio */
+    .faixa-card.medio {
+      background: rgba(3,75,70,.04); border-color: rgba(3,75,70,.15);
+    }
+
+    /* Confetti decorativo */
+    .faixa-confetti {
+      position: absolute; top: 0; right: 0; width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden; border-radius: 24px;
+    }
+    .faixa-confetti::before {
+      content: '🎉'; position: absolute; top: -8px; right: 60px;
+      font-size: 28px; opacity: .12; transform: rotate(-15deg);
+    }
+    .faixa-confetti::after {
+      content: '🎈'; position: absolute; bottom: 10px; right: 12px;
+      font-size: 24px; opacity: .10; transform: rotate(12deg);
+    }
+    .faixa-card.destaque .faixa-confetti::before { content: '🎊'; opacity: .15; font-size: 36px; top: 50px; right: 20px; }
+    .faixa-card.destaque .faixa-confetti::after { content: '🥂'; opacity: .12; font-size: 32px; bottom: 80px; right: 50px; }
+
+    /* Base CTA */
+    .faixa-base-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: var(--cream); border-radius: 999px;
+      padding: 10px 22px; font-size: 13px; font-weight: 700;
+      text-decoration: none; transition: transform .15s; white-space: nowrap;
+    }
+    .faixa-base-cta:hover { transform: translateY(-1px); }
+
+    /* ── DIFERENCIAIS ── */
+    .diff-section { background: var(--green); padding: 80px 48px; }
+    .diff-inner { max-width: 1140px; margin: 0 auto; }
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .diff-text .section-eyebrow { justify-content: flex-start; color: var(--coral); }
+    .diff-text .section-eyebrow::before { display: block; } .diff-text .section-eyebrow::after { display: none; }
+    .diff-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(26px, 3vw, 38px); font-weight: 700;
+      line-height: 1.05; letter-spacing: -.04em; color: var(--cream); margin-bottom: 18px;
+    }
+    .diff-title em { font-style: italic; color: var(--coral); }
+    .diff-body { font-size: 16px; color: rgba(244,234,216,.65); font-weight: 300; line-height: 1.7; max-width: 42ch; }
+
+    .diff-cards { display: grid; gap: 14px; }
+    .diff-card {
+      background: rgba(244,234,216,.05); border: 1px solid rgba(244,234,216,.1);
+      border-radius: 16px; padding: 20px; display: flex; gap: 14px; align-items: flex-start;
+      transition: background .2s, border-color .2s;
+    }
+    .diff-card:hover { background: rgba(244,234,216,.08); border-color: rgba(244,234,216,.18); }
+    .diff-card-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(215,103,94,.15); display: grid; place-items: center; font-size: 18px; flex-shrink: 0;
+    }
+    .diff-card strong { display: block; font-size: 14px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+    .diff-card span { font-size: 13px; color: rgba(244,234,216,.55); line-height: 1.5; }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: linear-gradient(160deg, var(--green), #022420);
+      padding: 80px 48px; text-align: center;
+    }
+    .cta-inner { max-width: 680px; margin: 0 auto; }
+    .cta-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(32px, 4vw, 52px); font-weight: 900;
+      line-height: .95; letter-spacing: -.04em; color: var(--cream); margin-bottom: 16px;
+    }
+    .cta-title em { font-style: italic; color: var(--coral); }
+    .cta-sub { font-size: 16px; color: rgba(244,234,216,.6); font-weight: 300; line-height: 1.6; max-width: 46ch; margin: 0 auto 32px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--coral); color: #fff; border-radius: 999px;
+      padding: 18px 38px; font-size: 16px; font-weight: 700;
+      text-decoration: none; transition: transform .18s, box-shadow .18s;
+    }
+    .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(var(--accent-rgb),.4); }
+    .btn-cta-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(244,234,216,.7); border: 1.5px solid rgba(244,234,216,.2);
+      border-radius: 999px; padding: 17px 34px; font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: border-color .2s, color .2s;
+    }
+    .btn-cta-ghost:hover { border-color: rgba(244,234,216,.5); color: var(--cream); }
+
+    /* ── FOOTER MINI ── */
+    .footer-mini {
+      background: var(--ink); padding: 28px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-mini-logo {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 900;
+      color: var(--cream); letter-spacing: -.06em; text-decoration: none;
+    }
+    .footer-mini-logo sup { font-size: 16px; color: var(--coral); }
+    .footer-mini-text { font-size: 12px; color: rgba(244,234,216,.35); }
+
+    /* ── RESPONSIVE ── */
+    @media (min-width: 1200px) {
+      .hero { padding: 120px 64px 64px; }
+      .faixas-section { padding: 72px 64px; }
+      .diff-section { padding: 72px 64px; }
+      .cta-section { padding: 72px 64px; }
+    }
+    @media (max-width: 1100px) {
+      .faixas-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 100px 20px 48px; min-height: auto; }
+      .hero-layout { grid-template-columns: 1fr; gap: 32px; }
+      .hero-value-card { min-width: unset; }
+      .faixas-section { padding: 56px 20px; }
+      .faixas-grid { grid-template-columns: 1fr; gap: 16px; }
+      .faixa-base { flex-direction: column; align-items: flex-start; }
+      .diff-section { padding: 56px 20px; }
+      .diff-grid { grid-template-columns: 1fr; gap: 36px; }
+      .cta-section { padding: 56px 20px; }
+      .footer-mini { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">mané<sup>,</sup></a>
+  <a href="#reservar" class="nav-cta">Reservar aniversário</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-layout">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span>🎂 Aniversário no Mané Mercado</span>
+      </div>
+      <h1 class="hero-headline">
+        Celebre seu aniversário<br>
+        e ganhe até <em>R$200 em<br>vantagens exclusivas.</em>
+      </h1>
+      <p class="hero-sub">
+        Quanto maior o grupo, mais o Mané entrega pra você. Estacionamento, kit exclusivo, brinquedoteca e muito mais — tudo incluso na reserva.
+      </p>
+      <a href="#faixas" class="btn-main">
+        Ver benefícios por faixa
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-value-card">
+      <div class="hvc-label">Bônus de até</div>
+      <div class="hvc-value">R$200</div>
+      <div class="hvc-sub">para o aniversariante</div>
+      <div class="hvc-benefits">
+        <div class="hvc-benefit"><span class="hvc-benefit-icon">🍺</span> Happy hour a noite toda</div>
+        <div class="hvc-benefit"><span class="hvc-benefit-icon">🅿️</span> Estacionamento gratuito</div>
+        <div class="hvc-benefit"><span class="hvc-benefit-icon">🧸</span> Brinquedoteca inclusa</div>
+        <div class="hvc-benefit"><span class="hvc-benefit-icon">📋</span> Cardápio personalizado</div>
+      </div>
+      <a href="#faixa-200" class="faixa-cta" style="margin-top:20px; background:var(--cream); color:var(--green);">Quero o bônus de R$200 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE BAR -->
+<div class="hero-value-bar">
+  <div class="value-item">
+    <div class="value-icon">🍽️</div>
+    <div class="value-text"><strong>Diversidade total</strong>Cada convidado escolhe sua cozinha</div>
+  </div>
+  <div class="value-item">
+    <div class="value-icon">📱</div>
+    <div class="value-text"><strong>Reserva em minutos</strong>Confirmação direta pelo WhatsApp</div>
+  </div>
+  <div class="value-item">
+    <div class="value-icon">🎉</div>
+    <div class="value-text"><strong>Mais convidados, mais vantagens</strong>Benefícios progressivos por faixa</div>
+  </div>
+</div>
+
+<!-- FAIXAS DE BENEFÍCIOS -->
+<section class="faixas-section" id="faixas">
+  <div class="faixas-inner">
+    <div class="faixas-header">
+      <div class="section-eyebrow">Benefícios por faixa</div>
+      <h2 class="section-title">Quanto maior o grupo,<br><em>maiores as vantagens.</em></h2>
+      <p class="section-sub">Confira os benefícios exclusivos para cada faixa de convidados e escolha a que melhor se encaixa na sua celebração.</p>
+    </div>
+
+    <!-- Base: até 8 pessoas -->
+    <div class="faixa-base">
+      <div class="faixa-base-text">
+        <strong>Até 8 pessoas — reserva padrão</strong>
+        Casais e grupos pequenos têm acesso a todas as cozinhas do mercado com reserva confirmada pelo WhatsApp.
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <div class="faixa-base-pills">
+          <span class="faixa-base-pill">🍽️ Todas as cozinhas</span>
+          <span class="faixa-base-pill">📱 Reserva por WhatsApp</span>
+        </div>
+        <a href="#reservar" class="faixa-base-cta">Reservar agora →</a>
+      </div>
+    </div>
+
+    <!-- Cards com bônus: 3 colunas -->
+    <div class="faixas-grid">
+
+      <!-- 8 a 15 -->
+      <div class="faixa-card">
+        <div class="faixa-img">
+          <img src="/festa-amigos.jpg" alt="Amigos celebrando aniversário no Mané" loading="lazy">
+        </div>
+        <div class="faixa-confetti"></div>
+        <div class="faixa-pessoas">8 a 15 pessoas</div>
+        <div class="faixa-title">Festa com os amigos</div>
+        <div class="faixa-bonus-value">R$100</div>
+        <div class="faixa-bonus-label">em bônus para o aniversariante</div>
+        <hr class="faixa-divider">
+        <ul class="benefits-list">
+          <li class="benefit-item">
+            <div class="benefit-icon">🍺</div>
+            <div class="benefit-text">Happy hour estendido a noite toda — incluindo vinho</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🅿️</div>
+            <div class="benefit-text">Estacionamento gratuito para o aniversariante</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🧸</div>
+            <div class="benefit-text">Brinquedoteca — 1 criança por 1 hora</div>
+          </li>
+        </ul>
+        <a href="#reservar" class="faixa-cta">Reservar agora e garantir bônus →</a>
+      </div>
+
+      <!-- 16 a 30 -->
+      <div class="faixa-card medio">
+        <div class="faixa-img">
+          <img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png" alt="Grupo celebrando no Mané" loading="lazy">
+        </div>
+        <div class="faixa-confetti"></div>
+        <div class="faixa-pessoas">16 a 30 pessoas</div>
+        <div class="faixa-title">Comemoração em grande</div>
+        <div class="faixa-bonus-value">R$150</div>
+        <div class="faixa-bonus-label">em bônus para o aniversariante</div>
+        <hr class="faixa-divider">
+        <ul class="benefits-list">
+          <li class="benefit-item">
+            <div class="benefit-icon">🍺</div>
+            <div class="benefit-text">Happy hour estendido a noite toda — incluindo vinho</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🅿️</div>
+            <div class="benefit-text">Estacionamento gratuito para o aniversariante</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🧸</div>
+            <div class="benefit-text">Brinquedoteca — 2 crianças por 2 horas</div>
+          </li>
+        </ul>
+        <a href="#reservar" class="faixa-cta">Reservar agora e garantir bônus →</a>
+      </div>
+
+      <!-- Acima de 30 -->
+      <div class="faixa-card destaque" id="faixa-200">
+        <div class="faixa-img">
+          <img src="https://mane.com.vc/wp-content/uploads/2025/04/Reserva-scaled.jpg" alt="Evento exclusivo no Mané" loading="lazy">
+        </div>
+        <div class="faixa-confetti"></div>
+        <div class="faixa-tag-popular">Mais vantagens</div>
+        <div class="faixa-pessoas">Acima de 30 pessoas</div>
+        <div class="faixa-title">Evento exclusivo</div>
+        <div class="faixa-bonus-value">R$200</div>
+        <div class="faixa-bonus-label">em bônus para o aniversariante</div>
+        <hr class="faixa-divider">
+        <ul class="benefits-list">
+          <li class="benefit-item">
+            <div class="benefit-icon">🍺</div>
+            <div class="benefit-text">Happy hour estendido a noite toda — incluindo vinho</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">📋</div>
+            <div class="benefit-text">Cardápio personalizado</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🅿️</div>
+            <div class="benefit-text">Estacionamento gratuito para o aniversariante</div>
+          </li>
+          <li class="benefit-item">
+            <div class="benefit-icon">🧸</div>
+            <div class="benefit-text">Brinquedoteca — 5 crianças por 2 horas</div>
+          </li>
+        </ul>
+        <a href="#reservar" class="faixa-cta">Reservar agora e garantir bônus →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diff-section">
+  <div class="diff-inner">
+    <div class="diff-grid">
+      <div class="diff-text">
+        <div class="section-eyebrow">Por que celebrar no Mané</div>
+        <h2 class="diff-title">O espaço que reúne<br><em>todos os gostos.</em></h2>
+        <p class="diff-body">Cada convidado escolhe sua própria cozinha. Cozinhas autorais com chefs dedicados, ambiente preparado para celebrações e reserva confirmada em minutos.</p>
+      </div>
+      <div class="diff-cards">
+        <div class="diff-card">
+          <div class="diff-card-icon">🍽️</div>
+          <div>
+            <strong>Diversidade gastronômica</strong>
+            <span>Japonesa, churrascaria, italiana, vegana e mais — cada convidado escolhe onde comer.</span>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-icon">👨‍🍳</div>
+          <div>
+            <strong>Cozinhas autorais independentes</strong>
+            <span>Cada restaurante opera com chef próprio, cardápio exclusivo e identidade gastronômica única.</span>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-icon">🧸</div>
+          <div>
+            <strong>Estrutura para famílias</strong>
+            <span>Brinquedoteca monitorada, cardápio infantil e ambiente seguro para crianças.</span>
+          </div>
+        </div>
+        <div class="diff-card">
+          <div class="diff-card-icon">🌱</div>
+          <div>
+            <strong>Único mercado sustentável do Brasil</strong>
+            <span>Descarte consciente, abastecimento local e práticas ambientais integradas à operação.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="reservar">
+  <div class="cta-inner">
+    <h2 class="cta-title">Reserve seu<br><em>aniversário.</em></h2>
+    <p class="cta-sub">Selecione o número de convidados e receba sua confirmação em minutos. Brasília, Águas Claras e São Paulo.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5561999999999?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20um%20anivers%C3%A1rio%20no%20Man%C3%A9" class="btn-cta-primary" target="_blank" rel="noopener">
+        Reservar pelo WhatsApp
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/" class="btn-cta-ghost">Voltar ao site</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-mini">
+  <a href="/" class="footer-mini-logo">mané<sup>,</sup></a>
+  <span class="footer-mini-text">© 2025 Mané Mercado. Todos os direitos reservados.</span>
+</footer>
+
+</body>
+</html>

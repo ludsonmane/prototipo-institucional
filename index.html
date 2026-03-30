@@ -658,6 +658,66 @@
     .reveal.delay-6 { transition-delay: .6s; }
     .reveal.delay-7 { transition-delay: .7s; }
 
+    /* ── DESKTOP REFINEMENTS ── */
+    @media (min-width: 1200px) {
+      /* Hero — tone down */
+      .hero-headline { font-size: clamp(52px, 6vw, 88px); }
+      .hero-deco { font-size: clamp(120px, 14vw, 180px); }
+      .hero { padding: 0 64px 56px; }
+      .hero-proof { right: 64px; }
+
+      /* Títulos de seção — mais contidos */
+      .claim-title { font-size: clamp(38px, 4vw, 52px); }
+      .food-strip-title { font-size: clamp(32px, 3.2vw, 42px); }
+      .s-title { font-size: clamp(32px, 3.5vw, 48px); }
+      .cta-title { font-size: clamp(38px, 4.5vw, 60px); }
+      .problem-quote { font-size: clamp(26px, 2.8vw, 38px); }
+
+      /* Stat numbers */
+      .stat-num { font-size: 42px; }
+      .stat-num span { font-size: 32px; }
+
+      /* Padding vertical das seções */
+      .claim-section { padding: 72px 64px 64px; }
+      .food-strip { padding: 56px 64px; }
+      .problem-section { padding: 72px 64px; }
+      .occasions-section { padding: 72px 64px; }
+      .celebrate-section { padding: 56px 64px; }
+      .family-section { padding: 72px 64px; }
+      .how-section { padding: 72px 64px; }
+      .experience-section { padding: 72px 64px; }
+      .units-section { padding: 72px 64px; }
+      .proof-section { padding: 56px 64px; }
+      .reviews-section { padding: 56px 64px 0; }
+      .cta-section { padding: 80px 64px; }
+
+      /* Gaps dos grids */
+      .claim-grid { gap: 48px; }
+      .problem-grid { gap: 48px; }
+      .exp-grid { gap: 48px; }
+      .occasions-header { gap: 40px; }
+      .units-header { gap: 32px; }
+
+      /* Nav links */
+      .nav-links { gap: 28px; }
+
+      /* Containers mais contidos */
+      .hero-content,
+      .claim-inner,
+      .food-strip-inner,
+      .problem-inner,
+      .occasions-inner,
+      .celebrate-inner,
+      .how-inner,
+      .exp-inner,
+      .units-inner,
+      .proof-inner,
+      .reviews-inner,
+      .cta-inner,
+      .footer-inner,
+      .footer-bottom { max-width: 1140px; margin-left: auto; margin-right: auto; }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 18px 24px; } nav.scrolled { padding: 12px 24px; }
@@ -977,19 +1037,17 @@
   <div class="ticker-track" id="tickerTrack">
     <!-- duplicated for seamless loop -->
     <span class="ticker-item">🏆 O maior mercado gastronômico do Brasil <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🌱 Único mercado sustentável do Brasil <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">👨‍🍳 +20 chefs em um só lugar <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🍽️ +500 opções gastronômicas no cardápio <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🏪 +20 restaurantes <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🌱 O único sustentável <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🍽️ Liberdade de escolha para cada convidado <span class="ticker-sep">·</span></span>
     <span class="ticker-item">🎂 Aniversário · Corporativo · Família · Kids <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">📍 Brasília · Águas Claras · São Paulo Perdizes <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">📍 Brasília · Águas Claras · São Paulo <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">⚡ Confirmação de reserva imediata <span class="ticker-sep">·</span></span>
     <span class="ticker-item">🏆 O maior mercado gastronômico do Brasil <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🌱 Único mercado sustentável do Brasil <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">👨‍🍳 +20 chefs em um só lugar <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🍽️ +500 opções gastronômicas no cardápio <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🏪 +20 restaurantes <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🌱 O único sustentável <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">🍽️ Liberdade de escolha para cada convidado <span class="ticker-sep">·</span></span>
     <span class="ticker-item">🎂 Aniversário · Corporativo · Família · Kids <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">📍 Brasília · Águas Claras · São Paulo Perdizes <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">📍 Brasília · Águas Claras · São Paulo <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">⚡ Confirmação de reserva imediata <span class="ticker-sep">·</span></span>
   </div>
 </div>
 
@@ -1020,16 +1078,16 @@
 
       <div class="stats-grid reveal delay-2">
         <div class="stat-card">
-          <div class="stat-num">+20<span>rest.</span></div>
-          <div class="stat-label">Restaurantes independentes com chefs dedicados em um único espaço</div>
+          <div class="stat-num" style="font-size:32px;">🍣 🥩 🍕</div>
+          <div class="stat-label">Culinária japonesa, churrascaria, italiana, vegana e outras — reunidas em um único endereço</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">+20<span></span></div>
-          <div class="stat-label">Chefs talentosos com histórias, técnicas e culturas gastronômicas diferentes</div>
+          <div class="stat-num" style="font-size:28px;">Uma reserva,<br>todo o mercado</div>
+          <div class="stat-label">Uma única reserva dá acesso a todas as cozinhas. Cada convidado escolhe onde comer</div>
         </div>
         <div class="stat-card featured">
-          <div class="stat-num" style="font-size:36px;">+500 opções gastronômicas no cardápio</div>
-          <div class="stat-label">Da culinária japonesa à brasileira. Cada pessoa escolhe onde comer — a reserva vale para todo o mercado.</div>
+          <div class="stat-num" style="font-size:26px;">Para grupos com gostos diferentes</div>
+          <div class="stat-label">O destino onde todos os perfis gastronômicos se encontram — sem concessões.</div>
         </div>
       </div>
     </div>
@@ -1184,28 +1242,28 @@
   <div class="problem-inner">
     <div class="problem-grid">
       <div class="reveal">
-        <div class="s-eyebrow" style="color:var(--coral);">O que você encontra</div>
+        <div class="s-eyebrow" style="color:var(--coral);">O que nos diferencia</div>
         <p class="problem-quote">
-          +20 restaurantes, +200 pratos
-          <strong>e reserva em 2 minutos.</strong>
+          Gastronomia autoral com
+          <strong>estrutura completa para qualquer ocasião.</strong>
         </p>
         <p style="font-size:16px;color:rgba(13,13,13,.6);font-weight:300;line-height:1.7;margin-top:22px;">
-          Gastronomia japonesa, brasileira, italiana, espanhola e muito mais. Cada pessoa escolhe onde comer — a reserva vale para todo o mercado.
+          Cada cozinha opera de forma independente, com chef próprio, identidade e cardápio exclusivos. A reserva é única e vale para todo o mercado.
         </p>
       </div>
       <div class="problem-points reveal delay-2">
         <div class="problem-point">
           <div class="pp-icon">🍽️</div>
           <div class="pp-text">
-            <strong>+200 pratos no cardápio</strong>
-            <p>Da culinária japonesa à churrascaria, do vegano à cozinha nordestina. Variedade real em um único endereço.</p>
+            <strong>Diversidade gastronômica real</strong>
+            <p>Da culinária japonesa à churrascaria, do vegano à cozinha nordestina. Todas as cozinhas em um único endereço.</p>
           </div>
         </div>
         <div class="problem-point">
           <div class="pp-icon">👨‍🍳</div>
           <div class="pp-text">
-            <strong>+20 chefs independentes</strong>
-            <p>Cada chef é dono da sua cozinha, da sua história e da sua técnica. Gastronomia autoral, não praça de alimentação.</p>
+            <strong>Cozinhas independentes com identidade própria</strong>
+            <p>Cada chef conduz sua operação com autonomia — história, técnica e cardápio são de sua autoria.</p>
           </div>
         </div>
         <div class="problem-point">
@@ -1218,8 +1276,8 @@
         <div class="problem-point">
           <div class="pp-icon">✅</div>
           <div class="pp-text">
-            <strong>Reserva em 2 minutos</strong>
-            <p>Escolha a ocasião, informe o número de pessoas e confirme. Simples, rápido e sem burocracia.</p>
+            <strong>Processo de reserva simplificado</strong>
+            <p>Selecione a ocasião, informe o número de convidados e receba a confirmação diretamente pelo WhatsApp.</p>
           </div>
         </div>
       </div>
@@ -1435,9 +1493,9 @@
       </div>
       <div class="how-step reveal delay-2">
         <div class="how-step-num">2</div>
-        <h4>Fala com o <em>bot do Mané</em></h4>
-        <p>Data, número de pessoas, horário. Três perguntas com quick-replies. O bot confirma disponibilidade em tempo real.</p>
-        <span class="how-step-tag">🤖 Resposta imediata</span>
+        <h4>Responde <em>3 perguntas</em></h4>
+        <p>Data, número de pessoas e horário. Resposta rápida direto no WhatsApp — sem formulário, sem espera.</p>
+        <span class="how-step-tag">⚡ Resposta imediata</span>
       </div>
       <div class="how-step reveal delay-3">
         <div class="how-step-num">3</div>
@@ -1468,8 +1526,8 @@
           <div class="exp-feat">
             <div class="ef-icon">🍽️</div>
             <div class="ef-text">
-              <strong>+500 opções gastronômicas com chefs de verdade</strong>
-              <span>Não é praça de alimentação. São +20 chefs com cozinhas independentes, culinária autoral e paixão pelo que fazem.</span>
+              <strong>Cozinhas autorais com chefs dedicados</strong>
+              <span>Cada restaurante opera com independência criativa — chef próprio, cardápio exclusivo e identidade gastronômica única.</span>
             </div>
           </div>
           <div class="exp-feat">
@@ -1575,30 +1633,7 @@
   </div>
 </section>
 
-<!-- ══ PROOF NUMBERS ══ -->
-<section class="proof-section">
-  <div class="proof-inner">
-    <div class="proof-stat reveal">
-      <div class="ps-num">+20<span></span></div>
-      <div class="ps-label">restaurantes<br>em um só lugar</div>
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-stat reveal delay-1">
-      <div class="ps-num">+20<span></span></div>
-      <div class="ps-label">chefs com<br>cozinhas reais</div>
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-stat reveal delay-2">
-      <div class="ps-num">+500<span></span></div>
-      <div class="ps-label">pratos no<br>cardápio</div>
-    </div>
-    <div class="proof-divider"></div>
-    <div class="proof-stat reveal delay-3">
-      <div class="ps-num">2<span>min</span></div>
-      <div class="ps-label">da escolha à<br>reserva confirmada</div>
-    </div>
-  </div>
-</section>
+<!-- proof section removida — stats já aparecem no hero -->
 
 <!-- ══ REVIEWS TICKER ══ -->
 <section class="reviews-section">
@@ -1636,7 +1671,7 @@
       <em>agora.</em>
     </h2>
     <p class="cta-sub reveal delay-1">
-      +20 chefs, +200 pratos e confirmação em 2 minutos. Brasília, Águas Claras e São Paulo.
+      Selecione a ocasião e receba sua confirmação em minutos. Brasília, Águas Claras e São Paulo.
     </p>
     <div class="cta-btns reveal delay-2">
       <a href="#ocasioes" class="btn-cta-primary">
