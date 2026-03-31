@@ -404,6 +404,74 @@
       .cta-section { padding: 56px 20px; }
       .footer-mini { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
     }
+    /* ── CHAT VARS ── */
+    :root {
+      --teal: var(--green); --teal-dark: var(--green-2);
+      --teal-light: #eef5f4; --gold-dark: #d4a820; --white: #fff;
+    }
+    /* ── CHAT WIDGET ── */
+    .chat-fab {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 62px; height: 62px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--ink); display: grid; place-items: center; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(245,200,66,.45), 0 2px 8px rgba(0,0,0,.1);
+      border: 3px solid rgba(255,255,255,.6); transition: transform .2s, box-shadow .2s;
+    }
+    .chat-fab:hover { transform: scale(1.1); }
+    .chat-fab svg { width: 28px; height: 28px; }
+    .chat-fab.open svg.icon-chat { display: none; }
+    .chat-fab:not(.open) svg.icon-close { display: none; }
+    .chat-fab-pulse {
+      position: absolute; inset: -6px; border-radius: 50%;
+      border: 2.5px solid var(--gold); opacity: 0;
+      animation: fabPulse 2s ease-out infinite;
+    }
+    @keyframes fabPulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.5); opacity: 0; } }
+    .chat-fab.open .chat-fab-pulse { display: none; }
+    .chat-badge {
+      position: absolute; top: -2px; right: -2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--coral); color: #fff; font-size: 10px; font-weight: 800;
+      display: grid; place-items: center; border: 2px solid var(--white);
+    }
+    .chat-fab.open .chat-badge { display: none; }
+    .chat-window {
+      position: fixed; bottom: 100px; right: 28px; z-index: 199;
+      width: 370px; max-height: 520px; background: var(--white); border-radius: 24px;
+      box-shadow: 0 16px 56px rgba(0,0,0,.15); display: none; flex-direction: column;
+      overflow: hidden; border: 1px solid rgba(3,75,70,.1);
+    }
+    .chat-window.open { display: flex; }
+    .chat-header { background: var(--teal); padding: 18px 20px; display: flex; align-items: center; gap: 12px; }
+    .chat-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+    .chat-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .chat-header-info h4 { font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 2px; }
+    .chat-header-info span { font-size: 11px; color: rgba(243,233,217,.6); font-weight: 500; display: flex; align-items: center; gap: 5px; }
+    .chat-header-info span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; display: inline-block; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px; max-height: 320px; }
+    .chat-msg { max-width: 85%; padding: 12px 16px; font-size: 14px; line-height: 1.5; border-radius: 18px; animation: msgIn .3s ease-out; }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .chat-msg.bot { background: var(--teal-light); color: var(--ink); border-bottom-left-radius: 6px; align-self: flex-start; }
+    .chat-msg.user { background: var(--teal); color: var(--cream); border-bottom-right-radius: 6px; align-self: flex-end; }
+    .chat-typing { align-self: flex-start; padding: 12px 18px; background: var(--teal-light); border-radius: 18px 18px 18px 6px; display: none; gap: 5px; align-items: center; }
+    .chat-typing.show { display: flex; }
+    .chat-typing-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); opacity: .4; animation: typingBounce .6s ease-in-out infinite alternate; }
+    .chat-typing-dot:nth-child(2) { animation-delay: .15s; }
+    .chat-typing-dot:nth-child(3) { animation-delay: .3s; }
+    @keyframes typingBounce { from { opacity: .3; transform: translateY(0); } to { opacity: .8; transform: translateY(-4px); } }
+    .chat-input-bar { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid rgba(3,75,70,.08); background: var(--white); }
+    .chat-input { flex: 1; border: 1.5px solid rgba(3,75,70,.15); border-radius: 999px; padding: 10px 18px; font-size: 14px; font-family: 'Saira Semi Condensed', sans-serif; color: var(--ink); outline: none; transition: border-color .2s; }
+    .chat-input:focus { border-color: var(--teal); }
+    .chat-input::placeholder { color: rgba(13,13,13,.35); }
+    .chat-send { width: 40px; height: 40px; border-radius: 50%; background: var(--teal); color: var(--cream); border: none; cursor: pointer; display: grid; place-items: center; transition: background .15s; flex-shrink: 0; }
+    .chat-send:hover { background: var(--teal-dark); }
+    .chat-send:disabled { opacity: .4; cursor: default; }
+    .chat-send svg { width: 18px; height: 18px; }
+    @media (max-width: 768px) {
+      .chat-window { width: calc(100vw - 32px); right: 16px; bottom: 96px; max-height: 70vh; }
+      .chat-fab { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+    }
   </style>
 </head>
 <body>
@@ -411,7 +479,7 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">mané<sup>,</sup></a>
-  <a href="#reservar" class="nav-cta">Reservar aniversário</a>
+  <a href="#" class="nav-cta" onclick="openChat(); return false;">Reservar aniversário</a>
 </nav>
 
 <!-- HERO -->
@@ -485,7 +553,7 @@
           <span class="faixa-base-pill">🍽️ Todas as cozinhas</span>
           <span class="faixa-base-pill">📱 Reserva por WhatsApp</span>
         </div>
-        <a href="#reservar" class="faixa-base-cta">Reservar agora →</a>
+        <a href="#" class="faixa-base-cta" onclick="openChat(); return false;">Reservar agora →</a>
       </div>
     </div>
 
@@ -517,7 +585,7 @@
             <div class="benefit-text">Brinquedoteca — 1 criança por 1 hora</div>
           </li>
         </ul>
-        <a href="#reservar" class="faixa-cta">Reservar agora e garantir bônus →</a>
+        <a href="#" class="faixa-cta" onclick="openChat(); return false;">Reservar agora e garantir bônus →</a>
       </div>
 
       <!-- 16 a 30 -->
@@ -545,7 +613,7 @@
             <div class="benefit-text">Brinquedoteca — 2 crianças por 2 horas</div>
           </li>
         </ul>
-        <a href="#reservar" class="faixa-cta">Reservar agora e garantir bônus →</a>
+        <a href="#" class="faixa-cta" onclick="openChat(); return false;">Reservar agora e garantir bônus →</a>
       </div>
 
       <!-- Acima de 30 -->
@@ -578,7 +646,7 @@
             <div class="benefit-text">Brinquedoteca — 5 crianças por 2 horas</div>
           </li>
         </ul>
-        <a href="#reservar" class="faixa-cta">Reservar agora e garantir bônus →</a>
+        <a href="#" class="faixa-cta" onclick="openChat(); return false;">Reservar agora e garantir bônus →</a>
       </div>
 
     </div>
@@ -634,8 +702,8 @@
     <h2 class="cta-title">Reserve seu<br><em>aniversário.</em></h2>
     <p class="cta-sub">Selecione o número de convidados e receba sua confirmação em minutos. Brasília, Águas Claras e São Paulo.</p>
     <div class="cta-btns">
-      <a href="https://wa.me/5561999999999?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20um%20anivers%C3%A1rio%20no%20Man%C3%A9" class="btn-cta-primary" target="_blank" rel="noopener">
-        Reservar pelo WhatsApp
+      <a href="#" class="btn-cta-primary" onclick="openChat(); return false;">
+        Reservar agora com a Julia
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="/" class="btn-cta-ghost">Voltar ao site</a>
@@ -648,6 +716,133 @@
   <a href="/" class="footer-mini-logo">mané<sup>,</sup></a>
   <span class="footer-mini-text">© 2025 Mané Mercado. Todos os direitos reservados.</span>
 </footer>
+
+<!-- CHAT WIDGET -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()">
+  <div class="chat-fab-pulse"></div>
+  <div class="chat-badge">1</div>
+  <svg class="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face" alt="Julia"></div>
+    <div class="chat-header-info">
+      <h4>Julia — Mané Mercado</h4>
+      <span>Online agora</span>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-typing" id="chatTyping">
+      <div class="chat-typing-dot"></div>
+      <div class="chat-typing-dot"></div>
+      <div class="chat-typing-dot"></div>
+    </div>
+  </div>
+  <div class="chat-input-bar">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Digite sua mensagem..." autocomplete="off">
+    <button class="chat-send" id="chatSend" onclick="sendMessage()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const CHAT_API = 'https://mane-chat-production.up.railway.app';
+let chatOpen = false, chatStarted = false, responding = false, chatHistory = [];
+
+document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatFab').classList.toggle('open', chatOpen);
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  if (!chatStarted) {
+    chatStarted = true;
+    botReply(['Oi! Eu sou a Julia, do time de reservas do Mané 😊', 'Ta pensando em celebrar seu aniversario aqui com a gente? Me conta o que voce precisa!']);
+    chatHistory.push({ role: 'assistant', content: 'Oi! Eu sou a Julia, do time de reservas do Mané. Ta pensando em celebrar seu aniversario aqui com a gente? Me conta o que voce precisa!' });
+  } else { setTimeout(() => document.getElementById('chatInput').focus(), 100); }
+}
+
+function openChat() { if (!chatOpen) toggleChat(); }
+
+async function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || responding) return;
+  responding = true;
+  addMsg(text, 'user');
+  input.value = '';
+  scrollChat();
+  chatHistory.push({ role: 'user', content: text });
+  const typing = document.getElementById('chatTyping');
+  typing.classList.add('show');
+  scrollChat();
+  try {
+    const res = await fetch(CHAT_API + '/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, history: chatHistory.slice(-20), origem: 'lp-aniversario-v1' })
+    });
+    typing.classList.remove('show');
+    if (!res.ok) { addMsg('Desculpa, tive um probleminha aqui. Pode repetir?', 'bot'); responding = false; return; }
+    const data = await res.json();
+    chatHistory.push({ role: 'assistant', content: data.reply });
+    botReply(splitIntoChunks(data.reply), () => {
+      if (data.reserva && data.reserva.success && data.reserva.code) {
+        const link = `https://reservas.mane.com.vc/consultar?code=${data.reserva.code}`;
+        setTimeout(() => { addMsg(`🎉 Aqui está o link pra você acompanhar sua reserva:\n<a href="${link}" target="_blank" rel="noopener" style="color:#034B46;word-break:break-all;">${link}</a>`, 'bot'); scrollChat(); }, 800);
+      }
+    });
+  } catch (e) { typing.classList.remove('show'); addMsg('Hmm, nao consegui conectar agora. Tenta de novo? 😊', 'bot'); responding = false; }
+}
+
+function splitIntoChunks(text) {
+  let chunks = text.split(/\n\n+/).filter(c => c.trim());
+  if (chunks.length <= 1) {
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    chunks = []; let current = '';
+    for (const s of sentences) {
+      if (current && (current + ' ' + s).length > 120) { chunks.push(current); current = s; }
+      else { current = current ? current + ' ' + s : s; }
+    }
+    if (current) chunks.push(current);
+  }
+  return chunks.length ? chunks : [text];
+}
+
+function botReply(msgs, onDone) {
+  const typing = document.getElementById('chatTyping');
+  let delay = 400;
+  msgs.forEach((msg, i) => {
+    setTimeout(() => { typing.classList.add('show'); scrollChat(); }, delay);
+    const dur = Math.max(1200, Math.min(msg.replace(/<[^>]*>/g,'').length * 40, 3000));
+    delay += dur;
+    setTimeout(() => {
+      typing.classList.remove('show');
+      addMsg(msg, 'bot'); scrollChat();
+      if (i === msgs.length - 1) { responding = false; document.getElementById('chatInput').focus(); if (onDone) onDone(); }
+    }, delay);
+    delay += 600 + Math.random() * 400;
+  });
+}
+
+function addMsg(text, type) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg ' + type;
+  el.innerHTML = text.replace(/\n/g, '<br>');
+  document.getElementById('chatMessages').insertBefore(el, document.getElementById('chatTyping'));
+}
+
+function scrollChat() { const el = document.getElementById('chatMessages'); setTimeout(() => el.scrollTop = el.scrollHeight, 50); }
+</script>
 
 </body>
 </html>
