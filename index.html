@@ -44,9 +44,7 @@
     }
 
     /* ── GEOMETRIC SHAPES ── */
-    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .geo { position: absolute; }
-    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: .15; }
+    .geo-shapes { display: none; }
     .geo-1 { width: 260px; height: 260px; background: var(--coral); top: -80px; left: -80px; border-radius: 50%; }
     .geo-2 { width: 180px; height: 300px; background: var(--teal); top: 0; right: -40px; border-radius: 0 0 0 40px; }
     .geo-3 { width: 200px; height: 200px; background: var(--gold); top: 60px; right: 140px; border-radius: 50%; opacity: .7; }
@@ -376,13 +374,7 @@
       position: relative; z-index: 2;
       position: relative; overflow: hidden;
     }
-    .claim-section::before {
-      content: '';
-      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-      width: 900px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(14,122,127,.06), transparent 65%);
-      pointer-events: none;
-    }
+    .claim-section::before { display: none; }
     .claim-inner { max-width: 1240px; margin: 0 auto; }
     .claim-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
@@ -1705,38 +1697,6 @@
   </div>
 </section>
 
-<!-- ══ SUSTENTABILIDADE ══ -->
-<section style="background:var(--cream);padding:96px 48px;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal" style="text-align:center;margin-bottom:56px;">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Sustentabilidade</div>
-      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;">O único mercado sustentável<br><em style="color:var(--teal);">do Brasil.</em></h2>
-      <p style="font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">Sustentabilidade no Mané não é discurso, é operação. Cada decisão, do abastecimento ao descarte, considera o impacto ambiental.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-      <div class="reveal delay-1" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg></div>
-        <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Descarte responsável</h4>
-        <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Gestão completa de resíduos com separação, compostagem e destinação certificada.</p>
-      </div>
-      <div class="reveal delay-2" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z"/><path d="M8 11a4 4 0 018 0"/></svg></div>
-        <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Abastecimento consciente</h4>
-        <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Prioridade para fornecedores locais e produtos de origem rastreável.</p>
-      </div>
-      <div class="reveal delay-3" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Eficiência energética</h4>
-        <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Infraestrutura projetada para reduzir consumo de energia e água em toda a operação.</p>
-      </div>
-      <div class="reveal delay-4" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-        <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Embalagens sustentáveis</h4>
-        <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Eliminação progressiva de plásticos descartáveis em todas as operações do mercado.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══ PROBLEM ══ -->
 <section class="problem-section">
@@ -1869,7 +1829,7 @@
           <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Gestor comercial dedicado com proposta personalizada</li>
           <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;">Nota fiscal, relatório de consumo e follow-up pós-evento</li>
         </ul>
-        <a href="#" class="cel-btn" style="background:var(--coral);color:#fff;border:none;">Solicitar proposta</a>
+        <a href="https://wa.me/5561995761646?text=Olá! Vim pelo site e gostaria de solicitar uma proposta comercial para evento" target="_blank" class="cel-btn" style="background:var(--coral);color:#fff;border:none;">Solicitar proposta</a>
       </div>
 
       <!-- Aniversário -->
@@ -1891,8 +1851,8 @@
       <h3 style="font-family:'Merriweather',serif;font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--cream);letter-spacing:-.03em;margin-bottom:12px;">Reservas Comerciais</h3>
       <p style="font-size:16px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 28px;line-height:1.6;">Fale diretamente com nosso time comercial para eventos corporativos, aniversários e celebrações de grande porte.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="#" class="cel-btn" style="background:var(--coral);color:#fff;border:none;padding:14px 32px;font-size:15px;">Falar com o comercial</a>
-        <a href="#" class="cel-btn ghost" style="border-color:rgba(255,255,255,.2);color:var(--cream);padding:14px 32px;font-size:15px;">Solicitar proposta por e-mail</a>
+        <a href="https://wa.me/5561995761646?text=Olá! Vim pelo site e gostaria de falar com o comercial" target="_blank" class="cel-btn" style="background:var(--coral);color:#fff;border:none;padding:14px 32px;font-size:15px;">Falar com o comercial</a>
+        <a href="https://wa.me/5561995761646?text=Olá! Vim pelo site e gostaria de solicitar uma proposta comercial por e-mail" target="_blank" class="cel-btn ghost" style="border-color:rgba(255,255,255,.2);color:var(--cream);padding:14px 32px;font-size:15px;">Solicitar proposta por e-mail</a>
       </div>
     </div>
   </div>
@@ -2045,7 +2005,7 @@
       </div>
       <div class="reveal delay-2">
         <p class="s-body">Brasília, Águas Claras e São Paulo Perdizes. Localizações estratégicas com estacionamento e fácil acesso.</p>
-        <a href="#" class="nav-cta" style="margin-top:28px;font-size:14px;padding:13px 28px;text-decoration:none;display:inline-block;">Ver todas as unidades</a>
+        <a href="#unidades" class="nav-cta" style="margin-top:28px;font-size:14px;padding:13px 28px;text-decoration:none;display:inline-block;">Ver todas as unidades</a>
       </div>
     </div>
     <div class="units-grid">
@@ -2142,25 +2102,25 @@
     </div>
     <div class="footer-col">
       <h5>Ocasiões</h5>
-      <a href="#">Aniversário</a>
-      <a href="#">Happy hour</a>
-      <a href="#">Corporativo</a>
-      <a href="#">Pós-jogo</a>
-      <a href="#">Kids</a>
+      <a href="#ocasioes">Aniversário</a>
+      <a href="#ocasioes">Happy hour</a>
+      <a href="https://wa.me/5561995761646?text=Olá! Gostaria de saber mais sobre eventos corporativos" target="_blank">Corporativo</a>
+      <a href="#ocasioes">Pós-jogo</a>
+      <a href="#ocasioes">Família</a>
     </div>
     <div class="footer-col">
       <h5>O Mané</h5>
-      <a href="#">Quem somos</a>
-      <a href="#">Sustentabilidade</a>
-      <a href="#">Chefs</a>
-      <a href="#">Cardápio</a>
+      <a href="#claim">Quem somos</a>
+      <a href="#claim">Sustentabilidade</a>
+      <a href="#restaurantes">Restaurantes</a>
+      <a href="https://menu.mane.com.vc/" target="_blank">Cardápio</a>
     </div>
     <div class="footer-col">
       <h5>Reservas</h5>
       <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=footer&utm_campaign=reserva" target="_blank">Fazer reserva</a>
-      <a href="#">Corporativo</a>
-      <a href="#">WhatsApp</a>
-      <a href="#">Contato</a>
+      <a href="https://wa.me/5561995761646?text=Olá! Gostaria de solicitar uma proposta corporativa" target="_blank">Corporativo</a>
+      <a href="https://wa.me/5561995761646?text=Olá! Vim pelo site do Mané" target="_blank">WhatsApp</a>
+      <a href="https://wa.me/5561995761646?text=Olá! Gostaria de falar com alguém do Mané" target="_blank">Contato</a>
     </div>
   </div>
   <div class="footer-bottom">
