@@ -9,19 +9,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Saira+Semi+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink:    #0D0D0D;
-      --green:  #034B46;
-      --green-2:#0A524D;
-      --cream:  #F5F0E6;
+      --teal:   #0E7A7F;
+      --teal-dark: #0B2B2C;
+      --teal-light: rgba(14,122,127,.06);
+      --teal-mid: rgba(14,122,127,.1);
+      --ink:    #0B2B2C;
+      --green:  #0E7A7F;
+      --green-2:#0E7A7F;
+      --cream:  #F3E9D9;
       --cream-2:#EDE8DE;
-      --gold:   #F5C842;
-      --gold-2: #D4A820;
+      --gold:   #D7675E;
+      --gold-2: #D7675E;
       --warm:   #EDE8DE;
-      --coral:  #D7675E;
-      --coral-dk: #C05249;
-      --teal:   #00B8B0;
+      --coral:  #E34B4B;
+      --coral-dk: #C83A3A;
+      --coral-light: rgba(227,75,75,.2);
+      --green-soft: #4F8E72;
+      --cyan:   #6DC7D1;
+      --white:  #FFFFFF;
       --muted:  #6B6B6B;
-      --line:   rgba(244,234,216,.12);
+      --line:   rgba(14,122,127,.12);
       --accent: #D7675E;
       --accent-rgb: 215,103,94;
     }
@@ -29,184 +36,310 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Saira Semi Condensed', sans-serif;
-      background: var(--cream); color: var(--ink);
-      overflow-x: hidden;
+      background: var(--white); color: var(--ink);
+      overflow-x: hidden; position: relative;
+      font-size: 16px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    body::after {
-      content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
-      opacity: .25; mix-blend-mode: overlay;
-    }
+
+    /* ── GEOMETRIC SHAPES ── */
+    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .geo { position: absolute; }
+    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: .15; }
+    .geo-1 { width: 260px; height: 260px; background: var(--coral); top: -80px; left: -80px; border-radius: 50%; }
+    .geo-2 { width: 180px; height: 300px; background: var(--teal); top: 0; right: -40px; border-radius: 0 0 0 40px; }
+    .geo-3 { width: 200px; height: 200px; background: var(--gold); top: 60px; right: 140px; border-radius: 50%; opacity: .7; }
+    .geo-4 { width: 160px; height: 160px; background: var(--cyan); top: 200px; right: -20px; border-radius: 50%; }
+    .geo-5 { width: 140px; height: 140px; background: var(--green-soft); top: 45%; left: -60px; border-radius: 50%; opacity: .5; }
+    .geo-6 { width: 100px; height: 100px; background: var(--gold); bottom: 30%; right: -30px; border-radius: 50%; opacity: .4; }
+    .geo-7 { width: 220px; height: 120px; background: var(--coral); bottom: 10%; left: -40px; border-radius: 0 24px 24px 0; opacity: .6; }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 48px;
-      transition: background .4s, padding .4s;
+      padding: 20px 32px;
+      background: transparent;
+      transition: padding .4s, background .4s;
     }
     nav.scrolled {
-      background: rgba(3,75,70,.95); backdrop-filter: blur(20px);
-      padding: 14px 48px; border-bottom: 1px solid rgba(255,255,255,.08);
+      padding: 14px 32px; background: rgba(11,43,44,.85); backdrop-filter: blur(12px);
     }
     .nav-logo {
-      font-family: 'Merriweather', serif; font-size: 28px; font-weight: 900;
+      font-family: 'Merriweather', serif; font-size: 32px; font-weight: 900;
       letter-spacing: -.06em; color: var(--cream); line-height: 1;
+      text-decoration: none; display: flex; align-items: baseline; gap: 8px;
     }
-    .nav-logo sup { font-size: 22px; color: var(--coral); vertical-align: super; letter-spacing: 0; }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
-    .nav-links a {
-      font-size: 13px; font-weight: 500; color: rgba(244,234,216,.65);
-      text-decoration: none; letter-spacing: .02em; transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--cream); }
+    .nav-logo sup { font-size: 24px; color: var(--coral); vertical-align: super; letter-spacing: 0; }
+    .nav-links { display: none; }
     .nav-cta {
-      background: var(--coral); color: #fff;
-      border-radius: 999px; padding: 11px 24px;
-      font-size: 13px; font-weight: 700; cursor: pointer;
-      transition: transform .15s, background .15s, box-shadow .15s; border: none;
+      background: transparent; color: var(--cream);
+      border: none;
+      border-radius: 0; padding: 0;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      letter-spacing: .04em; text-transform: uppercase;
+      transition: opacity .2s;
+      display: flex; align-items: center; gap: 12px;
     }
-    .nav-cta:hover { transform: translateY(-1px); background: var(--coral-dk); box-shadow: 0 8px 28px rgba(215,103,94,.35); }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 1px; }
+    .nav-cta:hover { opacity: .7; }
+    .nav-hamburger {
+      display: flex; flex-direction: column; gap: 5px; cursor: pointer;
+      background: var(--coral); border-radius: 50%; width: 40px; height: 40px;
+      align-items: center; justify-content: center;
+    }
+    .nav-hamburger span { display: block; width: 16px; height: 2px; background: #fff; border-radius: 1px; }
 
     /* ── MOBILE MENU ── */
     .mobile-menu {
-      position: fixed; inset: 0; z-index: 98;
-      background: rgba(3,75,70,.97); backdrop-filter: blur(20px);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 32px; opacity: 0; pointer-events: none; transition: opacity .3s;
+      position: fixed; inset: 0; z-index: 200;
+      background: var(--teal-dark);
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
     }
     .mobile-menu.open { opacity: 1; pointer-events: all; }
-    .mobile-menu a {
-      font-family: 'Merriweather', serif; font-size: 36px; font-weight: 700;
-      letter-spacing: -.04em; color: var(--cream); text-decoration: none; transition: color .2s;
+    .mobile-menu-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
     }
-    .mobile-menu a:hover { color: var(--coral); }
+    .mobile-menu-close {
+      font-size: 32px; color: var(--cream); cursor: pointer;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      line-height: 1;
+    }
+    .mobile-menu-links {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
+      padding-top: 48px;
+    }
+    .mobile-link {
+      font-family: 'Merriweather', serif; font-size: 20px; font-weight: 400;
+      letter-spacing: -.02em; color: var(--cream); text-decoration: none;
+      padding: 16px 0; transition: color .2s; text-align: center;
+    }
+    .mobile-link.active {
+      color: var(--coral); padding-bottom: 14px;
+      border-bottom: 2px solid var(--coral);
+    }
+    .mobile-link:hover { color: var(--coral); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100svh; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 0 48px 56px;
+      justify-content: center; padding: 120px 32px 80px;
       position: relative; overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
-      background: url('https://mane.com.vc/wp-content/uploads/2025/04/Imagem-do-WhatsApp.jpg') center center/cover no-repeat;
+      background: url('images/hero.jpg') center center/cover no-repeat;
+      filter: brightness(.5);
     }
     .hero-bg::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(3,75,70,.55) 0%, rgba(3,75,70,.7) 50%, rgba(3,75,70,.92) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.55) 100%);
     }
-    .hero-deco {
-      position: absolute; top: 16%; right: -2%;
-      font-family: 'Merriweather', serif; font-size: clamp(120px, 18vw, 260px);
-      font-weight: 900; font-style: italic;
-      color: transparent; -webkit-text-stroke: 1px rgba(244,234,216,.08);
-      line-height: .85; pointer-events: none; user-select: none; z-index: 1; letter-spacing: -.06em;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 1240px; }
-
-    /* Trust badges row */
-    .hero-trust {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;
-      opacity: 0; animation: fadeUp .6s .05s both;
-    }
-    .trust-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: rgba(244,234,216,.07); border: 1px solid rgba(244,234,216,.14);
-      border-radius: 999px; padding: 7px 14px;
-      font-size: 11px; font-weight: 700; letter-spacing: .05em;
-      text-transform: uppercase; color: rgba(244,234,216,.75);
-      backdrop-filter: blur(8px);
-    }
-    .trust-badge.gold { background: rgba(215,103,94,.15); border-color: rgba(215,103,94,.3); color: #f0a8a2; }
-    .trust-badge.green { background: rgba(61,143,122,.14); border-color: rgba(61,143,122,.28); color: #7de8d0; }
+    .hero-content { position: relative; z-index: 2; max-width: 600px; }
 
     .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       opacity: 0; animation: fadeUp .7s .15s both;
     }
-    .eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); animation: pulse 2.4s infinite; }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(215,103,94,.5); }
-      50% { box-shadow: 0 0 0 8px rgba(215,103,94,0); }
+    .eyebrow-text {
+      font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--cream); opacity: .8;
     }
-    .eyebrow-text { font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--coral); }
 
     .hero-headline {
       font-family: 'Merriweather', serif;
-      font-size: clamp(52px, 8.5vw, 128px);
-      font-weight: 900; line-height: .9; letter-spacing: -.04em; color: var(--cream);
-      margin-bottom: 8px;
+      font-size: clamp(56px, 12vw, 100px);
+      font-weight: 900; line-height: .92; letter-spacing: -.03em; color: var(--cream);
+      font-style: italic;
+      margin-bottom: 28px;
       opacity: 0; animation: fadeUp .8s .25s both;
     }
-    .hero-headline .line-2 { display: block; font-style: italic; color: var(--coral); transition: color .5s; }
-
-    .hero-sub {
-      font-size: clamp(16px, 2vw, 21px); font-weight: 300; line-height: 1.55;
-      color: rgba(244,234,216,.72); max-width: 52ch;
-      margin-bottom: 36px; margin-top: 18px;
-      opacity: 0; animation: fadeUp .8s .38s both;
-      text-shadow: 0 2px 12px rgba(0,0,0,.28);
-    }
-    .hero-sub strong { color: #fff; font-weight: 700; text-shadow: 0 2px 14px rgba(0,0,0,.32); }
-
-    .occasion-strip {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;
-      opacity: 0; animation: fadeUp .8s .48s both;
-    }
-    .oc-pill {
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(244,234,216,.07); border: 1px solid rgba(244,234,216,.13);
-      border-radius: 999px; padding: 10px 18px;
-      font-size: 13px; font-weight: 500; color: rgba(244,234,216,.8);
-      cursor: pointer; transition: all .25s; backdrop-filter: blur(8px); white-space: nowrap;
-    }
-    .oc-pill:hover { background: rgba(var(--accent-rgb),.15); border-color: rgba(var(--accent-rgb),.4); color: var(--cream); transform: translateY(-2px); }
-    .oc-pill.active { background: rgba(var(--accent-rgb),.22); border-color: rgba(var(--accent-rgb),.6); color: #fff; box-shadow: 0 4px 20px rgba(var(--accent-rgb),.3); }
-    .oc-pill-emoji { font-size: 16px; }
 
     .hero-cta-row {
-      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp .8s .58s both;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-bottom: 40px;
+      opacity: 0; animation: fadeUp .8s .4s both;
     }
     .btn-main {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent); color: var(--ink); border-radius: 999px;
-      padding: 16px 32px; font-size: 15px; font-weight: 700; letter-spacing: .01em;
-      cursor: pointer; border: none; transition: transform .18s, box-shadow .18s, background .4s; text-decoration: none;
+      background: var(--coral); color: #fff; border-radius: 999px;
+      padding: 14px 28px; font-size: 14px; font-weight: 600; letter-spacing: .02em;
+      cursor: pointer; border: none; transition: transform .18s, box-shadow .18s; text-decoration: none;
+      width: auto;
     }
-    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(var(--accent-rgb),.4); }
+    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(215,103,94,.4); }
     .btn-main svg { transition: transform .2s; }
     .btn-main:hover svg { transform: translateX(3px); }
-    .btn-ghost-link {
-      font-size: 14px; font-weight: 500; color: rgba(244,234,216,.65);
-      text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s;
-    }
-    .btn-ghost-link:hover { color: var(--cream); }
 
-    .hero-proof {
-      position: absolute; bottom: 56px; right: 48px; z-index: 2;
-      display: flex; gap: 32px; opacity: 0; animation: fadeUp .8s .7s both;
+    .hero-city {
+      color: var(--coral);
+      display: inline-block;
+      transition: opacity .4s, transform .4s;
     }
-    .proof-item { text-align: right; }
-    .proof-num { font-family: 'Merriweather', serif; font-size: 32px; font-weight: 700; letter-spacing: -.04em; color: var(--cream); line-height: 1; }
-    .proof-label { font-size: 11px; color: rgba(244,234,216,.5); letter-spacing: .05em; margin-top: 2px; }
+    .hero-city.fade-out {
+      opacity: 0; transform: translateY(10px);
+    }
+
+    .hero-stats {
+      display: flex; align-items: center; gap: 24px;
+      opacity: 0; animation: fadeUp .8s .55s both;
+    }
+    .hero-stat { display: flex; flex-direction: column; }
+    .hero-stat-num {
+      font-family: 'Merriweather', serif;
+      font-size: 32px; font-weight: 900; letter-spacing: -.03em;
+      color: var(--cream); line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 12px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: rgba(243,233,217,.85); margin-top: 4px;
+    }
+    .hero-stat-divider {
+      width: 1px; height: 36px;
+      background: rgba(243,233,217,.2);
+    }
 
     .scroll-indicator {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 6px;
-      opacity: 0; animation: fadeUp .6s 1.1s both; z-index: 2;
+      z-index: 2; cursor: pointer;
+      opacity: 0; animation: fadeUp .6s 1s both;
     }
-    .scroll-indicator span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,234,216,.35); }
-    .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, rgba(244,234,216,.35), transparent); animation: scrollLine 1.6s .5s infinite; }
-    @keyframes scrollLine {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
+    .scroll-indicator span {
+      font-size: 10px; font-weight: 600; letter-spacing: .15em;
+      color: rgba(243,233,217,.5);
+    }
+    .scroll-indicator svg {
+      color: rgba(243,233,217,.5);
+      animation: bounceDown 1.5s ease infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* ══ SOCIAL PROOF ══ */
+    .social-proof {
+      background: #FAFAF8; padding: 48px 32px; position: relative; overflow: hidden; z-index: 2;
+    }
+    .sp-inner { max-width: 1240px; margin: 0 auto; }
+
+    .sp-header { margin-bottom: 32px; }
+    .sp-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sp-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); opacity: .5; }
+    .sp-title {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(28px, 5vw, 48px); font-weight: 900;
+      line-height: .95; letter-spacing: -.04em; color: var(--ink);
+    }
+    .sp-title em { font-style: italic; color: var(--coral); }
+
+    .sp-google-badge {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 40px;
+    }
+    .sp-google-icon { flex-shrink: 0; }
+    .sp-google-stars { display: flex; align-items: center; gap: 2px; }
+    .sp-star { color: #FBBC05; font-size: 18px; }
+    .sp-star.half { opacity: .5; }
+    .sp-rating {
+      font-family: 'Merriweather', serif; font-size: 22px; font-weight: 900;
+      color: var(--ink); margin-left: 8px;
+    }
+    .sp-google-label { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+    .sp-card-featured {
+      position: relative; min-width: 320px !important;
+      border: 1px solid rgba(215,103,94,.15);
+      box-shadow: 0 8px 32px rgba(0,0,0,.06);
+    }
+    .sp-card-featured .sp-card-text { padding-top: 20px; }
+    .sp-quote-mark {
+      font-family: 'Merriweather', serif; font-size: 60px; font-weight: 900;
+      color: var(--coral); line-height: .6; position: absolute; top: 16px; left: 20px; opacity: .3;
+    }
+
+    .sp-cards {
+      display: flex; gap: 16px; overflow-x: auto;
+      scroll-snap-type: x mandatory; scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      margin-bottom: 32px; padding-bottom: 8px;
+    }
+    .sp-cards::-webkit-scrollbar { display: none; }
+    .sp-card {
+      background: #fff; border: 1px solid rgba(0,0,0,.06);
+      border-radius: 18px; padding: 24px;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      overflow: hidden; word-wrap: break-word;
+      flex-shrink: 0; min-width: 280px; scroll-snap-align: start;
+    }
+    .sp-card:hover { border-color: rgba(215,103,94,.3); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+    .sp-card-stars { color: #FBBC05; font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+    .sp-card-text {
+      font-size: 16px; line-height: 1.7; color: rgba(11,43,44,.75);
+      font-weight: 400; margin-bottom: 16px; font-style: italic;
+      word-wrap: break-word; overflow-wrap: break-word; white-space: normal;
+    }
+    .sp-card-author { display: flex; align-items: center; gap: 10px; }
+    .sp-card-avatar {
+      width: 32px; height: 32px; border-radius: 50%; color: #fff;
+      display: grid; place-items: center;
+      font-family: 'Merriweather', serif; font-size: 13px; font-weight: 700;
+    }
+    .sp-card-name { font-size: 13px; font-weight: 600; color: var(--ink); display: block; }
+    .sp-card-source { font-size: 11px; color: var(--muted); }
+
+    .sp-press {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      padding-top: 32px; border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .sp-press-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(11,43,44,.3);
+    }
+    .sp-press-logo {
+      font-size: 13px; font-weight: 700; color: rgba(11,43,44,.45);
+      letter-spacing: .02em;
+    }
+    .sp-press-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(11,43,44,.15); }
+
+    .sp-controls {
+      display: none; align-items: center; justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .sp-dots {
+      display: flex; gap: 8px;
+    }
+    .sp-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(11,43,44,.15); transition: all .3s;
+    }
+    .sp-dot.active {
+      width: 24px; border-radius: 4px; background: var(--coral);
+    }
+    .sp-arrows { display: flex; gap: 8px; }
+    .sp-arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(11,43,44,.12); background: #fff;
+      display: grid; place-items: center; cursor: pointer;
+      color: var(--ink); transition: all .2s;
+    }
+    .sp-arrow:hover { background: var(--coral); color: #fff; border-color: var(--coral); }
+
+    @media (max-width: 768px) {
+      .sp-card { min-width: calc(100vw - 64px); max-width: calc(100vw - 64px); }
+      .sp-card-featured { min-width: calc(100vw - 64px) !important; }
+      .sp-controls { display: flex; }
+      .sp-featured { padding: 28px 24px; }
+      .sp-quote-mark { font-size: 60px; top: 12px; left: 16px; }
+      .sp-press { flex-wrap: wrap; gap: 10px; }
     }
 
     /* ══ MARQUEE TICKER ══ */
@@ -234,19 +367,20 @@
       font-size: 12px; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: #fff;
     }
-    .ticker-sep { color: rgba(255,255,255,.45); font-size: 16px; }
+    .ticker-sep { color: rgba(255,255,255,.4); font-size: 16px; }
 
     /* ══ BIG CLAIM ══ */
     .claim-section {
-      background: var(--cream);
-      padding: 96px 48px 80px;
+      background: var(--white);
+      padding: 48px 32px 40px;
+      position: relative; z-index: 2;
       position: relative; overflow: hidden;
     }
     .claim-section::before {
       content: '';
       position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
       width: 900px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(3,75,70,.06), transparent 65%);
+      background: radial-gradient(circle, rgba(14,122,127,.06), transparent 65%);
       pointer-events: none;
     }
     .claim-inner { max-width: 1240px; margin: 0 auto; }
@@ -256,90 +390,330 @@
     .claim-text {}
     .claim-eyebrow {
       font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
-      color: var(--coral); margin-bottom: 18px;
+      color: var(--teal); margin-bottom: 18px;
       display: flex; align-items: center; gap: 10px;
     }
-    .claim-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); opacity: .6; }
+    .claim-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal); opacity: .6; }
     .claim-title {
       font-family: 'Merriweather', serif;
       font-size: clamp(38px, 5.5vw, 72px); font-weight: 900;
       line-height: .9; letter-spacing: -.05em; color: var(--ink);
       margin-bottom: 24px;
     }
-    .claim-title em { font-style: italic; color: var(--green); }
+    .claim-title em { font-style: italic; color: var(--coral); }
     .claim-body {
-      font-size: 17px; line-height: 1.7; color: rgba(13,13,13,.6);
-      font-weight: 300; max-width: 50ch; margin-bottom: 32px;
+      font-size: 18px; line-height: 1.7; color: rgba(11,43,44,.7);
+      font-weight: 400; max-width: 55ch; margin-bottom: 32px;
     }
+    .claim-block { margin-bottom: 0; }
+    .claim-divider {
+      width: 60px; height: 2px; background: rgba(11,43,44,.08);
+      margin: 36px 0;
+    }
+    .claim-features { display: grid; gap: 20px; }
+    .claim-feat {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .claim-feat-icon {
+      width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+      background: rgba(215,103,94,.08); display: grid; place-items: center;
+      font-size: 22px;
+    }
+    .claim-feat strong {
+      display: block; font-size: 17px; font-weight: 700; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .claim-feat p {
+      font-size: 15px; color: rgba(11,43,44,.65); line-height: 1.6; font-weight: 400;
+    }
+    .sust-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .sust-card {
+      background: #fff; border: 1px solid rgba(0,0,0,.06);
+      border-radius: 18px; padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .sust-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+    .sust-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: rgba(215,103,94,.08);
+      display: grid; place-items: center;
+      color: var(--coral); margin-bottom: 4px;
+    }
+    .sust-card strong {
+      font-size: 15px; font-weight: 700; color: var(--ink);
+    }
+    .sust-card p {
+      font-size: 13px; line-height: 1.55; color: rgba(11,43,44,.6); font-weight: 400;
+      word-wrap: break-word;
+    }
+
     .claim-badges { display: flex; gap: 10px; flex-wrap: wrap; }
     .cb {
       display: inline-flex; align-items: center; gap: 7px;
       border-radius: 12px; padding: 10px 16px;
       font-size: 12px; font-weight: 700; letter-spacing: .04em;
     }
-    .cb.gold { background: rgba(215,103,94,.12); border: 1px solid rgba(215,103,94,.25); color: var(--coral); }
-    .cb.green { background: rgba(3,75,70,.08); border: 1px solid rgba(3,75,70,.18); color: var(--green); }
+    .cb.gold { background: rgba(247,200,90,.15); border: 1px solid rgba(247,200,90,.3); color: var(--gold-2); }
+    .cb.gold { background: rgba(247,200,90,.15); border: 1px solid rgba(247,200,90,.3); color: var(--gold-2); }
+    .cb.green { background: rgba(14,122,127,.08); border: 1px solid rgba(14,122,127,.18); color: var(--green); }
 
     /* Stats grid */
     .stats-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
     }
     .stat-card {
-      background: #fff; border: 1px solid rgba(3,75,70,.10);
+      background: #fff; border: 1px solid rgba(14,122,127,.10);
       border-radius: 20px; padding: 24px 22px;
       transition: background .25s, border-color .25s, transform .25s;
     }
-    .stat-card:hover { background: #fff; border-color: rgba(215,103,94,.3); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(3,75,70,.08); }
+    .stat-card:hover { background: #fff; border-color: rgba(227,75,75,.3); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(14,122,127,.08); }
     .stat-num {
       font-family: 'Merriweather', serif; font-size: 52px; font-weight: 900;
       letter-spacing: -.06em; line-height: 1; color: var(--green);
       margin-bottom: 6px;
     }
-    .stat-num span { color: var(--coral); font-size: 38px; }
-    .stat-label { font-size: 13px; color: rgba(13,13,13,.55); line-height: 1.5; font-weight: 300; }
+    .stat-num span { color: var(--gold); font-size: 38px; }
+    .stat-label { font-size: 13px; color: rgba(11,43,44,.55); line-height: 1.5; font-weight: 300; }
     .stat-card.featured {
       background: var(--green); border-color: transparent;
       grid-column: span 2;
     }
     .stat-card.featured .stat-num { font-size: 38px; color: var(--cream); }
-    .stat-card.featured .stat-label { color: rgba(244,234,216,.8); }
+    .stat-card.featured .stat-label { color: rgba(243,233,217,.8); }
 
     /* ══ FOOD VISUAL STRIP ══ */
     .food-strip {
-      background: var(--warm); padding: 72px 48px;
+      background: var(--warm); padding: 48px 32px; position: relative; z-index: 2;
       overflow: hidden;
     }
     .food-strip-inner { max-width: 1240px; margin: 0 auto; }
     .food-strip-header {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 48px;
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px;
     }
     .food-strip-title {
       font-family: 'Merriweather', serif; font-size: clamp(32px, 4vw, 54px);
       font-weight: 900; line-height: .92; letter-spacing: -.05em; color: var(--ink);
     }
-    .food-strip-title em { font-style: italic; color: var(--coral); }
+    .food-strip-title em { font-style: italic; color: var(--teal); }
     .food-strip-body { font-size: 16px; line-height: 1.7; color: rgba(14,31,24,.6); font-weight: 300; }
     .food-strip-body strong { color: var(--ink); }
 
-    .food-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .food-card {
-      border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(14,31,24,.08);
-      background: #fff;
+    .cat-nav { display: flex; gap: 8px; align-self: flex-end; flex-shrink: 0; }
+
+    /* ══ RESTAURANT MODAL ══ */
+    .rm-overlay {
+      display: none;
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999;
+      background: rgba(0,0,0,.7);
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .rm-overlay.open { display: flex; }
+    .rm-modal {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      width: 100%; max-width: 420px;
+      max-height: 85vh; overflow-y: auto;
+    }
+    .rm-close {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(0,0,0,.5); color: #fff; border: none;
+      font-size: 22px; cursor: pointer; display: grid; place-items: center;
+      line-height: 1;
+    }
+    .rm-img-wrap { height: 240px; overflow: hidden; }
+    .rm-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .rm-body { padding: 24px; }
+    .rm-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-bottom: 20px;
+    }
+    .rm-header h3 {
+      font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700;
+      color: var(--ink); letter-spacing: -.02em;
+    }
+    .rm-header p { font-size: 14px; color: var(--muted); margin-top: 4px; }
+    .rm-logo {
+      width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(0,0,0,.08); flex-shrink: 0;
+    }
+    .rm-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 14px; border-radius: 12px;
+      background: var(--coral); color: #fff;
+      font-size: 15px; font-weight: 600; text-decoration: none;
+      transition: transform .15s;
+    }
+    .rm-cta:hover { transform: translateY(-2px); }
+
+    /* ══ UNIT PICKER MODAL ══ */
+    .up-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 9999; background: rgba(0,0,0,.7);
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .up-overlay.open { display: flex; }
+    .up-modal {
+      background: #fff; border-radius: 24px; width: 100%; max-width: 400px;
+      overflow: hidden; animation: upSlideIn .3s ease;
+    }
+    @keyframes upSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .up-header {
+      padding: 28px 28px 0; text-align: center;
+    }
+    .up-header h3 {
+      font-family: 'Merriweather', serif; font-size: 22px; font-weight: 900;
+      letter-spacing: -.03em; color: var(--ink); margin-bottom: 4px;
+    }
+    .up-header p { font-size: 14px; color: var(--muted); }
+    .up-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(0,0,0,.05); border: none; cursor: pointer;
+      font-size: 18px; color: var(--muted); display: grid; place-items: center;
+      transition: background .2s;
+    }
+    .up-close:hover { background: rgba(0,0,0,.1); }
+    .up-units { padding: 20px 28px 28px; display: flex; flex-direction: column; gap: 12px; }
+    .up-unit {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px; border-radius: 16px;
+      border: 1px solid rgba(0,0,0,.08); background: #fff;
+      cursor: pointer; transition: all .25s; text-decoration: none;
+    }
+    .up-unit:hover {
+      border-color: var(--coral); background: rgba(215,103,94,.04);
+      transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+    .up-unit-icon {
+      width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+      display: grid; place-items: center; font-size: 14px; font-weight: 700;
+      color: #fff;
+    }
+    .up-unit-info { flex: 1; }
+    .up-unit-name {
+      font-size: 16px; font-weight: 700; color: var(--ink); display: block;
+      margin-bottom: 2px;
+    }
+    .up-unit-loc { font-size: 13px; color: var(--muted); }
+    .up-unit-arrow {
+      color: var(--coral); font-size: 18px; opacity: 0;
+      transition: opacity .2s, transform .2s;
+    }
+    .up-unit:hover .up-unit-arrow { opacity: 1; transform: translateX(3px); }
+
+    /* ══ OCCASIONS ══ */
+    .occ-section { background: #FAFAF8; padding: 48px 32px; position: relative; z-index: 2; }
+    .occ-inner { max-width: 1240px; margin: 0 auto; }
+    .occ-header {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px;
+    }
+    .occ-slider {
+      display: flex; gap: 16px; overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px;
+      scroll-behavior: smooth;
+    }
+    .occ-slider::-webkit-scrollbar { display: none; }
+    .occ-card {
+      flex-shrink: 0; width: 240px; scroll-snap-align: start;
+      background: #fff; border: 1px solid rgba(0,0,0,.06);
+      border-radius: 18px; overflow: hidden; text-decoration: none;
+      transition: transform .25s, box-shadow .25s; display: block;
+    }
+    .occ-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .occ-img { height: 160px; overflow: hidden; }
+    .occ-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
+    .occ-card:hover .occ-img img { transform: scale(1.05); }
+    .occ-card-body { padding: 16px; }
+    .occ-card h4 {
+      font-family: 'Merriweather', serif; font-size: 17px; font-weight: 700;
+      color: var(--ink); letter-spacing: -.02em; margin-bottom: 6px;
+    }
+    .occ-card p {
+      font-size: 14px; line-height: 1.5; color: rgba(11,43,44,.6);
+      font-weight: 400; margin-bottom: 12px;
+    }
+    .occ-link {
+      font-size: 13px; font-weight: 600; color: var(--coral);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+      transition: gap .2s;
+    }
+    .occ-link:hover { gap: 8px; }
+    .occ-link::after { content: '\2192'; }
+
+    /* ══ RESTAURANTS ══ */
+    .rest-section { background: #FAFAF8; padding: 48px 32px; }
+    .rest-inner { max-width: 1240px; margin: 0 auto; }
+    .rest-header {
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px;
+    }
+    .rest-slider {
+      display: flex; gap: 16px; overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px;
+      scroll-behavior: smooth;
+    }
+    .rest-slider::-webkit-scrollbar { display: none; }
+    .rest-card {
+      flex-shrink: 0; width: 240px; scroll-snap-align: start;
+      border-radius: 16px; overflow: hidden; text-decoration: none;
+      background: #fff; border: 1px solid rgba(0,0,0,.06);
       transition: transform .25s, box-shadow .25s;
-      cursor: default;
     }
-    .food-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(14,31,24,.12); }
-    .food-img {
-      height: 220px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+    .rest-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+    .rest-card > img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .rest-card-info {
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
-    .food-card-body { padding: 16px; }
-    .food-card-title { font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 4px; }
-    .food-card-chef { font-size: 11px; color: var(--green); font-weight: 600; letter-spacing: .04em; }
+    .rest-card-info strong {
+      display: block; font-family: 'Merriweather', serif;
+      font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -.02em;
+    }
+    .rest-card-info span {
+      display: block; font-size: 13px; color: var(--muted); margin-top: 3px;
+    }
+    .rest-card-logo {
+      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(0,0,0,.08); flex-shrink: 0;
+    }
+
+    .cat-slider {
+      display: flex; gap: 14px; overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: 8px;
+      scroll-behavior: smooth;
+    }
+    .cat-slider::-webkit-scrollbar { display: none; }
+    .cat-card {
+      flex-shrink: 0; width: 160px; scroll-snap-align: start;
+      border-radius: 16px; overflow: hidden; position: relative;
+      text-decoration: none; display: block;
+      transition: transform .35s cubic-bezier(.25,.46,.45,.94), opacity .35s;
+    }
+    .cat-card:hover { transform: translateY(-4px); }
+    .cat-card img {
+      width: 100%; height: 140px; object-fit: cover; display: block;
+      border-radius: 16px;
+      transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    .cat-card:hover img { transform: scale(1.05); }
+    .cat-label {
+      display: block; text-align: center; padding: 10px 0 4px;
+      font-family: 'Merriweather', serif; font-size: 14px; font-weight: 600;
+      color: var(--ink); letter-spacing: -.02em;
+    }
 
     /* ══ PROBLEM / WHY ══ */
-    .problem-section { background: var(--warm); padding: 96px 48px; }
+    .problem-section { background: var(--warm); padding: 48px 32px; position: relative; z-index: 2; }
     .problem-inner { max-width: 1240px; margin: 0 auto; }
     .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .problem-quote {
@@ -347,36 +721,36 @@
       font-size: clamp(26px, 3.5vw, 44px); font-weight: 400; font-style: italic;
       line-height: 1.25; letter-spacing: -.02em; color: var(--ink);
     }
-    .problem-quote strong { font-weight: 700; font-style: normal; display: block; font-style: italic; color: var(--coral); }
+    .problem-quote strong { font-weight: 700; font-style: normal; display: block; font-style: italic; color: var(--teal); }
     .problem-points { display: grid; gap: 22px; }
     .problem-point { display: flex; gap: 16px; align-items: flex-start; }
-    .pp-icon { width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0; background: rgba(3,75,70,.08); display: grid; place-items: center; font-size: 20px; }
+    .pp-icon { width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0; background: rgba(14,122,127,.08); display: grid; place-items: center; font-size: 20px; }
     .pp-text strong { display: block; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-    .pp-text p { font-size: 14px; color: rgba(13,13,13,.6); line-height: 1.55; font-weight: 300; }
+    .pp-text p { font-size: 14px; color: rgba(11,43,44,.6); line-height: 1.55; font-weight: 300; }
 
     /* ══ OCCASIONS ══ */
     .occasions-section { background: var(--green); padding: 96px 48px; }
     .occasions-inner { max-width: 1240px; margin: 0 auto; }
     .occasions-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }
-    .s-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .s-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; opacity: .85; }
     .s-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); opacity: .6; }
     .s-title { font-family: 'Merriweather', serif; font-size: clamp(32px, 4.5vw, 62px); font-weight: 700; line-height: .95; letter-spacing: -.04em; color: var(--cream); margin-bottom: 20px; }
-    .s-title em { font-style: italic; color: var(--coral); }
-    .s-body { font-size: 17px; line-height: 1.7; color: rgba(244,234,216,.65); font-weight: 300; max-width: 58ch; }
+    .s-title em { font-style: italic; color: var(--cream); }
+    .s-body { font-size: 17px; line-height: 1.7; color: rgba(243,233,217,.78); font-weight: 300; max-width: 58ch; }
 
     .occasions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .oc-card {
-      background: rgba(244,234,216,.04); border: 1px solid rgba(244,234,216,.08);
+      background: rgba(243,233,217,.04); border: 1px solid rgba(243,233,217,.08);
       border-radius: 22px; padding: 26px 22px; cursor: pointer;
       transition: all .3s; position: relative; overflow: hidden;
     }
-    .oc-card::before { content: ''; position: absolute; inset: 0; border-radius: 22px; background: linear-gradient(135deg, rgba(215,103,94,.15), transparent); opacity: 0; transition: opacity .3s; }
+    .oc-card::before { content: ''; position: absolute; inset: 0; border-radius: 22px; background: linear-gradient(135deg, rgba(227,75,75,.15), transparent); opacity: 0; transition: opacity .3s; }
     .oc-card:hover::before { opacity: 1; }
-    .oc-card:hover { border-color: rgba(215,103,94,.35); background: rgba(215,103,94,.08); transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,.25); }
+    .oc-card:hover { border-color: rgba(227,75,75,.35); background: rgba(227,75,75,.08); transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,.25); }
     .oc-card-emoji { font-size: 30px; margin-bottom: 14px; display: block; }
     .oc-card h4 { font-family: 'Merriweather', serif; font-size: 16px; font-weight: 600; letter-spacing: -.02em; color: var(--cream); margin-bottom: 8px; line-height: 1.25; }
-    .oc-card p { font-size: 13px; color: rgba(244,234,216,.55); line-height: 1.6; font-weight: 300; }
-    .oc-card-arrow { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--coral); margin-top: 14px; opacity: 0; transform: translateX(-6px); transition: opacity .25s, transform .25s; }
+    .oc-card p { font-size: 13px; color: rgba(243,233,217,.78); line-height: 1.6; font-weight: 300; }
+    .oc-card-arrow { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--gold); margin-top: 14px; opacity: 0; transform: translateX(-6px); transition: opacity .25s, transform .25s; }
     .oc-card:hover .oc-card-arrow { opacity: 1; transform: translateX(0); }
     .oc-card-bg {
       position: absolute; inset: 0; border-radius: 22px;
@@ -386,14 +760,14 @@
     .oc-card[data-bg] > *:not(.oc-card-bg) { position: relative; z-index: 1; }
 
     /* ══ CELEBRATE SPLIT ══ */
-    .celebrate-section { background: var(--cream); padding: 72px 48px; }
+    .celebrate-section { background: var(--white); padding: 72px 48px; }
     .celebrate-inner { max-width: 1240px; margin: 0 auto; }
 
     .celebrate-block {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
       border-radius: 28px; overflow: hidden; margin-bottom: 20px;
       min-height: 400px;
-      box-shadow: 0 8px 32px rgba(3,75,70,.1);
+      box-shadow: 0 8px 32px rgba(14,122,127,.1);
     }
 
     .cel-visual {
@@ -420,7 +794,7 @@
     .cel-visual-kids {
       background:
         radial-gradient(ellipse at 60% 40%, rgba(107,194,107,.25), transparent 55%),
-        linear-gradient(145deg, #034B46, #022420);
+        linear-gradient(145deg, #0E7A7F, #0B2B2C);
     }
 
     /* big decorative emoji/illustration in corner */
@@ -438,7 +812,7 @@
       margin-bottom: 14px; align-self: flex-start;
     }
     .cel-tag.corp { background: rgba(58,100,180,.2); border: 1px solid rgba(58,100,180,.35); color: #90b4f8; }
-    .cel-tag.bday { background: rgba(215,103,94,.18); border: 1px solid rgba(215,103,94,.3); color: #f0a8a2; }
+    .cel-tag.bday { background: rgba(227,75,75,.18); border: 1px solid rgba(227,75,75,.3); color: #f0a8a2; }
     .cel-tag.kids { background: rgba(107,194,107,.15); border: 1px solid rgba(107,194,107,.28); color: #7de8a0; }
 
     .cel-visual-content { position: relative; z-index: 1; }
@@ -448,11 +822,11 @@
       letter-spacing: -.04em; line-height: .95; color: var(--cream);
       margin-bottom: 10px;
     }
-    .cel-visual h3 em { font-style: italic; color: var(--coral); }
-    .cel-visual p { font-size: 14px; color: rgba(244,234,216,.65); font-weight: 300; line-height: 1.6; max-width: 30ch; }
+    .cel-visual h3 em { font-style: italic; color: var(--cream); }
+    .cel-visual p { font-size: 14px; color: rgba(243,233,217,.78); font-weight: 300; line-height: 1.6; max-width: 30ch; }
 
     .cel-content {
-      background: #fff; border-left: 1px solid rgba(3,75,70,.08);
+      background: #fff; border-left: 1px solid rgba(14,122,127,.08);
       padding: 40px 40px;
       display: flex; flex-direction: column; justify-content: center;
     }
@@ -464,9 +838,9 @@
     .cel-list { list-style: none; display: grid; gap: 12px; margin-bottom: 28px; }
     .cel-list li {
       display: flex; align-items: flex-start; gap: 12px;
-      font-size: 14px; color: rgba(13,13,13,.7); line-height: 1.5;
+      font-size: 14px; color: rgba(11,43,44,.7); line-height: 1.5;
     }
-    .cel-list li::before { content: '→'; color: var(--coral); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+    .cel-list li::before { content: '→'; color: var(--gold); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
     .cel-btn {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--coral); color: #fff;
@@ -474,24 +848,24 @@
       font-size: 14px; font-weight: 700; cursor: pointer;
       border: none; transition: transform .15s, box-shadow .15s; width: fit-content; text-decoration: none;
     }
-    .cel-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(215,103,94,.35); }
+    .cel-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(227,75,75,.35); }
     .cel-btn.ghost {
-      background: transparent; color: rgba(13,13,13,.6);
-      border: 1.5px solid rgba(13,13,13,.2);
+      background: transparent; color: rgba(11,43,44,.6);
+      border: 1.5px solid rgba(11,43,44,.2);
     }
-    .cel-btn.ghost:hover { border-color: rgba(13,13,13,.5); color: var(--ink); box-shadow: none; }
+    .cel-btn.ghost:hover { border-color: rgba(11,43,44,.5); color: var(--ink); box-shadow: none; }
 
     /* Kids block — full width */
     .kids-block {
       border-radius: 28px; overflow: hidden;
       display: grid; grid-template-columns: 1fr 2fr;
       min-height: 280px; margin-bottom: 48px;
-      box-shadow: 0 8px 32px rgba(3,75,70,.1);
+      box-shadow: 0 8px 32px rgba(14,122,127,.1);
     }
     .kids-visual {
       background:
         radial-gradient(ellipse at 50% 50%, rgba(107,194,107,.3), transparent 65%),
-        linear-gradient(135deg, #034B46, #022420);
+        linear-gradient(135deg, #0E7A7F, #0B2B2C);
       position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center;
     }
@@ -509,17 +883,17 @@
     .kids-tag { display: inline-flex; align-items: center; gap: 7px; background: rgba(42,153,80,.08); border: 1px solid rgba(42,153,80,.2); border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #2a9950; margin-bottom: 16px; }
     .kids-title { font-family: 'Merriweather', serif; font-size: clamp(24px, 3vw, 42px); font-weight: 900; letter-spacing: -.04em; line-height: .95; color: var(--ink); margin-bottom: 14px; }
     .kids-title em { font-style: italic; color: #2a9950; }
-    .kids-body { font-size: 15px; color: rgba(13,13,13,.6); font-weight: 300; line-height: 1.65; max-width: 56ch; margin-bottom: 24px; }
+    .kids-body { font-size: 15px; color: rgba(11,43,44,.6); font-weight: 300; line-height: 1.65; max-width: 56ch; margin-bottom: 24px; }
     .kids-features { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
-    .kf-chip { background: rgba(3,75,70,.05); border: 1px solid rgba(3,75,70,.12); border-radius: 999px; padding: 7px 15px; font-size: 12px; font-weight: 600; color: rgba(13,13,13,.7); }
+    .kf-chip { background: rgba(14,122,127,.05); border: 1px solid rgba(14,122,127,.12); border-radius: 999px; padding: 7px 15px; font-size: 12px; font-weight: 600; color: rgba(11,43,44,.7); }
 
     .family-section { background: var(--warm); padding: 96px 48px; }
     .family-inner { max-width: 1200px; margin: 0 auto; }
     .family-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .family-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+    .family-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
     .family-title { font-family:'Merriweather',serif; font-size: clamp(26px,3.5vw,40px); font-weight:700; letter-spacing:-.04em; color:var(--ink); line-height:1.1; margin-bottom:20px; }
-    .family-title em { color: var(--coral); font-style: italic; }
-    .family-body { font-size:16px; color:rgba(13,13,13,.6); font-weight:300; line-height:1.7; margin-bottom:28px; max-width: 35ch; }
+    .family-title em { color: var(--teal); font-style: italic; }
+    .family-body { font-size:16px; color:rgba(11,43,44,.6); font-weight:300; line-height:1.7; margin-bottom:28px; max-width: 35ch; }
     .family-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
     .family-chip { display:inline-flex; align-items:center; gap:8px; background:var(--green); color:var(--cream); font-size:13px; font-weight:500; padding:8px 16px; border-radius:20px; }
     .family-card { background:var(--green); border-radius:20px; padding:48px; text-align:center; min-height:360px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
@@ -528,29 +902,29 @@
     .family-card-body { font-size:14px; color:rgba(255,255,255,.6); line-height:1.6; max-width: 22ch; }
 
     /* ══ HOW IT WORKS ══ */
-    .how-section { background: var(--green); padding: 96px 48px; }
+    .how-section { background: var(--teal-dark); padding: 48px 32px; position: relative; z-index: 2; }
     .how-inner { max-width: 1240px; margin: 0 auto; }
     .how-header { margin-bottom: 64px; }
     .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
-    .how-steps::before { content: ''; position: absolute; top: 32px; left: calc(33.33%); right: calc(33.33%); height: 1px; background: linear-gradient(90deg, transparent, rgba(215,103,94,.35), transparent); }
-    .how-step { padding: 0 40px; border-right: 1px solid rgba(244,234,216,.07); }
+    .how-steps::before { content: ''; position: absolute; top: 32px; left: calc(33.33%); right: calc(33.33%); height: 1px; background: linear-gradient(90deg, transparent, rgba(227,75,75,.35), transparent); }
+    .how-step { padding: 0 40px; border-right: 1px solid rgba(243,233,217,.07); }
     .how-step:first-child { padding-left: 0; }
     .how-step:last-child { border-right: none; padding-right: 0; }
-    .how-step-num { width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(215,103,94,.5); display: grid; place-items: center; font-family: 'Merriweather', serif; font-size: 26px; font-weight: 700; color: var(--coral); margin-bottom: 28px; position: relative; background: var(--green); }
-    .how-step-num::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(215,103,94,.2); }
+    .how-step-num { width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(247,200,90,.5); display: grid; place-items: center; font-family: 'Merriweather', serif; font-size: 26px; font-weight: 700; color: var(--gold); margin-bottom: 28px; position: relative; background: var(--green); }
+    .how-step-num::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(227,75,75,.2); }
     .how-step h4 { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 600; letter-spacing: -.03em; color: var(--cream); margin-bottom: 14px; }
-    .how-step h4 em { font-style: italic; color: var(--coral); }
-    .how-step p { font-size: 15px; color: rgba(244,234,216,.6); line-height: 1.65; font-weight: 300; }
-    .how-step-tag { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; background: rgba(215,103,94,.15); border: 1px solid rgba(215,103,94,.25); border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 600; color: #f0a8a2; letter-spacing: .05em; }
+    .how-step h4 em { font-style: italic; color: var(--cream); }
+    .how-step p { font-size: 15px; color: rgba(243,233,217,.6); line-height: 1.65; font-weight: 300; }
+    .how-step-tag { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; background: rgba(227,75,75,.15); border: 1px solid rgba(227,75,75,.25); border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 600; color: #f0a8a2; letter-spacing: .05em; }
 
     /* ══ EXPERIENCE ══ */
-    .experience-section { background: var(--warm); padding: 96px 48px; color: var(--ink); }
+    .experience-section { background: var(--warm); padding: 48px 32px; color: var(--ink); position: relative; z-index: 2; }
     .exp-inner { max-width: 1240px; margin: 0 auto; }
     .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .exp-text .s-eyebrow { color: var(--coral); }
+    .exp-text .s-eyebrow { color: var(--gold); }
     .exp-text .s-eyebrow::before { background: var(--coral); }
     .exp-text .s-title { color: var(--ink); }
-    .exp-text .s-title em { color: var(--coral); }
+    .exp-text .s-title em { color: var(--cream); }
     .exp-text .s-body { color: rgba(14,31,24,.65); }
     .exp-features { margin-top: 36px; display: grid; gap: 14px; }
     .exp-feat { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: rgba(31,77,67,.05); border: 1px solid rgba(31,77,67,.10); border-radius: 14px; transition: background .2s, border-color .2s; }
@@ -561,24 +935,24 @@
 
     /* Phone mockup */
     .exp-visual { position: relative; }
-    .phone-frame { width: 280px; margin: 0 auto; background: var(--green); border-radius: 36px; padding: 14px; box-shadow: 0 40px 80px rgba(3,75,70,.22), 0 8px 24px rgba(3,75,70,.14); border: 1px solid rgba(244,234,216,.08); position: relative; }
+    .phone-frame { width: 280px; margin: 0 auto; background: var(--green); border-radius: 36px; padding: 14px; box-shadow: 0 40px 80px rgba(14,122,127,.22), 0 8px 24px rgba(14,122,127,.14); border: 1px solid rgba(243,233,217,.08); position: relative; }
     .phone-notch { width: 80px; height: 22px; background: var(--green); border-radius: 0 0 14px 14px; margin: 0 auto 10px; }
     .phone-screen { background: var(--green); border-radius: 24px; overflow: hidden; }
-    .ps-header { background: linear-gradient(160deg, #034B46, #022420); padding: 18px 18px 14px; position: relative; overflow: hidden; }
-    .ps-header::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(215,103,94,.25), transparent 65%); }
-    .ps-occasion-pill { display: inline-flex; align-items: center; gap: 5px; background: rgba(215,103,94,.2); color: var(--coral); border-radius: 999px; padding: 4px 10px; font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 10px; }
+    .ps-header { background: linear-gradient(160deg, #0E7A7F, #0B2B2C); padding: 18px 18px 14px; position: relative; overflow: hidden; }
+    .ps-header::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(227,75,75,.25), transparent 65%); }
+    .ps-occasion-pill { display: inline-flex; align-items: center; gap: 5px; background: rgba(247,200,90,.2); color: var(--gold); border-radius: 999px; padding: 4px 10px; font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 10px; }
     .ps-header h3 { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; letter-spacing: -.03em; color: #fff; line-height: 1.1; margin-bottom: 10px; }
-    .ps-header h3 em { font-style: italic; color: var(--coral); }
+    .ps-header h3 em { font-style: italic; color: var(--cream); }
     .ps-btn { background: var(--coral); color: #fff; border-radius: 999px; padding: 9px 18px; font-size: 11px; font-weight: 700; display: inline-block; }
     .ps-chat { padding: 14px; background: #e5ddd5; }
     .ps-msg { background: #fff; border-radius: 14px 14px 14px 3px; padding: 10px 12px; margin-bottom: 8px; font-size: 11px; color: #333; line-height: 1.5; max-width: 88%; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
     .ps-msg strong { color: var(--ink); font-weight: 600; }
     .ps-replies { display: flex; gap: 6px; flex-wrap: wrap; }
     .ps-reply { background: rgba(255,255,255,.9); border: 1.5px solid #3d8f7a; color: #1f4d43; border-radius: 999px; padding: 6px 12px; font-size: 10px; font-weight: 600; }
-    .phone-float-1 { position: absolute; top: -20px; right: -40px; background: var(--green); border: 1px solid rgba(215,103,94,.3); border-radius: 16px; padding: 14px 16px; min-width: 140px; box-shadow: 0 12px 36px rgba(0,0,0,.25); }
-    .pf-label { font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: rgba(244,234,216,.45); margin-bottom: 4px; }
+    .phone-float-1 { position: absolute; top: -20px; right: -40px; background: var(--green); border: 1px solid rgba(227,75,75,.3); border-radius: 16px; padding: 14px 16px; min-width: 140px; box-shadow: 0 12px 36px rgba(0,0,0,.25); }
+    .pf-label { font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: rgba(243,233,217,.45); margin-bottom: 4px; }
     .pf-val { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700; color: var(--cream); letter-spacing: -.03em; }
-    .pf-sub { font-size: 10px; color: rgba(244,234,216,.55); margin-top: 2px; }
+    .pf-sub { font-size: 10px; color: rgba(243,233,217,.78); margin-top: 2px; }
     .phone-float-2 { position: absolute; bottom: 20px; left: -44px; background: var(--green); border-radius: 14px; padding: 12px 16px; box-shadow: 0 12px 32px rgba(0,0,0,.2); }
     .pf2-icon { font-size: 20px; margin-bottom: 4px; }
     .pf2-text { font-size: 10px; font-weight: 600; color: #fff; }
@@ -589,23 +963,23 @@
     .units-inner { max-width: 1240px; margin: 0 auto; }
     .units-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 52px; }
     .units-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .unit-card { border-radius: 22px; overflow: hidden; border: 1px solid rgba(244,234,216,.08); background: rgba(244,234,216,.03); transition: transform .3s, box-shadow .3s, border-color .3s; cursor: pointer; }
-    .unit-card:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,.35); border-color: rgba(215,103,94,.3); }
+    .unit-card { border-radius: 22px; overflow: hidden; border: 1px solid rgba(243,233,217,.08); background: rgba(243,233,217,.03); transition: transform .3s, box-shadow .3s, border-color .3s; cursor: pointer; }
+    .unit-card:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,.35); border-color: rgba(227,75,75,.3); }
     .unit-card-img { height: 200px; background: var(--green); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .unit-card-body { padding: 20px; }
     .unit-card-name { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; letter-spacing: -.03em; color: var(--cream); margin-bottom: 6px; }
-    .unit-card-address { font-size: 12px; color: rgba(244,234,216,.5); margin-bottom: 14px; }
+    .unit-card-address { font-size: 12px; color: rgba(243,233,217,.5); margin-bottom: 14px; }
     .unit-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-    .utag { background: rgba(244,234,216,.06); border: 1px solid rgba(244,234,216,.10); border-radius: 999px; padding: 4px 10px; font-size: 10px; font-weight: 600; color: rgba(244,234,216,.6); letter-spacing: .04em; }
+    .utag { background: rgba(243,233,217,.06); border: 1px solid rgba(243,233,217,.10); border-radius: 999px; padding: 4px 10px; font-size: 10px; font-weight: 600; color: rgba(243,233,217,.6); letter-spacing: .04em; }
 
     /* ══ BIG PROOF ══ */
-    .proof-section { background: var(--green); padding: 72px 48px; }
+    .proof-section { background: var(--teal-dark); padding: 72px 48px; }
     .proof-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0; align-items: center; }
-    .proof-divider { width: 1px; height: 60px; background: rgba(244,234,216,.18); }
+    .proof-divider { width: 1px; height: 60px; background: rgba(243,233,217,.18); }
     .proof-stat { text-align: center; padding: 0 24px; }
     .ps-num { font-family: 'Merriweather', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 700; letter-spacing: -.05em; color: var(--cream); line-height: 1; margin-bottom: 6px; }
-    .ps-num span { color: var(--coral); }
-    .ps-label { font-size: 13px; color: rgba(244,234,216,.65); font-weight: 300; line-height: 1.4; }
+    .ps-num span { color: var(--gold); }
+    .ps-label { font-size: 13px; color: rgba(243,233,217,.78); font-weight: 300; line-height: 1.4; }
 
     /* ══ REVIEWS TICKER ══ */
     .reviews-section { background: var(--warm); padding: 72px 48px 0; overflow: hidden; }
@@ -615,36 +989,36 @@
     .reviews-track { display: flex; gap: 16px; animation: reviewScroll 35s linear infinite; width: max-content; }
     .reviews-track:hover { animation-play-state: paused; }
     @keyframes reviewScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .review-card { background: #fff; border: 1px solid rgba(3,75,70,.08); border-radius: 18px; padding: 20px 22px; min-width: 280px; max-width: 280px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,0,0,.05); }
-    .review-stars { color: var(--gold); font-size: 14px; margin-bottom: 10px; }
-    .review-text { font-size: 13px; color: rgba(13,13,13,.7); line-height: 1.6; font-weight: 300; margin-bottom: 14px; font-style: italic; }
+    .review-card { background: #fff; border: 1px solid rgba(14,122,127,.08); border-radius: 18px; padding: 20px 22px; min-width: 280px; max-width: 280px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,0,0,.05); }
+    .review-stars { color: #C9960C; font-size: 14px; margin-bottom: 10px; }
+    .review-text { font-size: 13px; color: rgba(11,43,44,.7); line-height: 1.6; font-weight: 300; margin-bottom: 14px; font-style: italic; }
     .review-author { display: flex; align-items: center; gap: 10px; }
     .review-avatar { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; flex-shrink: 0; }
     .review-name { font-size: 12px; font-weight: 600; color: var(--ink); }
-    .review-occasion { font-size: 10px; color: var(--coral); letter-spacing: .04em; }
+    .review-occasion { font-size: 10px; color: var(--teal); letter-spacing: .04em; }
 
     /* ══ CTA FINAL ══ */
     .cta-section { background: var(--green); padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
-    .cta-section::before { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(215,103,94,.15), transparent 65%); pointer-events: none; }
+    .cta-section::before { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(247,200,90,.12), transparent 65%); pointer-events: none; }
     .cta-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
     .cta-title { font-family: 'Merriweather', serif; font-size: clamp(38px, 6vw, 82px); font-weight: 900; line-height: .9; letter-spacing: -.05em; color: var(--cream); margin-bottom: 24px; }
-    .cta-title em { font-style: italic; color: var(--coral); }
-    .cta-sub { font-size: 18px; color: rgba(244,234,216,.65); font-weight: 300; line-height: 1.65; max-width: 46ch; margin: 0 auto 44px; }
+    .cta-title em { font-style: italic; color: var(--cream); }
+    .cta-sub { font-size: 18px; color: rgba(243,233,217,.78); font-weight: 300; line-height: 1.65; max-width: 46ch; margin: 0 auto 44px; }
     .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-cta-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--coral); color: #fff; border-radius: 999px; padding: 18px 38px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; transition: transform .18s, box-shadow .18s; }
-    .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(215,103,94,.4); }
-    .btn-cta-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1.5px solid rgba(244,234,216,.2); color: rgba(244,234,216,.8); border-radius: 999px; padding: 17px 34px; font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .2s; }
-    .btn-cta-ghost:hover { border-color: rgba(244,234,216,.5); color: var(--cream); }
+    .btn-cta-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--ink); border-radius: 999px; padding: 18px 38px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; transition: transform .18s, box-shadow .18s; }
+    .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(247,200,90,.4); }
+    .btn-cta-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1.5px solid rgba(243,233,217,.2); color: rgba(243,233,217,.8); border-radius: 999px; padding: 17px 34px; font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .2s; }
+    .btn-cta-ghost:hover { border-color: rgba(243,233,217,.5); color: var(--cream); }
 
     /* ══ FOOTER ══ */
-    footer { background: #022420; padding: 48px 48px 32px; border-top: 1px solid rgba(244,234,216,.08); }
+    footer { background: var(--teal-dark); padding: 48px 48px 32px; border-top: 1px solid rgba(247,200,90,.12); }
     .footer-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand .nav-logo { font-size: 32px; margin-bottom: 14px; display: block; }
-    .footer-brand p { font-size: 14px; color: rgba(244,234,216,.45); line-height: 1.65; font-weight: 300; max-width: 28ch; }
-    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,234,216,.4); margin-bottom: 18px; }
-    .footer-col a { display: block; font-size: 14px; color: rgba(244,234,216,.6); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+    .footer-brand p { font-size: 14px; color: rgba(243,233,217,.65); line-height: 1.65; font-weight: 300; max-width: 28ch; }
+    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(243,233,217,.60); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: rgba(243,233,217,.6); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
     .footer-col a:hover { color: var(--cream); }
-    .footer-bottom { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(244,234,216,.06); font-size: 12px; color: rgba(244,234,216,.3); }
+    .footer-bottom { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(243,233,217,.12); font-size: 12px; color: rgba(243,233,217,.50); }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -720,17 +1094,17 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 18px 24px; } nav.scrolled { padding: 12px 24px; }
+      nav { padding: 12px 24px; }
       .nav-links { display: none; } .nav-hamburger { display: flex; }
-      .hero { padding: 0 24px 48px; } .hero-deco { font-size: 90px; right: -6%; top: 12%; }
+      .hero { padding: 0 24px 48px; }
       .hero-proof { bottom: 48px; right: 24px; gap: 20px; } .proof-num { font-size: 24px; }
-      .scroll-indicator { display: none; }
+      .scroll-indicator { display: flex; }
       .claim-grid, .problem-grid, .exp-grid { grid-template-columns: 1fr; gap: 48px; }
       .occasions-header, .units-header { grid-template-columns: 1fr; gap: 24px; }
       .occasions-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .how-steps { grid-template-columns: 1fr; gap: 40px; }
       .how-steps::before { display: none; }
-      .how-step { padding: 0; border-right: none; border-bottom: 1px solid rgba(244,234,216,.07); padding-bottom: 40px; }
+      .how-step { padding: 0; border-right: none; border-bottom: 1px solid rgba(243,233,217,.07); padding-bottom: 40px; }
       .how-step:last-child { border-bottom: none; padding-bottom: 0; }
       .phone-frame { width: 240px; } .phone-float-1, .phone-float-2 { display: none; }
       .units-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -747,15 +1121,12 @@
       footer { padding: 40px 24px 24px; }
     }
     @media (max-width: 600px) {
+      nav { padding: 12px 18px; }
       .hero-bg::after {
-        background:
-          linear-gradient(180deg, rgba(3,75,70,.76) 0%, rgba(3,75,70,.72) 24%, rgba(3,75,70,.58) 45%, rgba(3,75,70,.9) 100%),
-          linear-gradient(90deg, rgba(2,36,32,.38) 0%, rgba(2,36,32,.1) 52%, rgba(2,36,32,.34) 100%);
+        background: linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.55) 100%);
       }
-      nav { padding: 16px 18px; }
-      nav.scrolled { padding: 12px 18px; }
       .hero {
-        min-height: auto;
+        min-height: 100svh;
         padding: 96px 18px 36px;
       }
       .hero-content { max-width: 100%; }
@@ -767,7 +1138,7 @@
         font-size: 11px;
         font-weight: 700;
         letter-spacing: .08em;
-        color: #ff8f85;
+        color: rgba(243,233,217,.8);
         text-shadow: 0 2px 10px rgba(0,0,0,.4);
       }
       .hero-headline {
@@ -803,25 +1174,15 @@
       }
       .oc-pill-emoji { font-size: 14px; }
       .hero-cta-row {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: row;
+        align-items: center;
         gap: 12px;
       }
-      .btn-main,
-      .btn-ghost-link {
-        width: 100%;
-        justify-content: center;
-      }
       .btn-main {
-        padding: 15px 22px;
-        font-size: 15px;
+        width: auto;
+        padding: 14px 28px;
+        font-size: 14px;
       }
-      .btn-ghost-link {
-        font-size: 13px;
-      }
-      .hero-trust { display: none; }
-      .hero-proof { display: none; }
-      .hero-deco { display: none; }
       .stats-grid { grid-template-columns: 1fr; }
       .stat-card.featured { grid-column: span 1; }
       .occasions-grid { grid-template-columns: 1fr 1fr; }
@@ -906,9 +1267,6 @@
       }
       #restSlider {
         gap: 12px !important;
-        animation: restScroll 26s linear infinite !important;
-        width: max-content !important;
-        will-change: transform;
       }
       #restSlider > div {
         min-width: 156px !important;
@@ -938,268 +1296,411 @@
 </head>
 <body>
 
+<!-- Geometric shapes background -->
+<div class="geo-shapes">
+  <div class="geo geo-1"></div>
+  <div class="geo geo-2"></div>
+  <div class="geo geo-3"></div>
+  <div class="geo geo-4"></div>
+  <div class="geo geo-5"></div>
+  <div class="geo geo-6"></div>
+  <div class="geo geo-7"></div>
+</div>
+
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#restaurantes" onclick="document.getElementById('mobileMenu').classList.remove('open')">Restaurantes</a>
-  <a href="#ocasioes" onclick="document.getElementById('mobileMenu').classList.remove('open')">Ocasiões</a>
-  <a href="#festa" onclick="document.getElementById('mobileMenu').classList.remove('open')">Faça a festa</a>
-  <a href="#como-funciona" onclick="document.getElementById('mobileMenu').classList.remove('open')">Como funciona</a>
-  <a href="#unidades" onclick="document.getElementById('mobileMenu').classList.remove('open')">Unidades</a>
-  <button class="btn-main" style="font-size:16px;padding:14px 32px;" onclick="document.getElementById('mobileMenu').classList.remove('open')">Reservar mesa</button>
+  <div class="mobile-menu-header">
+    <img src="/images/logo-mane.svg" alt="Mané" style="height:36px;">
+    <div class="mobile-menu-close" onclick="toggleMenu()">&times;</div>
+  </div>
+  <div class="mobile-menu-links">
+    <a href="#hero" class="mobile-link active" onclick="closeMobileMenu()">Início</a>
+    <a href="#claim" class="mobile-link" onclick="closeMobileMenu()">O Mané</a>
+    <a href="#restaurantes" class="mobile-link" onclick="closeMobileMenu()">Restaurantes</a>
+    <a href="#ocasioes" class="mobile-link" onclick="closeMobileMenu()">Ocasiões</a>
+    <a href="#unidades" class="mobile-link" onclick="closeMobileMenu()">Unidades</a>
+    <div style="width:60px;height:1px;background:rgba(243,233,217,.15);margin:8px 0;"></div>
+    <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=menu&utm_campaign=aniversario" class="mobile-link" target="_blank" onclick="closeMobileMenu()" style="color:var(--coral);">Reserva de Aniversário</a>
+    <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=menu&utm_campaign=reserva" class="mobile-link" target="_blank" onclick="closeMobileMenu()" style="color:var(--coral);">Faça sua Reserva</a>
+  </div>
 </div>
 
 <!-- ══ NAV ══ -->
 <nav id="mainNav">
-  <div class="nav-logo">mané<sup>,</sup></div>
-  <div class="nav-links">
-    <a href="#restaurantes">Restaurantes</a>
-    <a href="#ocasioes">Ocasiões</a>
-    <a href="#festa">Comemorações</a>
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#unidades">Unidades</a>
-  </div>
-  <button class="nav-cta">Reservar mesa</button>
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+  <a href="#hero" class="nav-logo"><img src="images/logo-mane.svg" alt="Mané" style="height:32px;"></a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="nav-cta">MENU</span>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-deco">mané</div>
   <div class="hero-content">
 
     <div class="hero-eyebrow">
-      <div class="eyebrow-dot"></div>
-      <span class="eyebrow-text">+20 restaurantes · +20 chefs · +500 opções gastronômicas</span>
+      <span class="eyebrow-text">O maior mercado gastronômico do Brasil</span>
     </div>
 
     <h1 class="hero-headline">
-      O paraíso gastronômico
-      <em class="line-2" id="heroAccentLine">do Brasil.</em>
+      O paraíso da<br>Gastronomia em<br><span id="heroCity" class="hero-city">Brasília.</span>
     </h1>
 
-    <p class="hero-sub">
-      <strong>+20 chefs, +200 pratos em um único destino.</strong><br>
-      Reserve sua mesa e garanta uma experiência gastronômica de verdade.
-    </p>
-
-    <div class="occasion-strip" id="occasionStrip">
-      <div class="oc-pill active" data-occasion="Aniversário sem caos" data-color="215,103,94" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">🎂</span> Aniversário
-      </div>
-      <div class="oc-pill" data-occasion="Happy hour da firma" data-color="58,136,112" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">🍻</span> Happy hour
-      </div>
-      <div class="oc-pill" data-occasion="Pós-jogo na Arena" data-color="178,48,45" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">⚽</span> Pós-jogo
-      </div>
-      <div class="oc-pill" data-occasion="Evento corporativo" data-color="58,100,180" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">💼</span> Corporativo
-      </div>
-      <div class="oc-pill" data-occasion="Domingo em família" data-color="107,160,80" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">👨‍👩‍👧</span> Família
-      </div>
-      <div class="oc-pill" data-occasion="Date sem erro" data-color="160,80,130" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">❤️</span> Date
-      </div>
-      <div class="oc-pill" data-occasion="Pra criançada" data-color="80,160,107" onclick="selectOccasion(this)">
-        <span class="oc-pill-emoji">🎈</span> Kids
-      </div>
-    </div>
-
     <div class="hero-cta-row">
-      <a href="#ocasioes" class="btn-main" id="heroCta">
-        Reservar agora
+      <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=hero&utm_campaign=reserva" target="_blank" class="btn-main" id="heroCta">
+        Reservar mesa
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#claim" class="btn-ghost-link">
-        Por que o Mané?
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
     </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">+20</span>
+        <span class="hero-stat-label">chefs</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">+500</span>
+        <span class="hero-stat-label">pratos</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">unidades</span>
+      </div>
+    </div>
+
   </div>
 
-  <div class="hero-proof">
-    <div class="proof-item"><div class="proof-num">+20</div><div class="proof-label">restaurantes<br>num só lugar</div></div>
-    <div class="proof-item"><div class="proof-num">+500</div><div class="proof-label">pratos no<br>cardápio</div></div>
-    <div class="proof-item"><div class="proof-num">2min</div><div class="proof-label">para confirmar<br>sua reserva</div></div>
-  </div>
-
-  <div class="scroll-indicator">
-    <span>scroll</span>
-    <div class="scroll-line"></div>
+  <div class="scroll-indicator" onclick="document.getElementById('claim').scrollIntoView({behavior:'smooth'})">
+    <span>SCROLL</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </div>
 </section>
 
-<!-- ══ TICKER ══ -->
-<div class="ticker">
-  <div class="ticker-track" id="tickerTrack">
-    <!-- duplicated for seamless loop -->
-    <span class="ticker-item">🏆 O maior mercado gastronômico do Brasil <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🌱 O único sustentável <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🍽️ Liberdade de escolha para cada convidado <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🎂 Aniversário · Corporativo · Família · Kids <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">📍 Brasília · Águas Claras · São Paulo <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">⚡ Confirmação de reserva imediata <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🏆 O maior mercado gastronômico do Brasil <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🌱 O único sustentável <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🍽️ Liberdade de escolha para cada convidado <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">🎂 Aniversário · Corporativo · Família · Kids <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">📍 Brasília · Águas Claras · São Paulo <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">⚡ Confirmação de reserva imediata <span class="ticker-sep">·</span></span>
+<!-- ══ SOCIAL PROOF ══ -->
+<section class="social-proof" id="prova-social">
+  <div class="sp-inner">
+
+    <!-- Section header -->
+    <div class="sp-header">
+      <div class="sp-eyebrow">Avaliações reais</div>
+      <h2 class="sp-title">Por que o Mané Mercado é o mercado gastronômico<br><em style="display:block;margin-top:8px;">5 estrelas</em></h2>
+    </div>
+
+    <!-- Google rating badge -->
+    <div class="sp-google-badge">
+      <svg class="sp-google-icon" viewBox="0 0 24 24" width="28" height="28"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      <div class="sp-google-info">
+        <div class="sp-google-stars">
+          <span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span><span class="sp-star">★</span>
+        </div>
+        <span class="sp-google-label">+10.000 avaliações no Google</span>
+      </div>
+    </div>
+
+    <!-- Review slider -->
+    <div class="sp-cards">
+      <div class="sp-card sp-card-featured">
+        <div class="sp-quote-mark">"</div>
+        <p class="sp-card-text" style="font-size:18px;font-family:'Merriweather',serif;line-height:1.5;">O Mané Mercado sem dúvida é um mercado gastronômico 5 estrelas. Ambiente incrível, gastronomia de altíssimo nível e atendimento impecável.</p>
+        <div class="sp-card-author">
+          <div class="sp-card-avatar" style="background:var(--coral);">M</div>
+          <div>
+            <span class="sp-card-name">Marcos Silva</span>
+            <span class="sp-card-source">★★★★★ · Google</span>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-card-stars">★★★★★</div>
+        <p class="sp-card-text">"Ambiente muito agradável e bem limpo e organizado, esteticamente muito bonito. Tem diversos restaurantes muito bons."</p>
+        <div class="sp-card-author">
+          <div class="sp-card-avatar" style="background:var(--teal);">A</div>
+          <div>
+            <span class="sp-card-name">Ana Paula R.</span>
+            <span class="sp-card-source">TripAdvisor</span>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-card-stars">★★★★★</div>
+        <p class="sp-card-text">"Realizamos o confraternização de fim de ano com 120 pessoas. Cada colaborador escolheu onde comer. Organização impecável."</p>
+        <div class="sp-card-author">
+          <div class="sp-card-avatar" style="background:var(--coral);">F</div>
+          <div>
+            <span class="sp-card-name">Fernanda M.</span>
+            <span class="sp-card-source">Google</span>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-card-stars">★★★★★</div>
+        <p class="sp-card-text">"O aniversário de 30 anos da minha filha foi aqui. Convidados impressionados com a variedade. Voltaremos com certeza!"</p>
+        <div class="sp-card-author">
+          <div class="sp-card-avatar" style="background:var(--gold);">G</div>
+          <div>
+            <span class="sp-card-name">Gustavo B.</span>
+            <span class="sp-card-source">Google</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slider controls -->
+    <div class="sp-controls">
+      <div class="sp-dots" id="spDots">
+        <span class="sp-dot active"></span>
+        <span class="sp-dot"></span>
+        <span class="sp-dot"></span>
+      </div>
+      <div class="sp-arrows">
+        <button class="sp-arrow sp-prev" id="spPrev" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="sp-arrow sp-next" id="spNext" aria-label="Próximo">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Press logos -->
+    <div class="sp-press">
+      <span class="sp-press-label">Visto em</span>
+      <span class="sp-press-logo">CNN Brasil</span>
+      <span class="sp-press-dot"></span>
+      <span class="sp-press-logo">TripAdvisor</span>
+      <span class="sp-press-dot"></span>
+      <span class="sp-press-logo">Google 4.6★</span>
+    </div>
+
   </div>
-</div>
+</section>
 
 <!-- ══ CLAIM / O MAIOR ══ -->
 <section class="claim-section" id="claim">
   <div class="claim-inner">
-    <div class="claim-grid">
-      <div class="reveal">
-        <div class="claim-eyebrow">Gastronomia de verdade, no mesmo lugar</div>
-        <h2 class="claim-title">
-          Escolha livre.<br>
-          Experiencia completa.<br>
-          <em>Reserve agora.</em>
-        </h2>
-        <p class="claim-body">
-          Diferentes cozinhas, ambientes e momentos em um so destino. Cada pessoa escolhe o que quer comer, sem abrir mao da experiencia em grupo.
-        </p>
-        <div class="claim-badges">
-          <span class="cb gold">Ideal para grupos com gostos diferentes</span>
-          <span class="cb green">Reserva simples, experiencia sem atrito</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px;border-radius:16px;overflow:hidden;">
-          <img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png" alt="Mane Mercado ambiente" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;">
-          <img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png" alt="Mane Mercado gastronomia" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;">
-          <img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png" alt="Mane Mercado evento" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;grid-column:span 2;">
-        </div>
-      </div>
 
-      <div class="stats-grid reveal delay-2">
-        <div class="stat-card">
-          <div class="stat-num" style="font-size:32px;">🍣 🥩 🍕</div>
-          <div class="stat-label">Culinária japonesa, churrascaria, italiana, vegana e outras — reunidas em um único endereço</div>
+    <!-- PILAR 1: O MAIOR -->
+    <div class="claim-block">
+      <div class="claim-eyebrow">O maior mercado gastronômico do Brasil</div>
+      <h2 class="claim-title">
+        +20 chefs<br>+500 pratos<br>
+        <em>Todos na sua mesa, sem filas</em>
+      </h2>
+      <p class="claim-body">
+        Japonesa, italiana, churrascaria, vegana, frutos do mar, hambúrguer, peruana. Tudo no mesmo lugar. Cada pessoa escolhe o que quer. Uma reserva, todo o mercado.
+      </p>
+
+      <div class="claim-features">
+        <div class="claim-feat">
+          <div class="claim-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/><circle cx="7" cy="6" r="1.5" fill="var(--coral)"/><circle cx="17" cy="12" r="1.5" fill="var(--coral)"/><circle cx="10" cy="18" r="1.5" fill="var(--coral)"/></svg>
+          </div>
+          <div>
+            <strong>Para todos os gostos</strong>
+            <p>+20 cozinhas diferentes em um único destino. Do executivo ao jantar especial.</p>
+          </div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num" style="font-size:28px;">Uma reserva,<br>todo o mercado</div>
-          <div class="stat-label">Uma única reserva dá acesso a todas as cozinhas. Cada convidado escolhe onde comer</div>
+        <div class="claim-feat">
+          <div class="claim-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <strong>Para todas as ocasiões</strong>
+            <p>Aniversário, happy hour, corporativo, date, pós-jogo, família. O Mané atende todas.</p>
+          </div>
         </div>
-        <div class="stat-card featured">
-          <div class="stat-num" style="font-size:26px;">Para grupos com gostos diferentes</div>
-          <div class="stat-label">O destino onde todos os perfis gastronômicos se encontram — sem concessões.</div>
+        <div class="claim-feat">
+          <div class="claim-feat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <strong>Uma reserva, todo o mercado</strong>
+            <p>Reserve uma vez e cada convidado escolhe onde comer. Sem filas, sem atrito.</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- SLIDER CATEGORIAS -->
+    <div style="margin-top:36px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;">
+        <div>
+          <div class="claim-eyebrow">+500 pratos</div>
+          <h3 style="font-family:'Merriweather',serif;font-size:clamp(22px,4vw,32px);font-weight:900;letter-spacing:-.03em;color:var(--ink);line-height:1.1;">De japonesa a churrasco,<br>tem pra <em style="color:var(--coral);font-style:italic;">todo mundo</em></h3>
+        </div>
+        <div class="cat-nav">
+          <button class="sp-arrow" id="catPrev" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="sp-arrow" id="catNext" aria-label="Próximo"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <div class="cat-slider" id="catSlider">
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/5208716e112983c74175ab5ba0b1c3ef1f27667eb5889e1822cea33d11507c15.png" alt="Japonesa" loading="lazy"><span class="cat-label">Japonesa</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/8ac936e8dbdc5f14b7de2c6be127c25b032694c57cdba0fb9c6d42d57ec1d0a9.jpg" alt="Para Compartilhar" loading="lazy"><span class="cat-label">Para Compartilhar</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/bcb328d3f1b2c2856d6a84cce897fd2cf5254ce96b814f42e5a48a344dc7170d.jpg" alt="Pokês" loading="lazy"><span class="cat-label">Pokês</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public.zig.fun/images/e1118897401dd83d98464d0515e0cc228626c3fdcb42a39509d0993ce0083be0.jpg" alt="Saladas" loading="lazy"><span class="cat-label">Saladas</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public.zig.fun/images/a6df0012c0aec4134fa36540315592e81e9bcd3a4c7fd270cd9049e8d9287895.jpg" alt="Pizza" loading="lazy"><span class="cat-label">Pizza</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/97a3ab5a189cce869f1f150886f8cd473f6ee2071fc6fde5ad434a29865956bb.jpg" alt="Carnes" loading="lazy"><span class="cat-label">Carnes</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/137c3465943ce8be0e990f5e0dfc481bb60d0ec0a70eb05e9a93d38aeb148695.jpg" alt="Massas" loading="lazy"><span class="cat-label">Massas</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/921b4a13a2e2b39ecb9e6333c581e03dcf49b0df0aca821d0627f449e738168f.jpg" alt="Burgers" loading="lazy"><span class="cat-label">Burgers</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/4c75a37fd4b9c7ec9c91f65080fe0ba9e0f88752baa3e9ed3ff1f19a644611a3.jpg" alt="Frutos do Mar" loading="lazy"><span class="cat-label">Frutos do Mar</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/31891adeec4d2c0e4a10c038294d3b08deb88d2df3d46587a05a1f72ea8502d5.png" alt="Espanhola" loading="lazy"><span class="cat-label">Espanhola</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public-files.zig.fun/images/91154c674aecceae944149330834b2b090af5da76eb8e9d5ab22401b63510356.jpg" alt="Brasileira" loading="lazy"><span class="cat-label">Brasileira</span></a>
+        <a href="https://menu.mane.com.vc/" class="cat-card"><img src="https://zig-public.zig.fun/images/78a5efd71c09298b633b3542b12c700f553f63363827393c37310cee1b6f0de6.jpg" alt="Charcutaria" loading="lazy"><span class="cat-label">Charcutaria</span></a>
+      </div>
+    </div>
+
+    <!-- DIVISOR -->
+    <div class="claim-divider"></div>
+
+    <!-- PILAR 2: SUSTENTÁVEL -->
+    <div class="claim-block">
+      <div class="claim-eyebrow" style="color:var(--green-soft);">Sustentabilidade</div>
+      <h2 class="claim-title">
+        O único mercado<br>sustentável<br>
+        <em>do Brasil.</em>
+      </h2>
+      <p class="claim-body">
+        Sustentabilidade no Mané não é discurso, é operação. Cada decisão, do abastecimento ao descarte, considera o impacto ambiental.
+      </p>
+
+      <div class="sust-cards">
+        <div class="sust-card">
+          <div class="sust-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>
+          </div>
+          <strong>Descarte responsável</strong>
+          <p>Gestão completa de resíduos com separação, compostagem e destinação certificada</p>
+        </div>
+        <div class="sust-card">
+          <div class="sust-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <strong>Horta urbana</strong>
+          <p>Resíduos orgânicos do mercado viram adubo na horta integrada ao espaço</p>
+        </div>
+        <div class="sust-card">
+          <div class="sust-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <strong>Acessibilidade real</strong>
+          <p>Jardim de Descompressão sensorial para TEA e 10% desconto PCD</p>
+        </div>
+        <div class="sust-card">
+          <div class="sust-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <strong>Cardápio inclusivo</strong>
+          <p>Vegano, vegetariano, sem glúten, sem lactose e low carb</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ══ FOOD STRIP ══ -->
-<section class="food-strip">
-  <div class="food-strip-inner">
-    <div class="food-strip-header">
-      <div class="reveal">
-        <h2 class="food-strip-title">Conheça nosso <em>cardápio.</em></h2>
-      </div>
-      <div class="reveal delay-2">
-        <p class="food-strip-body">Mais de 200 pratos disponíveis entre as 20 cozinhas do mercado. Reserve sua mesa e escolha na hora.</p>
-      </div>
-    </div>
-    <div class="food-cards">
-      <div class="food-card reveal delay-1">
-        <div class="food-img">
-          <img src="https://api-menu.mane.com.vc/public/uploads/3306d640-6ab6-4839-95c9-09cf99fb47fd.jpg" alt="Costela no Bafo — prato do Mané Mercado" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        </div>
-        <div class="food-card-body">
-          <div class="food-card-title">Costela no Bafo</div>
-          <div class="food-card-chef">Chef Marcos · Churrascaria do Mané</div>
-        </div>
-      </div>
-      <div class="food-card reveal delay-2">
-        <div class="food-img">
-          <img src="https://api-menu.mane.com.vc/public/uploads/5ece5492-3cd1-4e00-9dcb-51f5cf008e8f.jpg" alt="Sushi Omakasê — prato do Mané Mercado" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        </div>
-        <div class="food-card-body">
-          <div class="food-card-title">Sushi Omakasê</div>
-          <div class="food-card-chef">Chef Yuki · Japo do Mané</div>
-        </div>
-      </div>
-      <div class="food-card reveal delay-3">
-        <div class="food-img">
-          <img src="https://api-menu.mane.com.vc/public/uploads/64be5328-c413-4df3-81ae-fd13b3f72e04.jpg" alt="Bowl Vegano — prato do Mané Mercado" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        </div>
-        <div class="food-card-body">
-          <div class="food-card-title">Bowl Vegano</div>
-          <div class="food-card-chef">Chef Ana · Verde do Mané</div>
-        </div>
-      </div>
-      <div class="food-card reveal delay-1">
-        <div class="food-img">
-          <img src="https://api-menu.mane.com.vc/public/uploads/86989533-6116-4747-93c0-2d33431e5a44.jpg" alt="Burger Artesanal — prato do Mané Mercado" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        </div>
-        <div class="food-card-body">
-          <div class="food-card-title">Burger Artesanal</div>
-          <div class="food-card-chef">Chef Lucas · Burguer do Mané</div>
-        </div>
-      </div>
-      <div class="food-card reveal delay-2">
-        <div class="food-img">
-          <img src="https://api-menu.mane.com.vc/public/uploads/a2e81ab9-0cff-43fb-b768-c4ded03f7db1.jpg" alt="Pizza Napolitana — prato do Mané Mercado" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        </div>
-        <div class="food-card-body">
-          <div class="food-card-title">Pizza Napolitana</div>
-          <div class="food-card-chef">Chef Paolo · Pizzaria do Mané</div>
-        </div>
-      </div>
-      <div class="food-card reveal delay-3">
-        <div class="food-img">
-          <img src="https://api-menu.mane.com.vc/public/uploads/b4985a56-d7c0-41ea-9da8-e7a901b725ff.jpg" alt="Açaí Bowl — prato do Mané Mercado" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-        </div>
-        <div class="food-card-body">
-          <div class="food-card-title">Açaí Bowl</div>
-          <div class="food-card-chef">Chef Bia · Açaí do Mané</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══ RESTAURANTS GRID ══ -->
-<section class="restaurants-section" id="restaurantes" style="background:var(--green);padding:72px 48px;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal" style="text-align:center;margin-bottom:48px;">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Nossos Restaurantes</div>
-      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--cream);">+20 cozinhas.<br><em style="color:var(--coral);">Um endere&ccedil;o.</em></h2>
-    </div>
-    <div style="overflow:hidden;position:relative;">
-      <div id="restSlider" style="display:flex;gap:16px;animation:restScroll 40s linear infinite;width:max-content;">
-        <div style="background:#2a1005;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/d49d67f6-69db-4941-a02f-3921a7fa2edd.png" alt="Tik&ocirc;" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Tik&ocirc;</div><div style="font-size:11px;color:var(--muted);">Japonesa &middot; SP</div></div></div>
-        <div style="background:#1a2c10;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/ac29776e-2136-4202-8685-4109d8ac1f5d.png" alt="Xod&oacute;" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Xod&oacute;</div><div style="font-size:11px;color:var(--muted);">Brasileira &middot; SP</div></div></div>
-        <div style="background:#3a1508;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/f0d9aae5-68e4-44ed-8568-4664fc28d945.png" alt="Sofi" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Sofi</div><div style="font-size:11px;color:var(--muted);">Forneria &middot; SP</div></div></div>
-        <div style="background:#2d0a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/c25b94f8-f163-470e-a599-92c6f5f4f9a9.jpg" alt="Parrilla" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Parrilla</div><div style="font-size:11px;color:var(--muted);">Carnes &middot; SP</div></div></div>
-        <div style="background:#1c0c08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/0ecdf646-42fc-4eb7-80ee-6b61ea686d0a.jpg" alt="El Ib&eacute;rico" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">El Ib&eacute;rico</div><div style="font-size:11px;color:var(--muted);">Espanhola &middot; SP</div></div></div>
-        <div style="background:#180a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/016aaaf0-0fcd-455e-9be7-0b30dd2ac20b.jpg" alt="Ricco Burger" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Ricco Burger</div><div style="font-size:11px;color:var(--muted);">Burger &middot; DF &middot; SP</div></div></div>
-        <div style="background:#0a1a2a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/3cb95fc0-4d8d-4b41-90b1-aa5a3ef66bbf.png" alt="Tik&ocirc; Pok&ecirc;s" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Tik&ocirc; Pok&ecirc;s</div><div style="font-size:11px;color:var(--muted);">Pok&ecirc; &middot; SP</div></div></div>
-        <div style="background:#0a1f15;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/e4a69b8d-878a-4214-bd31-e6a72eb4acc5.png" alt="Bar do Man&eacute;" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Bar do Man&eacute;</div><div style="font-size:11px;color:var(--muted);">Bar &middot; Drinks &middot; DF &middot; SP</div></div></div>
-        <div style="background:#1c1028;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/88d13db0-1379-44c3-8995-3872d8897675.png" alt="Wine Bar" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Wine Bar</div><div style="font-size:11px;color:var(--muted);">Vinhos &middot; DF &middot; SP</div></div></div>
-        <div style="background:#2a1005;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/aa9f00ef-adbd-4bea-b5ca-6b327a58e866.png" alt="BSB Grill" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">BSB Grill</div><div style="font-size:11px;color:var(--muted);">Carnes &middot; &Aacute;rabe &middot; DF</div></div></div>
-        <div style="background:#1a2c10;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/3ed19163-d0bc-40e4-b1d0-1600d1961acb.webp" alt="O Popular" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">O Popular</div><div style="font-size:11px;color:var(--muted);">Brasileira &middot; DF</div></div></div>
-        <div style="background:#0a1a2a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/3af0fe89-0e9a-4785-afc2-d96d22490ac8.webp" alt="Kazu" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Kazu</div><div style="font-size:11px;color:var(--muted);">Japonesa &middot; DF</div></div></div>
-        <div style="background:#0c2818;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/5ece5492-3cd1-4e00-9dcb-51f5cf008e8f.jpg" alt="Dog da Igrejinha" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Dog da Igrejinha</div><div style="font-size:11px;color:var(--muted);">Hot Dog &middot; DF</div></div></div>
-        <div style="background:#061828;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/3306d640-6ab6-4839-95c9-09cf99fb47fd.jpg" alt="Casa Mar" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Casa Mar</div><div style="font-size:11px;color:var(--muted);">Frutos do Mar &middot; DF</div></div></div>
-        <div style="background:#220e0a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/80f58836-de12-426d-baf6-1ae9ee114c2f.webp" alt="Fina da Baco" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Fina da Baco</div><div style="font-size:11px;color:var(--muted);">Forneria &middot; DF</div></div></div>
-        <div style="background:#1a1508;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/64be5328-c413-4df3-81ae-fd13b3f72e04.jpg" alt="Gatto Nero" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Gatto Nero</div><div style="font-size:11px;color:var(--muted);">Italiana &middot; DF</div></div></div>
-        <div style="background:#3a2510;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/ceee87f3-931f-490b-88ec-d1ce8349f0ca.png" alt="Aloom" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Aloom</div><div style="font-size:11px;color:var(--muted);">Doces &middot; DF</div></div></div>
-        <div style="background:#2d1420;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/a2e81ab9-0cff-43fb-b768-c4ded03f7db1.jpg" alt="Tudo do Porco" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Tudo do Porco</div><div style="font-size:11px;color:var(--muted);">Charcutaria &middot; DF</div></div></div>
-        <div style="background:#0c1a0a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://api-menu.mane.com.vc/public/uploads/86989533-6116-4747-93c0-2d33431e5a44.jpg" alt="Caf&eacute; e um Ch&ecirc;ro" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Caf&eacute; e um Ch&ecirc;ro</div><div style="font-size:11px;color:var(--muted);">Caf&eacute; &middot; Nordestino &middot; DF</div></div></div>
-        <!-- duplicate for seamless loop -->
-        <div style="background:#2a1005;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/d49d67f6-69db-4941-a02f-3921a7fa2edd.png" alt="Tik&ocirc;" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Tik&ocirc;</div><div style="font-size:11px;color:var(--muted);">Japonesa &middot; SP</div></div></div>
-        <div style="background:#1a2c10;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/ac29776e-2136-4202-8685-4109d8ac1f5d.png" alt="Xod&oacute;" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Xod&oacute;</div><div style="font-size:11px;color:var(--muted);">Brasileira &middot; SP</div></div></div>
-        <div style="background:#3a1508;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/f0d9aae5-68e4-44ed-8568-4664fc28d945.png" alt="Sofi" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Sofi</div><div style="font-size:11px;color:var(--muted);">Forneria &middot; SP</div></div></div>
-        <div style="background:#2d0a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/c25b94f8-f163-470e-a599-92c6f5f4f9a9.jpg" alt="Parrilla" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Parrilla</div><div style="font-size:11px;color:var(--muted);">Carnes &middot; SP</div></div></div>
-        <div style="background:#1c0c08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/0ecdf646-42fc-4eb7-80ee-6b61ea686d0a.jpg" alt="El Ib&eacute;rico" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">El Ib&eacute;rico</div><div style="font-size:11px;color:var(--muted);">Espanhola &middot; SP</div></div></div>
-        <div style="background:#180a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;"><div style="height:120px;display:flex;align-items:center;justify-content:center;padding:20px;"><img src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/016aaaf0-0fcd-455e-9be7-0b30dd2ac20b.jpg" alt="Ricco Burger" loading="lazy" style="max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));"></div><div style="padding:10px 12px;background:rgba(0,0,0,.3);"><div style="font-weight:600;font-size:14px;color:var(--cream);">Ricco Burger</div><div style="font-size:11px;color:var(--muted);">Burger &middot; DF &middot; SP</div></div></div>
+<!-- ══ NOSSOS RESTAURANTES ══ -->
+<section class="rest-section" id="restaurantes">
+  <div class="rest-inner">
+    <div class="rest-header">
+      <div>
+        <div class="claim-eyebrow">Nossos restaurantes</div>
+        <h2 class="food-strip-title">Conheça nossas <em>cozinhas</em></h2>
       </div>
+      <div class="cat-nav">
+        <button class="sp-arrow" id="restPrev" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="sp-arrow" id="restNext" aria-label="Próximo">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="rest-slider" id="restSlider">
+      <a href="https://menu.mane.com.vc/sp/loja/tiko" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/5208716e112983c74175ab5ba0b1c3ef1f27667eb5889e1822cea33d11507c15.png" alt="Tikô" loading="lazy">
+        <div class="rest-card-info"><div><strong>Tikô</strong><span>Japonesa</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/d49d67f6-69db-4941-a02f-3921a7fa2edd.png" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/sp/loja/xodo" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/4f5fb2f4c7bdff536b9ffd08dbd6c5916c2f4c54b164504a99def4834ca33776.jpg" alt="Xodó" loading="lazy">
+        <div class="rest-card-info"><div><strong>Xodó</strong><span>Brasileira</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/ac29776e-2136-4202-8685-4109d8ac1f5d.png" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/gatto-nero" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/228dfc0c5b3fbac366077b0ccd44a1e2e457262fd11e16ad3be6f86a0abc30f1.jpg" alt="Gatto Nero" loading="lazy">
+        <div class="rest-card-info"><div><strong>Gatto Nero</strong><span>Italiana</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/64be5328-c413-4df3-81ae-fd13b3f72e04.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/sp/loja/beefpassion" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/97a3ab5a189cce869f1f150886f8cd473f6ee2071fc6fde5ad434a29865956bb.jpg" alt="Parrilla" loading="lazy">
+        <div class="rest-card-info"><div><strong>Parrilla</strong><span>Carnes</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/c25b94f8-f163-470e-a599-92c6f5f4f9a9.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/sp/loja/iberico" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/4c75a37fd4b9c7ec9c91f65080fe0ba9e0f88752baa3e9ed3ff1f19a644611a3.jpg" alt="El Ibérico" loading="lazy">
+        <div class="rest-card-info"><div><strong>El Ibérico</strong><span>Espanhola</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/0ecdf646-42fc-4eb7-80ee-6b61ea686d0a.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/casa-mar" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/1805a3933e2e04b0b089c48545453b2cfaf2bbe08ae5ca9b59affc0c8d16710f.jpg" alt="Casa Mar" loading="lazy">
+        <div class="rest-card-info"><div><strong>Casa Mar</strong><span>Frutos do Mar</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/090f1207-8f31-404a-81a3-7782170d7d96.png" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/sp/loja/riccoburger" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/921b4a13a2e2b39ecb9e6333c581e03dcf49b0df0aca821d0627f449e738168f.jpg" alt="Ricco Burger" loading="lazy">
+        <div class="rest-card-info"><div><strong>Ricco Burger</strong><span>Burger</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/016aaaf0-0fcd-455e-9be7-0b30dd2ac20b.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/kazu" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/960e30506677c66f698bb0aa45b28af81bfcd9881a5eac55c9a1ecc2cfc4260d.jpg" alt="Kazu" loading="lazy">
+        <div class="rest-card-info"><div><strong>Kazu</strong><span>Japonesa</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/3af0fe89-0e9a-4785-afc2-d96d22490ac8.webp" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/bsb/loja/superquadra-bar" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/bb8b1d22a2e8b0c3b6bfda8b41144cb20fd7de89beab4ac0276cd65c9697f351.jpg" alt="Superquadra Bar" loading="lazy">
+        <div class="rest-card-info"><div><strong>Superquadra</strong><span>Churrasco</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/2ec6de6e-f598-40ad-b4f3-5495ae644d6e.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/bsb/loja/tudo-do-porco" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/78a5efd71c09298b633b3542b12c700f553f63363827393c37310cee1b6f0de6.jpg" alt="Tudo do Porco" loading="lazy">
+        <div class="rest-card-info"><div><strong>Tudo do Porco</strong><span>Charcutaria</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/4586f95b-9779-4a5a-a91c-38eed3350384.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/bsb/loja/o-popular" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/3f97c079385fedf5a3ecf8aeaadae7410f58dbfefb7be742b0ef859461a77311.jpg" alt="O Popular" loading="lazy">
+        <div class="rest-card-info"><div><strong>O Popular</strong><span>Brasileira</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/a6ec82ff-5c61-4d0d-a1e8-d2c2c3cde96f.webp" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/sp/loja/sofi" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/137c3465943ce8be0e990f5e0dfc481bb60d0ec0a70eb05e9a93d38aeb148695.jpg" alt="Sofi" loading="lazy">
+        <div class="rest-card-info"><div><strong>Sofi</strong><span>Forneria</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/f0d9aae5-68e4-44ed-8568-4664fc28d945.png" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/dog-da-igrejinha" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/0bb38990931995ced9d53ea0bae7858a922b42359d8bafe5bf5874104d85b0f2.jpg" alt="Dog da Igrejinha" loading="lazy">
+        <div class="rest-card-info"><div><strong>Dog da Igrejinha</strong><span>Hot Dog</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/5ece5492-3cd1-4e00-9dcb-51f5cf008e8f.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/sp/loja/tikopokes" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/bcb328d3f1b2c2856d6a84cce897fd2cf5254ce96b814f42e5a48a344dc7170d.jpg" alt="Tikô Pokês" loading="lazy">
+        <div class="rest-card-info"><div><strong>Tikô Pokês</strong><span>Pokê</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/3cb95fc0-4d8d-4b41-90b1-aa5a3ef66bbf.png" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/bsb/loja/vei-chico" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/72b100b47606ea6ba59533bd258a921f17ba8dde645d9e4f6df5e5db2f9d32e9.jpg" alt="Véi Chico" loading="lazy">
+        <div class="rest-card-info"><div><strong>Véi Chico</strong><span>Sertaneja</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/0a7ddb55-4874-4646-8d36-75a9aacf711a.webp" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/bsb/loja/de-paulina" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/a793f7ea05b0f7aa9b3deed74dfffa9339308a133d1cc3aef93011b08ce1ce41.jpg" alt="De Paulina" loading="lazy">
+        <div class="rest-card-info"><div><strong>De Paulina</strong><span>Argentino</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/075f5687-f157-4e76-b622-9bb838cd91bb.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/fina-da-baco" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/a6df0012c0aec4134fa36540315592e81e9bcd3a4c7fd270cd9049e8d9287895.jpg" alt="Fina da Baco" loading="lazy">
+        <div class="rest-card-info"><div><strong>Fina da Baco</strong><span>Forneria</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/80f58836-de12-426d-baf6-1ae9ee114c2f.webp" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/bsb/loja/cafe-e-um-chero" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/804f6397f27a10bc514662715c2dec7e98620dabdd2eb513d68057574a84e4b8.jpg" alt="Café e um Chêro" loading="lazy">
+        <div class="rest-card-info"><div><strong>Café e um Chêro</strong><span>Café</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/929c320d-2565-4912-9e51-fbbbaf4b9ebb.jpg" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/aloom" class="rest-card">
+        <img src="https://zig-public-files.zig.fun/images/0e20fc22e80dbc978ce27a2f184e5cba81a59f856208de39381d1d357d91bcc6.jpg" alt="Aloom" loading="lazy">
+        <div class="rest-card-info"><div><strong>Aloom</strong><span>Doces</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/ceee87f3-931f-490b-88ec-d1ce8349f0ca.png" alt=""></div>
+      </a>
+      <a href="https://menu.mane.com.vc/ac/loja/bsb-grill" class="rest-card">
+        <img src="https://zig-public.zig.fun/images/0bb38990931995ced9d53ea0bae7858a922b42359d8bafe5bf5874104d85b0f2.jpg" alt="BSB Grill" loading="lazy">
+        <div class="rest-card-info"><div><strong>BSB Grill</strong><span>Carnes</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/aa9f00ef-adbd-4bea-b5ca-6b327a58e866.png" alt=""></div>
+      </a>
     </div>
   </div>
 </section>
@@ -1208,28 +1709,28 @@
 <section style="background:var(--cream);padding:96px 48px;">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:56px;">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Sustentabilidade</div>
-      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;">O único mercado sustentável<br><em style="color:var(--coral);">do Brasil.</em></h2>
-      <p style="font-size:16px;color:rgba(13,13,13,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">Sustentabilidade no Mané não é discurso — é operação. Cada decisão, do abastecimento ao descarte, considera o impacto ambiental.</p>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Sustentabilidade</div>
+      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;">O único mercado sustentável<br><em style="color:var(--teal);">do Brasil.</em></h2>
+      <p style="font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">Sustentabilidade no Mané não é discurso, é operação. Cada decisão, do abastecimento ao descarte, considera o impacto ambiental.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
       <div class="reveal delay-1" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-size:36px;margin-bottom:16px;">♻️</div>
+        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg></div>
         <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Descarte responsável</h4>
         <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Gestão completa de resíduos com separação, compostagem e destinação certificada.</p>
       </div>
       <div class="reveal delay-2" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-size:36px;margin-bottom:16px;">🌿</div>
+        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z"/><path d="M8 11a4 4 0 018 0"/></svg></div>
         <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Abastecimento consciente</h4>
         <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Prioridade para fornecedores locais e produtos de origem rastreável.</p>
       </div>
       <div class="reveal delay-3" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-size:36px;margin-bottom:16px;">⚡</div>
+        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Eficiência energética</h4>
         <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Infraestrutura projetada para reduzir consumo de energia e água em toda a operação.</p>
       </div>
       <div class="reveal delay-4" style="background:var(--green);border-radius:16px;padding:32px;text-align:center;">
-        <div style="font-size:36px;margin-bottom:16px;">📦</div>
+        <div style="margin-bottom:16px;color:var(--cream);"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
         <h4 style="font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;">Embalagens sustentáveis</h4>
         <p style="font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;">Eliminação progressiva de plásticos descartáveis em todas as operações do mercado.</p>
       </div>
@@ -1242,39 +1743,39 @@
   <div class="problem-inner">
     <div class="problem-grid">
       <div class="reveal">
-        <div class="s-eyebrow" style="color:var(--coral);">O que nos diferencia</div>
+        <div class="s-eyebrow" style="color:var(--teal);">O que nos diferencia</div>
         <p class="problem-quote">
           Gastronomia autoral com
           <strong>estrutura completa para qualquer ocasião.</strong>
         </p>
-        <p style="font-size:16px;color:rgba(13,13,13,.6);font-weight:300;line-height:1.7;margin-top:22px;">
+        <p style="font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:22px;">
           Cada cozinha opera de forma independente, com chef próprio, identidade e cardápio exclusivos. A reserva é única e vale para todo o mercado.
         </p>
       </div>
       <div class="problem-points reveal delay-2">
         <div class="problem-point">
-          <div class="pp-icon">🍽️</div>
+          <div class="pp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></div>
           <div class="pp-text">
             <strong>Diversidade gastronômica real</strong>
             <p>Da culinária japonesa à churrascaria, do vegano à cozinha nordestina. Todas as cozinhas em um único endereço.</p>
           </div>
         </div>
         <div class="problem-point">
-          <div class="pp-icon">👨‍🍳</div>
+          <div class="pp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
           <div class="pp-text">
             <strong>Cozinhas independentes com identidade própria</strong>
-            <p>Cada chef conduz sua operação com autonomia — história, técnica e cardápio são de sua autoria.</p>
+            <p>Cada chef conduz sua operação com autonomia. História, técnica e cardápio são de sua autoria.</p>
           </div>
         </div>
         <div class="problem-point">
-          <div class="pp-icon">🌱</div>
+          <div class="pp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z"/><path d="M8 11a4 4 0 018 0"/></svg></div>
           <div class="pp-text">
             <strong>Único mercado sustentável do Brasil</strong>
-            <p>Compromisso ambiental integrado em toda a operação — do abastecimento ao descarte responsável.</p>
+            <p>Compromisso ambiental integrado em toda a operação, do abastecimento ao descarte responsável.</p>
           </div>
         </div>
         <div class="problem-point">
-          <div class="pp-icon">✅</div>
+          <div class="pp-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
           <div class="pp-text">
             <strong>Processo de reserva simplificado</strong>
             <p>Selecione a ocasião, informe o número de convidados e receba a confirmação diretamente pelo WhatsApp.</p>
@@ -1286,137 +1787,84 @@
 </section>
 
 <!-- ══ OCCASIONS ══ -->
-<section class="occasions-section" id="ocasioes">
-  <div class="occasions-inner">
-    <div class="occasions-header">
-      <div class="reveal">
-        <div class="s-eyebrow">Reserve por ocasião</div>
-        <h2 class="s-title">Escolha o momento.<br><em>A gente organiza.</em></h2>
+<section class="occ-section" id="ocasioes">
+  <div class="occ-inner">
+    <div class="occ-header">
+      <div>
+        <div class="claim-eyebrow">Reserve por ocasiao</div>
+        <h2 class="food-strip-title">Escolha o momento<br><em>A gente organiza</em></h2>
       </div>
-      <div class="reveal delay-2">
-        <p class="s-body">Aniversário, happy hour, corporativo ou família. Selecione a ocasião e receba uma reserva personalizada com espaço e cardápio adequados.</p>
+      <div class="cat-nav">
+        <button class="sp-arrow" id="occPrev" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 4L6 9l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="sp-arrow" id="occNext" aria-label="Proximo">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
     </div>
-    <div class="occasions-grid">
-      <div class="oc-card reveal delay-1" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png');"></div>
-        <span class="oc-card-emoji">🎂</span>
-        <h4>Aniversário sem dor de cabeça</h4>
-        <p>Corporativo ou particular. Área reservada, surpresa organizada, grupo acomodado. Você aparece — a gente cuida do resto.</p>
-        <span class="oc-card-arrow">Reservar este espaço →</span>
-      </div>
-      <div class="oc-card reveal delay-2" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png');"></div>
-        <span class="oc-card-emoji">💼</span>
-        <h4>Evento corporativo</h4>
-        <p>Crédito por pessoa, área exclusiva, bônus de anfitrião e proposta consultiva. Para times que prezam qualidade e eficiência.</p>
-        <span class="oc-card-arrow">Ver pacotes →</span>
-      </div>
-      <div class="oc-card reveal delay-3" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png');"></div>
-        <span class="oc-card-emoji">⚽</span>
-        <h4>Pós-jogo</h4>
-        <p>Saiu da Arena? O fluxo do Mané já espera o grupo. Mesa pronta, chope gelado, sem fila.</p>
-        <span class="oc-card-arrow">Garantir mesa →</span>
-      </div>
-      <div class="oc-card reveal delay-4" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-8.png');"></div>
-        <span class="oc-card-emoji">🍻</span>
-        <h4>Happy hour da firma</h4>
-        <p>Expediente acabou. O Mané tem o ambiente, a bebida e o petisco pra fazer a transição valer.</p>
-        <span class="oc-card-arrow">Reservar →</span>
-      </div>
-      <div class="oc-card reveal delay-2" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-7-2.png');"></div>
-        <span class="oc-card-emoji">👨‍👩‍👧</span>
-        <h4>Domingo em família</h4>
-        <p>Brinquedoteca, espaço amplo, variedade pra criança e adulto. Sem negociar o que todo mundo come.</p>
-        <span class="oc-card-arrow">Reservar →</span>
-      </div>
-      <div class="oc-card reveal delay-3" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png');"></div>
-        <span class="oc-card-emoji">🍽️</span>
-        <h4>Almoço em grupo</h4>
-        <p>A solução prática para times, amigos e encontros que precisam funcionar. Todo gosto num lugar só.</p>
-        <span class="oc-card-arrow">Garantir mesa →</span>
-      </div>
-      <div class="oc-card reveal delay-4" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png');"></div>
-        <span class="oc-card-emoji">❤️</span>
-        <h4>Date sem erro</h4>
-        <p>Atmosfera, variedade e conveniência. A escolha que mostra que você pensou em tudo.</p>
-        <span class="oc-card-arrow">Reservar →</span>
-      </div>
-      <div class="oc-card reveal delay-5" data-bg>
-        <div class="oc-card-bg" style="background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-8.png');"></div>
-        <span class="oc-card-emoji">🎈</span>
-        <h4>Festa kids</h4>
-        <p>Brinquedoteca completa, cardápio infantil e espaço seguro. As crianças ficam felizes — os pais ficam tranquilos.</p>
-        <span class="oc-card-arrow">Ver pacote kids →</span>
-      </div>
+    <div class="occ-slider" id="occSlider">
+      <a href="#festa" class="occ-card">
+        <div class="occ-img"><img src="images/hero-aniversario.jpg" alt="Aniversário" loading="lazy"></div>
+        <div class="occ-card-body">
+          <h4>Aniversário</h4>
+          <p>Área reservada, surpresa organizada, grupo acomodado</p>
+          <span class="occ-link">Reservar</span>
+        </div>
+      </a>
+      <a href="#festa" class="occ-card">
+        <div class="occ-img"><img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png" alt="Corporativo" loading="lazy"></div>
+        <div class="occ-card-body">
+          <h4>Corporativo</h4>
+          <p>Área exclusiva, proposta consultiva e crédito por pessoa</p>
+          <span class="occ-link">Ver pacotes</span>
+        </div>
+      </a>
+      <a href="#festa" class="occ-card">
+        <div class="occ-img"><img src="https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png" alt="Pós-jogo" loading="lazy"></div>
+        <div class="occ-card-body">
+          <h4>Pós-jogo</h4>
+          <p>Mesa pronta, chope gelado, sem fila. O fluxo do Mané já espera</p>
+          <span class="occ-link">Garantir mesa</span>
+        </div>
+      </a>
+      <a href="#festa" class="occ-card">
+        <div class="occ-img"><img src="images/happy.jpg" alt="Happy hour" loading="lazy"></div>
+        <div class="occ-card-body">
+          <h4>Happy hour</h4>
+          <p>Ambiente, bebida e petisco pra fazer a transição valer</p>
+          <span class="occ-link">Reservar</span>
+        </div>
+      </a>
+      <a href="#festa" class="occ-card">
+        <div class="occ-img"><img src="images/happyh.png" alt="Família" loading="lazy"></div>
+        <div class="occ-card-body">
+          <h4>Família</h4>
+          <p>Brinquedoteca, espaço amplo, variedade pra criança e adulto</p>
+          <span class="occ-link">Reservar</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ══ +20 CHEFS ══ -->
-<section style="background:var(--green);padding:96px 48px;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal" style="text-align:center;margin-bottom:56px;">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Nossos Chefs</div>
-        <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--cream);line-height:1.1;">+20 chefs.<br><em style="color:var(--coral);">Talento autoral em cada cozinha.</em></h2>
-      <p style="font-size:16px;color:rgba(255,255,255,.65);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">No Mané, cada restaurante é independente. Cada chef traz sua história, sua técnica e sua cultura gastronômica. Isso não é praça de alimentação — é gastronomia autoral.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
-      <div class="reveal delay-1" style="background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);">
-        <div style="font-size:32px;margin-bottom:14px;">🍣</div>
-        <h4 style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;">Japonesa</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;">Sushi, pokê, temaki e omakasê.</p>
-      </div>
-      <div class="reveal delay-2" style="background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);">
-        <div style="font-size:32px;margin-bottom:14px;">🍖</div>
-        <h4 style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;">Brasileira</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;">Feijoada, nordestina, costela e açaí.</p>
-      </div>
-      <div class="reveal delay-3" style="background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);">
-        <div style="font-size:32px;margin-bottom:14px;">🍕</div>
-        <h4 style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;">Italiana</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;">Pizza, forneria e massas artesanais.</p>
-      </div>
-      <div class="reveal delay-4" style="background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);">
-        <div style="font-size:32px;margin-bottom:14px;">🫒</div>
-        <h4 style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;">Espanhola</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;">Tapas, ibéricos e culinária mediterrânea.</p>
-      </div>
-      <div class="reveal delay-5" style="background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);">
-        <div style="font-size:32px;margin-bottom:14px;">🔥</div>
-        <h4 style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;">Carnes & Grill</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;">Churrasco, parrilla e cortes especiais.</p>
-      </div>
-      <div class="reveal delay-6" style="background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);">
-        <div style="font-size:32px;margin-bottom:14px;">🍷</div>
-        <h4 style="font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;">Bar & Vinhos</h4>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;">Drinks autorais, carta de vinhos e chope artesanal.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══ GRANDES EVENTOS ══ -->
 <section class="celebrate-section" id="festa">
   <div class="celebrate-inner">
     <div class="reveal" style="text-align:center;margin-bottom:56px;">
-      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Grandes Eventos</div>
-      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;">O espaço certo para<br><em style="color:var(--coral);">eventos que importam.</em></h2>
-      <p style="font-size:16px;color:rgba(13,13,13,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">Corporativo, aniversário ou celebração privada. Estrutura completa, atendimento dedicado e gastronomia de verdade.</p>
+      <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Grandes Eventos</div>
+      <h2 style="font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;">O espaço certo para<br><em style="color:var(--teal);">eventos que importam.</em></h2>
+      <p style="font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;">Corporativo, aniversário ou celebração privada. Estrutura completa, atendimento dedicado e gastronomia de verdade.</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:40px;">
       <!-- Corporativo -->
       <div class="reveal delay-1" style="background:var(--green);border-radius:20px;padding:40px;position:relative;overflow:hidden;">
-        <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:16px;">💼 Corporativo</span>
-        <h3 style="font-family:'Merriweather',serif;font-size:24px;font-weight:700;color:var(--cream);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;">Eventos empresariais<br>com estrutura <em style="color:var(--coral);">completa.</em></h3>
+        <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px;">💼 Corporativo</span>
+        <h3 style="font-family:'Merriweather',serif;font-size:24px;font-weight:700;color:var(--cream);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;">Eventos empresariais<br>com estrutura <em style="color:var(--cream);">completa.</em></h3>
         <ul style="list-style:none;padding:0;margin:0 0 24px;">
-          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Crédito por pessoa — cada convidado escolhe o que preferir</li>
+          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Crédito por pessoa, cada convidado escolhe o que preferir</li>
           <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Área exclusiva com infraestrutura para apresentações</li>
           <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Gestor comercial dedicado com proposta personalizada</li>
           <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;">Nota fiscal, relatório de consumo e follow-up pós-evento</li>
@@ -1426,15 +1874,15 @@
 
       <!-- Aniversário -->
       <div class="reveal delay-2" style="background:var(--green);border-radius:20px;padding:40px;position:relative;overflow:hidden;">
-        <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);display:block;margin-bottom:16px;">🎂 Aniversário</span>
-        <h3 style="font-family:'Merriweather',serif;font-size:24px;font-weight:700;color:var(--cream);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;">Comemorações que<br>seus convidados<br><em style="color:var(--coral);">vão lembrar.</em></h3>
+        <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px;">🎂 Aniversário</span>
+        <h3 style="font-family:'Merriweather',serif;font-size:24px;font-weight:700;color:var(--cream);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;">Comemorações que<br>seus convidados<br><em style="color:var(--cream);">vão lembrar.</em></h3>
         <ul style="list-style:none;padding:0;margin:0 0 24px;">
           <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Área reservada com decoração inclusa ou personalizada</li>
-          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Cardápio variado — cada convidado come o que preferir</li>
-          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Kit aniversário com bolo, vela e surpresa</li>
-          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;">Atendimento exclusivo durante todo o evento</li>
+          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Cardápio variado, cada convidado come o que preferir</li>
+          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">Pacotes especiais a partir de 8 pessoas</li>
+          <li style="font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;">Bônus exclusivos para grupos maiores</li>
         </ul>
-        <a href="#" class="cel-btn" style="background:var(--coral);color:#fff;border:none;">Reservar espaço</a>
+        <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=cta&utm_campaign=aniversario" target="_blank" class="cel-btn" style="background:var(--coral);color:#fff;border:none;">Reservar espaço</a>
       </div>
     </div>
 
@@ -1455,22 +1903,25 @@
   <div class="family-inner">
     <div class="family-grid reveal">
       <div>
-        <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Família + Crianças</div>
-        <h2 style="font-family:'Merriweather',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;margin-bottom:20px;">Espaço preparado<br>para receber <em style="color:var(--coral);">famílias.</em></h2>
-        <p style="font-size:16px;color:rgba(13,13,13,.6);font-weight:300;line-height:1.7;margin-bottom:28px;">O Mané tem estrutura completa para receber pais com seus filhos. Enquanto as crianças se divertem em segurança, os adultos aproveitam a gastronomia com tranquilidade.</p>
+        <div style="font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Família + Crianças</div>
+        <h2 style="font-family:'Merriweather',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;margin-bottom:20px;">Espaço preparado<br>para receber <em style="color:var(--teal);">famílias.</em></h2>
+        <p style="font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-bottom:28px;">O Mané tem estrutura completa para receber pais com seus filhos. Enquanto as crianças se divertem em segurança, os adultos aproveitam a gastronomia com tranquilidade.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;">
-          <span style="background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;">🎠 Brinquedoteca completa</span>
-          <span style="background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;">🍕 Cardápio infantil</span>
-          <span style="background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;">👶 Monitoramento</span>
-          <span style="background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;">🌳 Área segura</span>
-          <span style="background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;">🎂 Festas infantis</span>
+          <span style="background:rgba(14,122,127,.1);color:var(--teal);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;">Brinquedoteca completa</span>
+          <span style="background:rgba(14,122,127,.1);color:var(--teal);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;">Cardápio infantil</span>
+          <span style="background:rgba(14,122,127,.1);color:var(--teal);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;">Monitoramento</span>
+          <span style="background:rgba(14,122,127,.1);color:var(--teal);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;">Área segura</span>
+          <span style="background:rgba(14,122,127,.1);color:var(--teal);font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;">Festas infantis</span>
         </div>
-        <a href="#" class="cel-btn" style="background:var(--coral);color:#fff;border:none;">Reservar mesa para família</a>
+        <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=cta&utm_campaign=familia" target="_blank" class="cel-btn" style="background:var(--coral);color:#fff;border:none;">Reservar mesa para família</a>
       </div>
-      <div style="background:var(--green);border-radius:20px;padding:48px;text-align:center;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <div style="font-size:72px;margin-bottom:20px;">👨‍👩‍👧‍👦</div>
-        <h3 style="font-family:'Merriweather',serif;font-size:22px;font-weight:700;color:var(--cream);margin-bottom:10px;">Diversão para os filhos.<br>Tranquilidade para os pais.</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;">Brinquedoteca monitorada,<br>cardápio kids e espaço seguro.</p>
+      <div style="border-radius:20px;overflow:hidden;min-height:360px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:32px;">
+        <img src="images/mane-famili.jpg" alt="Família no Mané" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.75) 100%);"></div>
+        <div style="position:relative;z-index:1;text-align:center;">
+          <h3 style="font-family:'Merriweather',serif;font-size:22px;font-weight:700;color:var(--cream);margin-bottom:10px;">Diversão para os filhos.<br>Tranquilidade para os pais.</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.6;">Brinquedoteca monitorada,<br>cardápio kids e espaço seguro.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1488,20 +1939,20 @@
       <div class="how-step reveal delay-1">
         <div class="how-step-num">1</div>
         <h4>Escolhe a <em>ocasião</em></h4>
-        <p>Clica na cena que descreve seu momento — aniversário, happy hour, corporativo, kids. O sistema já sabe o que você precisa.</p>
-        <span class="how-step-tag">🎯 Contexto definido</span>
+        <p>Clica na cena que descreve seu momento. Aniversário, happy hour, corporativo, kids. O sistema já sabe o que você precisa.</p>
+        <span class="how-step-tag">Contexto definido</span>
       </div>
       <div class="how-step reveal delay-2">
         <div class="how-step-num">2</div>
-        <h4>Responde <em>3 perguntas</em></h4>
-        <p>Data, número de pessoas e horário. Resposta rápida direto no WhatsApp — sem formulário, sem espera.</p>
-        <span class="how-step-tag">⚡ Resposta imediata</span>
+        <h4>Reserve em <em>menos de 2 minutos</em></h4>
+        <p>Data, número de pessoas e horário. Resposta rápida direto no WhatsApp. Sem formulário, sem espera.</p>
+        <span class="how-step-tag">Confirmação imediata</span>
       </div>
       <div class="how-step reveal delay-3">
         <div class="how-step-num">3</div>
         <h4>Reserva <em>confirmada</em></h4>
         <p>Confirmação no WhatsApp na hora. Para eventos corporativos ou grandes, o comercial entra com proposta personalizada.</p>
-        <span class="how-step-tag">✅ Zero burocracia</span>
+        <span class="how-step-tag">Zero burocracia</span>
       </div>
     </div>
   </div>
@@ -1512,9 +1963,9 @@
   <div class="exp-inner">
     <div class="exp-grid">
       <div class="exp-text reveal">
-        <div class="s-eyebrow" style="color:var(--coral);">O que oferecemos</div>
+        <div class="s-eyebrow" style="color:var(--teal);">O que oferecemos</div>
         <h2 class="s-title" style="color:var(--ink);">Gastronomia, estrutura<br>e atendimento<br><em>em um só lugar.</em></h2>
-        <p class="s-body">O Mané foi construído com a obsessão de que grupos merecem um espaço que funciona pra todo mundo — chefs de verdade, diversidade de verdade e reserva sem complicação.</p>
+        <p class="s-body">O Mané foi construído pra grupos que merecem um espaço que funciona pra todo mundo. Chefs de verdade, diversidade de verdade e reserva sem complicação.</p>
         <div class="exp-features">
           <div class="exp-feat">
             <div class="ef-icon">🌿</div>
@@ -1527,14 +1978,14 @@
             <div class="ef-icon">🍽️</div>
             <div class="ef-text">
               <strong>Cozinhas autorais com chefs dedicados</strong>
-              <span>Cada restaurante opera com independência criativa — chef próprio, cardápio exclusivo e identidade gastronômica única.</span>
+              <span>Cada restaurante opera com independência criativa. Chef próprio, cardápio exclusivo e identidade gastronômica única.</span>
             </div>
           </div>
           <div class="exp-feat">
             <div class="ef-icon">⭐</div>
             <div class="ef-text">
               <strong>Único mercado sustentável do Brasil</strong>
-              <span>Descarte consciente, abastecimento local e práticas ambientais de verdade — não de branding.</span>
+              <span>Descarte consciente, abastecimento local e práticas ambientais de verdade. Não de branding.</span>
             </div>
           </div>
         </div>
@@ -1543,15 +1994,15 @@
         <a href="https://www.youtube.com/watch?v=2W4D-l5KnGU" target="_blank" rel="noopener" style="display:block;position:relative;border-radius:16px;overflow:hidden;margin-bottom:24px;box-shadow:0 12px 40px rgba(0,0,0,.25);aspect-ratio:16/9;">
           <img src="https://img.youtube.com/vi/2W4D-l5KnGU/maxresdefault.jpg" alt="Conheça o Mané Mercado" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);transition:background .2s;">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(215,103,94,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);">
+            <div style="width:64px;height:64px;border-radius:50%;background:rgba(227,75,75,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--ink)"><path d="M8 5v14l11-7z"/></svg>
             </div>
           </div>
         </a>
         <div class="phone-float-1">
-          <div class="pf-label">Próxima reserva</div>
-          <div class="pf-val">Sáb 14</div>
-          <div class="pf-sub">🎂 Aniversário · 12 pessoas · 19h</div>
+          <div class="pf-label">Reserva pelo WhatsApp</div>
+          <div class="pf-val">Reserve hoje</div>
+          <div class="pf-sub">Confirmação em minutos</div>
         </div>
         <div class="phone-frame">
           <div class="phone-notch"></div>
@@ -1567,11 +2018,10 @@
                 <div style="background:#dcf8c6;border-radius:14px 14px 3px 14px;padding:9px 12px;font-size:11px;color:#333;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,.08);">Sábado, dia 14 🎂</div>
               </div>
               <div class="ps-msg">Perfeito! 🎉 Quantas pessoas vêm?</div>
-              <div class="ps-replies">
-                <div class="ps-reply">Até 6</div>
-                <div class="ps-reply">6 a 15</div>
-                <div class="ps-reply">+15</div>
+              <div style="display:flex;justify-content:flex-end;margin-bottom:8px;">
+                <div style="background:#dcf8c6;border-radius:14px 14px 3px 14px;padding:9px 12px;font-size:11px;color:#333;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,.08);">Umas 12 pessoas</div>
               </div>
+              <div class="ps-msg">Show! Reserva confirmada pro dia 14, 12 pessoas. Te mandei os detalhes aqui no WhatsApp 🤙</div>
             </div>
           </div>
         </div>
@@ -1601,17 +2051,17 @@
     <div class="units-grid">
       <div class="unit-card reveal delay-1">
         <div class="unit-card-img">
-          <img src="https://mane.com.vc/wp-content/uploads/2025/04/Imagem-do-WhatsApp.jpg" alt="Mané Mercado Brasília — vista do espaço" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">
+          <img src="images/hero2.jpg" alt="Mané Mercado Brasília — vista do espaço" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">
         </div>
         <div class="unit-card-body">
           <div class="unit-card-name">Brasília</div>
-          <div class="unit-card-address">SEPS 703/903 Bloco B — Asa Sul</div>
-          <div class="unit-tags"><span class="utag">Estacionamento</span><span class="utag">Perto da Arena</span><span class="utag">Corporativo</span></div>
+          <div class="unit-card-address">Arena BRB Mané Garrincha — Asa Norte</div>
+          <div class="unit-tags"><span class="utag">Estacionamento</span><span class="utag">Eixo Monumental</span><span class="utag">Corporativo</span></div>
         </div>
       </div>
       <div class="unit-card reveal delay-2">
         <div class="unit-card-img">
-          <img src="https://mane.com.vc/wp-content/uploads/2025/04/Wine-Bar-2.jpg" alt="Mané Mercado Águas Claras — wine bar" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">
+          <img src="images/mane-aguas.png" alt="Mané Mercado Águas Claras" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">
         </div>
         <div class="unit-card-body">
           <div class="unit-card-name">Águas Claras</div>
@@ -1621,7 +2071,7 @@
       </div>
       <div class="unit-card reveal delay-3">
         <div class="unit-card-img">
-          <img src="https://mane.com.vc/wp-content/uploads/2025/11/31102025-77.png" alt="Mané Mercado São Paulo Perdizes — vista do espaço" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy">
+          <img src="images/mane-sp.png" alt="Mané Mercado São Paulo Perdizes" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;position:absolute;inset:0;" loading="lazy">
         </div>
         <div class="unit-card-body">
           <div class="unit-card-name">São Paulo Perdizes</div>
@@ -1639,7 +2089,7 @@
 <section class="reviews-section">
   <div class="reviews-inner">
     <div class="reviews-header reveal">
-      <div class="s-eyebrow" style="justify-content:center;color:var(--coral);">O que dizem nossos clientes</div>
+      <div class="s-eyebrow" style="justify-content:center;color:var(--teal);">O que dizem nossos clientes</div>
       <h2 class="s-title" style="text-align:center;font-size:clamp(28px,3.5vw,48px);color:var(--ink);">Experiências <em>reais.</em></h2>
     </div>
   </div>
@@ -1648,16 +2098,16 @@
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Realizamos o confraternização de fim de ano da empresa com 120 pessoas. Cada colaborador escolheu onde comer. Organização impecável."</p><div class="review-author"><div class="review-avatar" style="background:rgba(201,146,58,.2);">👔</div><div><div class="review-name">Fernanda M.</div><div class="review-occasion">💼 Evento corporativo · 120 pessoas</div></div></div></div>
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Levamos as crianças no domingo e ficamos tranquilos com a brinquedoteca monitorada. Enquanto isso, aproveitamos a gastronomia sem pressa."</p><div class="review-author"><div class="review-avatar" style="background:rgba(107,194,107,.2);">👨‍👩‍👧</div><div><div class="review-name">Ana Paula S.</div><div class="review-occasion">👨‍👩‍👧 Família · Domingo</div></div></div></div>
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"O aniversário de 30 anos da minha filha foi aqui. Área reservada, decoração pronta e convidados impressionados com a variedade."</p><div class="review-author"><div class="review-avatar" style="background:rgba(201,146,58,.2);">🎂</div><div><div class="review-name">Gustavo B.</div><div class="review-occasion">🎂 Aniversário · 45 convidados</div></div></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Nosso happy hour semanal migrou para o Mané. A equipe agradece pela variedade — ninguém precisa mais negociar onde ir."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🍻</div><div><div class="review-name">Rafael L.</div><div class="review-occasion">💼 Happy hour corporativo</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Nosso happy hour semanal migrou para o Mané. A equipe agradece pela variedade. Ninguém precisa mais negociar onde ir."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🍻</div><div><div class="review-name">Rafael L.</div><div class="review-occasion">💼 Happy hour corporativo</div></div></div></div>
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Reserva confirmada em minutos, mesa organizada na chegada. Atendimento profissional do início ao fim."</p><div class="review-author"><div class="review-avatar" style="background:rgba(140,100,58,.2);">✅</div><div><div class="review-name">Márcia T.</div><div class="review-occasion">👨‍👩‍👧 Almoço em família</div></div></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"A sustentabilidade do Mané é real — você percebe nos detalhes da operação. Isso faz diferença na hora de escolher onde levar clientes."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🌱</div><div><div class="review-name">Carla D.</div><div class="review-occasion">💼 Almoço de negócios</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"A sustentabilidade do Mané é real. Você percebe nos detalhes da operação. Isso faz diferença na hora de escolher onde levar clientes."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🌱</div><div><div class="review-name">Carla D.</div><div class="review-occasion">💼 Almoço de negócios</div></div></div></div>
       <!-- duplicate set -->
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Realizamos o confraternização de fim de ano da empresa com 120 pessoas. Cada colaborador escolheu onde comer. Organização impecável."</p><div class="review-author"><div class="review-avatar" style="background:rgba(201,146,58,.2);">👔</div><div><div class="review-name">Fernanda M.</div><div class="review-occasion">💼 Evento corporativo · 120 pessoas</div></div></div></div>
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Levamos as crianças no domingo e ficamos tranquilos com a brinquedoteca monitorada. Enquanto isso, aproveitamos a gastronomia sem pressa."</p><div class="review-author"><div class="review-avatar" style="background:rgba(107,194,107,.2);">👨‍👩‍👧</div><div><div class="review-name">Ana Paula S.</div><div class="review-occasion">👨‍👩‍👧 Família · Domingo</div></div></div></div>
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"O aniversário de 30 anos da minha filha foi aqui. Área reservada, decoração pronta e convidados impressionados com a variedade."</p><div class="review-author"><div class="review-avatar" style="background:rgba(201,146,58,.2);">🎂</div><div><div class="review-name">Gustavo B.</div><div class="review-occasion">🎂 Aniversário · 45 convidados</div></div></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Nosso happy hour semanal migrou para o Mané. A equipe agradece pela variedade — ninguém precisa mais negociar onde ir."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🍻</div><div><div class="review-name">Rafael L.</div><div class="review-occasion">💼 Happy hour corporativo</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Nosso happy hour semanal migrou para o Mané. A equipe agradece pela variedade. Ninguém precisa mais negociar onde ir."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🍻</div><div><div class="review-name">Rafael L.</div><div class="review-occasion">💼 Happy hour corporativo</div></div></div></div>
       <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Reserva confirmada em minutos, mesa organizada na chegada. Atendimento profissional do início ao fim."</p><div class="review-author"><div class="review-avatar" style="background:rgba(140,100,58,.2);">✅</div><div><div class="review-name">Márcia T.</div><div class="review-occasion">👨‍👩‍👧 Almoço em família</div></div></div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"A sustentabilidade do Mané é real — você percebe nos detalhes da operação. Isso faz diferença na hora de escolher onde levar clientes."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🌱</div><div><div class="review-name">Carla D.</div><div class="review-occasion">💼 Almoço de negócios</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"A sustentabilidade do Mané é real. Você percebe nos detalhes da operação. Isso faz diferença na hora de escolher onde levar clientes."</p><div class="review-author"><div class="review-avatar" style="background:rgba(58,136,112,.2);">🌱</div><div><div class="review-name">Carla D.</div><div class="review-occasion">💼 Almoço de negócios</div></div></div></div>
     </div>
   </div>
   <div style="height:72px;"></div>
@@ -1674,11 +2124,11 @@
       Selecione a ocasião e receba sua confirmação em minutos. Brasília, Águas Claras e São Paulo.
     </p>
     <div class="cta-btns reveal delay-2">
-      <a href="#ocasioes" class="btn-cta-primary">
+      <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=cta_footer&utm_campaign=reserva" target="_blank" class="btn-cta-primary">
         Reservar mesa
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="#festa" class="btn-cta-ghost">Solicitar proposta comercial</a>
+      <a href="https://wa.me/5561995761646?text=Olá! Vim pelo site e gostaria de solicitar uma proposta comercial" target="_blank" class="btn-cta-ghost">Solicitar proposta comercial</a>
     </div>
   </div>
 </section>
@@ -1687,7 +2137,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="nav-logo">mané<sup style="font-size:18px;color:var(--coral);">,</sup></span>
+      <img src="images/logo-mane.svg" alt="Mané" style="height:36px;margin-bottom:8px;">
       <p>O maior mercado gastronômico do Brasil. O único sustentável. O lugar certo para qualquer ocasião em Brasília, Águas Claras e São Paulo.</p>
     </div>
     <div class="footer-col">
@@ -1707,7 +2157,7 @@
     </div>
     <div class="footer-col">
       <h5>Reservas</h5>
-      <a href="#">Fazer reserva</a>
+      <a href="https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=footer&utm_campaign=reserva" target="_blank">Fazer reserva</a>
       <a href="#">Corporativo</a>
       <a href="#">WhatsApp</a>
       <a href="#">Contato</a>
@@ -1719,6 +2169,67 @@
   </div>
 </footer>
 
+<!-- ══ UNIT PICKER MODAL (comentado — ativar quando quiser escolha de unidade) ══
+<div class="up-overlay" id="unitPicker">
+  <div class="up-modal" style="position:relative;">
+    <button class="up-close" id="upClose">&times;</button>
+    <div class="up-header">
+      <h3>Escolha a unidade</h3>
+      <p>Escolha a unidade que deseja fazer uma reserva</p>
+    </div>
+    <div class="up-units">
+      <a class="up-unit" href="#" target="_blank" data-unit="sp">
+        <div class="up-unit-icon" style="background:#F0C14F;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="up-unit-info">
+          <span class="up-unit-name">Mané Mercado Perdizes</span>
+          <span class="up-unit-loc">São Paulo</span>
+        </div>
+        <span class="up-unit-arrow">&rarr;</span>
+      </a>
+      <a class="up-unit" href="#" target="_blank" data-unit="bsb">
+        <div class="up-unit-icon" style="background:var(--green-soft);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="up-unit-info">
+          <span class="up-unit-name">Mané Mercado Brasília</span>
+          <span class="up-unit-loc">Distrito Federal</span>
+        </div>
+        <span class="up-unit-arrow">&rarr;</span>
+      </a>
+      <a class="up-unit" href="#" target="_blank" data-unit="ac">
+        <div class="up-unit-icon" style="background:var(--cyan);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="up-unit-info">
+          <span class="up-unit-name">Mané Mercado Águas Claras</span>
+          <span class="up-unit-loc">Distrito Federal</span>
+        </div>
+        <span class="up-unit-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>
+══ -->
+
+<!-- ══ RESTAURANT MODAL ══ -->
+<div class="rm-overlay" id="restModal">
+  <div class="rm-modal">
+    <button class="rm-close" id="rmClose">&times;</button>
+    <div class="rm-img-wrap">
+      <img id="rmImg" src="" alt="">
+    </div>
+    <div class="rm-body">
+      <div class="rm-header">
+        <div>
+          <h3 id="rmName"></h3>
+          <p id="rmCuisine"></p>
+        </div>
+        <img class="rm-logo" id="rmLogo" src="" alt="">
+      </div>
+      <a class="rm-cta" id="rmLink" href="https://menu.mane.com.vc/" target="_blank">
+        Ver cardápio completo
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
   // ── NAV scroll ──
   const nav = document.getElementById('mainNav');
@@ -1726,6 +2237,116 @@
 
   // ── Mobile menu ──
   function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // ── Occasions slider arrows ──
+  (function() {
+    const slider = document.getElementById('occSlider');
+    const prev = document.getElementById('occPrev');
+    const next = document.getElementById('occNext');
+    if (!slider) return;
+    if (prev) prev.addEventListener('click', () => slider.scrollBy({ left: -276, behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => slider.scrollBy({ left: 276, behavior: 'smooth' }));
+  })();
+
+  // ── Restaurant slider arrows ──
+  (function() {
+    const slider = document.getElementById('restSlider');
+    const prev = document.getElementById('restPrev');
+    const next = document.getElementById('restNext');
+    if (!slider) return;
+    if (prev) prev.addEventListener('click', () => slider.scrollBy({ left: -256, behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => slider.scrollBy({ left: 256, behavior: 'smooth' }));
+  })();
+
+  // ── Unit Picker Modal ──
+  (function() {
+    const overlay = document.getElementById('unitPicker');
+    const closeBtn = document.getElementById('upClose');
+    if (!overlay) return;
+
+    // WhatsApp links per unit (placeholder — user will set real ones)
+    // WhatsApp links (guardados pra futuro)
+    // sp: 'https://wa.me/5511982515534?text=Olá! Vim pelo site e gostaria de fazer uma reserva no Mané Perdizes - SP'
+    // bsb: 'https://wa.me/5561995761646?text=Olá! Vim pelo site e gostaria de fazer uma reserva no Mané Brasília'
+    // ac: 'https://wa.me/5561991264768?text=Olá! Vim pelo site e gostaria de fazer uma reserva no Mané Águas Claras'
+
+    const reservaUrl = 'https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=cta&utm_campaign=reserva';
+
+    // Intercept all reservation links — go straight to reservas
+    const reservaKeywords = ['reservar', 'reserva', 'garantir mesa', 'ver pacotes', 'quero reservar', 'ver pacote kids', 'reservar mesa'];
+    document.addEventListener('click', function(e) {
+      // Check clicked element and closest interactive parent
+      const clicked = e.target;
+      const el = clicked.closest('.occ-link, .btn-main, .nav-cta, .cel-btn, .ps-btn, .occ-card') || clicked.closest('a, button');
+      if (!el) return;
+      // Check text of clicked element first, then parent
+      const clickedText = (clicked.textContent || '').toLowerCase().trim();
+      const elText = (el.textContent || '').toLowerCase().trim();
+      const isReserva = reservaKeywords.some(k => clickedText.includes(k) || elText.includes(k));
+      // Don't intercept menu links, category cards, restaurant cards, or scroll links
+      if (el.closest('.mobile-menu-links, .cat-slider, .rest-slider, .scroll-indicator')) return;
+      if (el.classList.contains('cat-card') || el.classList.contains('rest-card') || el.classList.contains('mobile-link')) return;
+      // Don't intercept if it already goes to reservas.mane.com.vc
+      if (el.href && el.href.includes('reservas.mane.com.vc')) return;
+      if (isReserva) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(reservaUrl, '_blank');
+      }
+    });
+  })();
+
+  // ── Category slider arrows ──
+  (function() {
+    const slider = document.getElementById('catSlider');
+    const prev = document.getElementById('catPrev');
+    const next = document.getElementById('catNext');
+    if (!slider) return;
+    const step = 174; // card width + gap
+    if (prev) prev.addEventListener('click', () => slider.scrollBy({ left: -step * 2, behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => slider.scrollBy({ left: step * 2, behavior: 'smooth' }));
+  })();
+
+  // ── Review slider ──
+  (function() {
+    const cards = document.querySelector('.sp-cards');
+    const dots = document.querySelectorAll('.sp-dot');
+    const prev = document.getElementById('spPrev');
+    const next = document.getElementById('spNext');
+    if (!cards || !dots.length) return;
+
+    function getIdx() {
+      const cardW = cards.querySelector('.sp-card').offsetWidth + 14;
+      return Math.round(cards.scrollLeft / cardW);
+    }
+    function scrollTo(i) {
+      const cardW = cards.querySelector('.sp-card').offsetWidth + 14;
+      cards.scrollTo({ left: i * cardW, behavior: 'smooth' });
+    }
+    cards.addEventListener('scroll', () => {
+      const idx = getIdx();
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    });
+    if (prev) prev.addEventListener('click', () => { const i = getIdx(); if (i > 0) scrollTo(i - 1); });
+    if (next) next.addEventListener('click', () => { const i = getIdx(); if (i < dots.length - 1) scrollTo(i + 1); });
+  })();
+
+  // ── City rotation ──
+  (function() {
+    const cities = ['Brasília.', 'Águas Claras.', 'São Paulo.'];
+    const el = document.getElementById('heroCity');
+    if (!el) return;
+    let i = 0;
+    setInterval(() => {
+      el.classList.add('fade-out');
+      setTimeout(() => {
+        i = (i + 1) % cities.length;
+        el.textContent = cities[i];
+        el.classList.remove('fade-out');
+      }, 400);
+    }, 3000);
+  })();
 
   // ── Occasion pill selection ──
   const accentLine = document.getElementById('heroAccentLine');
@@ -1751,7 +2372,68 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.10 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Restaurant Modal ──
+  (function() {
+    const overlay = document.getElementById('restModal');
+    const modalImg = document.getElementById('rmImg');
+    const modalLogo = document.getElementById('rmLogo');
+    const modalName = document.getElementById('rmName');
+    const modalCuisine = document.getElementById('rmCuisine');
+    const modalLink = document.getElementById('rmLink');
+    if (!overlay) return;
+
+    // Restaurant cards
+    document.querySelectorAll('.rest-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const img = this.querySelector('img:first-child') || this.querySelector('.occ-img img');
+        const logo = this.querySelector('.rest-card-logo');
+        const name = this.querySelector('.rest-card-info strong, .occ-card-body h4');
+        const cuisine = this.querySelector('.rest-card-info span, .occ-card-body p');
+        const link = this.href || this.getAttribute('href');
+
+        if (modalImg && img) modalImg.src = img.src;
+        if (modalLogo && logo) { modalLogo.src = logo.src; modalLogo.style.display = 'block'; }
+        else if (modalLogo) modalLogo.style.display = 'none';
+        if (modalName) modalName.textContent = name ? name.textContent : '';
+        if (modalCuisine) modalCuisine.textContent = cuisine ? cuisine.textContent : '';
+        if (modalLink) modalLink.href = link || 'https://menu.mane.com.vc/';
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Category cards
+    document.querySelectorAll('.cat-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const img = this.querySelector('img');
+        const label = this.querySelector('.cat-label');
+        const link = this.href;
+
+        if (modalImg && img) modalImg.src = img.src;
+        if (modalLogo) modalLogo.style.display = 'none';
+        if (modalName) modalName.textContent = label ? label.textContent : '';
+        if (modalCuisine) modalCuisine.textContent = 'Confira os pratos dessa categoria';
+        if (modalLink) modalLink.href = link || 'https://menu.mane.com.vc/';
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('rmClose').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+  })();
 </script>
+
+
 </body>
 </html>
 
