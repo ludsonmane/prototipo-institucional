@@ -1,0 +1,908 @@
+{
+  "content": [
+    {
+      "id": "a1b2c3d0",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3d1",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3d2",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n  <link href=\"https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Saira+Semi+Condensed:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">\r\n  <style>\r\n    :root {\r\n      --teal:   #0E7A7F;\r\n      --teal-dark: #0B2B2C;\r\n      --teal-light: rgba(14,122,127,.06);\r\n      --teal-mid: rgba(14,122,127,.1);\r\n      --ink:    #0B2B2C;\r\n      --green:  #0E7A7F;\r\n      --green-2:#0E7A7F;\r\n      --cream:  #F3E9D9;\r\n      --cream-2:#EDE8DE;\r\n      --gold:   #F7C85A;\r\n      --gold-2: #F0C14F;\r\n      --warm:   #EDE8DE;\r\n      --coral:  #E34B4B;\r\n      --coral-dk: #C83A3A;\r\n      --coral-light: rgba(227,75,75,.2);\r\n      --green-soft: #4F8E72;\r\n      --cyan:   #6DC7D1;\r\n      --white:  #FFFFFF;\r\n      --muted:  #6B6B6B;\r\n      --line:   rgba(14,122,127,.12);\r\n      --accent: #F7C85A;\r\n      --accent-rgb: 247,200,90;\r\n    }\r\n    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }\r\n    html { scroll-behavior: smooth; }\r\n    body {\r\n      font-family: 'Saira Semi Condensed', sans-serif;\r\n      background: var(--white); color: var(--ink);\r\n      overflow-x: hidden; position: relative;\r\n    }\r\n\r\n    /* ── GEOMETRIC SHAPES ── */\r\n    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }\r\n    .geo { position: absolute; }\r\n    .geo-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: .15; }\r\n    .geo-1 { width: 260px; height: 260px; background: var(--coral); top: -80px; left: -80px; border-radius: 50%; }\r\n    .geo-2 { width: 180px; height: 300px; background: var(--teal); top: 0; right: -40px; border-radius: 0 0 0 40px; }\r\n    .geo-3 { width: 200px; height: 200px; background: var(--gold); top: 60px; right: 140px; border-radius: 50%; opacity: .7; }\r\n    .geo-4 { width: 160px; height: 160px; background: var(--cyan); top: 200px; right: -20px; border-radius: 50%; }\r\n    .geo-5 { width: 140px; height: 140px; background: var(--green-soft); top: 45%; left: -60px; border-radius: 50%; opacity: .5; }\r\n    .geo-6 { width: 100px; height: 100px; background: var(--gold); bottom: 30%; right: -30px; border-radius: 50%; opacity: .4; }\r\n    .geo-7 { width: 220px; height: 120px; background: var(--coral); bottom: 10%; left: -40px; border-radius: 0 24px 24px 0; opacity: .6; }\r\n\r\n    /* ── NAV ── */\r\n    nav {\r\n      position: fixed; top: 0; left: 0; right: 0; z-index: 100;\r\n      display: flex; align-items: center; justify-content: space-between;\r\n      padding: 14px 48px;\r\n      background: rgba(247,200,90,.95); backdrop-filter: blur(12px);\r\n      transition: padding .4s;\r\n    }\r\n    nav.scrolled {\r\n      padding: 12px 48px; border-bottom: 1px solid rgba(0,0,0,.06);\r\n    }\r\n    .nav-logo {\r\n      font-family: 'Merriweather', serif; font-size: 28px; font-weight: 900;\r\n      letter-spacing: -.06em; color: var(--ink); line-height: 1;\r\n      text-decoration: none; display: flex; align-items: baseline; gap: 8px;\r\n    }\r\n    .nav-logo sup { font-size: 22px; color: var(--gold); vertical-align: super; letter-spacing: 0; }\r\n    .nav-links { display: flex; gap: 36px; align-items: center; }\r\n    .nav-links a {\r\n      font-size: 13px; font-weight: 600; color: rgba(11,43,44,.65);\r\n      text-decoration: none; letter-spacing: .02em; transition: color .2s;\r\n    }\r\n    .nav-links a:hover { color: var(--ink); }\r\n    .nav-cta {\r\n      background: rgba(255,255,255,.45); color: var(--ink);\r\n      border: 1px solid rgba(0,0,0,.18);\r\n      border-radius: 999px; padding: 10px 20px;\r\n      font-size: 13px; font-weight: 750; cursor: pointer;\r\n      transition: transform .15s, background .15s;\r\n    }\r\n    .nav-cta:hover { transform: translateY(-1px); background: rgba(255,255,255,.7); }\r\n    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }\r\n    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 1px; }\r\n\r\n    /* ── MOBILE MENU ── */\r\n    .mobile-menu {\r\n      position: fixed; inset: 0; z-index: 98;\r\n      background: rgba(247,200,90,.97); backdrop-filter: blur(20px);\r\n      display: flex; flex-direction: column; align-items: center; justify-content: center;\r\n      gap: 32px; opacity: 0; pointer-events: none; transition: opacity .3s;\r\n    }\r\n    .mobile-menu.open { opacity: 1; pointer-events: all; }\r\n    .mobile-menu a {\r\n      font-family: 'Merriweather', serif; font-size: 36px; font-weight: 700;\r\n      letter-spacing: -.04em; color: var(--ink); text-decoration: none; transition: color .2s;\r\n    }\r\n    .mobile-menu a:hover { color: var(--teal); }\r\n\r\n    /* ── HERO ── */\r\n    .hero {\r\n      min-height: 100svh; display: flex; flex-direction: column;\r\n      justify-content: flex-end; padding: 0 48px 56px;\r\n      position: relative; overflow: hidden;\r\n    }\r\n    .hero-layout { display: contents; }\r\n    .hero-right { display: none; }\r\n    .hero-bg {\r\n      position: absolute; inset: 0; z-index: 0;\r\n      background: url('https://mane.com.vc/wp-content/uploads/2025/04/Imagem-do-WhatsApp.jpg') center center/cover no-repeat;\r\n    }\r\n    .hero-bg::after {\r\n      content: ''; position: absolute; inset: 0;\r\n      background: linear-gradient(180deg, rgba(14,122,127,.55) 0%, rgba(11,43,44,.7) 50%, rgba(11,43,44,.92) 100%);\r\n    }\r\n    .hero-deco {\r\n      position: absolute; top: 16%; right: -2%;\r\n      font-family: 'Merriweather', serif; font-size: clamp(120px, 18vw, 260px);\r\n      font-weight: 900; font-style: italic;\r\n      color: transparent; -webkit-text-stroke: 1px rgba(243,233,217,.08);\r\n      line-height: .85; pointer-events: none; user-select: none; z-index: 1; letter-spacing: -.06em;\r\n    }\r\n    .hero-content { position: relative; z-index: 2; max-width: 1240px; }\r\n\r\n    /* Trust badges row */\r\n    .hero-trust {\r\n      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;\r\n      opacity: 0; animation: fadeUp .6s .05s both;\r\n    }\r\n    .trust-badge {\r\n      display: inline-flex; align-items: center; gap: 7px;\r\n      background: rgba(243,233,217,.07); border: 1px solid rgba(243,233,217,.14);\r\n      border-radius: 999px; padding: 7px 14px;\r\n      font-size: 11px; font-weight: 700; letter-spacing: .05em;\r\n      text-transform: uppercase; color: rgba(243,233,217,.85);\r\n      backdrop-filter: blur(8px);\r\n    }\r\n    .trust-badge.gold { background: rgba(247,200,90,.15); border-color: rgba(247,200,90,.3); color: var(--gold); }\r\n    .trust-badge.green { background: rgba(79,142,114,.14); border-color: rgba(79,142,114,.28); color: #7de8d0; }\r\n\r\n    .hero-eyebrow {\r\n      display: inline-flex; align-items: center; gap: 10px;\r\n      margin-bottom: 24px;\r\n      opacity: 0; animation: fadeUp .7s .15s both;\r\n    }\r\n    .eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 2.4s infinite; }\r\n    @keyframes pulse {\r\n      0%, 100% { box-shadow: 0 0 0 0 rgba(247,200,90,.5); }\r\n      50% { box-shadow: 0 0 0 8px rgba(247,200,90,0); }\r\n    }\r\n    .eyebrow-text { font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--gold); }\r\n\r\n    .hero-headline {\r\n      font-family: 'Merriweather', serif;\r\n      font-size: clamp(52px, 8.5vw, 128px);\r\n      font-weight: 900; line-height: .9; letter-spacing: -.04em; color: var(--cream);\r\n      margin-bottom: 8px;\r\n      opacity: 0; animation: fadeUp .8s .25s both;\r\n    }\r\n    .hero-headline .highlight { position: relative; display: inline; }\r\n    .hero-headline .highlight::after { display: none; }\r\n    .hero-headline .line-2 { display: block; font-style: italic; color: var(--cream); transition: color .5s; }\r\n\r\n    .hero-sub {\r\n      font-size: clamp(16px, 2vw, 21px); font-weight: 300; line-height: 1.55;\r\n      color: rgba(243,233,217,.78); max-width: 52ch;\r\n      margin-bottom: 36px; margin-top: 18px;\r\n      opacity: 0; animation: fadeUp .8s .38s both;\r\n      text-shadow: 0 2px 12px rgba(0,0,0,.28);\r\n    }\r\n    .hero-sub strong { color: #fff; font-weight: 700; text-shadow: 0 2px 14px rgba(0,0,0,.32); }\r\n\r\n    .occasion-strip {\r\n      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px;\r\n      opacity: 0; animation: fadeUp .8s .48s both;\r\n    }\r\n    .oc-pill {\r\n      display: flex; align-items: center; gap: 8px;\r\n      background: rgba(243,233,217,.07); border: 1px solid rgba(243,233,217,.13);\r\n      border-radius: 999px; padding: 10px 18px;\r\n      font-size: 13px; font-weight: 500; color: rgba(243,233,217,.8);\r\n      cursor: pointer; transition: all .25s; backdrop-filter: blur(8px); white-space: nowrap;\r\n    }\r\n    .oc-pill:hover { background: rgba(247,200,90,.15); border-color: rgba(247,200,90,.4); color: var(--cream); transform: translateY(-2px); }\r\n    .oc-pill.active { background: rgba(247,200,90,.22); border-color: rgba(247,200,90,.6); color: #fff; box-shadow: 0 4px 20px rgba(247,200,90,.3); }\r\n    .oc-pill-emoji { font-size: 16px; }\r\n\r\n    .hero-cta-row {\r\n      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;\r\n      opacity: 0; animation: fadeUp .8s .58s both;\r\n    }\r\n    .btn-main {\r\n      display: inline-flex; align-items: center; gap: 10px;\r\n      background: var(--gold); color: var(--ink); border-radius: 999px;\r\n      padding: 16px 32px; font-size: 15px; font-weight: 700; letter-spacing: .01em;\r\n      cursor: pointer; border: none; transition: transform .18s, box-shadow .18s; text-decoration: none;\r\n    }\r\n    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(247,200,90,.4); }\r\n    .btn-main svg { transition: transform .2s; }\r\n    .btn-main:hover svg { transform: translateX(3px); }\r\n    .btn-ghost-link {\r\n      font-size: 14px; font-weight: 500; color: rgba(243,233,217,.75);\r\n      text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color .2s;\r\n    }\r\n    .btn-ghost-link:hover { color: var(--cream); }\r\n\r\n    .hero-proof {\r\n      position: absolute; bottom: 56px; right: 48px; z-index: 2;\r\n      display: flex; gap: 32px; opacity: 0; animation: fadeUp .8s .7s both;\r\n    }\r\n    .proof-item { text-align: right; }\r\n    .proof-num { font-family: 'Merriweather', serif; font-size: 32px; font-weight: 700; letter-spacing: -.04em; color: var(--cream); line-height: 1; }\r\n    .proof-label { font-size: 11px; color: rgba(243,233,217,.55); letter-spacing: .05em; margin-top: 2px; }\r\n\r\n    .scroll-indicator {\r\n      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);\r\n      display: flex; flex-direction: column; align-items: center; gap: 6px;\r\n      opacity: 0; animation: fadeUp .6s 1.1s both; z-index: 2;\r\n    }\r\n    .scroll-indicator span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(243,233,217,.35); }\r\n    .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, rgba(243,233,217,.35), transparent); animation: scrollLine 1.6s .5s infinite; }\r\n    @keyframes scrollLine {\r\n      0% { transform: scaleY(0); transform-origin: top; }\r\n      50% { transform: scaleY(1); transform-origin: top; }\r\n      51% { transform: scaleY(1); transform-origin: bottom; }\r\n      100% { transform: scaleY(0); transform-origin: bottom; }\r\n    }\r\n\r\n    /* ══ MARQUEE TICKER ══ */\r\n    .ticker {\r\n      background: var(--gold); overflow: hidden;\r\n      padding: 14px 0; position: relative; z-index: 10;\r\n    }\r\n    .ticker-track {\r\n      display: flex; gap: 0;\r\n      animation: tickerScroll 28s linear infinite;\r\n      width: max-content;\r\n    }\r\n    .ticker-track:hover { animation-play-state: paused; }\r\n    @keyframes tickerScroll {\r\n      0% { transform: translateX(0); }\r\n      100% { transform: translateX(-50%); }\r\n    }\r\n    @keyframes restScroll {\r\n      0% { transform: translateX(0); }\r\n      100% { transform: translateX(-50%); }\r\n    }\r\n    .ticker-item {\r\n      display: inline-flex; align-items: center; gap: 10px;\r\n      padding: 0 32px; white-space: nowrap;\r\n      font-size: 12px; font-weight: 700; letter-spacing: .1em;\r\n      text-transform: uppercase; color: var(--ink);\r\n    }\r\n    .ticker-sep { color: rgba(11,43,44,.3); font-size: 16px; }\r\n\r\n    /* ══ BIG CLAIM ══ */\r\n    .claim-section {\r\n      background: var(--white);\r\n      padding: 96px 48px 80px;\r\n      position: relative; overflow: hidden;\r\n    }\r\n    .claim-section::before {\r\n      content: '';\r\n      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);\r\n      width: 900px; height: 500px; border-radius: 50%;\r\n      background: radial-gradient(circle, rgba(14,122,127,.06), transparent 65%);\r\n      pointer-events: none;\r\n    }\r\n    .claim-inner { max-width: 1240px; margin: 0 auto; }\r\n    .claim-grid {\r\n      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;\r\n    }\r\n    .claim-text {}\r\n    .claim-eyebrow {\r\n      font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;\r\n      color: var(--teal); margin-bottom: 18px;\r\n      display: flex; align-items: center; gap: 10px;\r\n    }\r\n    .claim-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--teal); opacity: .6; }\r\n    .claim-title {\r\n      font-family: 'Merriweather', serif;\r\n      font-size: clamp(38px, 5.5vw, 72px); font-weight: 900;\r\n      line-height: .9; letter-spacing: -.05em; color: var(--ink);\r\n      margin-bottom: 24px;\r\n    }\r\n    .claim-title em { font-style: italic; color: var(--teal); }\r\n    .claim-body {\r\n      font-size: 17px; line-height: 1.7; color: rgba(11,43,44,.6);\r\n      font-weight: 300; max-width: 50ch; margin-bottom: 32px;\r\n    }\r\n    .claim-badges { display: flex; gap: 10px; flex-wrap: wrap; }\r\n    .cb {\r\n      display: inline-flex; align-items: center; gap: 7px;\r\n      border-radius: 12px; padding: 10px 16px;\r\n      font-size: 12px; font-weight: 700; letter-spacing: .04em;\r\n    }\r\n    .cb.gold { background: rgba(247,200,90,.15); border: 1px solid rgba(247,200,90,.3); color: var(--gold-2); }\r\n    .cb.gold { background: rgba(247,200,90,.15); border: 1px solid rgba(247,200,90,.3); color: var(--gold-2); }\r\n    .cb.green { background: rgba(14,122,127,.08); border: 1px solid rgba(14,122,127,.18); color: var(--green); }\r\n\r\n    /* Stats grid */\r\n    .stats-grid {\r\n      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;\r\n    }\r\n    .stat-card {\r\n      background: #fff; border: 1px solid rgba(14,122,127,.10);\r\n      border-radius: 20px; padding: 24px 22px;\r\n      transition: background .25s, border-color .25s, transform .25s;\r\n    }\r\n    .stat-card:hover { background: #fff; border-color: rgba(227,75,75,.3); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(14,122,127,.08); }\r\n    .stat-num {\r\n      font-family: 'Merriweather', serif; font-size: 52px; font-weight: 900;\r\n      letter-spacing: -.06em; line-height: 1; color: var(--green);\r\n      margin-bottom: 6px;\r\n    }\r\n    .stat-num span { color: var(--gold); font-size: 38px; }\r\n    .stat-label { font-size: 13px; color: rgba(11,43,44,.55); line-height: 1.5; font-weight: 300; }\r\n    .stat-card.featured {\r\n      background: var(--green); border-color: transparent;\r\n      grid-column: span 2;\r\n    }\r\n    .stat-card.featured .stat-num { font-size: 38px; color: var(--cream); }\r\n    .stat-card.featured .stat-label { color: rgba(243,233,217,.8); }\r\n\r\n    /* ══ FOOD VISUAL STRIP ══ */\r\n    .food-strip {\r\n      background: var(--warm); padding: 72px 48px;\r\n      overflow: hidden;\r\n    }\r\n    .food-strip-inner { max-width: 1240px; margin: 0 auto; }\r\n    .food-strip-header {\r\n      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 48px;\r\n    }\r\n    .food-strip-title {\r\n      font-family: 'Merriweather', serif; font-size: clamp(32px, 4vw, 54px);\r\n      font-weight: 900; line-height: .92; letter-spacing: -.05em; color: var(--ink);\r\n    }\r\n    .food-strip-title em { font-style: italic; color: var(--teal); }\r\n    .food-strip-body { font-size: 16px; line-height: 1.7; color: rgba(14,31,24,.6); font-weight: 300; }\r\n    .food-strip-body strong { color: var(--ink); }\r\n\r\n    .food-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }\r\n    .food-card {\r\n      border-radius: 20px; overflow: hidden;\r\n      border: 1px solid rgba(14,31,24,.08);\r\n      background: #fff;\r\n      transition: transform .25s, box-shadow .25s;\r\n      cursor: default;\r\n    }\r\n    .food-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(14,31,24,.12); }\r\n    .food-img {\r\n      height: 220px; position: relative; overflow: hidden;\r\n      display: flex; align-items: center; justify-content: center;\r\n    }\r\n    .food-card-body { padding: 16px; }\r\n    .food-card-title { font-family: 'Merriweather', serif; font-size: 15px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 4px; }\r\n    .food-card-chef { font-size: 11px; color: var(--green); font-weight: 600; letter-spacing: .04em; }\r\n\r\n    /* ══ PROBLEM / WHY ══ */\r\n    .problem-section { background: var(--warm); padding: 96px 48px; }\r\n    .problem-inner { max-width: 1240px; margin: 0 auto; }\r\n    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }\r\n    .problem-quote {\r\n      font-family: 'Merriweather', serif;\r\n      font-size: clamp(26px, 3.5vw, 44px); font-weight: 400; font-style: italic;\r\n      line-height: 1.25; letter-spacing: -.02em; color: var(--ink);\r\n    }\r\n    .problem-quote strong { font-weight: 700; font-style: normal; display: block; font-style: italic; color: var(--teal); }\r\n    .problem-points { display: grid; gap: 22px; }\r\n    .problem-point { display: flex; gap: 16px; align-items: flex-start; }\r\n    .pp-icon { width: 44px; height: 44px; border-radius: 14px; flex-shrink: 0; background: rgba(14,122,127,.08); display: grid; place-items: center; font-size: 20px; }\r\n    .pp-text strong { display: block; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }\r\n    .pp-text p { font-size: 14px; color: rgba(11,43,44,.6); line-height: 1.55; font-weight: 300; }\r\n\r\n    /* ══ OCCASIONS ══ */\r\n    .occasions-section { background: var(--green); padding: 96px 48px; }\r\n    .occasions-inner { max-width: 1240px; margin: 0 auto; }\r\n    .occasions-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }\r\n    .s-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; opacity: .85; }\r\n    .s-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--coral); opacity: .6; }\r\n    .s-title { font-family: 'Merriweather', serif; font-size: clamp(32px, 4.5vw, 62px); font-weight: 700; line-height: .95; letter-spacing: -.04em; color: var(--cream); margin-bottom: 20px; }\r\n    .s-title em { font-style: italic; color: var(--cream); }\r\n    .s-body { font-size: 17px; line-height: 1.7; color: rgba(243,233,217,.78); font-weight: 300; max-width: 58ch; }\r\n\r\n    .occasions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }\r\n    .oc-card {\r\n      background: rgba(243,233,217,.04); border: 1px solid rgba(243,233,217,.08);\r\n      border-radius: 22px; padding: 26px 22px; cursor: pointer;\r\n      transition: all .3s; position: relative; overflow: hidden;\r\n    }\r\n    .oc-card::before { content: ''; position: absolute; inset: 0; border-radius: 22px; background: linear-gradient(135deg, rgba(227,75,75,.15), transparent); opacity: 0; transition: opacity .3s; }\r\n    .oc-card:hover::before { opacity: 1; }\r\n    .oc-card:hover { border-color: rgba(227,75,75,.35); background: rgba(227,75,75,.08); transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,.25); }\r\n    .oc-card-emoji { font-size: 30px; margin-bottom: 14px; display: block; }\r\n    .oc-card h4 { font-family: 'Merriweather', serif; font-size: 16px; font-weight: 600; letter-spacing: -.02em; color: var(--cream); margin-bottom: 8px; line-height: 1.25; }\r\n    .oc-card p { font-size: 13px; color: rgba(243,233,217,.78); line-height: 1.6; font-weight: 300; }\r\n    .oc-card-arrow { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--gold); margin-top: 14px; opacity: 0; transform: translateX(-6px); transition: opacity .25s, transform .25s; }\r\n    .oc-card:hover .oc-card-arrow { opacity: 1; transform: translateX(0); }\r\n    .oc-card-bg {\r\n      position: absolute; inset: 0; border-radius: 22px;\r\n      background-size: cover; background-position: center;\r\n      opacity: .35; pointer-events: none; z-index: 0;\r\n    }\r\n    .oc-card[data-bg] > *:not(.oc-card-bg) { position: relative; z-index: 1; }\r\n\r\n    /* ══ CELEBRATE SPLIT ══ */\r\n    .celebrate-section { background: var(--white); padding: 72px 48px; }\r\n    .celebrate-inner { max-width: 1240px; margin: 0 auto; }\r\n\r\n    .celebrate-block {\r\n      display: grid; grid-template-columns: 1fr 1fr; gap: 0;\r\n      border-radius: 28px; overflow: hidden; margin-bottom: 20px;\r\n      min-height: 400px;\r\n      box-shadow: 0 8px 32px rgba(14,122,127,.1);\r\n    }\r\n\r\n    .cel-visual {\r\n      position: relative; overflow: hidden;\r\n      display: flex; align-items: flex-end;\r\n      padding: 32px 36px;\r\n    }\r\n    .cel-visual-corp {\r\n      background: var(--green);\r\n    }\r\n    .cel-visual-corp::before {\r\n      content: ''; position: absolute; inset: 0;\r\n      background: url('https://mane.com.vc/wp-content/uploads/2025/04/Reserva-scaled.jpg') center/cover no-repeat;\r\n      opacity: .4; pointer-events: none;\r\n    }\r\n    .cel-visual-bday {\r\n      background: var(--green);\r\n    }\r\n    .cel-visual-bday::before {\r\n      content: ''; position: absolute; inset: 0;\r\n      background: url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-7-2.png') center/cover no-repeat;\r\n      opacity: .45; pointer-events: none;\r\n    }\r\n    .cel-visual-kids {\r\n      background:\r\n        radial-gradient(ellipse at 60% 40%, rgba(107,194,107,.25), transparent 55%),\r\n        linear-gradient(145deg, #0E7A7F, #0B2B2C);\r\n    }\r\n\r\n    /* big decorative emoji/illustration in corner */\r\n    .cel-bg-icon {\r\n      position: absolute; bottom: -10px; right: -10px;\r\n      font-size: 120px; opacity: .10; line-height: 1;\r\n      transform: rotate(-12deg);\r\n      pointer-events: none; user-select: none;\r\n    }\r\n\r\n    .cel-tag {\r\n      display: inline-flex; align-items: center; gap: 7px;\r\n      border-radius: 999px; padding: 7px 14px;\r\n      font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;\r\n      margin-bottom: 14px; align-self: flex-start;\r\n    }\r\n    .cel-tag.corp { background: rgba(58,100,180,.2); border: 1px solid rgba(58,100,180,.35); color: #90b4f8; }\r\n    .cel-tag.bday { background: rgba(227,75,75,.18); border: 1px solid rgba(227,75,75,.3); color: #f0a8a2; }\r\n    .cel-tag.kids { background: rgba(107,194,107,.15); border: 1px solid rgba(107,194,107,.28); color: #7de8a0; }\r\n\r\n    .cel-visual-content { position: relative; z-index: 1; }\r\n    .cel-visual h3 {\r\n      font-family: 'Merriweather', serif;\r\n      font-size: clamp(24px, 3vw, 40px); font-weight: 900;\r\n      letter-spacing: -.04em; line-height: .95; color: var(--cream);\r\n      margin-bottom: 10px;\r\n    }\r\n    .cel-visual h3 em { font-style: italic; color: var(--cream); }\r\n    .cel-visual p { font-size: 14px; color: rgba(243,233,217,.78); font-weight: 300; line-height: 1.6; max-width: 30ch; }\r\n\r\n    .cel-content {\r\n      background: #fff; border-left: 1px solid rgba(14,122,127,.08);\r\n      padding: 40px 40px;\r\n      display: flex; flex-direction: column; justify-content: center;\r\n    }\r\n    .cel-content h4 {\r\n      font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700;\r\n      letter-spacing: -.03em; color: var(--ink); margin-bottom: 18px; line-height: 1.2;\r\n    }\r\n    .cel-content h4 em { font-style: italic; color: var(--green); }\r\n    .cel-list { list-style: none; display: grid; gap: 12px; margin-bottom: 28px; }\r\n    .cel-list li {\r\n      display: flex; align-items: flex-start; gap: 12px;\r\n      font-size: 14px; color: rgba(11,43,44,.7); line-height: 1.5;\r\n    }\r\n    .cel-list li::before { content: '→'; color: var(--gold); font-size: 12px; flex-shrink: 0; margin-top: 2px; }\r\n    .cel-btn {\r\n      display: inline-flex; align-items: center; gap: 8px;\r\n      background: var(--coral); color: #fff;\r\n      border-radius: 999px; padding: 13px 26px;\r\n      font-size: 14px; font-weight: 700; cursor: pointer;\r\n      border: none; transition: transform .15s, box-shadow .15s; width: fit-content; text-decoration: none;\r\n    }\r\n    .cel-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(227,75,75,.35); }\r\n    .cel-btn.ghost {\r\n      background: transparent; color: rgba(11,43,44,.6);\r\n      border: 1.5px solid rgba(11,43,44,.2);\r\n    }\r\n    .cel-btn.ghost:hover { border-color: rgba(11,43,44,.5); color: var(--ink); box-shadow: none; }\r\n\r\n    /* Kids block — full width */\r\n    .kids-block {\r\n      border-radius: 28px; overflow: hidden;\r\n      display: grid; grid-template-columns: 1fr 2fr;\r\n      min-height: 280px; margin-bottom: 48px;\r\n      box-shadow: 0 8px 32px rgba(14,122,127,.1);\r\n    }\r\n    .kids-visual {\r\n      background:\r\n        radial-gradient(ellipse at 50% 50%, rgba(107,194,107,.3), transparent 65%),\r\n        linear-gradient(135deg, #0E7A7F, #0B2B2C);\r\n      position: relative; overflow: hidden;\r\n      display: flex; align-items: center; justify-content: center;\r\n    }\r\n    .kids-visual-inner { text-align: center; position: relative; z-index: 1; }\r\n    .kids-emoji-big { font-size: 72px; display: block; margin-bottom: 12px; animation: float 3s ease-in-out infinite; }\r\n    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }\r\n    .kids-visual-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .05; }\r\n    .kids-visual-bg span { font-size: 200px; }\r\n\r\n    .kids-content {\r\n      background: #fff; border: 1px solid rgba(107,194,107,.18);\r\n      padding: 40px 48px; display: flex; align-items: center;\r\n    }\r\n    .kids-content-inner {}\r\n    .kids-tag { display: inline-flex; align-items: center; gap: 7px; background: rgba(42,153,80,.08); border: 1px solid rgba(42,153,80,.2); border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #2a9950; margin-bottom: 16px; }\r\n    .kids-title { font-family: 'Merriweather', serif; font-size: clamp(24px, 3vw, 42px); font-weight: 900; letter-spacing: -.04em; line-height: .95; color: var(--ink); margin-bottom: 14px; }\r\n    .kids-title em { font-style: italic; color: #2a9950; }\r\n    .kids-body { font-size: 15px; color: rgba(11,43,44,.6); font-weight: 300; line-height: 1.65; max-width: 56ch; margin-bottom: 24px; }\r\n    .kids-features { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }\r\n    .kf-chip { background: rgba(14,122,127,.05); border: 1px solid rgba(14,122,127,.12); border-radius: 999px; padding: 7px 15px; font-size: 12px; font-weight: 600; color: rgba(11,43,44,.7); }\r\n\r\n    .family-section { background: var(--warm); padding: 96px 48px; }\r\n    .family-inner { max-width: 1200px; margin: 0 auto; }\r\n    .family-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }\r\n    .family-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }\r\n    .family-title { font-family:'Merriweather',serif; font-size: clamp(26px,3.5vw,40px); font-weight:700; letter-spacing:-.04em; color:var(--ink); line-height:1.1; margin-bottom:20px; }\r\n    .family-title em { color: var(--teal); font-style: italic; }\r\n    .family-body { font-size:16px; color:rgba(11,43,44,.6); font-weight:300; line-height:1.7; margin-bottom:28px; max-width: 35ch; }\r\n    .family-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }\r\n    .family-chip { display:inline-flex; align-items:center; gap:8px; background:var(--green); color:var(--cream); font-size:13px; font-weight:500; padding:8px 16px; border-radius:20px; }\r\n    .family-card { background:var(--green); border-radius:20px; padding:48px; text-align:center; min-height:360px; display:flex; flex-direction:column; align-items:center; justify-content:center; }\r\n    .family-card-emoji { font-size:72px; margin-bottom:20px; line-height:1; }\r\n    .family-card-title { font-family:'Merriweather',serif; font-size:22px; font-weight:700; color:var(--cream); margin-bottom:10px; line-height:1.25; max-width: 12ch; }\r\n    .family-card-body { font-size:14px; color:rgba(255,255,255,.6); line-height:1.6; max-width: 22ch; }\r\n\r\n    /* ══ HOW IT WORKS ══ */\r\n    .how-section { background: var(--green); padding: 96px 48px; }\r\n    .how-inner { max-width: 1240px; margin: 0 auto; }\r\n    .how-header { margin-bottom: 64px; }\r\n    .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }\r\n    .how-steps::before { content: ''; position: absolute; top: 32px; left: calc(33.33%); right: calc(33.33%); height: 1px; background: linear-gradient(90deg, transparent, rgba(227,75,75,.35), transparent); }\r\n    .how-step { padding: 0 40px; border-right: 1px solid rgba(243,233,217,.07); }\r\n    .how-step:first-child { padding-left: 0; }\r\n    .how-step:last-child { border-right: none; padding-right: 0; }\r\n    .how-step-num { width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(247,200,90,.5); display: grid; place-items: center; font-family: 'Merriweather', serif; font-size: 26px; font-weight: 700; color: var(--gold); margin-bottom: 28px; position: relative; background: var(--green); }\r\n    .how-step-num::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(227,75,75,.2); }\r\n    .how-step h4 { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 600; letter-spacing: -.03em; color: var(--cream); margin-bottom: 14px; }\r\n    .how-step h4 em { font-style: italic; color: var(--cream); }\r\n    .how-step p { font-size: 15px; color: rgba(243,233,217,.6); line-height: 1.65; font-weight: 300; }\r\n    .how-step-tag { display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; background: rgba(227,75,75,.15); border: 1px solid rgba(227,75,75,.25); border-radius: 999px; padding: 6px 14px; font-size: 11px; font-weight: 600; color: #f0a8a2; letter-spacing: .05em; }\r\n\r\n    /* ══ EXPERIENCE ══ */\r\n    .experience-section { background: var(--warm); padding: 96px 48px; color: var(--ink); }\r\n    .exp-inner { max-width: 1240px; margin: 0 auto; }\r\n    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }\r\n    .exp-text .s-eyebrow { color: var(--gold); }\r\n    .exp-text .s-eyebrow::before { background: var(--coral); }\r\n    .exp-text .s-title { color: var(--ink); }\r\n    .exp-text .s-title em { color: var(--cream); }\r\n    .exp-text .s-body { color: rgba(14,31,24,.65); }\r\n    .exp-features { margin-top: 36px; display: grid; gap: 14px; }\r\n    .exp-feat { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: rgba(31,77,67,.05); border: 1px solid rgba(31,77,67,.10); border-radius: 14px; transition: background .2s, border-color .2s; }\r\n    .exp-feat:hover { background: rgba(31,77,67,.09); border-color: rgba(31,77,67,.20); }\r\n    .ef-icon { width: 40px; height: 40px; border-radius: 12px; background: var(--green); color: var(--cream); display: grid; place-items: center; font-size: 18px; flex-shrink: 0; }\r\n    .ef-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }\r\n    .ef-text span { font-size: 13px; color: rgba(14,31,24,.6); line-height: 1.5; }\r\n\r\n    /* Phone mockup */\r\n    .exp-visual { position: relative; }\r\n    .phone-frame { width: 280px; margin: 0 auto; background: var(--green); border-radius: 36px; padding: 14px; box-shadow: 0 40px 80px rgba(14,122,127,.22), 0 8px 24px rgba(14,122,127,.14); border: 1px solid rgba(243,233,217,.08); position: relative; }\r\n    .phone-notch { width: 80px; height: 22px; background: var(--green); border-radius: 0 0 14px 14px; margin: 0 auto 10px; }\r\n    .phone-screen { background: var(--green); border-radius: 24px; overflow: hidden; }\r\n    .ps-header { background: linear-gradient(160deg, #0E7A7F, #0B2B2C); padding: 18px 18px 14px; position: relative; overflow: hidden; }\r\n    .ps-header::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(227,75,75,.25), transparent 65%); }\r\n    .ps-occasion-pill { display: inline-flex; align-items: center; gap: 5px; background: rgba(247,200,90,.2); color: var(--gold); border-radius: 999px; padding: 4px 10px; font-size: 9px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 10px; }\r\n    .ps-header h3 { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; letter-spacing: -.03em; color: #fff; line-height: 1.1; margin-bottom: 10px; }\r\n    .ps-header h3 em { font-style: italic; color: var(--cream); }\r\n    .ps-btn { background: var(--coral); color: #fff; border-radius: 999px; padding: 9px 18px; font-size: 11px; font-weight: 700; display: inline-block; }\r\n    .ps-chat { padding: 14px; background: #e5ddd5; }\r\n    .ps-msg { background: #fff; border-radius: 14px 14px 14px 3px; padding: 10px 12px; margin-bottom: 8px; font-size: 11px; color: #333; line-height: 1.5; max-width: 88%; box-shadow: 0 1px 3px rgba(0,0,0,.08); }\r\n    .ps-msg strong { color: var(--ink); font-weight: 600; }\r\n    .ps-replies { display: flex; gap: 6px; flex-wrap: wrap; }\r\n    .ps-reply { background: rgba(255,255,255,.9); border: 1.5px solid #3d8f7a; color: #1f4d43; border-radius: 999px; padding: 6px 12px; font-size: 10px; font-weight: 600; }\r\n    .phone-float-1 { position: absolute; top: -20px; right: -40px; background: var(--green); border: 1px solid rgba(227,75,75,.3); border-radius: 16px; padding: 14px 16px; min-width: 140px; box-shadow: 0 12px 36px rgba(0,0,0,.25); }\r\n    .pf-label { font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: rgba(243,233,217,.45); margin-bottom: 4px; }\r\n    .pf-val { font-family: 'Merriweather', serif; font-size: 22px; font-weight: 700; color: var(--cream); letter-spacing: -.03em; }\r\n    .pf-sub { font-size: 10px; color: rgba(243,233,217,.78); margin-top: 2px; }\r\n    .phone-float-2 { position: absolute; bottom: 20px; left: -44px; background: var(--green); border-radius: 14px; padding: 12px 16px; box-shadow: 0 12px 32px rgba(0,0,0,.2); }\r\n    .pf2-icon { font-size: 20px; margin-bottom: 4px; }\r\n    .pf2-text { font-size: 10px; font-weight: 600; color: #fff; }\r\n    .pf2-sub { font-size: 9px; color: rgba(255,255,255,.65); }\r\n\r\n    /* ══ UNITS ══ */\r\n    .units-section { background: var(--green); padding: 96px 48px; }\r\n    .units-inner { max-width: 1240px; margin: 0 auto; }\r\n    .units-header { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 52px; }\r\n    .units-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }\r\n    .unit-card { border-radius: 22px; overflow: hidden; border: 1px solid rgba(243,233,217,.08); background: rgba(243,233,217,.03); transition: transform .3s, box-shadow .3s, border-color .3s; cursor: pointer; }\r\n    .unit-card:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(0,0,0,.35); border-color: rgba(227,75,75,.3); }\r\n    .unit-card-img { height: 200px; background: var(--green); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }\r\n    .unit-card-body { padding: 20px; }\r\n    .unit-card-name { font-family: 'Merriweather', serif; font-size: 18px; font-weight: 700; letter-spacing: -.03em; color: var(--cream); margin-bottom: 6px; }\r\n    .unit-card-address { font-size: 12px; color: rgba(243,233,217,.5); margin-bottom: 14px; }\r\n    .unit-tags { display: flex; gap: 6px; flex-wrap: wrap; }\r\n    .utag { background: rgba(243,233,217,.06); border: 1px solid rgba(243,233,217,.10); border-radius: 999px; padding: 4px 10px; font-size: 10px; font-weight: 600; color: rgba(243,233,217,.6); letter-spacing: .04em; }\r\n\r\n    /* ══ BIG PROOF ══ */\r\n    .proof-section { background: var(--teal-dark); padding: 72px 48px; }\r\n    .proof-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 0; align-items: center; }\r\n    .proof-divider { width: 1px; height: 60px; background: rgba(243,233,217,.18); }\r\n    .proof-stat { text-align: center; padding: 0 24px; }\r\n    .ps-num { font-family: 'Merriweather', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 700; letter-spacing: -.05em; color: var(--cream); line-height: 1; margin-bottom: 6px; }\r\n    .ps-num span { color: var(--gold); }\r\n    .ps-label { font-size: 13px; color: rgba(243,233,217,.78); font-weight: 300; line-height: 1.4; }\r\n\r\n    /* ══ REVIEWS TICKER ══ */\r\n    .reviews-section { background: var(--warm); padding: 72px 48px 0; overflow: hidden; }\r\n    .reviews-inner { max-width: 1240px; margin: 0 auto; margin-bottom: 48px; }\r\n    .reviews-header { text-align: center; margin-bottom: 40px; }\r\n    .reviews-scroll { display: flex; gap: 16px; overflow: hidden; }\r\n    .reviews-track { display: flex; gap: 16px; animation: reviewScroll 35s linear infinite; width: max-content; }\r\n    .reviews-track:hover { animation-play-state: paused; }\r\n    @keyframes reviewScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }\r\n    .review-card { background: #fff; border: 1px solid rgba(14,122,127,.08); border-radius: 18px; padding: 20px 22px; min-width: 280px; max-width: 280px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(0,0,0,.05); }\r\n    .review-stars { color: #C9960C; font-size: 14px; margin-bottom: 10px; }\r\n    .review-text { font-size: 13px; color: rgba(11,43,44,.7); line-height: 1.6; font-weight: 300; margin-bottom: 14px; font-style: italic; }\r\n    .review-author { display: flex; align-items: center; gap: 10px; }\r\n    .review-avatar { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; flex-shrink: 0; }\r\n    .review-name { font-size: 12px; font-weight: 600; color: var(--ink); }\r\n    .review-occasion { font-size: 10px; color: var(--teal); letter-spacing: .04em; }\r\n\r\n    /* ══ CTA FINAL ══ */\r\n    .cta-section { background: var(--green); padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }\r\n    .cta-section::before { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(247,200,90,.12), transparent 65%); pointer-events: none; }\r\n    .cta-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }\r\n    .cta-title { font-family: 'Merriweather', serif; font-size: clamp(38px, 6vw, 82px); font-weight: 900; line-height: .9; letter-spacing: -.05em; color: var(--cream); margin-bottom: 24px; }\r\n    .cta-title em { font-style: italic; color: var(--cream); }\r\n    .cta-sub { font-size: 18px; color: rgba(243,233,217,.78); font-weight: 300; line-height: 1.65; max-width: 46ch; margin: 0 auto 44px; }\r\n    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }\r\n    .btn-cta-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--ink); border-radius: 999px; padding: 18px 38px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; transition: transform .18s, box-shadow .18s; }\r\n    .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(247,200,90,.4); }\r\n    .btn-cta-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1.5px solid rgba(243,233,217,.2); color: rgba(243,233,217,.8); border-radius: 999px; padding: 17px 34px; font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .2s; }\r\n    .btn-cta-ghost:hover { border-color: rgba(243,233,217,.5); color: var(--cream); }\r\n\r\n    /* ══ FOOTER ══ */\r\n    footer { background: var(--teal-dark); padding: 48px 48px 32px; border-top: 1px solid rgba(247,200,90,.12); }\r\n    .footer-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }\r\n    .footer-brand .nav-logo { font-size: 32px; margin-bottom: 14px; display: block; }\r\n    .footer-brand p { font-size: 14px; color: rgba(243,233,217,.65); line-height: 1.65; font-weight: 300; max-width: 28ch; }\r\n    .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(243,233,217,.60); margin-bottom: 18px; }\r\n    .footer-col a { display: block; font-size: 14px; color: rgba(243,233,217,.6); text-decoration: none; margin-bottom: 10px; transition: color .2s; }\r\n    .footer-col a:hover { color: var(--cream); }\r\n    .footer-bottom { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(243,233,217,.12); font-size: 12px; color: rgba(243,233,217,.50); }\r\n\r\n    /* ── ANIMATIONS ── */\r\n    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }\r\n    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s, transform .7s; }\r\n    .reveal.in { opacity: 1; transform: translateY(0); }\r\n    .reveal.delay-1 { transition-delay: .1s; }\r\n    .reveal.delay-2 { transition-delay: .2s; }\r\n    .reveal.delay-3 { transition-delay: .3s; }\r\n    .reveal.delay-4 { transition-delay: .4s; }\r\n    .reveal.delay-5 { transition-delay: .5s; }\r\n    .reveal.delay-6 { transition-delay: .6s; }\r\n    .reveal.delay-7 { transition-delay: .7s; }\r\n\r\n    /* ── DESKTOP REFINEMENTS ── */\r\n    @media (min-width: 1200px) {\r\n      /* Hero — tone down */\r\n      .hero-headline { font-size: clamp(52px, 6vw, 88px); }\r\n      .hero-deco { font-size: clamp(120px, 14vw, 180px); }\r\n      .hero { padding: 0 64px 56px; }\r\n      .hero-proof { right: 64px; }\r\n\r\n      /* Títulos de seção — mais contidos */\r\n      .claim-title { font-size: clamp(38px, 4vw, 52px); }\r\n      .food-strip-title { font-size: clamp(32px, 3.2vw, 42px); }\r\n      .s-title { font-size: clamp(32px, 3.5vw, 48px); }\r\n      .cta-title { font-size: clamp(38px, 4.5vw, 60px); }\r\n      .problem-quote { font-size: clamp(26px, 2.8vw, 38px); }\r\n\r\n      /* Stat numbers */\r\n      .stat-num { font-size: 42px; }\r\n      .stat-num span { font-size: 32px; }\r\n\r\n      /* Padding vertical das seções */\r\n      .claim-section { padding: 72px 64px 64px; }\r\n      .food-strip { padding: 56px 64px; }\r\n      .problem-section { padding: 72px 64px; }\r\n      .occasions-section { padding: 72px 64px; }\r\n      .celebrate-section { padding: 56px 64px; }\r\n      .family-section { padding: 72px 64px; }\r\n      .how-section { padding: 72px 64px; }\r\n      .experience-section { padding: 72px 64px; }\r\n      .units-section { padding: 72px 64px; }\r\n      .proof-section { padding: 56px 64px; }\r\n      .reviews-section { padding: 56px 64px 0; }\r\n      .cta-section { padding: 80px 64px; }\r\n\r\n      /* Gaps dos grids */\r\n      .claim-grid { gap: 48px; }\r\n      .problem-grid { gap: 48px; }\r\n      .exp-grid { gap: 48px; }\r\n      .occasions-header { gap: 40px; }\r\n      .units-header { gap: 32px; }\r\n\r\n      /* Nav links */\r\n      .nav-links { gap: 28px; }\r\n\r\n      /* Containers mais contidos */\r\n      .hero-content,\r\n      .claim-inner,\r\n      .food-strip-inner,\r\n      .problem-inner,\r\n      .occasions-inner,\r\n      .celebrate-inner,\r\n      .how-inner,\r\n      .exp-inner,\r\n      .units-inner,\r\n      .proof-inner,\r\n      .reviews-inner,\r\n      .cta-inner,\r\n      .footer-inner,\r\n      .footer-bottom { max-width: 1140px; margin-left: auto; margin-right: auto; }\r\n    }\r\n\r\n    /* ── RESPONSIVE ── */\r\n    @media (max-width: 900px) {\r\n      nav { padding: 12px 24px; }\r\n      .nav-links { display: none; } .nav-hamburger { display: flex; }\r\n      .hero { padding: 0 24px 48px; }\r\n      .hero-proof { bottom: 48px; right: 24px; gap: 20px; } .proof-num { font-size: 24px; }\r\n      .scroll-indicator { display: none; }\r\n      .scroll-indicator { display: none; }\r\n      .claim-grid, .problem-grid, .exp-grid { grid-template-columns: 1fr; gap: 48px; }\r\n      .occasions-header, .units-header { grid-template-columns: 1fr; gap: 24px; }\r\n      .occasions-grid { grid-template-columns: 1fr 1fr; gap: 10px; }\r\n      .how-steps { grid-template-columns: 1fr; gap: 40px; }\r\n      .how-steps::before { display: none; }\r\n      .how-step { padding: 0; border-right: none; border-bottom: 1px solid rgba(243,233,217,.07); padding-bottom: 40px; }\r\n      .how-step:last-child { border-bottom: none; padding-bottom: 0; }\r\n      .phone-frame { width: 240px; } .phone-float-1, .phone-float-2 { display: none; }\r\n      .units-grid { grid-template-columns: 1fr 1fr; gap: 12px; }\r\n      .proof-inner { grid-template-columns: 1fr 1fr; gap: 32px; } .proof-divider { display: none; } .proof-stat { padding: 0; }\r\n      .food-cards { grid-template-columns: 1fr 1fr; }\r\n      .celebrate-block { grid-template-columns: 1fr; }\r\n      .cel-visual { min-height: 220px; }\r\n      .kids-block { grid-template-columns: 1fr; }\r\n      .family-grid { grid-template-columns: 1fr; }\r\n      .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }\r\n      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }\r\n      .claim-section, .problem-section, .occasions-section, .celebrate-section, .how-section, .experience-section, .units-section, .reviews-section, .restaurants-section { padding-left: 24px; padding-right: 24px; }\r\n      .food-strip, .proof-section, .cta-section, .family-section { padding-left: 24px; padding-right: 24px; }\r\n      footer { padding: 40px 24px 24px; }\r\n    }\r\n    @media (max-width: 600px) {\r\n      nav { padding: 12px 18px; }\r\n      .hero-bg::after {\r\n        background:\r\n          linear-gradient(180deg, rgba(14,122,127,.76) 0%, rgba(14,122,127,.72) 24%, rgba(14,122,127,.58) 45%, rgba(14,122,127,.9) 100%),\r\n          linear-gradient(90deg, rgba(11,43,44,.38) 0%, rgba(11,43,44,.1) 52%, rgba(11,43,44,.34) 100%);\r\n      }\r\n      .hero {\r\n        min-height: auto;\r\n        padding: 96px 18px 36px;\r\n      }\r\n      .hero-content { max-width: 100%; }\r\n      .hero-eyebrow {\r\n        margin-bottom: 16px;\r\n        gap: 8px;\r\n      }\r\n      .eyebrow-text {\r\n        font-size: 11px;\r\n        font-weight: 700;\r\n        letter-spacing: .08em;\r\n        color: #ff8f85;\r\n        text-shadow: 0 2px 10px rgba(0,0,0,.4);\r\n      }\r\n      .hero-headline {\r\n        font-size: clamp(34px, 12vw, 46px);\r\n        line-height: .92;\r\n        margin-bottom: 10px;\r\n        text-shadow: 0 6px 24px rgba(0,0,0,.34);\r\n      }\r\n      .hero-sub {\r\n        font-size: 15px;\r\n        line-height: 1.55;\r\n        margin-top: 14px;\r\n        margin-bottom: 24px;\r\n        max-width: 32ch;\r\n        color: rgba(255,255,255,.84);\r\n        text-shadow: 0 3px 16px rgba(0,0,0,.4);\r\n      }\r\n      .occasion-strip {\r\n        display: grid;\r\n        grid-template-columns: 1fr 1fr;\r\n        gap: 10px;\r\n        margin-bottom: 24px;\r\n      }\r\n      .oc-pill {\r\n        width: 100%;\r\n        min-width: 0;\r\n        justify-content: center;\r\n        padding: 11px 12px;\r\n        font-size: 12px;\r\n        gap: 6px;\r\n        white-space: normal;\r\n        text-align: center;\r\n      }\r\n      .oc-pill-emoji { font-size: 14px; }\r\n      .hero-cta-row {\r\n        flex-direction: column;\r\n        align-items: stretch;\r\n        gap: 12px;\r\n      }\r\n      .btn-main,\r\n      .btn-ghost-link {\r\n        width: 100%;\r\n        justify-content: center;\r\n      }\r\n      .btn-main {\r\n        padding: 15px 22px;\r\n        font-size: 15px;\r\n      }\r\n      .btn-ghost-link {\r\n        font-size: 13px;\r\n      }\r\n      .hero-trust { display: none; }\r\n      .hero-proof { display: none; }\r\n      .hero-deco { display: none; }\r\n      .stats-grid { grid-template-columns: 1fr; }\r\n      .stat-card.featured { grid-column: span 1; }\r\n      .occasions-grid { grid-template-columns: 1fr 1fr; }\r\n      .food-cards { grid-template-columns: 1fr 1fr; }\r\n      .units-grid { grid-template-columns: 1fr; }\r\n      .proof-inner { grid-template-columns: 1fr 1fr; }\r\n      .family-section { padding: 72px 18px; }\r\n      .family-grid { gap: 24px; }\r\n      .family-eyebrow { font-size: 11px; letter-spacing: .12em; }\r\n      .family-title { font-size: clamp(34px, 11vw, 42px); line-height: .94; margin-bottom: 14px; max-width: 8ch; }\r\n      .family-body { font-size: 15px; line-height: 1.7; max-width: none; margin-bottom: 18px; }\r\n      .family-chips { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 18px; }\r\n      .family-chip { width: 100%; padding: 11px 14px; border-radius: 16px; font-size: 12px; }\r\n      .family-card { min-height: auto; padding: 28px 24px; border-radius: 24px; }\r\n      .family-card-emoji { font-size: 52px; margin-bottom: 14px; }\r\n      .family-card-title { font-size: 18px; max-width: none; }\r\n      .family-card-body { font-size: 13px; max-width: 24ch; }\r\n      .family-grid > div:first-child > div:first-child {\r\n        font-size: 11px !important;\r\n        letter-spacing: .12em !important;\r\n        margin-bottom: 10px !important;\r\n      }\r\n      .family-grid > div:first-child > h2 {\r\n        font-size: clamp(34px, 11vw, 42px) !important;\r\n        line-height: .94 !important;\r\n        margin-bottom: 14px !important;\r\n        max-width: 8ch;\r\n      }\r\n      .family-grid > div:first-child > p {\r\n        font-size: 15px !important;\r\n        line-height: 1.7 !important;\r\n        margin-bottom: 18px !important;\r\n        max-width: none !important;\r\n      }\r\n      .family-grid > div:first-child > div:nth-child(4) {\r\n        display: grid !important;\r\n        grid-template-columns: 1fr !important;\r\n        gap: 10px !important;\r\n        margin-bottom: 18px !important;\r\n      }\r\n      .family-grid > div:first-child > div:nth-child(4) > span {\r\n        display: flex !important;\r\n        align-items: center !important;\r\n        width: 100% !important;\r\n        padding: 11px 14px !important;\r\n        border-radius: 16px !important;\r\n        font-size: 12px !important;\r\n        line-height: 1.35 !important;\r\n      }\r\n      .family-grid > div:first-child > a {\r\n        width: 100%;\r\n        justify-content: center;\r\n      }\r\n      .family-grid > div:last-child {\r\n        min-height: auto !important;\r\n        padding: 28px 24px !important;\r\n        border-radius: 24px !important;\r\n      }\r\n      .family-grid > div:last-child > div:first-child {\r\n        font-size: 52px !important;\r\n        margin-bottom: 14px !important;\r\n        line-height: 1 !important;\r\n      }\r\n      .family-grid > div:last-child > h3 {\r\n        font-size: 18px !important;\r\n        line-height: 1.28 !important;\r\n        margin-bottom: 10px !important;\r\n      }\r\n      .family-grid > div:last-child > p {\r\n        font-size: 13px !important;\r\n        line-height: 1.65 !important;\r\n        max-width: 24ch;\r\n      }\r\n      #restaurantes > div > div:last-child {\r\n        overflow: hidden !important;\r\n        margin-left: -18px;\r\n        margin-right: -18px;\r\n        padding-left: 18px;\r\n        padding-right: 18px;\r\n        mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);\r\n        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);\r\n      }\r\n      #restSlider {\r\n        gap: 12px !important;\r\n        animation: restScroll 26s linear infinite !important;\r\n        width: max-content !important;\r\n        will-change: transform;\r\n      }\r\n      #restSlider > div {\r\n        min-width: 156px !important;\r\n      }\r\n      #restSlider > div > div:first-child {\r\n        height: 104px !important;\r\n        padding: 16px !important;\r\n      }\r\n      #restSlider > div > div:first-child img {\r\n        max-height: 68px !important;\r\n      }\r\n      #restSlider > div > div:last-child {\r\n        padding: 10px 10px 11px !important;\r\n      }\r\n      #restSlider > div > div:last-child > div:first-child {\r\n        font-size: 13px !important;\r\n      }\r\n      #restSlider > div > div:last-child > div:last-child {\r\n        font-size: 10px !important;\r\n      }\r\n      .footer-inner { grid-template-columns: 1fr; gap: 24px; }\r\n      .cta-title { font-size: 38px; }\r\n      .btn-cta-primary, .btn-cta-ghost { width: 100%; justify-content: center; }\r\n      .food-strip-header { grid-template-columns: 1fr; gap: 16px; }\r\n    }\r\n  </style>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d3",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3d4",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3d5",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- Geometric shapes background -->\r\n<div class=\"geo-shapes\">\r\n  <div class=\"geo geo-1\"></div>\r\n  <div class=\"geo geo-2\"></div>\r\n  <div class=\"geo geo-3\"></div>\r\n  <div class=\"geo geo-4\"></div>\r\n  <div class=\"geo geo-5\"></div>\r\n  <div class=\"geo geo-6\"></div>\r\n  <div class=\"geo geo-7\"></div>\r\n</div>\r\n\r\n<div class=\"mobile-menu\" id=\"mobileMenu\">\r\n  <a href=\"#restaurantes\" onclick=\"document.getElementById('mobileMenu').classList.remove('open')\">Restaurantes</a>\r\n  <a href=\"#ocasioes\" onclick=\"document.getElementById('mobileMenu').classList.remove('open')\">Ocasiões</a>\r\n  <a href=\"#festa\" onclick=\"document.getElementById('mobileMenu').classList.remove('open')\">Faça a festa</a>\r\n  <a href=\"#como-funciona\" onclick=\"document.getElementById('mobileMenu').classList.remove('open')\">Como funciona</a>\r\n  <a href=\"#unidades\" onclick=\"document.getElementById('mobileMenu').classList.remove('open')\">Unidades</a>\r\n  <button class=\"btn-main\" style=\"font-size:16px;padding:14px 32px;\" onclick=\"document.getElementById('mobileMenu').classList.remove('open')\">Reservar mesa</button>\r\n</div>\r\n\r\n<!-- ══ NAV ══ -->\r\n<nav id=\"mainNav\">\r\n  <div class=\"nav-logo\">mané<sup>,</sup></div>\r\n  <div class=\"nav-links\">\r\n    <a href=\"#restaurantes\">Restaurantes</a>\r\n    <a href=\"#ocasioes\">Ocasiões</a>\r\n    <a href=\"#festa\">Comemorações</a>\r\n    <a href=\"#como-funciona\">Como funciona</a>\r\n    <a href=\"#unidades\">Unidades</a>\r\n  </div>\r\n  <button class=\"nav-cta\">Reservar mesa</button>\r\n  <div class=\"nav-hamburger\" id=\"hamburger\" onclick=\"toggleMenu()\">\r\n    <span></span><span></span><span></span>\r\n  </div>\r\n</nav>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d6",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3d7",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3d8",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ HERO ══ -->\r\n<section class=\"hero\" id=\"hero\">\r\n  <div class=\"hero-bg\"></div>\r\n  <div class=\"hero-deco\">mané</div>\r\n  <div class=\"hero-content\">\r\n\r\n    <div class=\"hero-trust\">\r\n      <span class=\"trust-badge\">+20 restaurantes</span>\r\n      <span class=\"trust-badge gold\">+500 pratos</span>\r\n      <span class=\"trust-badge green\">100% sustentável</span>\r\n    </div>\r\n\r\n    <div class=\"hero-eyebrow\">\r\n      <div class=\"eyebrow-dot\"></div>\r\n      <span class=\"eyebrow-text\">O maior mercado gastronômico do Brasil</span>\r\n    </div>\r\n\r\n    <h1 class=\"hero-headline\">\r\n      O paraíso gastronômico\r\n      <em class=\"line-2\" id=\"heroAccentLine\">do Brasil.</em>\r\n    </h1>\r\n\r\n    <p class=\"hero-sub\">\r\n      <strong>+20 chefs, +200 pratos em um único destino.</strong><br>\r\n      Reserve sua mesa e garanta uma experiência gastronômica de verdade.\r\n    </p>\r\n\r\n    <div class=\"occasion-strip\" id=\"occasionStrip\">\r\n      <div class=\"oc-pill active\" data-occasion=\"Aniversário sem caos\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">🎂</span> Aniversário\r\n      </div>\r\n      <div class=\"oc-pill\" data-occasion=\"Happy hour da firma\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">🍻</span> Happy hour\r\n      </div>\r\n      <div class=\"oc-pill\" data-occasion=\"Pós-jogo na Arena\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">⚽</span> Pós-jogo\r\n      </div>\r\n      <div class=\"oc-pill\" data-occasion=\"Evento corporativo\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">💼</span> Corporativo\r\n      </div>\r\n      <div class=\"oc-pill\" data-occasion=\"Domingo em família\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">👨‍👩‍👧</span> Família\r\n      </div>\r\n      <div class=\"oc-pill\" data-occasion=\"Date sem erro\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">❤️</span> Date\r\n      </div>\r\n      <div class=\"oc-pill\" data-occasion=\"Pra criançada\" onclick=\"selectOccasion(this)\">\r\n        <span class=\"oc-pill-emoji\">🎈</span> Kids\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"hero-cta-row\">\r\n      <a href=\"#ocasioes\" class=\"btn-main\" id=\"heroCta\">\r\n        Reservar agora\r\n        <svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M3 7h8M8 4l3 3-3 3\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\r\n      </a>\r\n      <a href=\"#claim\" class=\"btn-ghost-link\">\r\n        Por que o Mané?\r\n        <svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\"><path d=\"M6 2v8M2 6l4 4 4-4\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\r\n      </a>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"hero-proof\">\r\n    <div class=\"proof-item\"><div class=\"proof-num\">+20</div><div class=\"proof-label\">restaurantes<br>num só lugar</div></div>\r\n    <div class=\"proof-item\"><div class=\"proof-num\">+500</div><div class=\"proof-label\">pratos no<br>cardápio</div></div>\r\n    <div class=\"proof-item\"><div class=\"proof-num\">2min</div><div class=\"proof-label\">para confirmar<br>sua reserva</div></div>\r\n  </div>\r\n\r\n  <div class=\"scroll-indicator\">\r\n    <span>scroll</span>\r\n    <div class=\"scroll-line\"></div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d9",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3da",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3db",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ TICKER ══ -->\r\n<div class=\"ticker\">\r\n  <div class=\"ticker-track\" id=\"tickerTrack\">\r\n    <!-- duplicated for seamless loop -->\r\n    <span class=\"ticker-item\">🏆 O maior mercado gastronômico do Brasil <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🌱 O único sustentável <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🍽️ Liberdade de escolha para cada convidado <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🎂 Aniversário · Corporativo · Família · Kids <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">📍 Brasília · Águas Claras · São Paulo <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">⚡ Confirmação de reserva imediata <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🏆 O maior mercado gastronômico do Brasil <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🌱 O único sustentável <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🍽️ Liberdade de escolha para cada convidado <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">🎂 Aniversário · Corporativo · Família · Kids <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">📍 Brasília · Águas Claras · São Paulo <span class=\"ticker-sep\">·</span></span>\r\n    <span class=\"ticker-item\">⚡ Confirmação de reserva imediata <span class=\"ticker-sep\">·</span></span>\r\n  </div>\r\n</div>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3dc",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3dd",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3de",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ CLAIM / O MAIOR ══ -->\r\n<section class=\"claim-section\" id=\"claim\">\r\n  <div class=\"claim-inner\">\r\n    <div class=\"claim-grid\">\r\n      <div class=\"reveal\">\r\n        <div class=\"claim-eyebrow\">Gastronomia de verdade, no mesmo lugar</div>\r\n        <h2 class=\"claim-title\">\r\n          Escolha livre.<br>\r\n          Experiencia completa.<br>\r\n          <em>Reserve agora.</em>\r\n        </h2>\r\n        <p class=\"claim-body\">\r\n          Diferentes cozinhas, ambientes e momentos em um so destino. Cada pessoa escolhe o que quer comer, sem abrir mao da experiencia em grupo.\r\n        </p>\r\n        <div class=\"claim-badges\">\r\n          <span class=\"cb gold\">Ideal para grupos com gostos diferentes</span>\r\n          <span class=\"cb green\">Reserva simples, experiencia sem atrito</span>\r\n        </div>\r\n        <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:28px;border-radius:16px;overflow:hidden;\">\r\n          <img src=\"https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png\" alt=\"Mane Mercado ambiente\" loading=\"lazy\" style=\"width:100%;height:140px;object-fit:cover;border-radius:12px;\">\r\n          <img src=\"https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png\" alt=\"Mane Mercado gastronomia\" loading=\"lazy\" style=\"width:100%;height:140px;object-fit:cover;border-radius:12px;\">\r\n          <img src=\"https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png\" alt=\"Mane Mercado evento\" loading=\"lazy\" style=\"width:100%;height:140px;object-fit:cover;border-radius:12px;grid-column:span 2;\">\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"stats-grid reveal delay-2\">\r\n        <div class=\"stat-card\">\r\n          <div class=\"stat-num\">+20</div>\r\n          <div class=\"stat-label\">cozinhas diferentes — japonesa, churrascaria, italiana, vegana e mais</div>\r\n        </div>\r\n        <div class=\"stat-card\">\r\n          <div class=\"stat-num\" style=\"font-size:28px;\">Uma reserva,<br>todo o mercado</div>\r\n          <div class=\"stat-label\">Uma única reserva dá acesso a todas as cozinhas. Cada convidado escolhe onde comer</div>\r\n        </div>\r\n        <div class=\"stat-card featured\">\r\n          <div class=\"stat-num\" style=\"font-size:26px;\">Para grupos com gostos diferentes</div>\r\n          <div class=\"stat-label\">O destino onde todos os perfis gastronômicos se encontram — sem concessões.</div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3df",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3e0",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3e1",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ FOOD STRIP ══ -->\r\n<section class=\"food-strip\">\r\n  <div class=\"food-strip-inner\">\r\n    <div class=\"food-strip-header\">\r\n      <div class=\"reveal\">\r\n        <h2 class=\"food-strip-title\">Conheça nosso <em>cardápio.</em></h2>\r\n      </div>\r\n      <div class=\"reveal delay-2\">\r\n        <p class=\"food-strip-body\">Mais de 200 pratos disponíveis entre as 20 cozinhas do mercado. Reserve sua mesa e escolha na hora.</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"food-cards\">\r\n      <div class=\"food-card reveal delay-1\">\r\n        <div class=\"food-img\">\r\n          <img src=\"https://api-menu.mane.com.vc/public/uploads/3306d640-6ab6-4839-95c9-09cf99fb47fd.jpg\" alt=\"Costela no Bafo — prato do Mané Mercado\" style=\"width:100%;height:100%;object-fit:cover;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"food-card-body\">\r\n          <div class=\"food-card-title\">Costela no Bafo</div>\r\n          <div class=\"food-card-chef\">Chef Marcos · Churrascaria do Mané</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"food-card reveal delay-2\">\r\n        <div class=\"food-img\">\r\n          <img src=\"https://api-menu.mane.com.vc/public/uploads/5ece5492-3cd1-4e00-9dcb-51f5cf008e8f.jpg\" alt=\"Sushi Omakasê — prato do Mané Mercado\" style=\"width:100%;height:100%;object-fit:cover;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"food-card-body\">\r\n          <div class=\"food-card-title\">Sushi Omakasê</div>\r\n          <div class=\"food-card-chef\">Chef Yuki · Japo do Mané</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"food-card reveal delay-3\">\r\n        <div class=\"food-img\">\r\n          <img src=\"https://api-menu.mane.com.vc/public/uploads/64be5328-c413-4df3-81ae-fd13b3f72e04.jpg\" alt=\"Bowl Vegano — prato do Mané Mercado\" style=\"width:100%;height:100%;object-fit:cover;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"food-card-body\">\r\n          <div class=\"food-card-title\">Bowl Vegano</div>\r\n          <div class=\"food-card-chef\">Chef Ana · Verde do Mané</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"food-card reveal delay-1\">\r\n        <div class=\"food-img\">\r\n          <img src=\"https://api-menu.mane.com.vc/public/uploads/86989533-6116-4747-93c0-2d33431e5a44.jpg\" alt=\"Burger Artesanal — prato do Mané Mercado\" style=\"width:100%;height:100%;object-fit:cover;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"food-card-body\">\r\n          <div class=\"food-card-title\">Burger Artesanal</div>\r\n          <div class=\"food-card-chef\">Chef Lucas · Burguer do Mané</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"food-card reveal delay-2\">\r\n        <div class=\"food-img\">\r\n          <img src=\"https://api-menu.mane.com.vc/public/uploads/a2e81ab9-0cff-43fb-b768-c4ded03f7db1.jpg\" alt=\"Pizza Napolitana — prato do Mané Mercado\" style=\"width:100%;height:100%;object-fit:cover;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"food-card-body\">\r\n          <div class=\"food-card-title\">Pizza Napolitana</div>\r\n          <div class=\"food-card-chef\">Chef Paolo · Pizzaria do Mané</div>\r\n        </div>\r\n      </div>\r\n      <div class=\"food-card reveal delay-3\">\r\n        <div class=\"food-img\">\r\n          <img src=\"https://api-menu.mane.com.vc/public/uploads/b4985a56-d7c0-41ea-9da8-e7a901b725ff.jpg\" alt=\"Açaí Bowl — prato do Mané Mercado\" style=\"width:100%;height:100%;object-fit:cover;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"food-card-body\">\r\n          <div class=\"food-card-title\">Açaí Bowl</div>\r\n          <div class=\"food-card-chef\">Chef Bia · Açaí do Mané</div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3e2",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3e3",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3e4",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ RESTAURANTS GRID ══ -->\r\n<section class=\"restaurants-section\" id=\"restaurantes\" style=\"background:var(--green);padding:72px 48px;\">\r\n  <div style=\"max-width:1200px;margin:0 auto;\">\r\n    <div class=\"reveal\" style=\"text-align:center;margin-bottom:48px;\">\r\n      <div style=\"font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;\">Nossos Restaurantes</div>\r\n      <h2 style=\"font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--cream);\">+20 cozinhas.<br><em style=\"color:var(--cream);\">Um endere&ccedil;o.</em></h2>\r\n    </div>\r\n    <div style=\"overflow:hidden;position:relative;\">\r\n      <div id=\"restSlider\" style=\"display:flex;gap:16px;animation:restScroll 40s linear infinite;width:max-content;\">\r\n        <div style=\"background:#2a1005;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/d49d67f6-69db-4941-a02f-3921a7fa2edd.png\" alt=\"Tik&ocirc;\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Tik&ocirc;</div><div style=\"font-size:11px;color:var(--muted);\">Japonesa &middot; SP</div></div></div>\r\n        <div style=\"background:#1a2c10;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/ac29776e-2136-4202-8685-4109d8ac1f5d.png\" alt=\"Xod&oacute;\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Xod&oacute;</div><div style=\"font-size:11px;color:var(--muted);\">Brasileira &middot; SP</div></div></div>\r\n        <div style=\"background:#3a1508;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/f0d9aae5-68e4-44ed-8568-4664fc28d945.png\" alt=\"Sofi\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Sofi</div><div style=\"font-size:11px;color:var(--muted);\">Forneria &middot; SP</div></div></div>\r\n        <div style=\"background:#2d0a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/c25b94f8-f163-470e-a599-92c6f5f4f9a9.jpg\" alt=\"Parrilla\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Parrilla</div><div style=\"font-size:11px;color:var(--muted);\">Carnes &middot; SP</div></div></div>\r\n        <div style=\"background:#1c0c08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/0ecdf646-42fc-4eb7-80ee-6b61ea686d0a.jpg\" alt=\"El Ib&eacute;rico\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">El Ib&eacute;rico</div><div style=\"font-size:11px;color:var(--muted);\">Espanhola &middot; SP</div></div></div>\r\n        <div style=\"background:#180a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/016aaaf0-0fcd-455e-9be7-0b30dd2ac20b.jpg\" alt=\"Ricco Burger\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Ricco Burger</div><div style=\"font-size:11px;color:var(--muted);\">Burger &middot; DF &middot; SP</div></div></div>\r\n        <div style=\"background:#0a1a2a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/3cb95fc0-4d8d-4b41-90b1-aa5a3ef66bbf.png\" alt=\"Tik&ocirc; Pok&ecirc;s\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Tik&ocirc; Pok&ecirc;s</div><div style=\"font-size:11px;color:var(--muted);\">Pok&ecirc; &middot; SP</div></div></div>\r\n        <div style=\"background:#0a1f15;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/e4a69b8d-878a-4214-bd31-e6a72eb4acc5.png\" alt=\"Bar do Man&eacute;\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Bar do Man&eacute;</div><div style=\"font-size:11px;color:var(--muted);\">Bar &middot; Drinks &middot; DF &middot; SP</div></div></div>\r\n        <div style=\"background:#1c1028;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/88d13db0-1379-44c3-8995-3872d8897675.png\" alt=\"Wine Bar\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Wine Bar</div><div style=\"font-size:11px;color:var(--muted);\">Vinhos &middot; DF &middot; SP</div></div></div>\r\n        <div style=\"background:#2a1005;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/aa9f00ef-adbd-4bea-b5ca-6b327a58e866.png\" alt=\"BSB Grill\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">BSB Grill</div><div style=\"font-size:11px;color:var(--muted);\">Carnes &middot; &Aacute;rabe &middot; DF</div></div></div>\r\n        <div style=\"background:#1a2c10;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/3ed19163-d0bc-40e4-b1d0-1600d1961acb.webp\" alt=\"O Popular\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">O Popular</div><div style=\"font-size:11px;color:var(--muted);\">Brasileira &middot; DF</div></div></div>\r\n        <div style=\"background:#0a1a2a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/3af0fe89-0e9a-4785-afc2-d96d22490ac8.webp\" alt=\"Kazu\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Kazu</div><div style=\"font-size:11px;color:var(--muted);\">Japonesa &middot; DF</div></div></div>\r\n        <div style=\"background:#0c2818;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/5ece5492-3cd1-4e00-9dcb-51f5cf008e8f.jpg\" alt=\"Dog da Igrejinha\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Dog da Igrejinha</div><div style=\"font-size:11px;color:var(--muted);\">Hot Dog &middot; DF</div></div></div>\r\n        <div style=\"background:#061828;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/3306d640-6ab6-4839-95c9-09cf99fb47fd.jpg\" alt=\"Casa Mar\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Casa Mar</div><div style=\"font-size:11px;color:var(--muted);\">Frutos do Mar &middot; DF</div></div></div>\r\n        <div style=\"background:#220e0a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/80f58836-de12-426d-baf6-1ae9ee114c2f.webp\" alt=\"Fina da Baco\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Fina da Baco</div><div style=\"font-size:11px;color:var(--muted);\">Forneria &middot; DF</div></div></div>\r\n        <div style=\"background:#1a1508;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/64be5328-c413-4df3-81ae-fd13b3f72e04.jpg\" alt=\"Gatto Nero\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Gatto Nero</div><div style=\"font-size:11px;color:var(--muted);\">Italiana &middot; DF</div></div></div>\r\n        <div style=\"background:#3a2510;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/ceee87f3-931f-490b-88ec-d1ce8349f0ca.png\" alt=\"Aloom\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Aloom</div><div style=\"font-size:11px;color:var(--muted);\">Doces &middot; DF</div></div></div>\r\n        <div style=\"background:#2d1420;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/a2e81ab9-0cff-43fb-b768-c4ded03f7db1.jpg\" alt=\"Tudo do Porco\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Tudo do Porco</div><div style=\"font-size:11px;color:var(--muted);\">Charcutaria &middot; DF</div></div></div>\r\n        <div style=\"background:#0c1a0a;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://api-menu.mane.com.vc/public/uploads/86989533-6116-4747-93c0-2d33431e5a44.jpg\" alt=\"Caf&eacute; e um Ch&ecirc;ro\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Caf&eacute; e um Ch&ecirc;ro</div><div style=\"font-size:11px;color:var(--muted);\">Caf&eacute; &middot; Nordestino &middot; DF</div></div></div>\r\n        <!-- duplicate for seamless loop -->\r\n        <div style=\"background:#2a1005;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/d49d67f6-69db-4941-a02f-3921a7fa2edd.png\" alt=\"Tik&ocirc;\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Tik&ocirc;</div><div style=\"font-size:11px;color:var(--muted);\">Japonesa &middot; SP</div></div></div>\r\n        <div style=\"background:#1a2c10;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/ac29776e-2136-4202-8685-4109d8ac1f5d.png\" alt=\"Xod&oacute;\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Xod&oacute;</div><div style=\"font-size:11px;color:var(--muted);\">Brasileira &middot; SP</div></div></div>\r\n        <div style=\"background:#3a1508;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/f0d9aae5-68e4-44ed-8568-4664fc28d945.png\" alt=\"Sofi\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Sofi</div><div style=\"font-size:11px;color:var(--muted);\">Forneria &middot; SP</div></div></div>\r\n        <div style=\"background:#2d0a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/c25b94f8-f163-470e-a599-92c6f5f4f9a9.jpg\" alt=\"Parrilla\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Parrilla</div><div style=\"font-size:11px;color:var(--muted);\">Carnes &middot; SP</div></div></div>\r\n        <div style=\"background:#1c0c08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/0ecdf646-42fc-4eb7-80ee-6b61ea686d0a.jpg\" alt=\"El Ib&eacute;rico\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">El Ib&eacute;rico</div><div style=\"font-size:11px;color:var(--muted);\">Espanhola &middot; SP</div></div></div>\r\n        <div style=\"background:#180a08;border-radius:12px;overflow:hidden;text-align:center;padding:0;min-width:180px;flex-shrink:0;\"><div style=\"height:120px;display:flex;align-items:center;justify-content:center;padding:20px;\"><img src=\"https://cardapio-v2-back-api-production.up.railway.app/public/uploads/016aaaf0-0fcd-455e-9be7-0b30dd2ac20b.jpg\" alt=\"Ricco Burger\" loading=\"lazy\" style=\"max-width:85%;max-height:80px;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(0,0,0,.4));\"></div><div style=\"padding:10px 12px;background:rgba(0,0,0,.3);\"><div style=\"font-weight:600;font-size:14px;color:var(--cream);\">Ricco Burger</div><div style=\"font-size:11px;color:var(--muted);\">Burger &middot; DF &middot; SP</div></div></div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3e5",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3e6",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3e7",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ SUSTENTABILIDADE ══ -->\r\n<section style=\"background:var(--cream);padding:96px 48px;\">\r\n  <div style=\"max-width:1200px;margin:0 auto;\">\r\n    <div class=\"reveal\" style=\"text-align:center;margin-bottom:56px;\">\r\n      <div style=\"font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;\">Sustentabilidade</div>\r\n      <h2 style=\"font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;\">O único mercado sustentável<br><em style=\"color:var(--teal);\">do Brasil.</em></h2>\r\n      <p style=\"font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;\">Sustentabilidade no Mané não é discurso — é operação. Cada decisão, do abastecimento ao descarte, considera o impacto ambiental.</p>\r\n    </div>\r\n    <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;\">\r\n      <div class=\"reveal delay-1\" style=\"background:var(--green);border-radius:16px;padding:32px;text-align:center;\">\r\n        <div style=\"font-size:36px;margin-bottom:16px;\">♻️</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;\">Descarte responsável</h4>\r\n        <p style=\"font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;\">Gestão completa de resíduos com separação, compostagem e destinação certificada.</p>\r\n      </div>\r\n      <div class=\"reveal delay-2\" style=\"background:var(--green);border-radius:16px;padding:32px;text-align:center;\">\r\n        <div style=\"font-size:36px;margin-bottom:16px;\">🌿</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;\">Abastecimento consciente</h4>\r\n        <p style=\"font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;\">Prioridade para fornecedores locais e produtos de origem rastreável.</p>\r\n      </div>\r\n      <div class=\"reveal delay-3\" style=\"background:var(--green);border-radius:16px;padding:32px;text-align:center;\">\r\n        <div style=\"font-size:36px;margin-bottom:16px;\">⚡</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;\">Eficiência energética</h4>\r\n        <p style=\"font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;\">Infraestrutura projetada para reduzir consumo de energia e água em toda a operação.</p>\r\n      </div>\r\n      <div class=\"reveal delay-4\" style=\"background:var(--green);border-radius:16px;padding:32px;text-align:center;\">\r\n        <div style=\"font-size:36px;margin-bottom:16px;\">📦</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:18px;font-weight:700;color:var(--cream);margin-bottom:10px;\">Embalagens sustentáveis</h4>\r\n        <p style=\"font-size:14px;color:rgba(255,255,255,.7);line-height:1.6;\">Eliminação progressiva de plásticos descartáveis em todas as operações do mercado.</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3e8",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3e9",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3ea",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ PROBLEM ══ -->\r\n<section class=\"problem-section\">\r\n  <div class=\"problem-inner\">\r\n    <div class=\"problem-grid\">\r\n      <div class=\"reveal\">\r\n        <div class=\"s-eyebrow\" style=\"color:var(--teal);\">O que nos diferencia</div>\r\n        <p class=\"problem-quote\">\r\n          Gastronomia autoral com\r\n          <strong>estrutura completa para qualquer ocasião.</strong>\r\n        </p>\r\n        <p style=\"font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:22px;\">\r\n          Cada cozinha opera de forma independente, com chef próprio, identidade e cardápio exclusivos. A reserva é única e vale para todo o mercado.\r\n        </p>\r\n      </div>\r\n      <div class=\"problem-points reveal delay-2\">\r\n        <div class=\"problem-point\">\r\n          <div class=\"pp-icon\">🍽️</div>\r\n          <div class=\"pp-text\">\r\n            <strong>Diversidade gastronômica real</strong>\r\n            <p>Da culinária japonesa à churrascaria, do vegano à cozinha nordestina. Todas as cozinhas em um único endereço.</p>\r\n          </div>\r\n        </div>\r\n        <div class=\"problem-point\">\r\n          <div class=\"pp-icon\">👨‍🍳</div>\r\n          <div class=\"pp-text\">\r\n            <strong>Cozinhas independentes com identidade própria</strong>\r\n            <p>Cada chef conduz sua operação com autonomia — história, técnica e cardápio são de sua autoria.</p>\r\n          </div>\r\n        </div>\r\n        <div class=\"problem-point\">\r\n          <div class=\"pp-icon\">🌱</div>\r\n          <div class=\"pp-text\">\r\n            <strong>Único mercado sustentável do Brasil</strong>\r\n            <p>Compromisso ambiental integrado em toda a operação — do abastecimento ao descarte responsável.</p>\r\n          </div>\r\n        </div>\r\n        <div class=\"problem-point\">\r\n          <div class=\"pp-icon\">✅</div>\r\n          <div class=\"pp-text\">\r\n            <strong>Processo de reserva simplificado</strong>\r\n            <p>Selecione a ocasião, informe o número de convidados e receba a confirmação diretamente pelo WhatsApp.</p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3eb",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3ec",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3ed",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ OCCASIONS ══ -->\r\n<section class=\"occasions-section\" id=\"ocasioes\">\r\n  <div class=\"occasions-inner\">\r\n    <div class=\"occasions-header\">\r\n      <div class=\"reveal\">\r\n        <div class=\"s-eyebrow\">Reserve por ocasião</div>\r\n        <h2 class=\"s-title\">Escolha o momento.<br><em>A gente organiza.</em></h2>\r\n      </div>\r\n      <div class=\"reveal delay-2\">\r\n        <p class=\"s-body\">Aniversário, happy hour, corporativo ou família. Selecione a ocasião e receba uma reserva personalizada com espaço e cardápio adequados.</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"occasions-grid\">\r\n      <div class=\"oc-card reveal delay-1\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png');\"></div>\r\n        <span class=\"oc-card-emoji\">🎂</span>\r\n        <h4>Aniversário sem dor de cabeça</h4>\r\n        <p>Corporativo ou particular. Área reservada, surpresa organizada, grupo acomodado. Você aparece — a gente cuida do resto.</p>\r\n        <span class=\"oc-card-arrow\">Reservar este espaço →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-2\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png');\"></div>\r\n        <span class=\"oc-card-emoji\">💼</span>\r\n        <h4>Evento corporativo</h4>\r\n        <p>Crédito por pessoa, área exclusiva, bônus de anfitrião e proposta consultiva. Para times que prezam qualidade e eficiência.</p>\r\n        <span class=\"oc-card-arrow\">Ver pacotes →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-3\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png');\"></div>\r\n        <span class=\"oc-card-emoji\">⚽</span>\r\n        <h4>Pós-jogo</h4>\r\n        <p>Saiu da Arena? O fluxo do Mané já espera o grupo. Mesa pronta, chope gelado, sem fila.</p>\r\n        <span class=\"oc-card-arrow\">Garantir mesa →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-4\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-8.png');\"></div>\r\n        <span class=\"oc-card-emoji\">🍻</span>\r\n        <h4>Happy hour da firma</h4>\r\n        <p>Expediente acabou. O Mané tem o ambiente, a bebida e o petisco pra fazer a transição valer.</p>\r\n        <span class=\"oc-card-arrow\">Reservar →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-2\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-7-2.png');\"></div>\r\n        <span class=\"oc-card-emoji\">👨‍👩‍👧</span>\r\n        <h4>Domingo em família</h4>\r\n        <p>Brinquedoteca, espaço amplo, variedade pra criança e adulto. Sem negociar o que todo mundo come.</p>\r\n        <span class=\"oc-card-arrow\">Reservar →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-3\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-5.png');\"></div>\r\n        <span class=\"oc-card-emoji\">🍽️</span>\r\n        <h4>Almoço em grupo</h4>\r\n        <p>A solução prática para times, amigos e encontros que precisam funcionar. Todo gosto num lugar só.</p>\r\n        <span class=\"oc-card-arrow\">Garantir mesa →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-4\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-4.png');\"></div>\r\n        <span class=\"oc-card-emoji\">❤️</span>\r\n        <h4>Date sem erro</h4>\r\n        <p>Atmosfera, variedade e conveniência. A escolha que mostra que você pensou em tudo.</p>\r\n        <span class=\"oc-card-arrow\">Reservar →</span>\r\n      </div>\r\n      <div class=\"oc-card reveal delay-5\" data-bg>\r\n        <div class=\"oc-card-bg\" style=\"background-image:url('https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-8.png');\"></div>\r\n        <span class=\"oc-card-emoji\">🎈</span>\r\n        <h4>Festa kids</h4>\r\n        <p>Brinquedoteca completa, cardápio infantil e espaço seguro. As crianças ficam felizes — os pais ficam tranquilos.</p>\r\n        <span class=\"oc-card-arrow\">Ver pacote kids →</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3ee",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3ef",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3f0",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ +20 CHEFS ══ -->\r\n<section style=\"background:var(--green);padding:96px 48px;\">\r\n  <div style=\"max-width:1200px;margin:0 auto;\">\r\n    <div class=\"reveal\" style=\"text-align:center;margin-bottom:56px;\">\r\n      <div style=\"font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;\">Nossos Chefs</div>\r\n        <h2 style=\"font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--cream);line-height:1.1;\">+20 chefs.<br><em style=\"color:var(--cream);\">Talento autoral em cada cozinha.</em></h2>\r\n      <p style=\"font-size:16px;color:rgba(255,255,255,.65);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;\">No Mané, cada restaurante é independente. Cada chef traz sua história, sua técnica e sua cultura gastronômica. Isso não é praça de alimentação — é gastronomia autoral.</p>\r\n    </div>\r\n    <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;\">\r\n      <div class=\"reveal delay-1\" style=\"background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);\">\r\n        <div style=\"font-size:32px;margin-bottom:14px;\">🍣</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;\">Japonesa</h4>\r\n        <p style=\"font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;\">Sushi, pokê, temaki e omakasê.</p>\r\n      </div>\r\n      <div class=\"reveal delay-2\" style=\"background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);\">\r\n        <div style=\"font-size:32px;margin-bottom:14px;\">🍖</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;\">Brasileira</h4>\r\n        <p style=\"font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;\">Feijoada, nordestina, costela e açaí.</p>\r\n      </div>\r\n      <div class=\"reveal delay-3\" style=\"background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);\">\r\n        <div style=\"font-size:32px;margin-bottom:14px;\">🍕</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;\">Italiana</h4>\r\n        <p style=\"font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;\">Pizza, forneria e massas artesanais.</p>\r\n      </div>\r\n      <div class=\"reveal delay-4\" style=\"background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);\">\r\n        <div style=\"font-size:32px;margin-bottom:14px;\">🫒</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;\">Espanhola</h4>\r\n        <p style=\"font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;\">Tapas, ibéricos e culinária mediterrânea.</p>\r\n      </div>\r\n      <div class=\"reveal delay-5\" style=\"background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);\">\r\n        <div style=\"font-size:32px;margin-bottom:14px;\">🔥</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;\">Carnes & Grill</h4>\r\n        <p style=\"font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;\">Churrasco, parrilla e cortes especiais.</p>\r\n      </div>\r\n      <div class=\"reveal delay-6\" style=\"background:rgba(255,255,255,.08);border-radius:14px;padding:28px;text-align:center;border:1px solid rgba(255,255,255,.06);\">\r\n        <div style=\"font-size:32px;margin-bottom:14px;\">🍷</div>\r\n        <h4 style=\"font-family:'Merriweather',serif;font-size:16px;font-weight:700;color:var(--cream);margin-bottom:6px;\">Bar & Vinhos</h4>\r\n        <p style=\"font-size:13px;color:rgba(255,255,255,.5);line-height:1.5;\">Drinks autorais, carta de vinhos e chope artesanal.</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3f1",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3f2",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3f3",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ GRANDES EVENTOS ══ -->\r\n<section class=\"celebrate-section\" id=\"festa\">\r\n  <div class=\"celebrate-inner\">\r\n    <div class=\"reveal\" style=\"text-align:center;margin-bottom:56px;\">\r\n      <div style=\"font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;\">Grandes Eventos</div>\r\n      <h2 style=\"font-family:'Merriweather',serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;\">O espaço certo para<br><em style=\"color:var(--teal);\">eventos que importam.</em></h2>\r\n      <p style=\"font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;\">Corporativo, aniversário ou celebração privada. Estrutura completa, atendimento dedicado e gastronomia de verdade.</p>\r\n    </div>\r\n\r\n    <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:40px;\">\r\n      <!-- Corporativo -->\r\n      <div class=\"reveal delay-1\" style=\"background:var(--green);border-radius:20px;padding:40px;position:relative;overflow:hidden;\">\r\n        <span style=\"font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px;\">💼 Corporativo</span>\r\n        <h3 style=\"font-family:'Merriweather',serif;font-size:24px;font-weight:700;color:var(--cream);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;\">Eventos empresariais<br>com estrutura <em style=\"color:var(--cream);\">completa.</em></h3>\r\n        <ul style=\"list-style:none;padding:0;margin:0 0 24px;\">\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);\">Crédito por pessoa — cada convidado escolhe o que preferir</li>\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);\">Área exclusiva com infraestrutura para apresentações</li>\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);\">Gestor comercial dedicado com proposta personalizada</li>\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;\">Nota fiscal, relatório de consumo e follow-up pós-evento</li>\r\n        </ul>\r\n        <a href=\"#\" class=\"cel-btn\" style=\"background:var(--coral);color:#fff;border:none;\">Solicitar proposta</a>\r\n      </div>\r\n\r\n      <!-- Aniversário -->\r\n      <div class=\"reveal delay-2\" style=\"background:var(--green);border-radius:20px;padding:40px;position:relative;overflow:hidden;\">\r\n        <span style=\"font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px;\">🎂 Aniversário</span>\r\n        <h3 style=\"font-family:'Merriweather',serif;font-size:24px;font-weight:700;color:var(--cream);letter-spacing:-.03em;line-height:1.15;margin-bottom:16px;\">Comemorações que<br>seus convidados<br><em style=\"color:var(--cream);\">vão lembrar.</em></h3>\r\n        <ul style=\"list-style:none;padding:0;margin:0 0 24px;\">\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);\">Área reservada com decoração inclusa ou personalizada</li>\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);\">Cardápio variado — cada convidado come o que preferir</li>\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);\">Kit aniversário com bolo, vela e surpresa</li>\r\n          <li style=\"font-size:14px;color:rgba(255,255,255,.7);padding:8px 0;\">Atendimento exclusivo durante todo o evento</li>\r\n        </ul>\r\n        <a href=\"#\" class=\"cel-btn\" style=\"background:var(--coral);color:#fff;border:none;\">Reservar espaço</a>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Reservas Comercial -->\r\n    <div class=\"reveal\" style=\"background:var(--ink);border-radius:20px;padding:48px;text-align:center;\">\r\n      <h3 style=\"font-family:'Merriweather',serif;font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--cream);letter-spacing:-.03em;margin-bottom:12px;\">Reservas Comerciais</h3>\r\n      <p style=\"font-size:16px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 28px;line-height:1.6;\">Fale diretamente com nosso time comercial para eventos corporativos, aniversários e celebrações de grande porte.</p>\r\n      <div style=\"display:flex;gap:12px;justify-content:center;flex-wrap:wrap;\">\r\n        <a href=\"#\" class=\"cel-btn\" style=\"background:var(--coral);color:#fff;border:none;padding:14px 32px;font-size:15px;\">Falar com o comercial</a>\r\n        <a href=\"#\" class=\"cel-btn ghost\" style=\"border-color:rgba(255,255,255,.2);color:var(--cream);padding:14px 32px;font-size:15px;\">Solicitar proposta por e-mail</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3f4",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3f5",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3f6",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ FAMÍLIA + CRIANÇAS ══ -->\r\n<section class=\"family-section\">\r\n  <div class=\"family-inner\">\r\n    <div class=\"family-grid reveal\">\r\n      <div>\r\n        <div style=\"font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;\">Família + Crianças</div>\r\n        <h2 style=\"font-family:'Merriweather',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-.04em;color:var(--ink);line-height:1.1;margin-bottom:20px;\">Espaço preparado<br>para receber <em style=\"color:var(--teal);\">famílias.</em></h2>\r\n        <p style=\"font-size:16px;color:rgba(11,43,44,.6);font-weight:300;line-height:1.7;margin-bottom:28px;\">O Mané tem estrutura completa para receber pais com seus filhos. Enquanto as crianças se divertem em segurança, os adultos aproveitam a gastronomia com tranquilidade.</p>\r\n        <div style=\"display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;\">\r\n          <span style=\"background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;\">🎠 Brinquedoteca completa</span>\r\n          <span style=\"background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;\">🍕 Cardápio infantil</span>\r\n          <span style=\"background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;\">👶 Monitoramento</span>\r\n          <span style=\"background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;\">🌳 Área segura</span>\r\n          <span style=\"background:var(--green);color:var(--cream);font-size:13px;font-weight:500;padding:8px 16px;border-radius:20px;\">🎂 Festas infantis</span>\r\n        </div>\r\n        <a href=\"#\" class=\"cel-btn\" style=\"background:var(--coral);color:#fff;border:none;\">Reservar mesa para família</a>\r\n      </div>\r\n      <div style=\"background:var(--green);border-radius:20px;padding:48px;text-align:center;min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;\">\r\n        <div style=\"font-size:72px;margin-bottom:20px;\">👨‍👩‍👧‍👦</div>\r\n        <h3 style=\"font-family:'Merriweather',serif;font-size:22px;font-weight:700;color:var(--cream);margin-bottom:10px;\">Diversão para os filhos.<br>Tranquilidade para os pais.</h3>\r\n        <p style=\"font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;\">Brinquedoteca monitorada,<br>cardápio kids e espaço seguro.</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3f7",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3f8",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3f9",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ HOW IT WORKS ══ -->\r\n<section class=\"how-section\" id=\"como-funciona\">\r\n  <div class=\"how-inner\">\r\n    <div class=\"how-header reveal\">\r\n      <div class=\"s-eyebrow\">Como reservar</div>\r\n      <h2 class=\"s-title\" style=\"color:var(--cream);\">Reserve sua mesa<br><em>em 2 minutos.</em></h2>\r\n      <p class=\"s-body\" style=\"margin-top:16px;\">Sem formulários longos. Sem WhatsApp ida e volta. O fluxo do Mané foi desenhado pra ser rápido, direto e sem fricção.</p>\r\n    </div>\r\n    <div class=\"how-steps\">\r\n      <div class=\"how-step reveal delay-1\">\r\n        <div class=\"how-step-num\">1</div>\r\n        <h4>Escolhe a <em>ocasião</em></h4>\r\n        <p>Clica na cena que descreve seu momento — aniversário, happy hour, corporativo, kids. O sistema já sabe o que você precisa.</p>\r\n        <span class=\"how-step-tag\">🎯 Contexto definido</span>\r\n      </div>\r\n      <div class=\"how-step reveal delay-2\">\r\n        <div class=\"how-step-num\">2</div>\r\n        <h4>Responde <em>3 perguntas</em></h4>\r\n        <p>Data, número de pessoas e horário. Resposta rápida direto no WhatsApp — sem formulário, sem espera.</p>\r\n        <span class=\"how-step-tag\">⚡ Resposta imediata</span>\r\n      </div>\r\n      <div class=\"how-step reveal delay-3\">\r\n        <div class=\"how-step-num\">3</div>\r\n        <h4>Reserva <em>confirmada</em></h4>\r\n        <p>Confirmação no WhatsApp na hora. Para eventos corporativos ou grandes, o comercial entra com proposta personalizada.</p>\r\n        <span class=\"how-step-tag\">✅ Zero burocracia</span>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3fa",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3fb",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3fc",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ EXPERIENCE ══ -->\r\n<section class=\"experience-section\" id=\"experiencia\">\r\n  <div class=\"exp-inner\">\r\n    <div class=\"exp-grid\">\r\n      <div class=\"exp-text reveal\">\r\n        <div class=\"s-eyebrow\" style=\"color:var(--teal);\">O que oferecemos</div>\r\n        <h2 class=\"s-title\" style=\"color:var(--ink);\">Gastronomia, estrutura<br>e atendimento<br><em>em um só lugar.</em></h2>\r\n        <p class=\"s-body\">O Mané foi construído com a obsessão de que grupos merecem um espaço que funciona pra todo mundo — chefs de verdade, diversidade de verdade e reserva sem complicação.</p>\r\n        <div class=\"exp-features\">\r\n          <div class=\"exp-feat\">\r\n            <div class=\"ef-icon\">🌿</div>\r\n            <div class=\"ef-text\">\r\n              <strong>Ambiente que acolhe qualquer grupo</strong>\r\n              <span>Do casal ao time de 200 pessoas. Áreas pensadas para grupos de todos os tamanhos e perfis.</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"exp-feat\">\r\n            <div class=\"ef-icon\">🍽️</div>\r\n            <div class=\"ef-text\">\r\n              <strong>Cozinhas autorais com chefs dedicados</strong>\r\n              <span>Cada restaurante opera com independência criativa — chef próprio, cardápio exclusivo e identidade gastronômica única.</span>\r\n            </div>\r\n          </div>\r\n          <div class=\"exp-feat\">\r\n            <div class=\"ef-icon\">⭐</div>\r\n            <div class=\"ef-text\">\r\n              <strong>Único mercado sustentável do Brasil</strong>\r\n              <span>Descarte consciente, abastecimento local e práticas ambientais de verdade — não de branding.</span>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"exp-visual reveal delay-3\">\r\n        <a href=\"https://www.youtube.com/watch?v=2W4D-l5KnGU\" target=\"_blank\" rel=\"noopener\" style=\"display:block;position:relative;border-radius:16px;overflow:hidden;margin-bottom:24px;box-shadow:0 12px 40px rgba(0,0,0,.25);aspect-ratio:16/9;\">\r\n          <img src=\"https://img.youtube.com/vi/2W4D-l5KnGU/maxresdefault.jpg\" alt=\"Conheça o Mané Mercado\" loading=\"lazy\" style=\"width:100%;height:100%;object-fit:cover;\">\r\n          <div style=\"position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);transition:background .2s;\">\r\n            <div style=\"width:64px;height:64px;border-radius:50%;background:rgba(227,75,75,.9);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);\">\r\n              <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"var(--ink)\"><path d=\"M8 5v14l11-7z\"/></svg>\r\n            </div>\r\n          </div>\r\n        </a>\r\n        <div class=\"phone-float-1\">\r\n          <div class=\"pf-label\">Próxima reserva</div>\r\n          <div class=\"pf-val\">Sáb 14</div>\r\n          <div class=\"pf-sub\">🎂 Aniversário · 12 pessoas · 19h</div>\r\n        </div>\r\n        <div class=\"phone-frame\">\r\n          <div class=\"phone-notch\"></div>\r\n          <div class=\"phone-screen\">\r\n            <div class=\"ps-header\">\r\n              <div class=\"ps-occasion-pill\">🎂 Aniversário</div>\r\n              <h3>Reserva o aniversário<br>sem <em>dor de cabeça</em></h3>\r\n              <div class=\"ps-btn\">Quero reservar →</div>\r\n            </div>\r\n            <div class=\"ps-chat\">\r\n              <div class=\"ps-msg\">Oi! 👋 Vi que você quer reservar pra <strong>aniversário</strong>. Qual a data?</div>\r\n              <div style=\"display:flex;justify-content:flex-end;margin-bottom:8px;\">\r\n                <div style=\"background:#dcf8c6;border-radius:14px 14px 3px 14px;padding:9px 12px;font-size:11px;color:#333;max-width:80%;box-shadow:0 1px 3px rgba(0,0,0,.08);\">Sábado, dia 14 🎂</div>\r\n              </div>\r\n              <div class=\"ps-msg\">Perfeito! 🎉 Quantas pessoas vêm?</div>\r\n              <div class=\"ps-replies\">\r\n                <div class=\"ps-reply\">Até 6</div>\r\n                <div class=\"ps-reply\">6 a 15</div>\r\n                <div class=\"ps-reply\">+15</div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"phone-float-2\">\r\n          <div class=\"pf2-icon\">✅</div>\r\n          <div class=\"pf2-text\">Reserva confirmada!</div>\r\n          <div class=\"pf2-sub\">Confirmação no WhatsApp</div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3fd",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c3fe",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c3ff",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ UNITS ══ -->\r\n<section class=\"units-section\" id=\"unidades\">\r\n  <div class=\"units-inner\">\r\n    <div class=\"units-header\">\r\n      <div class=\"reveal\">\r\n        <div class=\"s-eyebrow\">Nossas unidades</div>\r\n        <h2 class=\"s-title\">Reserve agora no Mané<br><em>mais próximo de você.</em></h2>\r\n      </div>\r\n      <div class=\"reveal delay-2\">\r\n        <p class=\"s-body\">Brasília, Águas Claras e São Paulo Perdizes. Localizações estratégicas com estacionamento e fácil acesso.</p>\r\n        <a href=\"#\" class=\"nav-cta\" style=\"margin-top:28px;font-size:14px;padding:13px 28px;text-decoration:none;display:inline-block;\">Ver todas as unidades</a>\r\n      </div>\r\n    </div>\r\n    <div class=\"units-grid\">\r\n      <div class=\"unit-card reveal delay-1\">\r\n        <div class=\"unit-card-img\">\r\n          <img src=\"https://mane.com.vc/wp-content/uploads/2025/04/Imagem-do-WhatsApp.jpg\" alt=\"Mané Mercado Brasília — vista do espaço\" style=\"width:100%;height:100%;object-fit:cover;position:absolute;inset:0;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"unit-card-body\">\r\n          <div class=\"unit-card-name\">Brasília</div>\r\n          <div class=\"unit-card-address\">SEPS 703/903 Bloco B — Asa Sul</div>\r\n          <div class=\"unit-tags\"><span class=\"utag\">Estacionamento</span><span class=\"utag\">Perto da Arena</span><span class=\"utag\">Corporativo</span></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"unit-card reveal delay-2\">\r\n        <div class=\"unit-card-img\">\r\n          <img src=\"https://mane.com.vc/wp-content/uploads/2025/04/Wine-Bar-2.jpg\" alt=\"Mané Mercado Águas Claras — wine bar\" style=\"width:100%;height:100%;object-fit:cover;position:absolute;inset:0;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"unit-card-body\">\r\n          <div class=\"unit-card-name\">Águas Claras</div>\r\n          <div class=\"unit-card-address\">Águas Claras — DF</div>\r\n          <div class=\"unit-tags\"><span class=\"utag\">Área aberta</span><span class=\"utag\">Família</span><span class=\"utag\">Estacionamento</span></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"unit-card reveal delay-3\">\r\n        <div class=\"unit-card-img\">\r\n          <img src=\"https://mane.com.vc/wp-content/uploads/2025/11/31102025-77.png\" alt=\"Mané Mercado São Paulo Perdizes — vista do espaço\" style=\"width:100%;height:100%;object-fit:cover;position:absolute;inset:0;\" loading=\"lazy\">\r\n        </div>\r\n        <div class=\"unit-card-body\">\r\n          <div class=\"unit-card-name\">São Paulo Perdizes</div>\r\n          <div class=\"unit-card-address\">Perdizes — São Paulo, SP</div>\r\n          <div class=\"unit-tags\"><span class=\"utag\">Vila Madalena</span><span class=\"utag\">Happy hour</span><span class=\"utag\">Família</span></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c400",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c401",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c402",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ REVIEWS TICKER ══ -->\r\n<section class=\"reviews-section\">\r\n  <div class=\"reviews-inner\">\r\n    <div class=\"reviews-header reveal\">\r\n      <div class=\"s-eyebrow\" style=\"justify-content:center;color:var(--teal);\">O que dizem nossos clientes</div>\r\n      <h2 class=\"s-title\" style=\"text-align:center;font-size:clamp(28px,3.5vw,48px);color:var(--ink);\">Experiências <em>reais.</em></h2>\r\n    </div>\r\n  </div>\r\n  <div class=\"reviews-scroll\">\r\n    <div class=\"reviews-track\" id=\"reviewsTrack\">\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Realizamos o confraternização de fim de ano da empresa com 120 pessoas. Cada colaborador escolheu onde comer. Organização impecável.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(201,146,58,.2);\">👔</div><div><div class=\"review-name\">Fernanda M.</div><div class=\"review-occasion\">💼 Evento corporativo · 120 pessoas</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Levamos as crianças no domingo e ficamos tranquilos com a brinquedoteca monitorada. Enquanto isso, aproveitamos a gastronomia sem pressa.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(107,194,107,.2);\">👨‍👩‍👧</div><div><div class=\"review-name\">Ana Paula S.</div><div class=\"review-occasion\">👨‍👩‍👧 Família · Domingo</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"O aniversário de 30 anos da minha filha foi aqui. Área reservada, decoração pronta e convidados impressionados com a variedade.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(201,146,58,.2);\">🎂</div><div><div class=\"review-name\">Gustavo B.</div><div class=\"review-occasion\">🎂 Aniversário · 45 convidados</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Nosso happy hour semanal migrou para o Mané. A equipe agradece pela variedade — ninguém precisa mais negociar onde ir.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(58,136,112,.2);\">🍻</div><div><div class=\"review-name\">Rafael L.</div><div class=\"review-occasion\">💼 Happy hour corporativo</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Reserva confirmada em minutos, mesa organizada na chegada. Atendimento profissional do início ao fim.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(140,100,58,.2);\">✅</div><div><div class=\"review-name\">Márcia T.</div><div class=\"review-occasion\">👨‍👩‍👧 Almoço em família</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"A sustentabilidade do Mané é real — você percebe nos detalhes da operação. Isso faz diferença na hora de escolher onde levar clientes.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(58,136,112,.2);\">🌱</div><div><div class=\"review-name\">Carla D.</div><div class=\"review-occasion\">💼 Almoço de negócios</div></div></div></div>\r\n      <!-- duplicate set -->\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Realizamos o confraternização de fim de ano da empresa com 120 pessoas. Cada colaborador escolheu onde comer. Organização impecável.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(201,146,58,.2);\">👔</div><div><div class=\"review-name\">Fernanda M.</div><div class=\"review-occasion\">💼 Evento corporativo · 120 pessoas</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Levamos as crianças no domingo e ficamos tranquilos com a brinquedoteca monitorada. Enquanto isso, aproveitamos a gastronomia sem pressa.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(107,194,107,.2);\">👨‍👩‍👧</div><div><div class=\"review-name\">Ana Paula S.</div><div class=\"review-occasion\">👨‍👩‍👧 Família · Domingo</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"O aniversário de 30 anos da minha filha foi aqui. Área reservada, decoração pronta e convidados impressionados com a variedade.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(201,146,58,.2);\">🎂</div><div><div class=\"review-name\">Gustavo B.</div><div class=\"review-occasion\">🎂 Aniversário · 45 convidados</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Nosso happy hour semanal migrou para o Mané. A equipe agradece pela variedade — ninguém precisa mais negociar onde ir.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(58,136,112,.2);\">🍻</div><div><div class=\"review-name\">Rafael L.</div><div class=\"review-occasion\">💼 Happy hour corporativo</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"Reserva confirmada em minutos, mesa organizada na chegada. Atendimento profissional do início ao fim.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(140,100,58,.2);\">✅</div><div><div class=\"review-name\">Márcia T.</div><div class=\"review-occasion\">👨‍👩‍👧 Almoço em família</div></div></div></div>\r\n      <div class=\"review-card\"><div class=\"review-stars\">★★★★★</div><p class=\"review-text\">\"A sustentabilidade do Mané é real — você percebe nos detalhes da operação. Isso faz diferença na hora de escolher onde levar clientes.\"</p><div class=\"review-author\"><div class=\"review-avatar\" style=\"background:rgba(58,136,112,.2);\">🌱</div><div><div class=\"review-name\">Carla D.</div><div class=\"review-occasion\">💼 Almoço de negócios</div></div></div></div>\r\n    </div>\r\n  </div>\r\n  <div style=\"height:72px;\"></div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c403",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c404",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c405",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ CTA FINAL ══ -->\r\n<section class=\"cta-section\">\r\n  <div class=\"cta-inner\">\r\n    <h2 class=\"cta-title reveal\">\r\n      Reserve sua mesa<br>\r\n      <em>agora.</em>\r\n    </h2>\r\n    <p class=\"cta-sub reveal delay-1\">\r\n      Selecione a ocasião e receba sua confirmação em minutos. Brasília, Águas Claras e São Paulo.\r\n    </p>\r\n    <div class=\"cta-btns reveal delay-2\">\r\n      <a href=\"#ocasioes\" class=\"btn-cta-primary\">\r\n        Reservar mesa\r\n        <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\r\n      </a>\r\n      <a href=\"#festa\" class=\"btn-cta-ghost\">Solicitar proposta comercial</a>\r\n    </div>\r\n  </div>\r\n</section>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c406",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c407",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c408",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- ══ FOOTER ══ -->\r\n<footer>\r\n  <div class=\"footer-inner\">\r\n    <div class=\"footer-brand\">\r\n      <span class=\"nav-logo\">mané<sup style=\"font-size:18px;color:var(--gold);\">,</sup></span>\r\n      <p>O maior mercado gastronômico do Brasil. O único sustentável. O lugar certo para qualquer ocasião em Brasília, Águas Claras e São Paulo.</p>\r\n    </div>\r\n    <div class=\"footer-col\">\r\n      <h5>Ocasiões</h5>\r\n      <a href=\"#\">Aniversário</a>\r\n      <a href=\"#\">Happy hour</a>\r\n      <a href=\"#\">Corporativo</a>\r\n      <a href=\"#\">Pós-jogo</a>\r\n      <a href=\"#\">Kids</a>\r\n    </div>\r\n    <div class=\"footer-col\">\r\n      <h5>O Mané</h5>\r\n      <a href=\"#\">Quem somos</a>\r\n      <a href=\"#\">Sustentabilidade</a>\r\n      <a href=\"#\">Chefs</a>\r\n      <a href=\"#\">Cardápio</a>\r\n    </div>\r\n    <div class=\"footer-col\">\r\n      <h5>Reservas</h5>\r\n      <a href=\"#\">Fazer reserva</a>\r\n      <a href=\"#\">Corporativo</a>\r\n      <a href=\"#\">WhatsApp</a>\r\n      <a href=\"#\">Contato</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"footer-bottom\">\r\n    <span>© 2025 Mané Mercado. Todos os direitos reservados.</span>\r\n    <span>🏆 Maior mercado gastronômico do Brasil · 🌱 Único sustentável</span>\r\n  </div>\r\n</footer>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a1b2c409",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "gap": "no",
+        "padding": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "a1b2c40a",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center",
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+            }
+          },
+          "elements": [
+            {
+              "id": "a1b2c40b",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<script>\r\n  // ── NAV scroll ──\r\n  const nav = document.getElementById('mainNav');\r\n  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));\r\n\r\n  // ── Mobile menu ──\r\n  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }\r\n\r\n  // ── Occasion pill selection ──\r\n  const accentLine = document.getElementById('heroAccentLine');\r\n  const heroCta = document.getElementById('heroCta');\r\n\r\n  function selectOccasion(pill) {\r\n    document.querySelectorAll('.oc-pill').forEach(p => p.classList.remove('active'));\r\n    pill.classList.add('active');\r\n    const occasion = pill.dataset.occasion;\r\n    const color = pill.dataset.color;\r\n    accentLine.style.opacity = '0';\r\n    setTimeout(() => {\r\n      accentLine.textContent = occasion;\r\n      accentLine.style.transition = 'opacity .3s';\r\n      accentLine.style.opacity = '1';\r\n    }, 150);\r\n    document.documentElement.style.setProperty('--accent-rgb', color);\r\n    heroCta.style.background = `rgb(${color})`;\r\n  }\r\n\r\n  // ── Scroll reveal ──\r\n  const observer = new IntersectionObserver(entries => {\r\n    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });\r\n  }, { threshold: 0.10 });\r\n  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));\r\n</script>"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": [],
+  "version": "0.4",
+  "title": "Mane Mercado Landing Page",
+  "type": "page"
+}
