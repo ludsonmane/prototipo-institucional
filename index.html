@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mané Mercado — O maior mercado gastronômico do Brasil</title>
+  <title>Mané Mercado — Gastronomia de verdade em Brasília, Águas Claras e São Paulo</title>
   <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -679,6 +679,14 @@
 
     /* ══ RESTAURANTS ══ */
     .rest-section { background: #FAFAF8; padding: 48px 32px; }
+    .rest-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .rest-tab {
+      padding: 8px 20px; border-radius: 100px; border: 1.5px solid var(--teal);
+      background: transparent; color: var(--teal); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all .2s;
+    }
+    .rest-tab.active, .rest-tab:hover { background: var(--teal); color: #fff; }
+    .rest-card.hidden { display: none; }
     .rest-inner { max-width: 1240px; margin: 0 auto; }
     .rest-header {
       display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px;
@@ -1638,84 +1646,90 @@
         </button>
       </div>
     </div>
+    <div class="rest-tabs">
+      <button class="rest-tab active" data-filter="all">Todos</button>
+      <button class="rest-tab" data-filter="bsb">Brasília</button>
+      <button class="rest-tab" data-filter="ac">Águas Claras</button>
+      <button class="rest-tab" data-filter="sp">São Paulo</button>
+    </div>
     <div class="rest-slider" id="restSlider">
-      <a href="https://menu.mane.com.vc/sp/loja/tiko" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/tiko" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/5208716e112983c74175ab5ba0b1c3ef1f27667eb5889e1822cea33d11507c15.png" alt="Tikô" loading="lazy">
         <div class="rest-card-info"><div><strong>Tikô</strong><span>Japonesa</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/d49d67f6-69db-4941-a02f-3921a7fa2edd.png" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/sp/loja/xodo" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/xodo" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/4f5fb2f4c7bdff536b9ffd08dbd6c5916c2f4c54b164504a99def4834ca33776.jpg" alt="Xodó" loading="lazy">
         <div class="rest-card-info"><div><strong>Xodó</strong><span>Brasileira</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/ac29776e-2136-4202-8685-4109d8ac1f5d.png" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/gatto-nero" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/gatto-nero" class="rest-card" data-unit="ac">
         <img src="https://zig-public.zig.fun/images/228dfc0c5b3fbac366077b0ccd44a1e2e457262fd11e16ad3be6f86a0abc30f1.jpg" alt="Gatto Nero" loading="lazy">
         <div class="rest-card-info"><div><strong>Gatto Nero</strong><span>Italiana</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/64be5328-c413-4df3-81ae-fd13b3f72e04.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/sp/loja/beefpassion" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/beefpassion" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/97a3ab5a189cce869f1f150886f8cd473f6ee2071fc6fde5ad434a29865956bb.jpg" alt="Parrilla" loading="lazy">
         <div class="rest-card-info"><div><strong>Parrilla</strong><span>Carnes</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/c25b94f8-f163-470e-a599-92c6f5f4f9a9.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/sp/loja/iberico" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/iberico" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/4c75a37fd4b9c7ec9c91f65080fe0ba9e0f88752baa3e9ed3ff1f19a644611a3.jpg" alt="El Ibérico" loading="lazy">
         <div class="rest-card-info"><div><strong>El Ibérico</strong><span>Espanhola</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/0ecdf646-42fc-4eb7-80ee-6b61ea686d0a.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/casa-mar" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/casa-mar" class="rest-card" data-unit="ac">
         <img src="https://zig-public.zig.fun/images/1805a3933e2e04b0b089c48545453b2cfaf2bbe08ae5ca9b59affc0c8d16710f.jpg" alt="Casa Mar" loading="lazy">
         <div class="rest-card-info"><div><strong>Casa Mar</strong><span>Frutos do Mar</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/090f1207-8f31-404a-81a3-7782170d7d96.png" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/sp/loja/riccoburger" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/riccoburger" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/921b4a13a2e2b39ecb9e6333c581e03dcf49b0df0aca821d0627f449e738168f.jpg" alt="Ricco Burger" loading="lazy">
         <div class="rest-card-info"><div><strong>Ricco Burger</strong><span>Burger</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/016aaaf0-0fcd-455e-9be7-0b30dd2ac20b.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/kazu" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/kazu" class="rest-card" data-unit="ac">
         <img src="https://zig-public.zig.fun/images/960e30506677c66f698bb0aa45b28af81bfcd9881a5eac55c9a1ecc2cfc4260d.jpg" alt="Kazu" loading="lazy">
         <div class="rest-card-info"><div><strong>Kazu</strong><span>Japonesa</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/3af0fe89-0e9a-4785-afc2-d96d22490ac8.webp" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/bsb/loja/superquadra-bar" class="rest-card">
+      <a href="https://menu.mane.com.vc/bsb/loja/superquadra-bar" class="rest-card" data-unit="bsb">
         <img src="https://zig-public.zig.fun/images/bb8b1d22a2e8b0c3b6bfda8b41144cb20fd7de89beab4ac0276cd65c9697f351.jpg" alt="Superquadra Bar" loading="lazy">
         <div class="rest-card-info"><div><strong>Superquadra</strong><span>Churrasco</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/2ec6de6e-f598-40ad-b4f3-5495ae644d6e.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/bsb/loja/tudo-do-porco" class="rest-card">
+      <a href="https://menu.mane.com.vc/bsb/loja/tudo-do-porco" class="rest-card" data-unit="bsb">
         <img src="https://zig-public.zig.fun/images/78a5efd71c09298b633b3542b12c700f553f63363827393c37310cee1b6f0de6.jpg" alt="Tudo do Porco" loading="lazy">
         <div class="rest-card-info"><div><strong>Tudo do Porco</strong><span>Charcutaria</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/4586f95b-9779-4a5a-a91c-38eed3350384.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/bsb/loja/o-popular" class="rest-card">
+      <a href="https://menu.mane.com.vc/bsb/loja/o-popular" class="rest-card" data-unit="bsb">
         <img src="https://zig-public.zig.fun/images/3f97c079385fedf5a3ecf8aeaadae7410f58dbfefb7be742b0ef859461a77311.jpg" alt="O Popular" loading="lazy">
         <div class="rest-card-info"><div><strong>O Popular</strong><span>Brasileira</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/a6ec82ff-5c61-4d0d-a1e8-d2c2c3cde96f.webp" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/sp/loja/sofi" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/sofi" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/137c3465943ce8be0e990f5e0dfc481bb60d0ec0a70eb05e9a93d38aeb148695.jpg" alt="Sofi" loading="lazy">
         <div class="rest-card-info"><div><strong>Sofi</strong><span>Forneria</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/f0d9aae5-68e4-44ed-8568-4664fc28d945.png" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/dog-da-igrejinha" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/dog-da-igrejinha" class="rest-card" data-unit="ac">
         <img src="https://zig-public.zig.fun/images/0bb38990931995ced9d53ea0bae7858a922b42359d8bafe5bf5874104d85b0f2.jpg" alt="Dog da Igrejinha" loading="lazy">
         <div class="rest-card-info"><div><strong>Dog da Igrejinha</strong><span>Hot Dog</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/5ece5492-3cd1-4e00-9dcb-51f5cf008e8f.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/sp/loja/tikopokes" class="rest-card">
+      <a href="https://menu.mane.com.vc/sp/loja/tikopokes" class="rest-card" data-unit="sp">
         <img src="https://zig-public-files.zig.fun/images/bcb328d3f1b2c2856d6a84cce897fd2cf5254ce96b814f42e5a48a344dc7170d.jpg" alt="Tikô Pokês" loading="lazy">
         <div class="rest-card-info"><div><strong>Tikô Pokês</strong><span>Pokê</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/3cb95fc0-4d8d-4b41-90b1-aa5a3ef66bbf.png" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/bsb/loja/vei-chico" class="rest-card">
+      <a href="https://menu.mane.com.vc/bsb/loja/vei-chico" class="rest-card" data-unit="bsb">
         <img src="https://zig-public.zig.fun/images/72b100b47606ea6ba59533bd258a921f17ba8dde645d9e4f6df5e5db2f9d32e9.jpg" alt="Véi Chico" loading="lazy">
         <div class="rest-card-info"><div><strong>Véi Chico</strong><span>Sertaneja</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/0a7ddb55-4874-4646-8d36-75a9aacf711a.webp" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/bsb/loja/de-paulina" class="rest-card">
+      <a href="https://menu.mane.com.vc/bsb/loja/de-paulina" class="rest-card" data-unit="bsb">
         <img src="https://zig-public.zig.fun/images/a793f7ea05b0f7aa9b3deed74dfffa9339308a133d1cc3aef93011b08ce1ce41.jpg" alt="De Paulina" loading="lazy">
         <div class="rest-card-info"><div><strong>De Paulina</strong><span>Argentino</span></div><img class="rest-card-logo" src="https://cardapio-v2-back-api-production.up.railway.app/public/uploads/075f5687-f157-4e76-b622-9bb838cd91bb.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/fina-da-baco" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/fina-da-baco" class="rest-card" data-unit="ac">
         <img src="https://zig-public.zig.fun/images/a6df0012c0aec4134fa36540315592e81e9bcd3a4c7fd270cd9049e8d9287895.jpg" alt="Fina da Baco" loading="lazy">
         <div class="rest-card-info"><div><strong>Fina da Baco</strong><span>Forneria</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/80f58836-de12-426d-baf6-1ae9ee114c2f.webp" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/bsb/loja/cafe-e-um-chero" class="rest-card">
+      <a href="https://menu.mane.com.vc/bsb/loja/cafe-e-um-chero" class="rest-card" data-unit="bsb">
         <img src="https://zig-public.zig.fun/images/804f6397f27a10bc514662715c2dec7e98620dabdd2eb513d68057574a84e4b8.jpg" alt="Café e um Chêro" loading="lazy">
         <div class="rest-card-info"><div><strong>Café e um Chêro</strong><span>Café</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/929c320d-2565-4912-9e51-fbbbaf4b9ebb.jpg" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/aloom" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/aloom" class="rest-card" data-unit="ac">
         <img src="https://zig-public-files.zig.fun/images/0e20fc22e80dbc978ce27a2f184e5cba81a59f856208de39381d1d357d91bcc6.jpg" alt="Aloom" loading="lazy">
         <div class="rest-card-info"><div><strong>Aloom</strong><span>Doces</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/ceee87f3-931f-490b-88ec-d1ce8349f0ca.png" alt=""></div>
       </a>
-      <a href="https://menu.mane.com.vc/ac/loja/bsb-grill" class="rest-card">
+      <a href="https://menu.mane.com.vc/ac/loja/bsb-grill" class="rest-card" data-unit="ac">
         <img src="https://zig-public.zig.fun/images/0bb38990931995ced9d53ea0bae7858a922b42359d8bafe5bf5874104d85b0f2.jpg" alt="BSB Grill" loading="lazy">
         <div class="rest-card-info"><div><strong>BSB Grill</strong><span>Carnes</span></div><img class="rest-card-logo" src="https://api-menu.mane.com.vc/public/uploads/aa9f00ef-adbd-4bea-b5ca-6b327a58e866.png" alt=""></div>
       </a>
@@ -2243,6 +2257,19 @@
     if (!slider) return;
     if (prev) prev.addEventListener('click', () => slider.scrollBy({ left: -256, behavior: 'smooth' }));
     if (next) next.addEventListener('click', () => slider.scrollBy({ left: 256, behavior: 'smooth' }));
+
+    // unit filter tabs
+    document.querySelectorAll('.rest-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.rest-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('.rest-card').forEach(card => {
+          card.classList.toggle('hidden', filter !== 'all' && card.dataset.unit !== filter);
+        });
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+      });
+    });
   })();
 
   // ── Unit Picker Modal ──
