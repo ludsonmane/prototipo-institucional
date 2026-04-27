@@ -1506,6 +1506,11 @@
     margin-left: auto;
     margin-right: auto;
   }
+  .ctaMain {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   /* Restaurants section */
   .restaurantsSection .container {
