@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from '@/app/home.module.css';
 import { UNITS } from '@/lib/units';
@@ -20,7 +21,15 @@ export function Header() {
     <header className={`${styles.siteHeader} ${scrolled ? styles.siteHeaderScrolled : ''}`}>
       <div className={`${styles.container} ${styles.headerInner}`}>
         <Link href="/" className={styles.brand} aria-label="Mané Mercado">
-          mané<span className={styles.brandDot} aria-hidden="true" />
+          <Image
+            src="/images/logo-mane.svg"
+            alt="Mané"
+            width={68}
+            height={36}
+            priority
+            className={styles.brandLogo}
+          />
+          <span className={styles.brandDot} aria-hidden="true" />
           <button
             type="button"
             className={styles.brandCity}

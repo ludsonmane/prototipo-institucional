@@ -29,12 +29,17 @@
 }
 .brand {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
   color: #fff;
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 900;
+}
+.brandLogo {
+  display: block;
+  height: 28px;
+  width: auto;
 }
 .brandDot {
   display: inline-block;
@@ -224,8 +229,8 @@
   text-transform: uppercase;
   cursor: pointer;
   font-family: inherit;
-  margin-left: auto;
   margin-right: auto;
+  align-self: flex-start;
 }
 .ctaMain:hover {
   transform: translate(1px, -1px);
