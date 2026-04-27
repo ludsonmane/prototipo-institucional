@@ -1,0 +1,95 @@
+/* ───────────── Design tokens ───────────── */
+:root {
+  /* Teal scale */
+  --teal-900: #012725;
+  --teal-800: #023a36;
+  --teal-700: #034c46;
+  --teal-600: #045c55;
+
+  /* Sand */
+  --sand: #FBF5ED;
+  --sand-2: #F3EADC;
+  --cream: #F5F0E6;
+  --cream-2: #EDE8DE;
+
+  /* Ink */
+  --ink: #1a1a1a;
+  --ink-2: #4a4a4a;
+  --ink-3: #8a8a8a;
+  --line: rgba(0, 0, 0, 0.08);
+
+  /* Accent */
+  --salmon: #F58F7E;
+  --salmon-d: #E07565;
+  --gold: #F7C85A;
+  --gold-dark: #F0C14F;
+  --peach: #F7D2B8;
+  --mint: #A7E7D8;
+  --lilac: #C9B8E8;
+  --coral: #FFB4A7;
+
+  /* Radius */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+
+  /* Home container */
+  --container: 420px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container: 640px;
+  }
+}

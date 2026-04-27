@@ -1,7 +1,13 @@
 node_modules/
+.next/
+out/
 .env
 .env.local
+.env*.local
 .DS_Store
 *.log
 npm-debug.log*
 .railway/
+.vercel
+next-env.d.ts
+.tmp/
