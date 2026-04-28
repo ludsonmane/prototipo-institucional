@@ -41,6 +41,26 @@ type LoadState =
   | { kind: 'empty' }
   | { kind: 'error' };
 
+/* Per-city display order. Lower bucket = appears first.
+ * BSB request: pratos primeiro, bebidas no meio, bares por último. */
+const BSB_BUCKET: Record<string, number> = {
+  // Bares (último)
+  'wine-bar': 2,
+  'bar-do-mane': 2,
+  'bar-do-maneco': 2,
+  // Bebidas / café / doces (meio)
+  'cafe-e-um-chero': 1,
+  'perdomo': 1,
+};
+
+function sortStoresForCity(stores: Store[], city: string): Store[] {
+  if (city !== 'bsb') return stores;
+  return [...stores]
+    .map((s, i) => ({ s, i, b: BSB_BUCKET[s.slug] ?? 0 }))
+    .sort((a, b) => (a.b !== b.b ? a.b - b.b : a.i - b.i))
+    .map((x) => x.s);
+}
+
 /* Pick the "popular" product image for a store.
  * Priority:
  *   1. Manual override (productName substring match on this store's products)
@@ -94,7 +114,10 @@ export function RestaurantsSection() {
         return r.json() as Promise<Store[]>;
       })
       .then((data) => {
-        const active = data.filter((s) => s.isActive !== false).slice(0, 20);
+        const active = sortStoresForCity(
+          data.filter((s) => s.isActive !== false).slice(0, 20),
+          city,
+        );
         setState(active.length ? { kind: 'ready', stores: active } : { kind: 'empty' });
         /* Fire off menu requests in parallel to discover each store's top product image.
          * Short-circuit with a hard-coded override URL if one is configured. */
