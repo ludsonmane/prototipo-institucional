@@ -7,8 +7,11 @@ import styles from '@/app/home.module.css';
 import { UNITS } from '@/lib/units';
 import { useCity } from './CityContext';
 
+const RESERVATION_URL =
+  'https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=header&utm_campaign=reserva';
+
 export function Header() {
-  const { displayCity, fadeOut, openCityMenu, openMobileMenu } = useCity();
+  const { displayCity, fadeOut, openCityMenu } = useCity();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -56,19 +59,15 @@ export function Header() {
             </svg>
           </button>
         </Link>
-        <button
-          type="button"
+        <a
+          href={RESERVATION_URL}
+          target="_blank"
+          rel="noopener"
           className={styles.menuBtn}
-          onClick={openMobileMenu}
-          aria-label="Abrir menu"
+          aria-label="Quero reservar"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-          MENU
-        </button>
+          QUERO RESERVAR
+        </a>
       </div>
     </header>
   );
