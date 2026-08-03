@@ -65,6 +65,37 @@ export const UNITS: Record<CityKey, Unit> = {
 
 export const CITY_ORDER: CityKey[] = ['bsb', 'ac', 'sp'];
 
+/** Horário de funcionamento (todas as unidades).
+ *  Seg: fechado · Ter–Sex: 12h–22h · Sáb: 12h–22h30 · Dom: 12h–22h */
+export const OPENING_HOURS_DISPLAY = [
+  { days: 'Segunda', hours: 'Fechado' },
+  { days: 'Terça a sexta', hours: '12h às 22h' },
+  { days: 'Sábado', hours: '12h às 22h30' },
+  { days: 'Domingo', hours: '12h às 22h' },
+];
+
+/** Mesma regra em formato schema.org (openingHoursSpecification). */
+export const OPENING_HOURS_SCHEMA = [
+  {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '12:00',
+    closes: '22:00',
+  },
+  {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: 'Saturday',
+    opens: '12:00',
+    closes: '22:30',
+  },
+  {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: 'Sunday',
+    opens: '12:00',
+    closes: '22:00',
+  },
+];
+
 export const MENU_API = 'https://api-menu.mane.com.vc';
 export const RESERVATION_URL = 'https://reservas.mane.com.vc/reservar';
 export const MENU_URL = 'https://menu.mane.com.vc';

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { HomeClient } from '@/components/home/HomeClient';
 import { SocialProofBadge } from '@/components/home/SocialProofBadge';
 import homeStyles from './home.module.css';
-import { UNITS, CITY_ORDER } from '@/lib/units';
+import { UNITS, CITY_ORDER, OPENING_HOURS_SCHEMA } from '@/lib/units';
 
 export const metadata: Metadata = {
   title: 'Mané Mercado — O maior mercado gastronômico do Brasil',
@@ -55,6 +55,7 @@ export default async function HomePage() {
         longitude: u.geo.longitude,
       },
       acceptsReservations: 'True',
+      openingHoursSpecification: OPENING_HOURS_SCHEMA,
       hasMenu: `https://menu.mane.com.vc/${u.menuSlug}`,
     };
   });

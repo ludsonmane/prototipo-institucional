@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from '@/app/home.module.css';
+import { OPENING_HOURS_DISPLAY } from '@/lib/units';
 
 const RESERVATION_URL =
   'https://reservas.mane.com.vc/reservar?utm_source=site&utm_medium=footer&utm_campaign=reserva';
@@ -82,6 +83,16 @@ export function Footer() {
             >
               {l.label}
             </a>
+          ))}
+        </div>
+
+        <div className={styles.footerCol}>
+          <h5>Horários</h5>
+          {OPENING_HOURS_DISPLAY.map((h) => (
+            <div key={h.days} className={styles.footerHoursRow}>
+              <span>{h.days}</span>
+              <strong>{h.hours}</strong>
+            </div>
           ))}
         </div>
       </div>
