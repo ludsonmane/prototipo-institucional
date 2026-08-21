@@ -16,6 +16,15 @@ const nextConfig = {
     ],
   },
 
+  async redirects() {
+    return [
+      { source: '/brasilia', destination: '/bsb', permanent: true },
+      { source: '/aguas-claras', destination: '/ac', permanent: true },
+      { source: '/sao-paulo', destination: '/sp', permanent: true },
+      { source: '/perdizes', destination: '/sp', permanent: true },
+    ];
+  },
+
   async headers() {
     return [
       {

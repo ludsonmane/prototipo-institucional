@@ -24,9 +24,16 @@ const STORAGE_KEY = 'mane_city';
 const ROTATION_INTERVAL_MS = 4000;
 const FADE_MS = 320;
 
-export function CityProvider({ children }: { children: React.ReactNode }) {
-  const [city, setCityState] = useState<CityKey>('bsb');
-  const [displayCity, setDisplayCity] = useState<CityKey>('bsb');
+export function CityProvider({
+  children,
+  initialCity,
+}: {
+  children: React.ReactNode;
+  /** Cidade fixada pela rota (/bsb, /ac, /sp): vence o localStorage e desliga a rotação. */
+  initialCity?: CityKey;
+}) {
+  const [city, setCityState] = useState<CityKey>(initialCity ?? 'bsb');
+  const [displayCity, setDisplayCity] = useState<CityKey>(initialCity ?? 'bsb');
   const [fadeOut, setFadeOut] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
   const [cityMenuOpen, setCityMenuOpen] = useState(false);
@@ -78,6 +85,16 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
 
   /* Hydrate from localStorage + start rotation for new visitors. */
   useEffect(() => {
+    if (initialCity) {
+      hadSavedCityRef.current = true;
+      rotationIdxRef.current = CITY_ORDER.indexOf(initialCity);
+      try {
+        localStorage.setItem(STORAGE_KEY, initialCity);
+      } catch {
+        /* noop */
+      }
+      return stopRotation;
+    }
     let saved: CityKey | null = null;
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -96,7 +113,7 @@ export function CityProvider({ children }: { children: React.ReactNode }) {
       startRotation();
     }
     return stopRotation;
-  }, [startRotation, stopRotation]);
+  }, [initialCity, startRotation, stopRotation]);
 
   /* Pause rotation when tab hidden, resume when visible. */
   useEffect(() => {
