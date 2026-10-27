@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: '%s · Mané Mercado',
   },
   description:
-    'Mané Mercado: curadoria gastronômica em Brasília, Águas Claras e São Paulo. +20 chefs, +500 pratos, 3 unidades. Reserve sua mesa.',
+    'Mané Mercado: curadoria gastronômica em Brasília, Águas Claras e Lago Sul. +20 chefs, +500 pratos, 3 unidades. Reserve sua mesa.',
   applicationName: 'Mané Mercado',
   authors: [{ name: 'Mané Mercado' }],
   creator: 'Mané Mercado',
@@ -47,7 +47,8 @@ export const metadata: Metadata = {
     'mercado gastronômico',
     'restaurantes Brasília',
     'restaurantes Águas Claras',
-    'restaurantes São Paulo',
+    'restaurantes Lago Sul',
+    'Partage Lago Sul',
     'reservar mesa',
     'aniversário',
     'confraternização',
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     siteName: 'Mané Mercado',
     title: 'Mané Mercado — O maior mercado gastronômico do Brasil',
     description:
-      'Brasília, Águas Claras e São Paulo. +20 chefs, +500 pratos. Reserve sua mesa.',
+      'Brasília, Águas Claras e Lago Sul. +20 chefs, +500 pratos. Reserve sua mesa.',
     images: [
       {
         url: '/images/hero2.jpg',

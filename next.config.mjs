@@ -20,8 +20,11 @@ const nextConfig = {
     return [
       { source: '/brasilia', destination: '/bsb', permanent: true },
       { source: '/aguas-claras', destination: '/ac', permanent: true },
-      { source: '/sao-paulo', destination: '/sp', permanent: true },
-      { source: '/perdizes', destination: '/sp', permanent: true },
+      { source: '/sp', destination: '/', permanent: true },
+      { source: '/sao-paulo', destination: '/', permanent: true },
+      { source: '/perdizes', destination: '/', permanent: true },
+      { source: '/lago-sul', destination: '/ptg', permanent: true },
+      { source: '/partage', destination: '/ptg', permanent: true },
     ];
   },
 

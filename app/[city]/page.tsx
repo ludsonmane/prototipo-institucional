@@ -24,10 +24,10 @@ const CITY_META: Record<CityKey, { title: string; description: string }> = {
     description:
       'Mané Mercado em Águas Claras. Curadoria gastronômica com +20 chefs e +500 pratos. Veja o cardápio e reserve sua mesa em minutos.',
   },
-  sp: {
-    title: 'Mané Mercado São Paulo · Perdizes',
+  ptg: {
+    title: 'Mané Mercado Lago Sul · Partage',
     description:
-      'Mané Mercado em Perdizes, São Paulo, ao lado do West Plaza. Curadoria gastronômica com +20 chefs e +500 pratos. Veja o cardápio e reserve sua mesa em minutos.',
+      'Mané Mercado no Partage Lago Sul, ao lado do Aeroporto de Brasília. Curadoria gastronômica com 12 operações e estacionamento fácil. Veja o cardápio e reserve sua mesa em minutos.',
   },
 };
 

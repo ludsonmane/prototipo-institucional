@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Aniversário no Mané Mercado',
     description:
-      'Até R$200 em vantagens para o aniversariante. Brasília, Águas Claras e São Paulo.',
+      'Até R$200 em vantagens para o aniversariante. Brasília, Águas Claras e Lago Sul.',
     url: '/aniversario-v2',
     images: ['/images/hero-aniversario.jpg'],
   },
@@ -134,7 +134,7 @@ export default function AniversarioV2Page() {
               <span className={styles.proofIcon}>🍕</span> +500 opções no cardápio
             </div>
             <div className={styles.proofItem}>
-              <span className={styles.proofIcon}>📍</span> Brasília, Águas Claras e São Paulo
+              <span className={styles.proofIcon}>📍</span> Brasília, Águas Claras e Lago Sul
             </div>
             <div className={styles.proofItem}>
               <span className={styles.proofIcon}>🧸</span> Brinquedoteca inclusa
@@ -419,7 +419,7 @@ export default function AniversarioV2Page() {
               </h2>
               <p className={styles.ctaSub}>
                 Selecione o número de convidados e receba sua confirmação em minutos. Brasília,
-                Águas Claras e São Paulo.
+                Águas Claras e Lago Sul.
               </p>
               <div className={styles.ctaBtns}>
                 <ChatOpener className={styles.btnCtaWhite}>

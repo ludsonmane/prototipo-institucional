@@ -39,7 +39,7 @@ export function CityMenu() {
             >
               <span>{u.label}</span>
               <span className={styles.cityOptSub}>
-                {key === 'sp' ? 'Perdizes' : u.region}
+                {u.region}
               </span>
             </button>
           );

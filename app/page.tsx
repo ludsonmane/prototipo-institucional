@@ -8,7 +8,7 @@ import { organizationLd, restaurantLd } from '@/lib/jsonld';
 export const metadata: Metadata = {
   title: 'Mané Mercado — O maior mercado gastronômico do Brasil',
   description:
-    'Curadoria gastronômica em Brasília, Águas Claras e São Paulo. +20 chefs, +500 pratos, 3 unidades. Reserve sua mesa em minutos.',
+    'Curadoria gastronômica em Brasília, Águas Claras e Lago Sul. +20 chefs, +500 pratos, 3 unidades. Reserve sua mesa em minutos.',
   alternates: { canonical: '/' },
 };
 

@@ -17,7 +17,7 @@ export function organizationLd() {
       'https://tiktok.com/@manemercado',
     ],
     description:
-      'O maior mercado gastronômico do Brasil. Curadoria gastronômica em Brasília, Águas Claras e São Paulo.',
+      'O maior mercado gastronômico do Brasil. Curadoria gastronômica em Brasília, Águas Claras e Lago Sul.',
   };
 }
 
@@ -28,7 +28,7 @@ export function restaurantLd(key: CityKey) {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
     '@id': `${siteUrl}/#restaurant-${key}`,
-    name: key === 'sp' ? 'Mané São Paulo Perdizes' : `Mané ${u.label}`,
+    name: u.fullName,
     url: `${siteUrl}/${key}`,
     image: `${siteUrl}${u.cover}`,
     servesCuisine: ['Brasileira', 'Japonesa', 'Italiana', 'Churrascaria'],

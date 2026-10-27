@@ -1,6 +1,6 @@
 # mané — Site Institucional
 
-Site do Mané Mercado Gastronômico. Presente em Brasília (Eixo Monumental), Águas Claras e São Paulo (Perdizes).
+Site do Mané Mercado Gastronômico. Presente em Brasília (Eixo Monumental), Águas Claras e Lago Sul (Partage).
 
 ## Stack
 

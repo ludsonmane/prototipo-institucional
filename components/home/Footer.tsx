@@ -43,7 +43,7 @@ export function Footer() {
           />
           <p>
             O maior mercado gastronômico do Brasil. O único sustentável. O lugar certo para qualquer
-            ocasião em Brasília, Águas Claras e São Paulo.
+            ocasião em Brasília, Águas Claras e Lago Sul.
           </p>
         </div>
 

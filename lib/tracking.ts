@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export type CityKey = 'bsb' | 'ac' | 'sp';
+export type CityKey = 'bsb' | 'ac' | 'ptg';
 
 export function trackCTA(name: string, city?: CityKey) {
   if (typeof window === 'undefined') return;

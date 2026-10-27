@@ -98,8 +98,8 @@ export function CityProvider({
     let saved: CityKey | null = null;
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw && (raw === 'bsb' || raw === 'ac' || raw === 'sp')) {
-        saved = raw;
+      if (raw && (CITY_ORDER as string[]).includes(raw)) {
+        saved = raw as CityKey;
       }
     } catch {
       /* noop */

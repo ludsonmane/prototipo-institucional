@@ -2,14 +2,8 @@
 
 import Image from 'next/image';
 import styles from '@/app/home.module.css';
-import { CITY_ORDER, RESERVATION_URL, UNITS } from '@/lib/units';
+import { CITY_ORDER, reservationUrlFor, UNITS } from '@/lib/units';
 import { trackCTA } from '@/lib/tracking';
-
-const FULL_NAMES: Record<string, string> = {
-  bsb: 'Mané Brasília',
-  ac: 'Mané Águas Claras',
-  sp: 'Mané São Paulo Perdizes',
-};
 
 export function UnitsSection() {
   return (
@@ -20,8 +14,8 @@ export function UnitsSection() {
           Reserve agora no Mané <em>mais próximo de você.</em>
         </h2>
         <p className={`${styles.sectionSub} ${styles.sectionSubOnDark}`}>
-          Brasília, Águas Claras e São Paulo Perdizes. Localizações estratégicas com estacionamento e
-          fácil acesso.
+          Brasília, Águas Claras e Lago Sul. Localizações estratégicas com estacionamento e fácil
+          acesso.
         </p>
 
         <div className={styles.unitCards}>
@@ -30,7 +24,7 @@ export function UnitsSection() {
             return (
               <a
                 key={key}
-                href={RESERVATION_URL}
+                href={reservationUrlFor(key)}
                 target="_blank"
                 rel="noopener"
                 className={styles.unitCard}
@@ -39,14 +33,14 @@ export function UnitsSection() {
                 <div className={styles.unitImg}>
                   <Image
                     src={unit.cover}
-                    alt={`${FULL_NAMES[key]} — ${unit.address}`}
+                    alt={`${unit.fullName} — ${unit.address}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 640px"
                     loading="lazy"
                   />
                 </div>
                 <div className={styles.unitBody}>
-                  <h3 className={styles.unitName}>{FULL_NAMES[key]}</h3>
+                  <h3 className={styles.unitName}>{unit.fullName}</h3>
                   <span className={styles.unitAddr}>📍 {unit.address}</span>
                   <div className={styles.unitPins}>
                     {unit.pins.map((p) => (

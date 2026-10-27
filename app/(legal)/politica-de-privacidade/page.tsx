@@ -111,7 +111,7 @@ export default function PoliticaDePrivacidadePage() {
         </div>
         <p>
           O Mané Mercado opera unidades em <strong>Brasília (DF)</strong>,{' '}
-          <strong>Águas Claras (DF)</strong> e <strong>São Paulo (SP)</strong>, e
+          <strong>Águas Claras (DF)</strong> e <strong>Lago Sul (DF)</strong>, e
           mantém sites e aplicações nos domínios <em>mane.com.vc</em> e seus
           subdomínios (incluindo, sem limitação, <em>b2b.mane.com.vc</em>,{' '}
           <em>reservas.mane.com.vc</em>, <em>menu.mane.com.vc</em>,{' '}
@@ -173,7 +173,7 @@ export default function PoliticaDePrivacidadePage() {
             <strong>Solicitação de evento (B2B):</strong> tipo de evento
             (aniversário, confraternização, formatura, casamento, etc.), data
             prevista, número estimado de convidados, unidade de preferência
-            (Brasília, Águas Claras ou São Paulo), serviços desejados (área
+            (Brasília, Águas Claras ou Lago Sul), serviços desejados (área
             reservada, cardápio especial, bolo/docinhos, open bar, etc.) e horário
             preferido para reunião comercial.
           </li>

@@ -25,10 +25,6 @@ export const STORE_OVERRIDES: Partial<Record<CityKey, Record<string, StoreOverri
     /* heurística pega Balinha (sortOrder 1); preferir o carro-chefe homônimo */
     'o-popular': { productName: 'Tábua Popular' },
   },
-  sp: {
-    bardomane: { productName: 'Drink Perdizes' },
-    bardomaneco: { productName: 'Chopp Amstel Tulipa' },
-  },
 };
 
 export function getStoreOverride(city: CityKey, storeSlug: string): StoreOverride | undefined {
