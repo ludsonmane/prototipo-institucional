@@ -25,6 +25,7 @@ const nextConfig = {
       { source: '/perdizes', destination: '/', permanent: true },
       { source: '/lago-sul', destination: '/ptg', permanent: true },
       { source: '/partage', destination: '/ptg', permanent: true },
+      { source: '/aniversarios', destination: '/aniversario', permanent: true },
     ];
   },
 

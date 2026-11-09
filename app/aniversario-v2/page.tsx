@@ -1,30 +1,31 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChatProvider, ChatOpener } from '@/components/chat/ChatWidget';
 import styles from './aniversario-v2.module.css';
 
 export const metadata: Metadata = {
   title: 'Aniversário no Mané Mercado — Reserve seu espaço (v2)',
   description:
-    'Celebre seu aniversário no Mané Mercado e ganhe até R$200 em vantagens. Estacionamento, brinquedoteca, happy hour estendido e cardápio personalizado.',
+    'Celebre seu aniversário no Mané Mercado e ganhe até R$200 de bônus em consumação, a partir de 8 pessoas. Brinquedoteca day use e cardápio personalizado conforme o tamanho do grupo.',
   alternates: { canonical: '/aniversario-v2' },
   openGraph: {
     title: 'Aniversário no Mané Mercado',
     description:
-      'Até R$200 em vantagens para o aniversariante. Brasília, Águas Claras e Lago Sul.',
+      'Até R$200 de bônus em consumação para o aniversariante, a partir de 8 pessoas. Brasília, Águas Claras e Lago Sul.',
     url: '/aniversario-v2',
     images: ['/images/hero-aniversario.jpg'],
   },
 };
 
+const RESERVA_URL =
+  'https://reservas.mane.com.vc/?occasion=aniversario&utm_source=site&utm_medium=lp&utm_campaign=aniversario';
 const FAIXA_AMIGOS_IMG = '/images/festa-amigos.jpg';
-const FAIXA_GRUPO_IMG = 'https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png';
-const FAIXA_EVENTO_IMG = 'https://mane.com.vc/wp-content/uploads/2025/04/Reserva-scaled.jpg';
+const FAIXA_GRUPO_IMG = '/images/happy.jpg';
+const FAIXA_EVENTO_IMG = '/images/happyh.png';
 
 export default function AniversarioV2Page() {
   return (
-    <ChatProvider origem="lp-aniversario-v2" themeTeal="#0E7A7F" themeCoral="#E34B4B">
+    <>
       <div className={styles.page}>
         <div className={styles.geoShapes} aria-hidden="true">
           <div className={`${styles.geo} ${styles.geo1}`} />
@@ -38,15 +39,10 @@ export default function AniversarioV2Page() {
 
         <div className={styles.content}>
           <nav className={styles.nav}>
-            <Link href="/" className={styles.navLogo}>
-              mané<sup>,</sup>
-              <span className={styles.navLogoSub}>
-                MERCADO
-                <br />
-                GASTRONÔMICO
-              </span>
+            <Link href="/" className={styles.navLogo} aria-label="Mané Mercado">
+              <Image src="/images/logo-mane-claro.svg" alt="Mané" width={76} height={40} priority />
             </Link>
-            <ChatOpener className={styles.navCta}>Reservar aniversário</ChatOpener>
+            <a href={RESERVA_URL} className={styles.navCta}>Reservar aniversário</a>
           </nav>
 
           <section className={styles.hero}>
@@ -58,8 +54,8 @@ export default function AniversarioV2Page() {
                   e ganhe até <span className={styles.highlight}>R$200!</span>
                 </h1>
                 <p className={styles.heroSub}>
-                  Quanto maior o grupo, mais o Mané entrega pra você. Estacionamento, kit exclusivo,
-                  brinquedoteca e muito mais — tudo incluso na reserva.
+                  Quanto maior o grupo, maior o bônus. A partir de 8 pessoas, o aniversariante ganha bônus em
+                consumação no dia da reserva, com brinquedoteca e cardápio personalizado conforme a faixa.
                 </p>
                 <div className={styles.heroBtns}>
                   <a href="#faixas" className={styles.btnGold}>
@@ -100,7 +96,7 @@ export default function AniversarioV2Page() {
                   <div className={styles.heroCardTitle}>Bônus Aniversariante</div>
                   <div className={styles.heroCardSub}>Válido para todas as unidades</div>
                   <div className={styles.heroCardValue}>R$200</div>
-                  <div className={styles.heroCardValueLabel}>em vantagens para o aniversariante</div>
+                  <div className={styles.heroCardValueLabel}>em bônus de consumação para o aniversariante</div>
                   <div className={styles.stepsList}>
                     <div className={styles.stepItem}>
                       <div className={styles.stepNum}>1</div>
@@ -108,7 +104,7 @@ export default function AniversarioV2Page() {
                     </div>
                     <div className={styles.stepItem}>
                       <div className={styles.stepNum}>2</div>
-                      <div className={styles.stepText}>Reserve pelo WhatsApp</div>
+                      <div className={styles.stepText}>Reserve pelo site em minutos</div>
                     </div>
                     <div className={styles.stepItem}>
                       <div className={styles.stepNum}>3</div>
@@ -137,7 +133,7 @@ export default function AniversarioV2Page() {
               <span className={styles.proofIcon}>📍</span> Brasília, Águas Claras e Lago Sul
             </div>
             <div className={styles.proofItem}>
-              <span className={styles.proofIcon}>🧸</span> Brinquedoteca inclusa
+              <span className={styles.proofIcon}>🧸</span> Brinquedoteca day use
             </div>
           </div>
 
@@ -155,8 +151,7 @@ export default function AniversarioV2Page() {
                   <a href="#faixas">Ver faixas</a>
                 </div>
                 <div className={styles.aboutPills}>
-                  <span className={styles.aboutPill}>🍺 Happy hour</span>
-                  <span className={styles.aboutPill}>🅿️ Estacionamento</span>
+                  <span className={styles.aboutPill}>🎂 Bônus em consumação</span>
                   <span className={styles.aboutPill}>🧸 Brinquedoteca</span>
                   <span className={styles.aboutPill}>📋 Cardápio personalizado</span>
                 </div>
@@ -172,28 +167,16 @@ export default function AniversarioV2Page() {
                   Benefícios progressivos por número de convidados
                 </div>
                 <div className={styles.benefitRow}>
-                  <div className={styles.benefitIconWrap}>🍺</div>
-                  <div className={styles.benefitLabel}>
-                    Happy hour estendido a noite toda — incluindo vinho
-                  </div>
-                </div>
-                <div className={styles.benefitRow}>
-                  <div className={styles.benefitIconWrap}>🅿️</div>
-                  <div className={styles.benefitLabel}>
-                    Estacionamento gratuito para o aniversariante
-                  </div>
-                </div>
-                <div className={styles.benefitRow}>
                   <div className={styles.benefitIconWrap}>🧸</div>
-                  <div className={styles.benefitLabel}>Brinquedoteca monitorada para crianças</div>
+                  <div className={styles.benefitLabel}>Brinquedoteca day use para até 2 crianças</div>
                 </div>
                 <div className={styles.benefitRow}>
                   <div className={styles.benefitIconWrap}>📋</div>
-                  <div className={styles.benefitLabel}>Cardápio personalizado do evento</div>
+                  <div className={styles.benefitLabel}>Cardápio personalizado, acima de 30 pessoas</div>
                 </div>
                 <div className={styles.benefitRow}>
                   <div className={styles.benefitIconWrap}>💰</div>
-                  <div className={styles.benefitLabel}>Bônus de até R$200 em consumação</div>
+                  <div className={styles.benefitLabel}>Bônus de até R$200 em consumação, no dia da reserva</div>
                 </div>
               </div>
             </div>
@@ -216,16 +199,16 @@ export default function AniversarioV2Page() {
 
               <div className={styles.faixaBase}>
                 <div className={styles.faixaBaseText}>
-                  <strong>Até 8 pessoas — reserva padrão</strong>
-                  Casais e grupos pequenos têm acesso a todas as cozinhas do mercado com reserva
-                  confirmada pelo WhatsApp.
+                  <strong>Até 7 pessoas: reserva padrão</strong>
+                  Casais e grupos pequenos têm acesso a todas as cozinhas do mercado, com reserva
+                confirmada na hora pelo site.
                 </div>
                 <div className={styles.faixaBaseActions}>
                   <div className={styles.faixaBasePills}>
                     <span className={styles.faixaBasePill}>🍽️ Todas as cozinhas</span>
-                    <span className={styles.faixaBasePill}>📱 Reserva por WhatsApp</span>
+                    <span className={styles.faixaBasePill}>📱 Reserva online</span>
                   </div>
-                  <ChatOpener className={styles.faixaBaseCta}>Reservar agora</ChatOpener>
+                  <a href={RESERVA_URL} className={styles.faixaBaseCta}>Reservar agora</a>
                 </div>
               </div>
 
@@ -243,27 +226,15 @@ export default function AniversarioV2Page() {
                   <div className={styles.faixaPessoas}>8 a 15 pessoas</div>
                   <div className={styles.faixaTitle}>Festa com os amigos</div>
                   <div className={styles.faixaBonusValue}>R$100</div>
-                  <div className={styles.faixaBonusLabel}>em bônus para o aniversariante</div>
+                  <div className={styles.faixaBonusLabel}>em bônus de consumação, no dia</div>
                   <hr className={styles.faixaDivider} />
                   <ul className={styles.benefitsListCard}>
                     <li className={styles.benefitItemCard}>
-                      <div className={styles.benefitIconCard}>🍺</div>
-                      <div className={styles.benefitText}>
-                        Happy hour estendido a noite toda — incluindo vinho
-                      </div>
-                    </li>
-                    <li className={styles.benefitItemCard}>
-                      <div className={styles.benefitIconCard}>🅿️</div>
-                      <div className={styles.benefitText}>
-                        Estacionamento gratuito para o aniversariante
-                      </div>
-                    </li>
-                    <li className={styles.benefitItemCard}>
                       <div className={styles.benefitIconCard}>🧸</div>
-                      <div className={styles.benefitText}>Brinquedoteca — 1 criança por 1 hora</div>
+                      <div className={styles.benefitText}>Brinquedoteca day use para 1 criança</div>
                     </li>
                   </ul>
-                  <ChatOpener className={styles.faixaCta}>Reservar agora</ChatOpener>
+                  <a href={RESERVA_URL} className={styles.faixaCta}>Reservar agora</a>
                 </article>
 
                 <article className={`${styles.faixaCard} ${styles.faixaCardMedio}`}>
@@ -279,29 +250,17 @@ export default function AniversarioV2Page() {
                   <div className={styles.faixaPessoas}>16 a 30 pessoas</div>
                   <div className={styles.faixaTitle}>Comemoração em grande</div>
                   <div className={styles.faixaBonusValue}>R$150</div>
-                  <div className={styles.faixaBonusLabel}>em bônus para o aniversariante</div>
+                  <div className={styles.faixaBonusLabel}>em bônus de consumação, no dia</div>
                   <hr className={styles.faixaDivider} />
                   <ul className={styles.benefitsListCard}>
                     <li className={styles.benefitItemCard}>
-                      <div className={styles.benefitIconCard}>🍺</div>
-                      <div className={styles.benefitText}>
-                        Happy hour estendido a noite toda — incluindo vinho
-                      </div>
-                    </li>
-                    <li className={styles.benefitItemCard}>
-                      <div className={styles.benefitIconCard}>🅿️</div>
-                      <div className={styles.benefitText}>
-                        Estacionamento gratuito para o aniversariante
-                      </div>
-                    </li>
-                    <li className={styles.benefitItemCard}>
                       <div className={styles.benefitIconCard}>🧸</div>
                       <div className={styles.benefitText}>
-                        Brinquedoteca — 2 crianças por 2 horas
+                        Brinquedoteca day use para 2 crianças
                       </div>
                     </li>
                   </ul>
-                  <ChatOpener className={styles.faixaCta}>Reservar agora</ChatOpener>
+                  <a href={RESERVA_URL} className={styles.faixaCta}>Reservar agora</a>
                 </article>
 
                 <article className={`${styles.faixaCard} ${styles.faixaCardDestaque}`} id="faixa-200">
@@ -315,36 +274,24 @@ export default function AniversarioV2Page() {
                     />
                   </div>
                   <div className={styles.faixaTagPopular}>Mais vantagens</div>
-                  <div className={styles.faixaPessoas}>Acima de 30 pessoas</div>
+                  <div className={styles.faixaPessoas}>Mais de 30 pessoas</div>
                   <div className={styles.faixaTitle}>Evento exclusivo</div>
                   <div className={styles.faixaBonusValue}>R$200</div>
-                  <div className={styles.faixaBonusLabel}>em bônus para o aniversariante</div>
+                  <div className={styles.faixaBonusLabel}>em bônus de consumação, no dia</div>
                   <hr className={styles.faixaDivider} />
                   <ul className={styles.benefitsListCard}>
-                    <li className={styles.benefitItemCard}>
-                      <div className={styles.benefitIconCard}>🍺</div>
-                      <div className={styles.benefitText}>
-                        Happy hour estendido a noite toda — incluindo vinho
-                      </div>
-                    </li>
                     <li className={styles.benefitItemCard}>
                       <div className={styles.benefitIconCard}>📋</div>
                       <div className={styles.benefitText}>Cardápio personalizado</div>
                     </li>
                     <li className={styles.benefitItemCard}>
-                      <div className={styles.benefitIconCard}>🅿️</div>
-                      <div className={styles.benefitText}>
-                        Estacionamento gratuito para o aniversariante
-                      </div>
-                    </li>
-                    <li className={styles.benefitItemCard}>
                       <div className={styles.benefitIconCard}>🧸</div>
                       <div className={styles.benefitText}>
-                        Brinquedoteca — 5 crianças por 2 horas
+                        Brinquedoteca day use para 2 crianças
                       </div>
                     </li>
                   </ul>
-                  <ChatOpener className={styles.faixaCta}>Reservar agora</ChatOpener>
+                  <a href={RESERVA_URL} className={styles.faixaCta}>Reservar agora</a>
                 </article>
               </div>
             </div>
@@ -422,8 +369,8 @@ export default function AniversarioV2Page() {
                 Águas Claras e Lago Sul.
               </p>
               <div className={styles.ctaBtns}>
-                <ChatOpener className={styles.btnCtaWhite}>
-                  Reservar agora com a Julia
+                <a href={RESERVA_URL} className={styles.btnCtaWhite}>
+                  Reservar meu aniversário
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path
                       d="M3 8h10M9 4l4 4-4 4"
@@ -433,7 +380,7 @@ export default function AniversarioV2Page() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </ChatOpener>
+                </a>
                 <Link href="/" className={styles.btnCtaGhost}>
                   Voltar ao site
                 </Link>
@@ -442,15 +389,23 @@ export default function AniversarioV2Page() {
           </section>
 
           <footer className={styles.footer}>
-            <Link href="/" className={styles.footerLogo}>
-              mané<sup>,</sup>
+            <Link href="/" className={styles.footerLogo} aria-label="Mané Mercado">
+              <Image src="/images/logo-mane.svg" alt="Mané" width={58} height={31} />
             </Link>
+            <nav className={styles.footerLegal} aria-label="Links legais">
+              <a href="/politica-de-privacidade" target="_blank" rel="noopener">
+                Política de Privacidade (LGPD)
+              </a>
+              <a href="/termo-de-consentimento" target="_blank" rel="noopener">
+                Termo de Consentimento
+              </a>
+            </nav>
             <span className={styles.footerText}>
               © {new Date().getFullYear()} Mané Mercado. Todos os direitos reservados.
             </span>
           </footer>
         </div>
       </div>
-    </ChatProvider>
+    </>
   );
 }

@@ -1,371 +1,290 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChatProvider, ChatOpener } from '@/components/chat/ChatWidget';
 import styles from './aniversario.module.css';
 
 export const metadata: Metadata = {
   title: 'Aniversário no Mané Mercado — Reserve seu espaço',
   description:
-    'Celebre seu aniversário no Mané Mercado e ganhe até R$200 em vantagens. Estacionamento, brinquedoteca, happy hour estendido e cardápio personalizado.',
+    'Celebre seu aniversário no Mané Mercado e ganhe até R$200 de bônus em consumação, a partir de 8 pessoas. Brinquedoteca day use e cardápio personalizado conforme o tamanho do grupo.',
   alternates: { canonical: '/aniversario' },
   openGraph: {
     title: 'Aniversário no Mané Mercado',
     description:
-      'Até R$200 em vantagens para o aniversariante. Brasília, Águas Claras e Lago Sul.',
+      'Até R$200 de bônus em consumação para o aniversariante, a partir de 8 pessoas. Brasília, Águas Claras e Lago Sul.',
     url: '/aniversario',
     images: ['/images/hero-aniversario.jpg'],
   },
 };
 
-const FAIXA_AMIGOS_IMG = '/images/festa-amigos.jpg';
-const FAIXA_GRUPO_IMG = 'https://mane.com.vc/wp-content/uploads/2023/03/Mask-group-6.png';
-const FAIXA_EVENTO_IMG = 'https://mane.com.vc/wp-content/uploads/2025/04/Reserva-scaled.jpg';
+const RESERVA_URL =
+  'https://reservas.mane.com.vc/?occasion=aniversario&utm_source=site&utm_medium=lp&utm_campaign=aniversario';
+
+// Benefícios iguais ao sistema de reservas (ac-reservas-app, _lib/benefits.ts)
+const FAIXAS = [
+  {
+    pessoas: '8 a 15 pessoas',
+    titulo: 'Festa com os amigos',
+    bonus: 'R$100',
+    perks: ['Brinquedoteca day use para 1 criança'],
+    img: '/images/festa-amigos.jpg',
+    alt: 'Amigos celebrando aniversário no Mané',
+  },
+  {
+    pessoas: '16 a 30 pessoas',
+    titulo: 'Comemoração em grande',
+    bonus: 'R$150',
+    perks: ['Brinquedoteca day use para 2 crianças'],
+    img: '/images/happy.jpg',
+    alt: 'Grupo brindando no Mané',
+  },
+  {
+    pessoas: 'Mais de 30 pessoas',
+    titulo: 'A celebração completa',
+    bonus: 'R$200',
+    perks: ['Brinquedoteca day use para 2 crianças', 'Cardápio personalizado'],
+    img: '/images/happyh.png',
+    alt: 'Mesa grande celebrando no Mané',
+    destaque: true,
+  },
+];
+
+const DIFERENCIAIS = [
+  {
+    titulo: 'Cada convidado escolhe',
+    texto: 'Mais de 20 cozinhas no mesmo lugar: japonesa, churrasco, italiana, vegana e muito mais.',
+    icon: 'prato',
+  },
+  {
+    titulo: 'Cozinhas autorais',
+    texto: 'Cada restaurante com chef próprio, cardápio exclusivo e identidade única.',
+    icon: 'chef',
+  },
+  {
+    titulo: 'Pensado para famílias',
+    texto: 'Brinquedoteca, cardápio infantil e ambiente tranquilo para as crianças.',
+    icon: 'familia',
+  },
+  {
+    titulo: 'Mercado sustentável',
+    texto: 'Descarte consciente, abastecimento local e práticas ambientais na operação.',
+    icon: 'folha',
+  },
+] as const;
+
+function Icon({ name }: { name: string }) {
+  const common = {
+    width: 22,
+    height: 22,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
+  };
+  switch (name) {
+    case 'prato':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="7" />
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M2 4v6M4 4v6M3 10v10M22 4c-1.5 1-2 3-2 5h2v11" />
+        </svg>
+      );
+    case 'chef':
+      return (
+        <svg {...common}>
+          <path d="M7 14v6h10v-6" />
+          <path d="M7 14a4 4 0 0 1-1-7.9A5 5 0 0 1 15.5 5 4 4 0 0 1 17 14" />
+          <path d="M7 17h10" />
+        </svg>
+      );
+    case 'familia':
+      return (
+        <svg {...common}>
+          <circle cx="8" cy="6" r="2.5" />
+          <circle cx="17" cy="9" r="2" />
+          <path d="M4 21v-5a4 4 0 0 1 8 0v5M14 21v-4a3 3 0 0 1 6 0v4" />
+        </svg>
+      );
+    case 'folha':
+      return (
+        <svg {...common}>
+          <path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15" />
+          <path d="M5 19 13 11" />
+        </svg>
+      );
+    case 'check':
+      return (
+        <svg {...common} width={18} height={18} strokeWidth={2}>
+          <path d="m5 12 4.5 4.5L19 7" />
+        </svg>
+      );
+    case 'seta':
+      return (
+        <svg {...common} width={16} height={16} strokeWidth={2}>
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function AniversarioPage() {
   return (
-    <ChatProvider origem="lp-aniversario-v1" themeTeal="#034B46" themeCoral="#D7675E">
-      <div className={styles.page}>
-        <nav className={styles.nav}>
-          <Link href="/" className={styles.navLogo}>
-            mané<sup>,</sup>
-          </Link>
-          <ChatOpener className={styles.navCta}>Reservar aniversário</ChatOpener>
-        </nav>
+    <div className={styles.page}>
+      <nav className={styles.nav}>
+        <Link href="/" className={styles.navLogo} aria-label="Mané Mercado">
+          <Image src="/images/logo-mane-claro.svg" alt="Mané" width={76} height={40} priority />
+        </Link>
+        <a href={RESERVA_URL} className={styles.navCta}>
+          Reservar aniversário
+        </a>
+      </nav>
 
-        <section className={styles.hero}>
-          <div className={styles.heroBg} aria-hidden="true" />
-          <div className={styles.heroLayout}>
-            <div>
-              <div className={styles.heroEyebrow}>
-                <span>🎂 Aniversário no Mané Mercado</span>
-              </div>
-              <h1 className={styles.heroHeadline}>
-                Celebre seu aniversário
-                <br />
-                e ganhe até <em>R$200 em<br />vantagens exclusivas.</em>
-              </h1>
-              <p className={styles.heroSub}>
-                Quanto maior o grupo, mais o Mané entrega pra você. Estacionamento, kit exclusivo,
-                brinquedoteca e muito mais — tudo incluso na reserva.
-              </p>
-              <a href="#faixas" className={styles.btnMain}>
-                Ver benefícios por faixa
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            <div className={styles.heroValueCard}>
-              <div className={styles.hvcLabel}>Bônus de até</div>
-              <div className={styles.hvcValue}>R$200</div>
-              <div className={styles.hvcSub}>para o aniversariante</div>
-              <div className={styles.hvcBenefits}>
-                <div className={styles.hvcBenefit}>
-                  <span className={styles.hvcBenefitIcon}>🍺</span> Happy hour a noite toda
-                </div>
-                <div className={styles.hvcBenefit}>
-                  <span className={styles.hvcBenefitIcon}>🅿️</span> Estacionamento gratuito
-                </div>
-                <div className={styles.hvcBenefit}>
-                  <span className={styles.hvcBenefitIcon}>🧸</span> Brinquedoteca inclusa
-                </div>
-                <div className={styles.hvcBenefit}>
-                  <span className={styles.hvcBenefitIcon}>📋</span> Cardápio personalizado
-                </div>
-              </div>
-              <a href="#faixa-200" className={styles.hvcCta}>
-                Quero o bônus de R$200 →
-              </a>
-            </div>
+      <header className={styles.hero}>
+        <div className={styles.heroText}>
+          <span className={styles.eyebrow}>Aniversário no Mané Mercado</span>
+          <h1 className={styles.heroTitle}>
+            Seu aniversário com até <em>R$200 de bônus</em> em consumação.
+          </h1>
+          <p className={styles.heroSub}>
+            Reserve para 8 pessoas ou mais e o aniversariante ganha bônus para usar no dia. Quanto
+            maior o grupo, maior o bônus.
+          </p>
+          <div className={styles.heroActions}>
+            <a href={RESERVA_URL} className={styles.btnPrimary}>
+              Reservar meu aniversário <Icon name="seta" />
+            </a>
+            <a href="#faixas" className={styles.btnLink}>
+              Ver as faixas
+            </a>
           </div>
-        </section>
-
-        <div className={styles.heroValueBar}>
-          <div className={styles.valueItem}>
-            <div className={styles.valueIcon}>🍽️</div>
-            <div className={styles.valueText}>
-              <strong>Diversidade total</strong>Cada convidado escolhe sua cozinha
-            </div>
-          </div>
-          <div className={styles.valueItem}>
-            <div className={styles.valueIcon}>📱</div>
-            <div className={styles.valueText}>
-              <strong>Reserva em minutos</strong>Confirmação direta pelo WhatsApp
-            </div>
-          </div>
-          <div className={styles.valueItem}>
-            <div className={styles.valueIcon}>🎉</div>
-            <div className={styles.valueText}>
-              <strong>Mais convidados, mais vantagens</strong>Benefícios progressivos por faixa
-            </div>
-          </div>
+          <ul className={styles.heroFacts}>
+            <li>
+              <strong>+20</strong> cozinhas
+            </li>
+            <li>
+              <strong>3</strong> unidades
+            </li>
+            <li>
+              <strong>Reserva</strong> em minutos
+            </li>
+          </ul>
         </div>
 
-        <section className={styles.faixasSection} id="faixas">
-          <div className={styles.faixasInner}>
-            <div className={styles.faixasHeader}>
-              <div className={styles.sectionEyebrow}>Benefícios por faixa</div>
-              <h2 className={styles.sectionTitle}>
-                Quanto maior o grupo,
-                <br />
-                <em>maiores as vantagens.</em>
-              </h2>
-              <p className={styles.sectionSub}>
-                Confira os benefícios exclusivos para cada faixa de convidados e escolha a que melhor se
-                encaixa na sua celebração.
-              </p>
-            </div>
-
-            <div className={styles.faixaBase}>
-              <div className={styles.faixaBaseText}>
-                <strong>Até 8 pessoas — reserva padrão</strong>
-                Casais e grupos pequenos têm acesso a todas as cozinhas do mercado com reserva
-                confirmada pelo WhatsApp.
-              </div>
-              <div className={styles.faixaBaseActions}>
-                <div className={styles.faixaBasePills}>
-                  <span className={styles.faixaBasePill}>🍽️ Todas as cozinhas</span>
-                  <span className={styles.faixaBasePill}>📱 Reserva por WhatsApp</span>
-                </div>
-                <ChatOpener className={styles.faixaBaseCta}>Reservar agora →</ChatOpener>
-              </div>
-            </div>
-
-            <div className={styles.faixasGrid}>
-              <article className={styles.faixaCard}>
-                <div className={styles.faixaImg}>
-                  <Image
-                    src={FAIXA_AMIGOS_IMG}
-                    alt="Amigos celebrando aniversário no Mané"
-                    fill
-                    sizes="(max-width: 1100px) 50vw, 360px"
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.faixaConfetti} aria-hidden="true" />
-                <div className={styles.faixaPessoas}>8 a 15 pessoas</div>
-                <div className={styles.faixaTitle}>Festa com os amigos</div>
-                <div className={styles.faixaBonusValue}>R$100</div>
-                <div className={styles.faixaBonusLabel}>em bônus para o aniversariante</div>
-                <hr className={styles.faixaDivider} />
-                <ul className={styles.benefitsList}>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🍺</div>
-                    <div className={styles.benefitText}>
-                      Happy hour estendido a noite toda — incluindo vinho
-                    </div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🅿️</div>
-                    <div className={styles.benefitText}>
-                      Estacionamento gratuito para o aniversariante
-                    </div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🧸</div>
-                    <div className={styles.benefitText}>Brinquedoteca — 1 criança por 1 hora</div>
-                  </li>
-                </ul>
-                <ChatOpener className={styles.faixaCta}>
-                  Reservar agora e garantir bônus →
-                </ChatOpener>
-              </article>
-
-              <article className={`${styles.faixaCard} ${styles.faixaCardMedio}`}>
-                <div className={styles.faixaImg}>
-                  <Image
-                    src={FAIXA_GRUPO_IMG}
-                    alt="Grupo celebrando no Mané"
-                    fill
-                    sizes="(max-width: 1100px) 50vw, 360px"
-                    loading="lazy"
-                    style={{ objectPosition: 'center 60%' }}
-                  />
-                </div>
-                <div className={styles.faixaConfetti} aria-hidden="true" />
-                <div className={styles.faixaPessoas}>16 a 30 pessoas</div>
-                <div className={styles.faixaTitle}>Comemoração em grande</div>
-                <div className={styles.faixaBonusValue}>R$150</div>
-                <div className={styles.faixaBonusLabel}>em bônus para o aniversariante</div>
-                <hr className={styles.faixaDivider} />
-                <ul className={styles.benefitsList}>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🍺</div>
-                    <div className={styles.benefitText}>
-                      Happy hour estendido a noite toda — incluindo vinho
-                    </div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🅿️</div>
-                    <div className={styles.benefitText}>
-                      Estacionamento gratuito para o aniversariante
-                    </div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🧸</div>
-                    <div className={styles.benefitText}>Brinquedoteca — 2 crianças por 2 horas</div>
-                  </li>
-                </ul>
-                <ChatOpener className={styles.faixaCta}>
-                  Reservar agora e garantir bônus →
-                </ChatOpener>
-              </article>
-
-              <article className={`${styles.faixaCard} ${styles.faixaCardDestaque}`} id="faixa-200">
-                <div className={styles.faixaImg}>
-                  <Image
-                    src={FAIXA_EVENTO_IMG}
-                    alt="Evento exclusivo no Mané"
-                    fill
-                    sizes="(max-width: 1100px) 50vw, 360px"
-                    loading="lazy"
-                  />
-                </div>
-                <div className={styles.faixaConfetti} aria-hidden="true" />
-                <div className={styles.faixaTagPopular}>Mais vantagens</div>
-                <div className={styles.faixaPessoas}>Acima de 30 pessoas</div>
-                <div className={styles.faixaTitle}>Evento exclusivo</div>
-                <div className={styles.faixaBonusValue}>R$200</div>
-                <div className={styles.faixaBonusLabel}>em bônus para o aniversariante</div>
-                <hr className={styles.faixaDivider} />
-                <ul className={styles.benefitsList}>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🍺</div>
-                    <div className={styles.benefitText}>
-                      Happy hour estendido a noite toda — incluindo vinho
-                    </div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>📋</div>
-                    <div className={styles.benefitText}>Cardápio personalizado</div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🅿️</div>
-                    <div className={styles.benefitText}>
-                      Estacionamento gratuito para o aniversariante
-                    </div>
-                  </li>
-                  <li className={styles.benefitItem}>
-                    <div className={styles.benefitIcon}>🧸</div>
-                    <div className={styles.benefitText}>Brinquedoteca — 5 crianças por 2 horas</div>
-                  </li>
-                </ul>
-                <ChatOpener className={styles.faixaCta}>
-                  Reservar agora e garantir bônus →
-                </ChatOpener>
-              </article>
-            </div>
+        <div className={styles.heroMedia}>
+          <div className={styles.heroPhoto}>
+            <Image
+              src="/images/hero-aniversario.jpg"
+              alt="Aniversário com amigos no Mané Mercado"
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 560px"
+            />
           </div>
-        </section>
-
-        <section className={styles.diffSection}>
-          <div className={styles.diffInner}>
-            <div className={styles.diffGrid}>
-              <div className={styles.diffText}>
-                <div className={styles.sectionEyebrow}>Por que celebrar no Mané</div>
-                <h2 className={styles.diffTitle}>
-                  O espaço que reúne
-                  <br />
-                  <em>todos os gostos.</em>
-                </h2>
-                <p className={styles.diffBody}>
-                  Cada convidado escolhe sua própria cozinha. Cozinhas autorais com chefs dedicados,
-                  ambiente preparado para celebrações e reserva confirmada em minutos.
-                </p>
-              </div>
-              <div className={styles.diffCards}>
-                <div className={styles.diffCard}>
-                  <div className={styles.diffCardIcon}>🍽️</div>
-                  <div>
-                    <strong>Diversidade gastronômica</strong>
-                    <span>
-                      Japonesa, churrascaria, italiana, vegana e mais — cada convidado escolhe onde
-                      comer.
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.diffCard}>
-                  <div className={styles.diffCardIcon}>👨‍🍳</div>
-                  <div>
-                    <strong>Cozinhas autorais independentes</strong>
-                    <span>
-                      Cada restaurante opera com chef próprio, cardápio exclusivo e identidade
-                      gastronômica única.
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.diffCard}>
-                  <div className={styles.diffCardIcon}>🧸</div>
-                  <div>
-                    <strong>Estrutura para famílias</strong>
-                    <span>
-                      Brinquedoteca monitorada, cardápio infantil e ambiente seguro para crianças.
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.diffCard}>
-                  <div className={styles.diffCardIcon}>🌱</div>
-                  <div>
-                    <strong>Único mercado sustentável do Brasil</strong>
-                    <span>
-                      Descarte consciente, abastecimento local e práticas ambientais integradas à
-                      operação.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className={styles.heroBadge}>
+            <span>Bônus de até</span>
+            <strong>R$200</strong>
+            <small>em consumação, no dia da reserva</small>
           </div>
-        </section>
+        </div>
+      </header>
 
-        <section className={styles.ctaSection} id="reservar">
-          <div className={styles.ctaInner}>
-            <h2 className={styles.ctaTitle}>
-              Reserve seu
-              <br />
-              <em>aniversário.</em>
-            </h2>
-            <p className={styles.ctaSub}>
-              Selecione o número de convidados e receba sua confirmação em minutos. Brasília, Águas
-              Claras e Lago Sul.
-            </p>
-            <div className={styles.ctaBtns}>
-              <ChatOpener className={styles.btnCtaPrimary}>
-                Reservar agora com a Julia
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </ChatOpener>
-              <Link href="/" className={styles.btnCtaGhost}>
-                Voltar ao site
-              </Link>
+      <section className={styles.faixas} id="faixas">
+        <div className={styles.sectionHead}>
+          <span className={styles.eyebrow}>Benefícios por faixa</span>
+          <h2 className={styles.sectionTitle}>
+            Quanto maior o grupo, <em>maior o bônus.</em>
+          </h2>
+          <p className={styles.sectionSub}>
+            O bônus vale em consumação no dia da reserva. Até 7 pessoas, a reserva é padrão, com
+            acesso a todas as cozinhas do mercado.
+          </p>
+        </div>
+
+        <div className={styles.cards}>
+          {FAIXAS.map((f) => (
+            <article
+              key={f.pessoas}
+              className={`${styles.card} ${f.destaque ? styles.cardDestaque : ''}`}
+            >
+              <div className={styles.cardPhoto}>
+                <Image src={f.img} alt={f.alt} fill sizes="(max-width: 900px) 100vw, 380px" />
+                {f.destaque && <span className={styles.cardTag}>Mais vantagens</span>}
+              </div>
+              <div className={styles.cardBody}>
+                <span className={styles.cardPessoas}>{f.pessoas}</span>
+                <h3 className={styles.cardTitle}>{f.titulo}</h3>
+                <div className={styles.cardBonus}>
+                  <strong>{f.bonus}</strong>
+                  <span>em bônus de consumação</span>
+                </div>
+                <ul className={styles.cardPerks}>
+                  {f.perks.map((p) => (
+                    <li key={p}>
+                      <Icon name="check" /> {p}
+                    </li>
+                  ))}
+                </ul>
+                <a href={RESERVA_URL} className={styles.cardCta}>
+                  Reservar <Icon name="seta" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.diff}>
+        <div className={styles.sectionHead}>
+          <span className={styles.eyebrow}>Por que celebrar no Mané</span>
+          <h2 className={styles.sectionTitle}>
+            Um lugar que reúne <em>todos os gostos.</em>
+          </h2>
+        </div>
+        <div className={styles.diffGrid}>
+          {DIFERENCIAIS.map((d) => (
+            <div key={d.titulo} className={styles.diffItem}>
+              <span className={styles.diffIcon}>
+                <Icon name={d.icon} />
+              </span>
+              <h3>{d.titulo}</h3>
+              <p>{d.texto}</p>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </section>
 
-        <footer className={styles.footerMini}>
-          <Link href="/" className={styles.footerMiniLogo}>
-            mané<sup>,</sup>
-          </Link>
-          <span className={styles.footerMiniText}>
-            © {new Date().getFullYear()} Mané Mercado. Todos os direitos reservados.
-          </span>
-        </footer>
-      </div>
-    </ChatProvider>
+      <section className={styles.cta}>
+        <div className={styles.ctaInner}>
+          <h2>
+            Bora comemorar <em>no Mané?</em>
+          </h2>
+          <p>Escolha a data, o número de convidados e pronto. Brasília, Águas Claras e Lago Sul.</p>
+          <a href={RESERVA_URL} className={styles.btnLight}>
+            Reservar meu aniversário <Icon name="seta" />
+          </a>
+        </div>
+      </section>
+
+      <footer className={styles.footer}>
+        <Link href="/" aria-label="Mané Mercado">
+          <Image src="/images/logo-mane-claro.svg" alt="Mané" width={58} height={31} />
+        </Link>
+        <nav className={styles.footerLegal} aria-label="Links legais">
+          <a href="/politica-de-privacidade" target="_blank" rel="noopener">
+            Política de Privacidade (LGPD)
+          </a>
+          <a href="/termo-de-consentimento" target="_blank" rel="noopener">
+            Termo de Consentimento
+          </a>
+        </nav>
+        <span>© {new Date().getFullYear()} Mané Mercado. Todos os direitos reservados.</span>
+      </footer>
+    </div>
   );
 }

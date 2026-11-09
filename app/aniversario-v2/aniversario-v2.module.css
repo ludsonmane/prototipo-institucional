@@ -1015,3 +1015,21 @@
   .geo7 { display: none; }
   .geo2, .geo3, .geo4, .geo6 { display: none; }
 }
+
+/* links legais no rodapé */
+.footerLegal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 24px;
+  font-size: 13px;
+}
+.footerLegal a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.footerLegal a:hover {
+  color: #fff;
+  border-color: currentColor;
+}
